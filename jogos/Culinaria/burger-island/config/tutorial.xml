@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Outer xmlns:name="config/tutorial.xml">
+<setup>
+	<common>
+		<next>Next</next>
+		<skip>Skip Tutorial</skip>
+	</common>
+	<tutorial01>
+		<quad01>
+			<title>Bonjour!</title>
+			<description>'Allo! You are the new sous-chef? I am Pierre, and I shall instruct you in the fine art of burger cuisine. Let us begin!</description>
+		</quad01>
+		<quad02>
+			<title>Orders</title>
+			<description>First, voila: the customers' orders! Follow the recipe from left to right, placing the ingredients on the tray in the sequence shown. Simplement!</description>
+		</quad02>
+		<quad03>
+			<title>Order time</title>
+			<description>Voici, this is your timer. Finish the order before the timer turns red or the customer will leave! If you are taking too long, the timer will beep to alert you. Pierre does not like le beeping!</description>
+		</quad03>		
+		<quad04>
+			<title>Hamburger</title>
+			<description>What is the first step to any burger? A patty, of course! Click on the stack to start one frying.</description>
+		</quad04>
+		<quad05>
+			<title>Cooking...</title>
+			<description>Wait as it cooks...</description>
+		</quad05>
+		<quad06>
+			<title>More orders</title>
+			<description>Very good. And look! Another order! Click the stack again to cook another patty.</description>
+		</quad06>
+		<quad07>
+			<title>Trash!</title>
+			<description>Zut alors! The patty has BURNED! It is now what we call, 'le charcoal'. Click on the burnt patty, then on the trash door to dispose of it. Let us not speak of this again!</description>
+		</quad07>
+		<quad08>
+			<title>Multiple orders</title>
+			<description>Sacre bleu! More orders! Add another patty to the grill, tout suite!</description>
+		</quad08>
+		<quad09>
+			<title>Cooking...</title>
+			<description>Patience, mon ami!</description>
+		</quad09>
+		<quad10>
+			<title>Ready!</title>
+			<description>Fantastique! Browned to perfection. Click on both patties to pick them up, then click on each tray to place them on the buns. Careful! They're hot!</description>
+		</quad10>
+		<quad11>
+			<title>Toppings</title>
+			<description>Tres bien! Now, what good is a burger without toppings? Check the orders; these burgers need le ketchup! Click on le ketchup bottle and then give each tray a squirt. Just like Matisse!</description>
+		</quad11>
+		<quad12>
+			<title>Top it off!</title>
+			<description>For the final step, click on the stack of bun tops and then on the burgers. Bon! You are fini! Easy, non?</description>
+		</quad12>
+		<quad13>
+			<title>Cash</title>
+			<description>Every workday you must meet a cash GOAL, so get cooking! Fill as many orders as you can. Later, you will be able to buy new gourmet RECIPES with your profits.</description>
+		</quad13>
+		<quad14>
+			<title>Shift length</title>
+			<description>Your shift starts at 10:30a.m. and ends at 9:00p.m. Failing to meet the daily goal causes you to lose a life. Dazzle your customers' taste buds and become the best burger bar on the beach!</description>
+		</quad14>
+		<quad15>
+			<title>Pausing</title>
+			<description>You can pause the game at any time by clicking on the 'Menu' button.</description>
+		</quad15>
+	</tutorial01>
+	<tutorial02>
+		<quad16>
+			<title>French Fries</title>
+			<description>Congratulations! Now you may learn the secrets of Pierre's specialty - the French Fry! First, click on the fries to start them sizzling.</description>
+		</quad16>
+		<quad17>
+			<title>Frying...</title>
+			<description>Patience once more, cherie, as the potatoes fry...</description>
+		</quad17>
+		<quad18>
+			<title>Fried!</title>
+			<description>Ah, golden perfection! Pick up the fries and place them on the tray.</description>
+		</quad18>
+		<quad19>
+			<title>Dash of Salt</title >
+			<description>This recipe calls for a touch of salt. Click on the shaker and then the tray to spice it up.</description>
+		</quad19>
+		<quad20>
+			<title>Pinch of Pepper</title >
+			<description>A bit of pepper adds a certain 'je ne sais quoi'. Sprinkle some on the fries.</description>
+		</quad20>
+		<quad21>
+			<title>Squirt!</title >
+			<description>Ah, finally, we need our old friend, le ketchup! The last secret to our French Fry masterpiece!</description>
+		</quad21>
+		<quad22>
+			<title>Order up!</title>
+			<description>Voila, the order is finished. Mmm, just like Maman used to make! Tres bon!</description>
+		</quad22>	
+	</tutorial02>
+</setup>

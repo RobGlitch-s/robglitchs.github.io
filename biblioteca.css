@@ -1,0 +1,1064 @@
+css
+/* ========================================
+   GLITCH'S GAMES
+   BIBLIOTECA DE JOGOS
+   ======================================== */
+
+
+/* ========================================
+   RESET
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(0, 255, 255, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(160, 0, 255, 0.12),
+            transparent 35%
+        ),
+        #080810;
+
+    color: #ffffff;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+header {
+    position: relative;
+
+    padding:
+        30px 5%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 255, 255, 0.08),
+            rgba(130, 0, 255, 0.08)
+        );
+
+    border-bottom:
+        1px solid
+        rgba(0, 255, 255, 0.2);
+
+    box-shadow:
+        0 5px 30px
+        rgba(0, 0, 0, 0.5);
+
+    overflow: hidden;
+}
+
+
+header::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            rgba(255, 255, 255, 0.02) 50%,
+            transparent 50%
+        );
+
+    background-size:
+        100% 4px;
+
+    opacity: 0.15;
+}
+
+
+/* ========================================
+   CABEÇALHO
+   ======================================== */
+
+.cabecalho-biblioteca {
+    position: relative;
+
+    z-index: 1;
+
+    width:
+        min(
+            1300px,
+            92%
+        );
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.cabecalho-biblioteca h1 {
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3.2rem
+        );
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    color: #ffffff;
+
+    text-shadow:
+        3px 3px 0 #ff00ff,
+        -3px -3px 0 #00ffff,
+        0 0 20px
+        rgba(0, 255, 255, 0.5);
+}
+
+
+.cabecalho-biblioteca p {
+    margin-top: 10px;
+
+    color: #bfc4d8;
+
+    font-size: 1rem;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* ========================================
+   BOTÃO VOLTAR
+   ======================================== */
+
+.botao-voltar {
+    flex-shrink: 0;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        12px 20px;
+
+    text-decoration: none;
+
+    color: #ffffff;
+
+    font-size: 0.95rem;
+
+    font-weight: bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00c8ff,
+            #7b2cff
+        );
+
+    border-radius: 8px;
+
+    border:
+        1px solid
+        rgba(0, 255, 255, 0.4);
+
+    box-shadow:
+        0 0 15px
+        rgba(0, 255, 255, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+.botao-voltar:hover {
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.15);
+
+    box-shadow:
+        0 0 15px
+        rgba(0, 255, 255, 0.5),
+        0 0 30px
+        rgba(123, 44, 255, 0.3);
+}
+
+
+.botao-voltar:active {
+    transform:
+        translateY(0);
+}
+
+
+/* ========================================
+   CONTEÚDO PRINCIPAL
+   ======================================== */
+
+main {
+    width:
+        min(
+            1300px,
+            92%
+        );
+
+    margin:
+        45px auto 60px;
+
+    flex: 1;
+}
+
+
+/* ========================================
+   TOPO DA BIBLIOTECA
+   ======================================== */
+
+.topo-biblioteca {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 25px;
+}
+
+
+.topo-biblioteca h2 {
+    font-size: 2rem;
+
+    color: #00ffff;
+
+    text-shadow:
+        0 0 10px
+        rgba(0, 255, 255, 0.6);
+}
+
+
+/* ========================================
+   PESQUISA
+   ======================================== */
+
+#pesquisa-jogos {
+    width:
+        min(
+            350px,
+            100%
+        );
+
+    height: 48px;
+
+    padding:
+        10px 16px;
+
+    color: #ffffff;
+
+    background:
+        rgba(21, 21, 32, 0.95);
+
+    border:
+        1px solid
+        rgba(0, 255, 255, 0.3);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.95rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#pesquisa-jogos::placeholder {
+    color: #777c91;
+}
+
+
+#pesquisa-jogos:hover {
+    border-color:
+        rgba(0, 255, 255, 0.6);
+}
+
+
+#pesquisa-jogos:focus {
+    border-color:
+        #00ffff;
+
+    box-shadow:
+        0 0 10px
+        rgba(0, 255, 255, 0.25);
+}
+
+
+/* ========================================
+   CATEGORIAS
+   ======================================== */
+
+.categorias {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 25px;
+
+    padding: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+        );
+
+    border:
+        1px solid
+        rgba(0, 255, 255, 0.15);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.25);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.categorias button {
+    padding:
+        9px 15px;
+
+    border:
+        1px solid
+        rgba(0, 255, 255, 0.2);
+
+    border-radius: 7px;
+
+    background:
+        rgba(0, 255, 255, 0.04);
+
+    color: #bfc4d8;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.9rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.categorias button:hover {
+    color: #ffffff;
+
+    border-color:
+        rgba(0, 255, 255, 0.6);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.categorias button.categoria-ativa {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00c8ff,
+            #7b2cff
+        );
+
+    border-color:
+        transparent;
+
+    box-shadow:
+        0 0 12px
+        rgba(0, 255, 255, 0.25);
+}
+
+
+/* ========================================
+   QUANTIDADE DE JOGOS
+   ======================================== */
+
+.quantidade-jogos {
+    margin-bottom: 20px;
+
+    color: #777c91;
+
+    font-size: 0.9rem;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* ========================================
+   GRADE DE JOGOS
+   ======================================== */
+
+.biblioteca-jogos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(
+                210px,
+                1fr
+            )
+        );
+
+    gap: 22px;
+
+    width: 100%;
+}
+
+
+/* ========================================
+   CARD DO JOGO
+   ======================================== */
+
+.card-jogo {
+    position: relative;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.07),
+            rgba(255, 255, 255, 0.015)
+        );
+
+    border:
+        1px solid
+        rgba(0, 255, 255, 0.18);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.35);
+
+    backdrop-filter:
+        blur(8px);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.card-jogo:hover {
+    transform:
+        translateY(-6px);
+
+    border-color:
+        rgba(0, 255, 255, 0.6);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0, 0, 0, 0.5),
+        0 0 20px
+        rgba(0, 255, 255, 0.12);
+}
+
+
+/* ========================================
+   IMAGEM DO JOGO
+   ======================================== */
+
+.card-jogo > img {
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 10;
+
+    object-fit: cover;
+
+    background:
+        #11111c;
+
+    border-bottom:
+        1px solid
+        rgba(0, 255, 255, 0.12);
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+.card-jogo:hover > img {
+    transform:
+        scale(1.04);
+
+    filter:
+        brightness(1.08);
+}
+
+
+/* ========================================
+   CASO NÃO TENHA IMAGEM
+   ======================================== */
+
+.card-jogo.sem-imagem {
+    min-height: 300px;
+}
+
+
+.card-jogo.sem-imagem::before {
+    content: "🎮";
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 10;
+
+    background:
+        linear-gradient(
+            135deg,
+            #11111c,
+            #171728
+        );
+
+    color: #00ffff;
+
+    font-size: 3rem;
+
+    text-shadow:
+        0 0 15px
+        rgba(0, 255, 255, 0.5);
+}
+
+
+/* ========================================
+   INFORMAÇÕES DO CARD
+   ======================================== */
+
+.informacoes-card {
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    padding: 15px;
+}
+
+
+/* ========================================
+   CATEGORIA DO CARD
+   ======================================== */
+
+.categoria-card {
+    align-self: flex-start;
+
+    margin-bottom: 8px;
+
+    padding:
+        4px 8px;
+
+    border-radius: 5px;
+
+    background:
+        rgba(0, 255, 255, 0.08);
+
+    border:
+        1px solid
+        rgba(0, 255, 255, 0.18);
+
+    color: #00ffff;
+
+    font-size: 0.7rem;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* ========================================
+   NOME DO JOGO
+   ======================================== */
+
+.informacoes-card h3 {
+    min-height: 44px;
+
+    margin-bottom: 14px;
+
+    color: #ffffff;
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    line-height: 1.35;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   BOTÃO JOGAR
+   ======================================== */
+
+.botao-jogar {
+    width: 100%;
+
+    margin-top: auto;
+
+    padding:
+        10px 15px;
+
+    border:
+        none;
+
+    border-radius: 7px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00c8ff,
+            #7b2cff
+        );
+
+    color: #ffffff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.9rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.botao-jogar:hover {
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.15);
+
+    box-shadow:
+        0 0 15px
+        rgba(0, 255, 255, 0.4),
+        0 0 25px
+        rgba(123, 44, 255, 0.25);
+}
+
+
+.botao-jogar:active {
+    transform:
+        translateY(0);
+}
+
+
+/* ========================================
+   SEM RESULTADOS
+   ======================================== */
+
+.sem-resultados {
+    width: 100%;
+
+    min-height: 300px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    padding: 40px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+        );
+
+    border:
+        1px solid
+        rgba(0, 255, 255, 0.15);
+
+    border-radius: 12px;
+}
+
+
+.icone-sem-resultados {
+    margin-bottom: 15px;
+
+    font-size: 3rem;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(0, 255, 255, 0.4)
+        );
+}
+
+
+.sem-resultados h3 {
+    margin-bottom: 8px;
+
+    color: #ffffff;
+
+    font-size: 1.3rem;
+}
+
+
+.sem-resultados p {
+    color: #777c91;
+
+    font-size: 0.95rem;
+}
+
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+footer {
+    margin-top: auto;
+
+    padding:
+        25px 20px;
+
+    text-align: center;
+
+    background: #050509;
+
+    border-top:
+        1px solid
+        rgba(0, 255, 255, 0.15);
+}
+
+
+footer p {
+    color: #777c91;
+
+    font-size: 0.9rem;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    .cabecalho-biblioteca {
+        width: 94%;
+    }
+
+
+    main {
+        width: 94%;
+    }
+
+
+    .biblioteca-jogos {
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(
+                    180px,
+                    1fr
+                )
+            );
+    }
+
+}
+
+
+/* ========================================
+   TABLETS / CELULARES
+   ======================================== */
+
+@media (max-width: 700px) {
+
+    header {
+        padding:
+            30px 15px;
+    }
+
+
+    .cabecalho-biblioteca {
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        text-align: center;
+    }
+
+
+    .cabecalho-biblioteca h1 {
+        font-size: 2rem;
+    }
+
+
+    .botao-voltar {
+        width: 100%;
+    }
+
+
+    main {
+        width: 92%;
+
+        margin:
+            30px auto 45px;
+    }
+
+
+    .topo-biblioteca {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 15px;
+    }
+
+
+    .topo-biblioteca h2 {
+        font-size: 1.7rem;
+
+        text-align: center;
+    }
+
+
+    #pesquisa-jogos {
+        width: 100%;
+    }
+
+
+    .categorias {
+        justify-content: center;
+    }
+
+
+    .biblioteca-jogos {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+        gap: 15px;
+    }
+
+
+    .informacoes-card {
+        padding: 12px;
+    }
+
+}
+
+
+/* ========================================
+   CELULARES PEQUENOS
+   ======================================== */
+
+@media (max-width: 450px) {
+
+    .cabecalho-biblioteca h1 {
+        font-size: 1.7rem;
+    }
+
+
+    .cabecalho-biblioteca p {
+        font-size: 0.9rem;
+    }
+
+
+    main {
+        width: 94%;
+    }
+
+
+    .biblioteca-jogos {
+        grid-template-columns:
+            1fr;
+
+        gap: 18px;
+    }
+
+
+    .card-jogo > img {
+        aspect-ratio: 16 / 9;
+    }
+
+
+    .categorias {
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        flex-wrap: nowrap;
+
+        padding-bottom: 12px;
+    }
+
+
+    .categorias button {
+        flex-shrink: 0;
+    }
+
+}
+
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar {
+    width: 10px;
+
+    height: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #050509;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            #00ffff,
+            #7b2cff
+        );
+
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background:
+        linear-gradient(
+            #00ffff,
+            #ff00ff
+        );
+}
+
+
+/* ========================================
+   SELEÇÃO DE TEXTO
+   ======================================== */
+
+::selection {
+    background: #00ffff;
+
+    color: #080810;
+}

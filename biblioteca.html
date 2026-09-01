@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Biblioteca | Glitch's Games</title>
+
+    <!-- CSS DA BIBLIOTECA -->
+    <link rel="stylesheet" href="biblioteca.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <header>
+
+        <div class="cabecalho-biblioteca">
+
+            <div>
+
+                <h1>
+                    🎮 Biblioteca de Jogos
+                </h1>
+
+                <p>
+                    Escolha um jogo para começar a jogar!
+                </p>
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="botao-voltar"
+            >
+
+                🏠 Voltar ao Player
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO
+         ========================================= -->
+
+    <main>
+
+
+        <!-- =====================================
+             TOPO DA BIBLIOTECA
+             ===================================== -->
+
+        <section class="topo-biblioteca">
+
+            <h2>
+                Todos os Jogos
+            </h2>
+
+
+            <input
+                type="text"
+                id="pesquisa-jogos"
+                placeholder="🔎 Pesquisar jogo..."
+                autocomplete="off"
+            >
+
+        </section>
+
+
+
+        <!-- =====================================
+             FILTRO DE CATEGORIAS
+             ===================================== -->
+
+        <nav
+            id="categorias"
+            class="categorias"
+            aria-label="Categorias de jogos"
+        >
+
+            <button
+                type="button"
+                class="categoria-ativa"
+                data-categoria="todos"
+            >
+
+                Todos
+
+            </button>
+
+        </nav>
+
+
+
+        <!-- =====================================
+             QUANTIDADE DE JOGOS
+             ===================================== -->
+
+        <div
+            id="quantidade-jogos"
+            class="quantidade-jogos"
+        >
+
+            Carregando jogos...
+
+        </div>
+
+
+
+        <!-- =====================================
+             GRADE DE JOGOS
+             ===================================== -->
+
+        <section
+            id="biblioteca-jogos"
+            class="biblioteca-jogos"
+            aria-label="Biblioteca de jogos"
+        >
+
+        </section>
+
+
+
+        <!-- =====================================
+             MENSAGEM SEM RESULTADOS
+             ===================================== -->
+
+        <div
+            id="sem-resultados"
+            class="sem-resultados"
+            style="display: none;"
+        >
+
+            <div class="icone-sem-resultados">
+                🎮
+            </div>
+
+            <h3>
+                Nenhum jogo encontrado
+            </h3>
+
+            <p>
+                Tente pesquisar por outro nome ou categoria.
+            </p>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 Glitch's Games.
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+        /*
+         * Array que receberá os jogos
+         * do jogos.json.
+         */
+
+        let jogos = [];
+
+
+        /*
+         * Categoria atualmente selecionada.
+         */
+
+        let categoriaAtual = "todos";
+
+
+        /*
+         * Texto atualmente pesquisado.
+         */
+
+        let pesquisaAtual = "";
+
+
+
+        /* =========================================
+           CARREGAR JOGOS
+           ========================================= */
+
+        fetch("jogos.json")
+
+            .then(function (resposta) {
+
+                if (!resposta.ok) {
+
+                    throw new Error(
+                        "Não foi possível carregar jogos.json"
+                    );
+
+                }
+
+
+                return resposta.json();
+
+            })
+
+            .then(function (catalogo) {
+
+                jogos = catalogo;
+
+
+                /*
+                 * Cria os botões das categorias.
+                 */
+
+                criarCategorias();
+
+
+                /*
+                 * Mostra os jogos.
+                 */
+
+                mostrarJogos();
+
+            })
+
+            .catch(function (erro) {
+
+                console.error(
+                    "Erro ao carregar catálogo:",
+                    erro
+                );
+
+
+                document.getElementById(
+                    "quantidade-jogos"
+                ).textContent =
+                    "Não foi possível carregar os jogos.";
+
+            });
+
+
+
+        /* =========================================
+           CRIAR CATEGORIAS
+           ========================================= */
+
+        function criarCategorias() {
+
+            const containerCategorias =
+                document.getElementById(
+                    "categorias"
+                );
+
+
+            /*
+             * Limpa os botões existentes,
+             * mantendo somente o botão Todos.
+             */
+
+            containerCategorias.innerHTML = "";
+
+
+            /*
+             * Botão TODOS.
+             */
+
+            const botaoTodos =
+                document.createElement(
+                    "button"
+                );
+
+
+            botaoTodos.type = "button";
+
+            botaoTodos.textContent = "Todos";
+
+            botaoTodos.dataset.categoria =
+                "todos";
+
+            botaoTodos.classList.add(
+                "categoria-ativa"
+            );
+
+
+            botaoTodos.addEventListener(
+                "click",
+                selecionarCategoria
+            );
+
+
+            containerCategorias.appendChild(
+                botaoTodos
+            );
+
+
+            /*
+             * Descobre todas as categorias
+             * existentes no jogos.json.
+             */
+
+            const categorias =
+                [...new Set(
+                    jogos.map(
+                        function (jogo) {
+                            return jogo.categoria;
+                        }
+                    )
+                )]
+                .sort(
+                    function (a, b) {
+                        return a.localeCompare(b);
+                    }
+                );
+
+
+            /*
+             * Cria os botões.
+             */
+
+            categorias.forEach(
+                function (categoria) {
+
+                    const botao =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    botao.type = "button";
+
+                    botao.textContent =
+                        categoria;
+
+                    botao.dataset.categoria =
+                        categoria;
+
+
+                    botao.addEventListener(
+                        "click",
+                        selecionarCategoria
+                    );
+
+
+                    containerCategorias.appendChild(
+                        botao
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           SELECIONAR CATEGORIA
+           ========================================= */
+
+        function selecionarCategoria(evento) {
+
+            categoriaAtual =
+                evento.currentTarget.dataset.categoria;
+
+
+            /*
+             * Remove seleção dos outros botões.
+             */
+
+            document
+                .querySelectorAll(
+                    "#categorias button"
+                )
+                .forEach(
+                    function (botao) {
+
+                        botao.classList.remove(
+                            "categoria-ativa"
+                        );
+
+                    }
+                );
+
+
+            /*
+             * Ativa o botão clicado.
+             */
+
+            evento.currentTarget.classList.add(
+                "categoria-ativa"
+            );
+
+
+            /*
+             * Atualiza a biblioteca.
+             */
+
+            mostrarJogos();
+
+        }
+
+
+
+        /* =========================================
+           PESQUISA
+           ========================================= */
+
+        document
+            .getElementById(
+                "pesquisa-jogos"
+            )
+            .addEventListener(
+                "input",
+                function (evento) {
+
+                    pesquisaAtual =
+                        evento.target.value
+                            .toLowerCase()
+                            .trim();
+
+
+                    mostrarJogos();
+
+                }
+            );
+
+
+
+        /* =========================================
+           MOSTRAR JOGOS
+           ========================================= */
+
+        function mostrarJogos() {
+
+            const container =
+                document.getElementById(
+                    "biblioteca-jogos"
+                );
+
+
+            const mensagem =
+                document.getElementById(
+                    "sem-resultados"
+                );
+
+
+            const quantidade =
+                document.getElementById(
+                    "quantidade-jogos"
+                );
+
+
+            /*
+             * Limpa a biblioteca.
+             */
+
+            container.innerHTML = "";
+
+
+            /*
+             * Filtra os jogos.
+             */
+
+            const jogosFiltrados =
+                jogos.filter(
+                    function (jogo) {
+
+                        const pertenceCategoria =
+                            categoriaAtual === "todos" ||
+                            jogo.categoria === categoriaAtual;
+
+
+                        const pertencePesquisa =
+                            !pesquisaAtual ||
+                            jogo.nome
+                                .toLowerCase()
+                                .includes(
+                                    pesquisaAtual
+                                );
+
+
+                        return (
+                            pertenceCategoria &&
+                            pertencePesquisa
+                        );
+
+                    }
+                );
+
+
+            /*
+             * Atualiza quantidade.
+             */
+
+            quantidade.textContent =
+                jogosFiltrados.length +
+                (
+                    jogosFiltrados.length === 1
+                        ? " jogo encontrado"
+                        : " jogos encontrados"
+                );
+
+
+            /*
+             * Nenhum resultado.
+             */
+
+            if (
+                jogosFiltrados.length === 0
+            ) {
+
+                mensagem.style.display =
+                    "flex";
+
+                return;
+
+            }
+
+
+            mensagem.style.display =
+                "none";
+
+
+            /*
+             * Cria os cards.
+             */
+
+            jogosFiltrados.forEach(
+                function (jogo) {
+
+                    criarCardJogo(
+                        jogo,
+                        container
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           CRIAR CARD
+           ========================================= */
+
+        function criarCardJogo(
+            jogo,
+            container
+        ) {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "card-jogo";
+
+
+            /*
+             * Nome do arquivo SWF.
+             *
+             * Exemplo:
+             *
+             * jogos/Acao/2_in_1.swf
+             *
+             * vira:
+             *
+             * jogos/Acao/2_in_1.jpg
+             */
+
+            const imagem =
+                jogo.arquivo
+                    .replace(
+                        /\.swf$/i,
+                        ".jpg"
+                    );
+
+
+            /*
+             * Imagem.
+             */
+
+            const imagemElemento =
+                document.createElement(
+                    "img"
+                );
+
+
+            imagemElemento.src =
+                imagem;
+
+
+            imagemElemento.alt =
+                "Capa do jogo " +
+                jogo.nome;
+
+
+            imagemElemento.loading =
+                "lazy";
+
+
+            /*
+             * Caso a imagem não exista.
+             */
+
+            imagemElemento.onerror =
+                function () {
+
+                    this.style.display =
+                        "none";
+
+                    card.classList.add(
+                        "sem-imagem"
+                    );
+
+                };
+
+
+            /*
+             * Área das informações.
+             */
+
+            const informacoes =
+                document.createElement(
+                    "div"
+                );
+
+
+            informacoes.className =
+                "informacoes-card";
+
+
+            /*
+             * Categoria.
+             */
+
+            const categoria =
+                document.createElement(
+                    "span"
+                );
+
+
+            categoria.className =
+                "categoria-card";
+
+
+            categoria.textContent =
+                jogo.categoria;
+
+
+            /*
+             * Nome.
+             */
+
+            const nome =
+                document.createElement(
+                    "h3"
+                );
+
+
+            nome.textContent =
+                jogo.nome;
+
+
+            /*
+             * Botão.
+             */
+
+            const botao =
+                document.createElement(
+                    "button"
+                );
+
+
+            botao.type =
+                "button";
+
+
+            botao.className =
+                "botao-jogar";
+
+
+            botao.textContent =
+                "▶ Jogar";
+
+
+            /*
+             * Envia o jogo para o index.html.
+             */
+
+            botao.addEventListener(
+                "click",
+                function () {
+
+                    jogarJogo(
+                        jogo
+                    );
+
+                }
+            );
+
+
+            /*
+             * Monta o card.
+             */
+
+            informacoes.appendChild(
+                categoria
+            );
+
+
+            informacoes.appendChild(
+                nome
+            );
+
+
+            informacoes.appendChild(
+                botao
+            );
+
+
+            card.appendChild(
+                imagemElemento
+            );
+
+
+            card.appendChild(
+                informacoes
+            );
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+
+
+
+        /* =========================================
+           JOGAR JOGO
+           ========================================= */
+
+        function jogarJogo(jogo) {
+
+            /*
+             * Salva o jogo selecionado.
+             */
+
+            localStorage.setItem(
+                "jogoSelecionado",
+                JSON.stringify({
+
+                    nome: jogo.nome,
+
+                    arquivo: jogo.arquivo,
+
+                    categoria: jogo.categoria
+
+                })
+            );
+
+
+            /*
+             * Volta para o player principal.
+             */
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+

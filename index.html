@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Glitch's Games</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- =========================================
+         RUFFLE
+         ========================================= -->
+
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+
+
+    <!-- =========================================
+         SWF2JS
+         ========================================= -->
+
+    <script src="swf2js.js"></script>
+    <script src="js/jogos.js"></script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <header>
+
+        <h1>
+            Glitch's Games :D
+        </h1>
+
+        <p>
+            Olá, seja bem-vindo!
+        </p>
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO
+         ========================================= -->
+
+    <main>
+
+
+        <!-- =====================================
+             SELETOR DE EMULADOR
+             ===================================== -->
+
+        <div class="seletor-emulador">
+
+            <strong>
+                Escolha o Emulador:
+            </strong>
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="emulador"
+                    value="ruffle"
+                    checked
+                >
+
+                Ruffle (Recomendado)
+
+            </label>
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="emulador"
+                    value="swf2js"
+                >
+
+                swf2js (Alternativo)
+
+            </label>
+
+        </div>
+
+
+
+        <!-- =====================================
+             SELETOR DE JOGOS
+             ===================================== -->
+
+        <div class="seletor-jogos">
+
+            <div class="titulo-seletor-jogos">
+
+                <h2>
+                    Escolha um jogo
+                </h2>
+
+                <a
+                    href="biblioteca.html"
+                    class="botao-biblioteca"
+                >
+                    🎮 Biblioteca de Jogos
+                </a>
+
+            </div>
+
+
+            <select
+                id="seletor-jogo"
+                aria-label="Selecione um jogo"
+            >
+
+                <option value="">
+                    -- Selecione um jogo --
+                </option>
+
+            </select>
+
+
+            <button
+                type="button"
+                onclick="jogarJogoSelecionado()"
+            >
+                Jogar
+            </button>
+
+        </div>
+
+        <!-- =====================================
+             ÁREA DO JOGO
+             ===================================== -->
+
+        <section
+            id="area-jogo"
+            aria-label="Área do jogo"
+        >
+
+
+            <!-- =================================
+                 BARRA DO JOGO
+                 ================================= -->
+
+            <div id="barra-jogo">
+
+
+                <div id="informacoes-jogo">
+
+                    <strong id="nome-jogo">
+                        Jogo
+                    </strong>
+
+
+                    <span id="nome-emulador">
+                        Ruffle
+                    </span>
+
+                </div>
+
+
+                <div id="botoes-jogo">
+
+                    <button
+                        type="button"
+                        id="botao-fullscreen"
+                        onclick="alternarTelaCheia()"
+                    >
+
+                        ⛶ Tela Cheia
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="botao-fechar"
+                        onclick="fecharJogo()"
+                    >
+
+                        Fechar Jogo
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 ÁREA INTERNA DO PLAYER
+                 ================================= -->
+
+            <div id="container-swf">
+
+                <div
+                    id="mensagem-carregando"
+                    class="mensagem-player"
+                >
+
+                    Selecione um jogo para começar.
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 Glitch's Games.
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+
+        /* =========================================
+           CATÁLOGO DE JOGOS
+           ========================================= */
+
+        document.addEventListener(
+            "jogos-carregados",
+            preencherSeletorJogos
+        );
+
+
+        function preencherSeletorJogos() {
+
+            const seletor =
+                document.getElementById(
+                    "seletor-jogo"
+                );
+
+
+            /*
+             * Evita duplicar opções caso
+             * o evento seja disparado novamente.
+             */
+
+            seletor.innerHTML = "";
+
+
+            const primeiraOpcao =
+                document.createElement(
+                    "option"
+                );
+
+
+            primeiraOpcao.value = "";
+
+            primeiraOpcao.textContent =
+                "-- Selecione um jogo --";
+
+
+            seletor.appendChild(
+                primeiraOpcao
+            );
+
+
+            jogos
+                .slice()
+                .sort(
+                    function (primeiro, segundo) {
+
+                        return primeiro.categoria.localeCompare(
+                            segundo.categoria
+                        )
+                        ||
+                        primeiro.nome.localeCompare(
+                            segundo.nome
+                        );
+
+                    }
+                )
+                .forEach(
+                    function (jogo) {
+
+                        const opcao =
+                            document.createElement(
+                                "option"
+                            );
+
+
+                        opcao.value =
+                            jogo.arquivo;
+
+
+                        opcao.dataset.nome =
+                            jogo.nome;
+
+
+                        opcao.dataset.categoria =
+                            jogo.categoria;
+
+
+                        opcao.textContent =
+                            jogo.categoria +
+                            " - " +
+                            jogo.nome;
+
+
+                        seletor.appendChild(
+                            opcao
+                        );
+
+                    }
+                );
+
+
+            /*
+             * Depois que o catálogo foi carregado,
+             * verifica se existe um jogo enviado
+             * pela biblioteca.
+             */
+
+            verificarJogoDaBiblioteca();
+
+        }
+
+
+
+        /* =========================================
+           VARIÁVEIS
+           ========================================= */
+
+        let playerRuffle = null;
+
+        let canvasSWF2JS = null;
+
+        let elementoOriginalSWF2JS = null;
+
+
+        /*
+         * Guarda se o jogo está carregado.
+         */
+
+        let jogoCarregado = false;
+
+
+
+        /* =========================================
+           RECEBER JOGO DA BIBLIOTECA
+           ========================================= */
+
+        function verificarJogoDaBiblioteca() {
+
+            const jogoSalvo =
+                localStorage.getItem(
+                    "jogoSelecionado"
+                );
+
+
+            /*
+             * Não existe jogo vindo da biblioteca.
+             */
+
+            if (!jogoSalvo) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const jogo =
+                    JSON.parse(
+                        jogoSalvo
+                    );
+
+
+                /*
+                 * Verifica se os dados são válidos.
+                 */
+
+                if (
+                    !jogo ||
+                    !jogo.arquivo ||
+                    !jogo.nome
+                ) {
+
+                    localStorage.removeItem(
+                        "jogoSelecionado"
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * Seleciona o jogo na caixa
+                 * de listagem.
+                 */
+
+                const seletor =
+                    document.getElementById(
+                        "seletor-jogo"
+                    );
+
+
+                const opcoes =
+                    Array.from(
+                        seletor.options
+                    );
+
+
+                const opcaoEncontrada =
+                    opcoes.find(
+                        function (opcao) {
+
+                            return (
+                                opcao.value ===
+                                jogo.arquivo
+                            );
+
+                        }
+                    );
+
+
+                if (opcaoEncontrada) {
+
+                    seletor.value =
+                        jogo.arquivo;
+
+                }
+
+
+                /*
+                 * Remove o jogo salvo.
+                 *
+                 * Isso evita que o jogo seja
+                 * aberto novamente caso a página
+                 * seja atualizada.
+                 */
+
+                localStorage.removeItem(
+                    "jogoSelecionado"
+                );
+
+
+                /*
+                 * Abre automaticamente o jogo.
+                 */
+
+                carregarJogo(
+                    jogo.arquivo,
+                    jogo.nome
+                );
+
+            }
+            catch (erro) {
+
+                console.error(
+                    "Erro ao receber jogo da biblioteca:",
+                    erro
+                );
+
+
+                localStorage.removeItem(
+                    "jogoSelecionado"
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           JOGAR JOGO SELECIONADO
+           ========================================= */
+
+        function jogarJogoSelecionado() {
+
+            const seletor =
+                document.getElementById(
+                    "seletor-jogo"
+                );
+
+
+            /*
+             * Verifica se algum jogo foi escolhido.
+             */
+
+            if (!seletor.value) {
+
+                alert(
+                    "Selecione um jogo primeiro."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Pega a opção selecionada.
+             */
+
+            const opcaoSelecionada =
+                seletor.options[
+                    seletor.selectedIndex
+                ];
+
+
+            /*
+             * Caminho do arquivo SWF.
+             */
+
+            const arquivoSWF =
+                opcaoSelecionada.value;
+
+
+            /*
+             * Nome do jogo.
+             */
+
+            const nomeJogo =
+                opcaoSelecionada.dataset.nome;
+
+
+            /*
+             * Carrega o jogo.
+             */
+
+            carregarJogo(
+                arquivoSWF,
+                nomeJogo
+            );
+
+        }
+
+
+
+        /* =========================================
+           CARREGAR JOGO
+           ========================================= */
+
+        function carregarJogo(
+            arquivoSWF,
+            nomeJogo
+        ) {
+
+            const areaJogo =
+                document.getElementById(
+                    "area-jogo"
+                );
+
+
+            const nomeJogoElemento =
+                document.getElementById(
+                    "nome-jogo"
+                );
+
+
+            const nomeEmulador =
+                document.getElementById(
+                    "nome-emulador"
+                );
+
+
+            /*
+             * Descobre o emulador.
+             */
+
+            const emuladorSelecionado =
+                document.querySelector(
+                    'input[name="emulador"]:checked'
+                ).value;
+
+
+            /*
+             * Se estiver em fullscreen,
+             * sai primeiro.
+             */
+
+            if (
+                document.fullscreenElement
+            ) {
+
+                document
+                    .exitFullscreen()
+                    .catch(
+                        function () {}
+                    );
+
+            }
+
+
+            /*
+             * Mostra a área do jogo.
+             */
+
+            areaJogo.style.display =
+                "block";
+
+
+            /*
+             * Atualiza o nome.
+             */
+
+            nomeJogoElemento.textContent =
+                nomeJogo;
+
+
+            /*
+             * Limpa player anterior.
+             */
+
+            limparPlayer();
+
+
+            /*
+             * Marca jogo carregado.
+             */
+
+            jogoCarregado = true;
+
+
+
+            /* =====================================
+               RUFFLE
+               ===================================== */
+
+            if (
+                emuladorSelecionado ===
+                "ruffle"
+            ) {
+
+                nomeEmulador.textContent =
+                    "Ruffle";
+
+
+                iniciarRuffle(
+                    arquivoSWF
+                );
+
+            }
+
+
+
+            /* =====================================
+               SWF2JS
+               ===================================== */
+
+            else if (
+                emuladorSelecionado ===
+                "swf2js"
+            ) {
+
+                nomeEmulador.textContent =
+                    "swf2js";
+
+
+                iniciarSWF2JS(
+                    arquivoSWF
+                );
+
+            }
+
+
+            /*
+             * Rola até o player.
+             */
+
+            setTimeout(
+                function () {
+
+                    areaJogo.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                },
+                150
+            );
+
+        }
+
+
+
+        /* =========================================
+           INICIAR RUFFLE
+           ========================================= */
+
+        function iniciarRuffle(
+            arquivoSWF
+        ) {
+
+            const containerSWF =
+                document.getElementById(
+                    "container-swf"
+                );
+
+
+            /*
+             * Verifica Ruffle.
+             */
+
+            if (!window.RufflePlayer) {
+
+                mostrarErro(
+                    "O Ruffle não foi carregado. Verifique sua conexão com a internet."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                containerSWF.innerHTML =
+                    "";
+
+
+                /*
+                 * Cria Ruffle.
+                 */
+
+                const ruffle =
+                    window.RufflePlayer.newest();
+
+
+                playerRuffle =
+                    ruffle.createPlayer();
+
+
+                /*
+                 * Configuração.
+                 */
+
+                playerRuffle.style.display =
+                    "block";
+
+                playerRuffle.style.width =
+                    "100%";
+
+                playerRuffle.style.height =
+                    "100%";
+
+                playerRuffle.style.maxWidth =
+                    "100%";
+
+                playerRuffle.style.maxHeight =
+                    "100%";
+
+                playerRuffle.style.margin =
+                    "0";
+
+                playerRuffle.style.padding =
+                    "0";
+
+
+                /*
+                 * Coloca dentro do container.
+                 */
+
+                containerSWF.appendChild(
+                    playerRuffle
+                );
+
+
+                /*
+                 * Carrega o SWF.
+                 */
+
+                playerRuffle
+                    .ruffle()
+                    .load(
+                        arquivoSWF
+                    );
+
+
+                console.log(
+                    "Ruffle iniciado:",
+                    arquivoSWF
+                );
+
+            }
+            catch (erro) {
+
+                console.error(
+                    "Erro ao iniciar Ruffle:",
+                    erro
+                );
+
+
+                mostrarErro(
+                    "Não foi possível iniciar o Ruffle."
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           INICIAR SWF2JS
+           ========================================= */
+
+        function iniciarSWF2JS(
+            arquivoSWF
+        ) {
+
+            const containerSWF =
+                document.getElementById(
+                    "container-swf"
+                );
+
+
+            /*
+             * Verifica swf2js.
+             */
+
+            if (
+                typeof window.swf2js ===
+                "undefined"
+            ) {
+
+                mostrarErro(
+                    "O swf2js não foi carregado. Verifique se swf2js.js está na mesma pasta do index.html."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                containerSWF.innerHTML =
+                    "";
+
+
+                /*
+                 * Guarda os canvas existentes.
+                 */
+
+                const canvasAntes =
+                    Array.from(
+                        document.querySelectorAll(
+                            "canvas"
+                        )
+                    );
+
+
+                /*
+                 * Inicia swf2js.
+                 */
+
+                window.swf2js.load(
+                    arquivoSWF
+                );
+
+
+                /*
+                 * Aguarda o canvas.
+                 */
+
+                aguardarCanvasSWF2JS(
+                    canvasAntes,
+                    0
+                );
+
+            }
+            catch (erro) {
+
+                console.error(
+                    "Erro ao iniciar swf2js:",
+                    erro
+                );
+
+
+                mostrarErro(
+                    "Não foi possível iniciar o swf2js."
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           AGUARDAR CANVAS SWF2JS
+           ========================================= */
+
+        function aguardarCanvasSWF2JS(
+            canvasAntes,
+            tentativa
+        ) {
+
+            const containerSWF =
+                document.getElementById(
+                    "container-swf"
+                );
+
+
+            /*
+             * Limite de tentativas.
+             */
+
+            if (
+                tentativa >= 30
+            ) {
+
+                mostrarErro(
+                    "O swf2js não criou o canvas do jogo."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Procura canvas.
+             */
+
+            const canvasAtuais =
+                Array.from(
+                    document.querySelectorAll(
+                        "canvas"
+                    )
+                );
+
+
+            /*
+             * Procura canvas novo.
+             */
+
+            const canvasNovo =
+                canvasAtuais.find(
+                    function (canvas) {
+
+                        return !canvasAntes.includes(
+                            canvas
+                        );
+
+                    }
+                );
+
+
+            /*
+             * Encontrou.
+             */
+
+            if (canvasNovo) {
+
+                canvasSWF2JS =
+                    canvasNovo;
+
+
+                elementoOriginalSWF2JS =
+                    canvasNovo;
+
+
+                /*
+                 * Remove da posição original.
+                 */
+
+                canvasNovo.remove();
+
+
+                /*
+                 * Coloca dentro do player.
+                 */
+
+                containerSWF.appendChild(
+                    canvasNovo
+                );
+
+
+                configurarCanvasSWF2JS();
+
+
+                console.log(
+                    "Canvas do swf2js movido para a janela."
+                );
+
+
+                return;
+
+            }
+
+
+            /*
+             * Tenta novamente.
+             */
+
+            setTimeout(
+                function () {
+
+                    aguardarCanvasSWF2JS(
+                        canvasAntes,
+                        tentativa + 1
+                    );
+
+                },
+                200
+            );
+
+        }
+
+
+
+        /* =========================================
+           CONFIGURAR CANVAS SWF2JS
+           ========================================= */
+
+        function configurarCanvasSWF2JS() {
+
+            if (!canvasSWF2JS) {
+
+                return;
+
+            }
+
+
+            const canvas =
+                canvasSWF2JS;
+
+
+            canvas.style.display =
+                "block";
+
+            canvas.style.position =
+                "absolute";
+
+            canvas.style.left =
+                "50%";
+
+            canvas.style.top =
+                "50%";
+
+            canvas.style.transform =
+                "translate(-50%, -50%)";
+
+            canvas.style.maxWidth =
+                "100%";
+
+            canvas.style.maxHeight =
+                "100%";
+
+            canvas.style.width =
+                "";
+
+            canvas.style.height =
+                "";
+
+            canvas.style.margin =
+                "0";
+
+            canvas.style.imageRendering =
+                "auto";
+
+        }
+
+
+
+        /* =========================================
+           TELA CHEIA
+           ========================================= */
+
+        async function alternarTelaCheia() {
+
+            const containerSWF =
+                document.getElementById(
+                    "container-swf"
+                );
+
+
+            /*
+             * Se não existe player.
+             */
+
+            if (!jogoCarregado) {
+
+                return;
+
+            }
+
+
+            try {
+
+                /*
+                 * Se já está fullscreen,
+                 * sai.
+                 */
+
+                if (
+                    document.fullscreenElement
+                ) {
+
+                    await document.exitFullscreen();
+
+                    return;
+
+                }
+
+
+                /*
+                 * Entra em fullscreen
+                 * somente no player.
+                 */
+
+                await containerSWF.requestFullscreen();
+
+            }
+            catch (erro) {
+
+                console.error(
+                    "Erro ao entrar em tela cheia:",
+                    erro
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           EVENTO FULLSCREEN
+           ========================================= */
+
+        document.addEventListener(
+            "fullscreenchange",
+            function () {
+
+                const containerSWF =
+                    document.getElementById(
+                        "container-swf"
+                    );
+
+
+                setTimeout(
+                    function () {
+
+                        /*
+                         * RUFFLE
+                         */
+
+                        if (playerRuffle) {
+
+                            playerRuffle.style.width =
+                                "100%";
+
+                            playerRuffle.style.height =
+                                "100%";
+
+                            playerRuffle.style.maxWidth =
+                                "100%";
+
+                            playerRuffle.style.maxHeight =
+                                "100%";
+
+                        }
+
+
+                        /*
+                         * SWF2JS
+                         */
+
+                        if (canvasSWF2JS) {
+
+                            configurarCanvasSWF2JS();
+
+                        }
+
+
+                        /*
+                         * Força reflow.
+                         */
+
+                        containerSWF.style.display =
+                            "none";
+
+
+                        void containerSWF.offsetHeight;
+
+
+                        containerSWF.style.display =
+                            "flex";
+
+
+                        setTimeout(
+                            function () {
+
+                                if (playerRuffle) {
+
+                                    playerRuffle.style.width =
+                                        "100%";
+
+                                    playerRuffle.style.height =
+                                        "100%";
+
+                                }
+
+
+                                if (canvasSWF2JS) {
+
+                                    configurarCanvasSWF2JS();
+
+                                }
+
+                            },
+                            100
+                        );
+
+                    },
+                    50
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           LIMPAR PLAYER
+           ========================================= */
+
+        function limparPlayer() {
+
+            const containerSWF =
+                document.getElementById(
+                    "container-swf"
+                );
+
+
+            /*
+             * Sai do fullscreen.
+             */
+
+            if (
+                document.fullscreenElement
+            ) {
+
+                document
+                    .exitFullscreen()
+                    .catch(
+                        function () {}
+                    );
+
+            }
+
+
+            /*
+             * Remove Ruffle.
+             */
+
+            if (playerRuffle) {
+
+                try {
+
+                    playerRuffle.remove();
+
+                }
+                catch (erro) {
+
+                    console.warn(
+                        "Erro removendo Ruffle:",
+                        erro
+                    );
+
+                }
+
+
+                playerRuffle =
+                    null;
+
+            }
+
+
+            /*
+             * Remove canvas.
+             */
+
+            if (canvasSWF2JS) {
+
+                try {
+
+                    canvasSWF2JS.remove();
+
+                }
+                catch (erro) {
+
+                    console.warn(
+                        "Erro removendo canvas:",
+                        erro
+                    );
+
+                }
+
+
+                canvasSWF2JS =
+                    null;
+
+            }
+
+
+            elementoOriginalSWF2JS =
+                null;
+
+
+            /*
+             * Limpa container.
+             */
+
+            containerSWF.innerHTML =
+                "";
+
+        }
+
+
+
+        /* =========================================
+           MOSTRAR ERRO
+           ========================================= */
+
+        function mostrarErro(
+            mensagem
+        ) {
+
+            const containerSWF =
+                document.getElementById(
+                    "container-swf"
+                );
+
+
+            containerSWF.innerHTML =
+                "";
+
+
+            const erro =
+                document.createElement(
+                    "div"
+                );
+
+
+            erro.className =
+                "erro-jogo";
+
+
+            erro.textContent =
+                mensagem;
+
+
+            containerSWF.appendChild(
+                erro
+            );
+
+        }
+
+
+
+        /* =========================================
+           FECHAR JOGO
+           ========================================= */
+
+        function fecharJogo() {
+
+            const areaJogo =
+                document.getElementById(
+                    "area-jogo"
+                );
+
+
+            /*
+             * Sai do fullscreen.
+             */
+
+            if (
+                document.fullscreenElement
+            ) {
+
+                document
+                    .exitFullscreen()
+                    .catch(
+                        function () {}
+                    );
+
+            }
+
+
+            /*
+             * Limpa player.
+             */
+
+            limparPlayer();
+
+
+            /*
+             * Marca como não carregado.
+             */
+
+            jogoCarregado =
+                false;
+
+
+            /*
+             * Esconde janela.
+             */
+
+            areaJogo.style.display =
+                "none";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
