@@ -1,4 +1,4 @@
-﻿[
+[
     {
         "nome":  "2 in 1",
         "arquivo":  "jogos/Acao/2_in_1.swf",
@@ -992,21 +992,6 @@
     {
         "nome":  "breakfast",
         "arquivo":  "jogos/Culinaria/breakfast.swf",
-        "categoria":  "Culinaria"
-    },
-    {
-        "nome":  "bi",
-        "arquivo":  "jogos/Culinaria/burger-island/bi.swf",
-        "categoria":  "Culinaria"
-    },
-    {
-        "nome":  "game",
-        "arquivo":  "jogos/Culinaria/burger-island/game.swf",
-        "categoria":  "Culinaria"
-    },
-    {
-        "nome":  "menu",
-        "arquivo":  "jogos/Culinaria/burger-island/menu.swf",
         "categoria":  "Culinaria"
     },
     {
