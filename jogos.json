@@ -1,2002 +1,4327 @@
 [
     {
-        "nome":  "2 in 1",
-        "arquivo":  "jogos/Acao/2_in_1.swf",
-        "categoria":  "Acao"
+        "nome": "2 in 1",
+        "arquivo": "jogos/Acao/2_in_1.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Avatar Trials of Serpent",
-        "arquivo":  "jogos/Acao/Avatar_-_Trials_of_Serpent.swf",
-        "categoria":  "Acao"
+        "nome": "Ancientbattle",
+        "arquivo": "jogos/Acao/ancientbattle.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Avoidence 2",
-        "arquivo":  "jogos/Acao/Avoidence_2.swf",
-        "categoria":  "Acao"
+        "nome": "AssautSnipers",
+        "arquivo": "jogos/Acao/AssautSnipers.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "AvoidOrDestroyed distribute",
-        "arquivo":  "jogos/Acao/AvoidOrDestroyed_distribute.swf",
-        "categoria":  "Acao"
+        "nome": "Avatar Trials of Serpent",
+        "arquivo": "jogos/Acao/Avatar_-_Trials_of_Serpent.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Batman Dynamic Team",
-        "arquivo":  "jogos/Acao/Batman_Dynamic_Team.swf",
-        "categoria":  "Acao"
+        "nome": "Avoidence 2",
+        "arquivo": "jogos/Acao/Avoidence_2.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "BattleFones",
-        "arquivo":  "jogos/Acao/BattleFones.swf",
-        "categoria":  "Acao"
+        "nome": "AvoidOrDestroyed distribute",
+        "arquivo": "jogos/Acao/AvoidOrDestroyed_distribute.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Billy e Mandy Fright Before Christmas",
-        "arquivo":  "jogos/Acao/Billy_e_Mandy_-_Fright_Before_Christmas.swf",
-        "categoria":  "Acao"
+        "nome": "Barcode",
+        "arquivo": "jogos/Acao/barcode.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "blackboardsquash",
-        "arquivo":  "jogos/Acao/blackboardsquash.swf",
-        "categoria":  "Acao"
+        "nome": "Batman Dynamic Team",
+        "arquivo": "jogos/Acao/Batman_Dynamic_Team.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Briga de Meninas",
-        "arquivo":  "jogos/Acao/Briga_de_Meninas.swf",
-        "categoria":  "Acao"
+        "nome": "BattleFones",
+        "arquivo": "jogos/Acao/BattleFones.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Bucanner Battle",
-        "arquivo":  "jogos/Acao/Bucanner_Battle.swf",
-        "categoria":  "Acao"
+        "nome": "Biff and baff",
+        "arquivo": "jogos/Acao/biff_and_baff.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Bully Basher",
-        "arquivo":  "jogos/Acao/Bully_Basher.swf",
-        "categoria":  "Acao"
+        "nome": "Billy e Mandy Fright Before Christmas",
+        "arquivo": "jogos/Acao/Billy_e_Mandy_-_Fright_Before_Christmas.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Captain Skyro",
-        "arquivo":  "jogos/Acao/Captain_Skyro.swf",
-        "categoria":  "Acao"
+        "nome": "Blackboardsquash",
+        "arquivo": "jogos/Acao/blackboardsquash.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "cave diving",
-        "arquivo":  "jogos/Acao/cave-diving.swf",
-        "categoria":  "Acao"
+        "nome": "Blackops",
+        "arquivo": "jogos/Acao/blackops.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "crazykoala",
-        "arquivo":  "jogos/Acao/crazykoala.swf",
-        "categoria":  "Acao"
+        "nome": "Briga de Meninas",
+        "arquivo": "jogos/Acao/Briga_de_Meninas.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Crazytracker",
-        "arquivo":  "jogos/Acao/Crazytracker.swf",
-        "categoria":  "Acao"
+        "nome": "Bubblegame",
+        "arquivo": "jogos/Acao/bubblegame.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Cupid 2008",
-        "arquivo":  "jogos/Acao/Cupid_2008.swf",
-        "categoria":  "Acao"
+        "nome": "Bucanner Battle",
+        "arquivo": "jogos/Acao/Bucanner_Battle.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "cursor 2",
-        "arquivo":  "jogos/Acao/cursor-2.swf",
-        "categoria":  "Acao"
+        "nome": "Bully Basher",
+        "arquivo": "jogos/Acao/Bully_Basher.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "drasticplastic",
-        "arquivo":  "jogos/Acao/drasticplastic.swf",
-        "categoria":  "Acao"
+        "nome": "Captain Skyro",
+        "arquivo": "jogos/Acao/Captain_Skyro.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "fishes",
-        "arquivo":  "jogos/Acao/fishes.swf",
-        "categoria":  "Acao"
+        "nome": "Cave diving",
+        "arquivo": "jogos/Acao/cave-diving.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "frosty jumper",
-        "arquivo":  "jogos/Acao/frosty_jumper.swf",
-        "categoria":  "Acao"
+        "nome": "ChambouleTout",
+        "arquivo": "jogos/Acao/ChambouleTout.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "FunkyBall",
-        "arquivo":  "jogos/Acao/FunkyBall.swf",
-        "categoria":  "Acao"
+        "nome": "ClayPidgeonShooter",
+        "arquivo": "jogos/Acao/ClayPidgeonShooter.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Funny Zoo",
-        "arquivo":  "jogos/Acao/Funny_Zoo.swf",
-        "categoria":  "Acao"
+        "nome": "Cowboyschool",
+        "arquivo": "jogos/Acao/cowboyschool.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "fwgknight2",
-        "arquivo":  "jogos/Acao/fwgknight2.swf",
-        "categoria":  "Acao"
+        "nome": "Crazykoala",
+        "arquivo": "jogos/Acao/crazykoala.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "gravity",
-        "arquivo":  "jogos/Acao/gravity.swf",
-        "categoria":  "Acao"
+        "nome": "Crazytracker",
+        "arquivo": "jogos/Acao/Crazytracker.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Gravity Ball",
-        "arquivo":  "jogos/Acao/Gravity_Ball.swf",
-        "categoria":  "Acao"
+        "nome": "Cupid 2008",
+        "arquivo": "jogos/Acao/Cupid_2008.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "gravity game",
-        "arquivo":  "jogos/Acao/gravity-game.swf",
-        "categoria":  "Acao"
+        "nome": "Cursor 2",
+        "arquivo": "jogos/Acao/cursor-2.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "HamantashCatcher",
-        "arquivo":  "jogos/Acao/HamantashCatcher.swf",
-        "categoria":  "Acao"
+        "nome": "Desertstrike",
+        "arquivo": "jogos/Acao/desertstrike.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "jim",
-        "arquivo":  "jogos/Acao/jim.swf",
-        "categoria":  "Acao"
+        "nome": "Dixfromspace",
+        "arquivo": "jogos/Acao/dixfromspace.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Kill Grey Dots",
-        "arquivo":  "jogos/Acao/Kill_Grey_Dots.swf",
-        "categoria":  "Acao"
+        "nome": "Dragonhunt",
+        "arquivo": "jogos/Acao/dragonhunt.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "King of the Fighters Wing",
-        "arquivo":  "jogos/Acao/King_of_the_Fighters-Wing.swf",
-        "categoria":  "Acao"
+        "nome": "Drasticplastic",
+        "arquivo": "jogos/Acao/drasticplastic.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "kittykatcher",
-        "arquivo":  "jogos/Acao/kittykatcher.swf",
-        "categoria":  "Acao"
+        "nome": "Duckhunt",
+        "arquivo": "jogos/Acao/duckhunt.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Mafia Driver 2",
-        "arquivo":  "jogos/Acao/Mafia_Driver_2.swf",
-        "categoria":  "Acao"
+        "nome": "Finalfight",
+        "arquivo": "jogos/Acao/finalfight.SWF",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Mafia Driver 3",
-        "arquivo":  "jogos/Acao/Mafia_Driver_3.swf",
-        "categoria":  "Acao"
+        "nome": "Fishes",
+        "arquivo": "jogos/Acao/fishes.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Magma Mayhem",
-        "arquivo":  "jogos/Acao/Magma_Mayhem.swf",
-        "categoria":  "Acao"
+        "nome": "Fratboyshousewar",
+        "arquivo": "jogos/Acao/fratboyshousewar.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Martial Tricks",
-        "arquivo":  "jogos/Acao/Martial_Tricks.swf",
-        "categoria":  "Acao"
+        "nome": "Frosty jumper",
+        "arquivo": "jogos/Acao/frosty_jumper.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Metabee Robot Run",
-        "arquivo":  "jogos/Acao/Metabee_Robot_Run.swf",
-        "categoria":  "Acao"
+        "nome": "FulltimeKiller",
+        "arquivo": "jogos/Acao/FulltimeKiller.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "MMA Training Ground",
-        "arquivo":  "jogos/Acao/MMA_Training_Ground.swf",
-        "categoria":  "Acao"
+        "nome": "FunkyBall",
+        "arquivo": "jogos/Acao/FunkyBall.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Monster Joust Madness",
-        "arquivo":  "jogos/Acao/Monster_Joust_Madness.swf",
-        "categoria":  "Acao"
+        "nome": "Funny Zoo",
+        "arquivo": "jogos/Acao/Funny_Zoo.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Morph Fighter",
-        "arquivo":  "jogos/Acao/Morph_Fighter.swf",
-        "categoria":  "Acao"
+        "nome": "Fwgknight2",
+        "arquivo": "jogos/Acao/fwgknight2.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "mrangryfaic",
-        "arquivo":  "jogos/Acao/mrangryfaic.swf",
-        "categoria":  "Acao"
+        "nome": "Ghosthunter",
+        "arquivo": "jogos/Acao/ghosthunter.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Nose Hairs of Fury",
-        "arquivo":  "jogos/Acao/Nose_Hairs_of_Fury.swf",
-        "categoria":  "Acao"
+        "nome": "Gravity",
+        "arquivo": "jogos/Acao/gravity.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Party Down",
-        "arquivo":  "jogos/Acao/Party_Down.swf",
-        "categoria":  "Acao"
+        "nome": "Gravity Ball",
+        "arquivo": "jogos/Acao/Gravity_Ball.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Patinando no Gelo",
-        "arquivo":  "jogos/Acao/Patinando_no_Gelo.swf",
-        "categoria":  "Acao"
+        "nome": "Gravity game",
+        "arquivo": "jogos/Acao/gravity-game.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Punch Tom Out",
-        "arquivo":  "jogos/Acao/Punch_Tom_Out.swf",
-        "categoria":  "Acao"
+        "nome": "Gunkinght",
+        "arquivo": "jogos/Acao/gunkinght.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Realistick",
-        "arquivo":  "jogos/Acao/Realistick.swf",
-        "categoria":  "Acao"
+        "nome": "HamantashCatcher",
+        "arquivo": "jogos/Acao/HamantashCatcher.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Revenge of the Rusher",
-        "arquivo":  "jogos/Acao/Revenge_of_the_Rusher.swf",
-        "categoria":  "Acao"
+        "nome": "Hardtarget",
+        "arquivo": "jogos/Acao/hardtarget.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Robinson Hotel",
-        "arquivo":  "jogos/Acao/Robinson_Hotel.swf",
-        "categoria":  "Acao"
+        "nome": "Heliattack2",
+        "arquivo": "jogos/Acao/heliattack2.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Robot Boy Depth Charger",
-        "arquivo":  "jogos/Acao/Robot_Boy_-_Depth_Charger.swf",
-        "categoria":  "Acao"
+        "nome": "Heliattack3",
+        "arquivo": "jogos/Acao/heliattack3.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Royal Thumble",
-        "arquivo":  "jogos/Acao/Royal_Thumble.swf",
-        "categoria":  "Acao"
+        "nome": "Infantry",
+        "arquivo": "jogos/Acao/infantry.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "save honey",
-        "arquivo":  "jogos/Acao/save-honey.swf",
-        "categoria":  "Acao"
+        "nome": "Intruder",
+        "arquivo": "jogos/Acao/intruder.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "SewerSlideFury2",
-        "arquivo":  "jogos/Acao/SewerSlideFury2.swf",
-        "categoria":  "Acao"
+        "nome": "Jim",
+        "arquivo": "jogos/Acao/jim.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Spider Web Teia de Aranha",
-        "arquivo":  "jogos/Acao/Spider_Web_-_Teia_de_Aranha.swf",
-        "categoria":  "Acao"
+        "nome": "Kill Grey Dots",
+        "arquivo": "jogos/Acao/Kill_Grey_Dots.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Spiderfly",
-        "arquivo":  "jogos/Acao/Spiderfly.swf",
-        "categoria":  "Acao"
+        "nome": "King of the Fighters Wing",
+        "arquivo": "jogos/Acao/King_of_the_Fighters-Wing.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Street Avenger",
-        "arquivo":  "jogos/Acao/Street_Avenger.swf",
-        "categoria":  "Acao"
+        "nome": "Kittykatcher",
+        "arquivo": "jogos/Acao/kittykatcher.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Super Fighter",
-        "arquivo":  "jogos/Acao/Super_Fighter.swf",
-        "categoria":  "Acao"
+        "nome": "Mafia Driver 2",
+        "arquivo": "jogos/Acao/Mafia_Driver_2.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Super Sumo",
-        "arquivo":  "jogos/Acao/Super_Sumo.swf",
-        "categoria":  "Acao"
+        "nome": "Mafia Driver 3",
+        "arquivo": "jogos/Acao/Mafia_Driver_3.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "SurviveAquaBubble",
-        "arquivo":  "jogos/Acao/SurviveAquaBubble.swf",
-        "categoria":  "Acao"
+        "nome": "Magma Mayhem",
+        "arquivo": "jogos/Acao/Magma_Mayhem.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Sweet Match",
-        "arquivo":  "jogos/Acao/Sweet_Match.swf",
-        "categoria":  "Acao"
+        "nome": "Mangafight",
+        "arquivo": "jogos/Acao/mangafight.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "tank2",
-        "arquivo":  "jogos/Acao/tank2.swf",
-        "categoria":  "Acao"
+        "nome": "Martial Tricks",
+        "arquivo": "jogos/Acao/Martial_Tricks.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "turbochargedpenguins",
-        "arquivo":  "jogos/Acao/turbochargedpenguins.swf",
-        "categoria":  "Acao"
+        "nome": "Metabee Robot Run",
+        "arquivo": "jogos/Acao/Metabee_Robot_Run.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "War Machines",
-        "arquivo":  "jogos/Acao/War_Machines.swf",
-        "categoria":  "Acao"
+        "nome": "MMA Training Ground",
+        "arquivo": "jogos/Acao/MMA_Training_Ground.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Warrior Quest",
-        "arquivo":  "jogos/Acao/Warrior_Quest.swf",
-        "categoria":  "Acao"
+        "nome": "Monster Joust Madness",
+        "arquivo": "jogos/Acao/Monster_Joust_Madness.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Yellow",
-        "arquivo":  "jogos/Acao/Yellow.swf",
-        "categoria":  "Acao"
+        "nome": "Morph Fighter",
+        "arquivo": "jogos/Acao/Morph_Fighter.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Adventures in Atreia",
-        "arquivo":  "jogos/Aventura/Adventures_in_Atreia.swf",
-        "categoria":  "Aventura"
+        "nome": "Mrangryfaic",
+        "arquivo": "jogos/Acao/mrangryfaic.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "adventures of kayla",
-        "arquivo":  "jogos/Aventura/adventures-of-kayla.swf",
-        "categoria":  "Aventura"
+        "nome": "MrMothBall2",
+        "arquivo": "jogos/Acao/mrMothBall2.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "aether",
-        "arquivo":  "jogos/Aventura/aether.swf",
-        "categoria":  "Aventura"
+        "nome": "Mystictraining",
+        "arquivo": "jogos/Acao/mystictraining.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "angel",
-        "arquivo":  "jogos/Aventura/angel.swf",
-        "categoria":  "Aventura"
+        "nome": "Niagaramotel",
+        "arquivo": "jogos/Acao/niagaramotel.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "angelico2",
-        "arquivo":  "jogos/Aventura/angelico2.swf",
-        "categoria":  "Aventura"
+        "nome": "Ninjaquest",
+        "arquivo": "jogos/Acao/ninjaquest.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Banana Dash",
-        "arquivo":  "jogos/Aventura/Banana_Dash.swf",
-        "categoria":  "Aventura"
+        "nome": "Nose Hairs of Fury",
+        "arquivo": "jogos/Acao/Nose_Hairs_of_Fury.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "bang adventure",
-        "arquivo":  "jogos/Aventura/bang-adventure.swf",
-        "categoria":  "Aventura"
+        "nome": "Paintball",
+        "arquivo": "jogos/Acao/paintball.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "bborijewellery",
-        "arquivo":  "jogos/Aventura/bborijewellery.swf",
-        "categoria":  "Aventura"
+        "nome": "PandaWars",
+        "arquivo": "jogos/Acao/PandaWars.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Bolt o Super Cao",
-        "arquivo":  "jogos/Aventura/Bolt_o_Super_Cao.swf",
-        "categoria":  "Aventura"
+        "nome": "Party Down",
+        "arquivo": "jogos/Acao/Party_Down.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "boom boom boomer",
-        "arquivo":  "jogos/Aventura/boom-boom-boomer.swf",
-        "categoria":  "Aventura"
+        "nome": "Patinando no Gelo",
+        "arquivo": "jogos/Acao/Patinando_no_Gelo.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "BugOff",
-        "arquivo":  "jogos/Aventura/BugOff.swf",
-        "categoria":  "Aventura"
+        "nome": "PirateCove",
+        "arquivo": "jogos/Acao/PirateCove.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "carrot hunter",
-        "arquivo":  "jogos/Aventura/carrot-hunter.swf",
-        "categoria":  "Aventura"
+        "nome": "Practicechapped",
+        "arquivo": "jogos/Acao/practicechapped.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "cloud jumper",
-        "arquivo":  "jogos/Aventura/cloud-jumper.swf",
-        "categoria":  "Aventura"
+        "nome": "Princeofwar",
+        "arquivo": "jogos/Acao/princeofwar.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "david",
-        "arquivo":  "jogos/Aventura/david.swf",
-        "categoria":  "Aventura"
+        "nome": "Pucca pursuit",
+        "arquivo": "jogos/Acao/pucca_pursuit.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Despereaux Swings",
-        "arquivo":  "jogos/Aventura/Despereaux_Swings.swf",
-        "categoria":  "Aventura"
+        "nome": "Punch Tom Out",
+        "arquivo": "jogos/Acao/Punch_Tom_Out.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "dough bro",
-        "arquivo":  "jogos/Aventura/dough-bro.swf",
-        "categoria":  "Aventura"
+        "nome": "Puppy red",
+        "arquivo": "jogos/Acao/puppy_red.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "fantastic treasures",
-        "arquivo":  "jogos/Aventura/fantastic-treasures.swf",
-        "categoria":  "Aventura"
+        "nome": "Realistick",
+        "arquivo": "jogos/Acao/Realistick.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "fat fred",
-        "arquivo":  "jogos/Aventura/fat-fred.swf",
-        "categoria":  "Aventura"
+        "nome": "Redplane2",
+        "arquivo": "jogos/Acao/redplane2.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Flower Catcher",
-        "arquivo":  "jogos/Aventura/Flower_Catcher.swf",
-        "categoria":  "Aventura"
+        "nome": "Revenge of the Rusher",
+        "arquivo": "jogos/Acao/Revenge_of_the_Rusher.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "forklift kid",
-        "arquivo":  "jogos/Aventura/forklift-kid.swf",
-        "categoria":  "Aventura"
+        "nome": "Robinson Hotel",
+        "arquivo": "jogos/Acao/Robinson_Hotel.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "FPAWorld2",
-        "arquivo":  "jogos/Aventura/FPAWorld2.swf",
-        "categoria":  "Aventura"
+        "nome": "Robot Boy Depth Charger",
+        "arquivo": "jogos/Acao/Robot_Boy_-_Depth_Charger.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "frostgarden",
-        "arquivo":  "jogos/Aventura/frostgarden.swf",
-        "categoria":  "Aventura"
+        "nome": "Rockout",
+        "arquivo": "jogos/Acao/rockout.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Garden Bug",
-        "arquivo":  "jogos/Aventura/Garden_Bug.swf",
-        "categoria":  "Aventura"
+        "nome": "Royal Thumble",
+        "arquivo": "jogos/Acao/Royal_Thumble.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Gatinho Voador",
-        "arquivo":  "jogos/Aventura/Gatinho_Voador.swf",
-        "categoria":  "Aventura"
+        "nome": "Rshotv4",
+        "arquivo": "jogos/Acao/rshotv4.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "greatcandycaper",
-        "arquivo":  "jogos/Aventura/greatcandycaper.swf",
-        "categoria":  "Aventura"
+        "nome": "Save honey",
+        "arquivo": "jogos/Acao/save-honey.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "halloween hocus pocus",
-        "arquivo":  "jogos/Aventura/halloween-hocus-pocus.swf",
-        "categoria":  "Aventura"
+        "nome": "Seekersstoryescape",
+        "arquivo": "jogos/Acao/seekersstoryescape.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Happy Heks",
-        "arquivo":  "jogos/Aventura/Happy_Heks.swf",
-        "categoria":  "Aventura"
+        "nome": "SewerSlideFury2",
+        "arquivo": "jogos/Acao/SewerSlideFury2.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "happy heks",
-        "arquivo":  "jogos/Aventura/happy-heks.swf",
-        "categoria":  "Aventura"
+        "nome": "Sheepshot",
+        "arquivo": "jogos/Acao/sheepshot.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "hellbound",
-        "arquivo":  "jogos/Aventura/hellbound.swf",
-        "categoria":  "Aventura"
+        "nome": "Shielddef",
+        "arquivo": "jogos/Acao/shielddef.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "hopper3",
-        "arquivo":  "jogos/Aventura/hopper3.swf",
-        "categoria":  "Aventura"
+        "nome": "Sho",
+        "arquivo": "jogos/Acao/sho.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "indiana jones",
-        "arquivo":  "jogos/Aventura/indiana-jones.swf",
-        "categoria":  "Aventura"
+        "nome": "ShootEm",
+        "arquivo": "jogos/Acao/ShootEm.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Jumping Bananas 2",
-        "arquivo":  "jogos/Aventura/Jumping_Bananas_2.swf",
-        "categoria":  "Aventura"
+        "nome": "ShootingFish",
+        "arquivo": "jogos/Acao/ShootingFish.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "jump jump",
-        "arquivo":  "jogos/Aventura/jump-jump.swf",
-        "categoria":  "Aventura"
+        "nome": "Shootingrangees",
+        "arquivo": "jogos/Acao/shootingrangees.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "jump nbump",
-        "arquivo":  "jogos/Aventura/jump-nbump.swf",
-        "categoria":  "Aventura"
+        "nome": "ShootRat",
+        "arquivo": "jogos/Acao/ShootRat.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Jump N Rolla",
-        "arquivo":  "jogos/Aventura/Jump-N-Rolla.swf",
-        "categoria":  "Aventura"
+        "nome": "Skyfighters",
+        "arquivo": "jogos/Acao/skyfighters.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Jumps",
-        "arquivo":  "jogos/Aventura/Jumps.swf",
-        "categoria":  "Aventura"
+        "nome": "Smileyswar",
+        "arquivo": "jogos/Acao/smileyswar.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Jungle Eggventure",
-        "arquivo":  "jogos/Aventura/Jungle_Eggventure.swf",
-        "categoria":  "Aventura"
+        "nome": "Sn",
+        "arquivo": "jogos/Acao/Sn.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Magic Mansion",
-        "arquivo":  "jogos/Aventura/Magic_Mansion.swf",
-        "categoria":  "Aventura"
+        "nome": "Snowballing",
+        "arquivo": "jogos/Acao/snowballing.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "magical stars",
-        "arquivo":  "jogos/Aventura/magical-stars.swf",
-        "categoria":  "Aventura"
+        "nome": "SpankTheMonkey",
+        "arquivo": "jogos/Acao/SpankTheMonkey.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Malle and Lenny",
-        "arquivo":  "jogos/Aventura/Malle_and_Lenny.swf",
-        "categoria":  "Aventura"
+        "nome": "Spider Web Teia de Aranha",
+        "arquivo": "jogos/Acao/Spider_Web_-_Teia_de_Aranha.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Maple Story",
-        "arquivo":  "jogos/Aventura/Maple_Story.swf",
-        "categoria":  "Aventura"
+        "nome": "Spiderfly",
+        "arquivo": "jogos/Acao/Spiderfly.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Maries Great Diamond Escape",
-        "arquivo":  "jogos/Aventura/Maries_Great_Diamond_Escape.swf",
-        "categoria":  "Aventura"
+        "nome": "Starwars",
+        "arquivo": "jogos/Acao/starwars.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "mermaid rescue",
-        "arquivo":  "jogos/Aventura/mermaid-rescue.swf",
-        "categoria":  "Aventura"
+        "nome": "Sticktrinity",
+        "arquivo": "jogos/Acao/sticktrinity.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Mower Move",
-        "arquivo":  "jogos/Aventura/Mower_Move.swf",
-        "categoria":  "Aventura"
+        "nome": "Street Avenger",
+        "arquivo": "jogos/Acao/Street_Avenger.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "mrmothball",
-        "arquivo":  "jogos/Aventura/mrmothball.swf",
-        "categoria":  "Aventura"
+        "nome": "Super Fighter",
+        "arquivo": "jogos/Acao/Super_Fighter.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "NANCY Internal Special Offer 0311",
-        "arquivo":  "jogos/Aventura/NANCY_Internal_Special_Offer_0311.swf",
-        "categoria":  "Aventura"
+        "nome": "Super Sumo",
+        "arquivo": "jogos/Acao/Super_Sumo.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "nerothehero",
-        "arquivo":  "jogos/Aventura/nerothehero.swf",
-        "categoria":  "Aventura"
+        "nome": "SurviveAquaBubble",
+        "arquivo": "jogos/Acao/SurviveAquaBubble.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Nutty Gomba",
-        "arquivo":  "jogos/Aventura/Nutty_Gomba.swf",
-        "categoria":  "Aventura"
+        "nome": "Sweet Match",
+        "arquivo": "jogos/Acao/Sweet_Match.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "pharaohs tomb",
-        "arquivo":  "jogos/Aventura/pharaohs-tomb.swf",
-        "categoria":  "Aventura"
+        "nome": "Tank2",
+        "arquivo": "jogos/Acao/tank2.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "planet pursuit",
-        "arquivo":  "jogos/Aventura/planet-pursuit.swf",
-        "categoria":  "Aventura"
+        "nome": "Thefrightbeforechristmas",
+        "arquivo": "jogos/Acao/thefrightbeforechristmas.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "ponpoko",
-        "arquivo":  "jogos/Aventura/ponpoko.swf",
-        "categoria":  "Aventura"
+        "nome": "Thelastturkey",
+        "arquivo": "jogos/Acao/thelastturkey.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "poonsy",
-        "arquivo":  "jogos/Aventura/poonsy.swf",
-        "categoria":  "Aventura"
+        "nome": "Theleague",
+        "arquivo": "jogos/Acao/theleague.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "prehisto riks",
-        "arquivo":  "jogos/Aventura/prehisto-riks.swf",
-        "categoria":  "Aventura"
+        "nome": "Turbochargedpenguins",
+        "arquivo": "jogos/Acao/turbochargedpenguins.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "quebec",
-        "arquivo":  "jogos/Aventura/quebec.swf",
-        "categoria":  "Aventura"
+        "nome": "TurtlesNinja",
+        "arquivo": "jogos/Acao/turtlesNinja.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "raftinggame",
-        "arquivo":  "jogos/Aventura/raftinggame.swf",
-        "categoria":  "Aventura"
+        "nome": "Wanted",
+        "arquivo": "jogos/Acao/wanted.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "raibow monkey rundown",
-        "arquivo":  "jogos/Aventura/raibow-monkey-rundown.swf",
-        "categoria":  "Aventura"
+        "nome": "War Machines",
+        "arquivo": "jogos/Acao/War_Machines.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "Raindrops",
-        "arquivo":  "jogos/Aventura/Raindrops.swf",
-        "categoria":  "Aventura"
+        "nome": "Warpzone",
+        "arquivo": "jogos/Acao/warpzone.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "rain forest adventure",
-        "arquivo":  "jogos/Aventura/rain-forest-adventure.swf",
-        "categoria":  "Aventura"
+        "nome": "Warrior Quest",
+        "arquivo": "jogos/Acao/Warrior_Quest.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "rescuelander",
-        "arquivo":  "jogos/Aventura/rescuelander.swf",
-        "categoria":  "Aventura"
+        "nome": "Wastland",
+        "arquivo": "jogos/Acao/wastland.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "shopping mall",
-        "arquivo":  "jogos/Aventura/shopping-mall.swf",
-        "categoria":  "Aventura"
+        "nome": "Yellow",
+        "arquivo": "jogos/Acao/Yellow.swf",
+        "categoria": "Acao"
     },
     {
-        "nome":  "starland",
-        "arquivo":  "jogos/Aventura/starland.swf",
-        "categoria":  "Aventura"
+        "nome": "Adventures in Atreia",
+        "arquivo": "jogos/Aventura/Adventures_in_Atreia.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "star pound",
-        "arquivo":  "jogos/Aventura/star-pound.swf",
-        "categoria":  "Aventura"
+        "nome": "Adventures of kayla",
+        "arquivo": "jogos/Aventura/adventures-of-kayla.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "sugeh",
-        "arquivo":  "jogos/Aventura/sugeh.swf",
-        "categoria":  "Aventura"
+        "nome": "Aether",
+        "arquivo": "jogos/Aventura/aether.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Swingin Kingdom",
-        "arquivo":  "jogos/Aventura/Swingin_Kingdom.swf",
-        "categoria":  "Aventura"
+        "nome": "Amongtheclouds",
+        "arquivo": "jogos/Aventura/amongtheclouds.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "The Fancy Pants Adventures",
-        "arquivo":  "jogos/Aventura/The_Fancy_Pants_Adventures.swf",
-        "categoria":  "Aventura"
+        "nome": "Angel",
+        "arquivo": "jogos/Aventura/angel.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "the great giana sisters",
-        "arquivo":  "jogos/Aventura/the-great-giana-sisters.swf",
-        "categoria":  "Aventura"
+        "nome": "Angelico2",
+        "arquivo": "jogos/Aventura/angelico2.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "the great whale escape",
-        "arquivo":  "jogos/Aventura/the-great-whale-escape.swf",
-        "categoria":  "Aventura"
+        "nome": "Banana Dash",
+        "arquivo": "jogos/Aventura/Banana_Dash.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "toast game",
-        "arquivo":  "jogos/Aventura/toast-game.swf",
-        "categoria":  "Aventura"
+        "nome": "Bang adventure",
+        "arquivo": "jogos/Aventura/bang-adventure.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "treasure diving",
-        "arquivo":  "jogos/Aventura/treasure-diving.swf",
-        "categoria":  "Aventura"
+        "nome": "Bborijewellery",
+        "arquivo": "jogos/Aventura/bborijewellery.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "treasure hunt",
-        "arquivo":  "jogos/Aventura/treasure-hunt.swf",
-        "categoria":  "Aventura"
+        "nome": "Bill the demon",
+        "arquivo": "jogos/Aventura/bill_the_demon.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "treasure planet solar surfer",
-        "arquivo":  "jogos/Aventura/treasure-planet-solar-surfer.swf",
-        "categoria":  "Aventura"
+        "nome": "Bolt o Super Cao",
+        "arquivo": "jogos/Aventura/Bolt_o_Super_Cao.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "tubbys big adventure",
-        "arquivo":  "jogos/Aventura/tubbys-big-adventure.swf",
-        "categoria":  "Aventura"
+        "nome": "Boom boom boomer",
+        "arquivo": "jogos/Aventura/boom-boom-boomer.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "unicorngame",
-        "arquivo":  "jogos/Aventura/unicorngame.swf",
-        "categoria":  "Aventura"
+        "nome": "Bow adventure",
+        "arquivo": "jogos/Aventura/bow_adventure.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "weirdville",
-        "arquivo":  "jogos/Aventura/weirdville.swf",
-        "categoria":  "Aventura"
+        "nome": "Breakin2",
+        "arquivo": "jogos/Aventura/breakin2.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "WhoBob WhatPants",
-        "arquivo":  "jogos/Aventura/WhoBob_WhatPants.swf",
-        "categoria":  "Aventura"
+        "nome": "BugOff",
+        "arquivo": "jogos/Aventura/BugOff.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Wrap Attack",
-        "arquivo":  "jogos/Aventura/Wrap_Attack.swf",
-        "categoria":  "Aventura"
+        "nome": "Carrot hunter",
+        "arquivo": "jogos/Aventura/carrot-hunter.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "247 bombs",
-        "arquivo":  "jogos/Classicos/247_bombs.swf",
-        "categoria":  "Classicos"
+        "nome": "Catitens",
+        "arquivo": "jogos/Aventura/catitens.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "anko mako",
-        "arquivo":  "jogos/Classicos/anko_mako.swf",
-        "categoria":  "Classicos"
+        "nome": "Caveofdespair",
+        "arquivo": "jogos/Aventura/caveofdespair.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "bittu bomber",
-        "arquivo":  "jogos/Classicos/bittu_bomber.swf",
-        "categoria":  "Classicos"
+        "nome": "Celtic Village Anglais",
+        "arquivo": "jogos/Aventura/Celtic_Village_Anglais.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "bomb it",
-        "arquivo":  "jogos/Classicos/bomb_it.swf",
-        "categoria":  "Classicos"
+        "nome": "Cloud jumper",
+        "arquivo": "jogos/Aventura/cloud-jumper.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "bomb of brave boy",
-        "arquivo":  "jogos/Classicos/bomb_of_brave_boy.swf",
-        "categoria":  "Classicos"
+        "nome": "CrystalIsland",
+        "arquivo": "jogos/Aventura/CrystalIsland.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "chicken game",
-        "arquivo":  "jogos/Classicos/chicken_game.swf",
-        "categoria":  "Classicos"
+        "nome": "Dangerous voyage",
+        "arquivo": "jogos/Aventura/dangerous_voyage.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "cloud breakout",
-        "arquivo":  "jogos/Classicos/cloud_breakout.swf",
-        "categoria":  "Classicos"
+        "nome": "David",
+        "arquivo": "jogos/Aventura/david.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "CometK",
-        "arquivo":  "jogos/Classicos/CometK.swf",
-        "categoria":  "Classicos"
+        "nome": "Deepcreatures",
+        "arquivo": "jogos/Aventura/deepcreatures.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "donkey kong",
-        "arquivo":  "jogos/Classicos/donkey_kong.swf",
-        "categoria":  "Classicos"
+        "nome": "Despereaux Swings",
+        "arquivo": "jogos/Aventura/Despereaux_Swings.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "earth eliminator",
-        "arquivo":  "jogos/Classicos/earth_eliminator.swf",
-        "categoria":  "Classicos"
+        "nome": "Dough bro",
+        "arquivo": "jogos/Aventura/dough-bro.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Epsilon Zero",
-        "arquivo":  "jogos/Classicos/Epsilon_Zero.swf",
-        "categoria":  "Classicos"
+        "nome": "Fantastic treasures",
+        "arquivo": "jogos/Aventura/fantastic-treasures.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "fireworks",
-        "arquivo":  "jogos/Classicos/fireworks.swf",
-        "categoria":  "Classicos"
+        "nome": "Fat fred",
+        "arquivo": "jogos/Aventura/fat-fred.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Frantic",
-        "arquivo":  "jogos/Classicos/Frantic.swf",
-        "categoria":  "Classicos"
+        "nome": "FlashGauntlet",
+        "arquivo": "jogos/Aventura/FlashGauntlet.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "island hop",
-        "arquivo":  "jogos/Classicos/island_hop.swf",
-        "categoria":  "Classicos"
+        "nome": "Flower Catcher",
+        "arquivo": "jogos/Aventura/Flower_Catcher.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "monkey menace",
-        "arquivo":  "jogos/Classicos/monkey_menace.swf",
-        "categoria":  "Classicos"
+        "nome": "Forklift kid",
+        "arquivo": "jogos/Aventura/forklift-kid.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "pacmania III",
-        "arquivo":  "jogos/Classicos/pacmania_III.swf",
-        "categoria":  "Classicos"
+        "nome": "FPAWorld2",
+        "arquivo": "jogos/Aventura/FPAWorld2.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "pixelRace",
-        "arquivo":  "jogos/Classicos/pixelRace.swf",
-        "categoria":  "Classicos"
+        "nome": "Frostgarden",
+        "arquivo": "jogos/Aventura/frostgarden.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Snake Retro",
-        "arquivo":  "jogos/Classicos/Snake_Retro.swf",
-        "categoria":  "Classicos"
+        "nome": "Garden Bug",
+        "arquivo": "jogos/Aventura/Garden_Bug.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "snake runner",
-        "arquivo":  "jogos/Classicos/snake-runner.swf",
-        "categoria":  "Classicos"
+        "nome": "Gatinho Voador",
+        "arquivo": "jogos/Aventura/Gatinho_Voador.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "SnakeTutorial",
-        "arquivo":  "jogos/Classicos/SnakeTutorial.swf",
-        "categoria":  "Classicos"
+        "nome": "Greatcandycaper",
+        "arquivo": "jogos/Aventura/greatcandycaper.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "splat inky",
-        "arquivo":  "jogos/Classicos/splat_inky.swf",
-        "categoria":  "Classicos"
+        "nome": "Halloween hocus pocus",
+        "arquivo": "jogos/Aventura/halloween-hocus-pocus.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "tetris 3d",
-        "arquivo":  "jogos/Classicos/tetris_3d.swf",
-        "categoria":  "Classicos"
+        "nome": "Happy heks",
+        "arquivo": "jogos/Aventura/happy-heks.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Tetris2beta6",
-        "arquivo":  "jogos/Classicos/Tetris2beta6.swf",
-        "categoria":  "Classicos"
+        "nome": "Happy Heks",
+        "arquivo": "jogos/Aventura/Happy_Heks.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "tetrix 2",
-        "arquivo":  "jogos/Classicos/tetrix_2.swf",
-        "categoria":  "Classicos"
+        "nome": "Heavymetalgirl",
+        "arquivo": "jogos/Aventura/heavymetalgirl.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "tobby ice",
-        "arquivo":  "jogos/Classicos/tobby_ice.swf",
-        "categoria":  "Classicos"
+        "nome": "Hellbound",
+        "arquivo": "jogos/Aventura/hellbound.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "18 Wheeler 2",
-        "arquivo":  "jogos/Corrida/18_Wheeler_2.swf",
-        "categoria":  "Corrida"
+        "nome": "Hopper3",
+        "arquivo": "jogos/Aventura/hopper3.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "3D Racing",
-        "arquivo":  "jogos/Corrida/3D_Racing.swf",
-        "categoria":  "Corrida"
+        "nome": "Indiana jones",
+        "arquivo": "jogos/Aventura/indiana-jones.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "alextrax",
-        "arquivo":  "jogos/Corrida/alextrax.swf",
-        "categoria":  "Corrida"
+        "nome": "Jeu5",
+        "arquivo": "jogos/Aventura/jeu5.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "ATV Extreme",
-        "arquivo":  "jogos/Corrida/ATV_Extreme.swf",
-        "categoria":  "Corrida"
+        "nome": "Jump jump",
+        "arquivo": "jogos/Aventura/jump-jump.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Big Truck Adventures",
-        "arquivo":  "jogos/Corrida/Big_Truck_Adventures.swf",
-        "categoria":  "Corrida"
+        "nome": "Jump N Rolla",
+        "arquivo": "jogos/Aventura/Jump-N-Rolla.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Big Truck Adventures 2",
-        "arquivo":  "jogos/Corrida/Big_Truck_Adventures_2.swf",
-        "categoria":  "Corrida"
+        "nome": "Jump nbump",
+        "arquivo": "jogos/Aventura/jump-nbump.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Boat Rush 3D",
-        "arquivo":  "jogos/Corrida/Boat_Rush_3D.swf",
-        "categoria":  "Corrida"
+        "nome": "Jumping Bananas 2",
+        "arquivo": "jogos/Aventura/Jumping_Bananas_2.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Counter Drift",
-        "arquivo":  "jogos/Corrida/Counter_Drift.swf",
-        "categoria":  "Corrida"
+        "nome": "Jumps",
+        "arquivo": "jogos/Aventura/Jumps.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Crazy Orcs Racing",
-        "arquivo":  "jogos/Corrida/Crazy_Orcs_Racing.swf",
-        "categoria":  "Corrida"
+        "nome": "Jungle Eggventure",
+        "arquivo": "jogos/Aventura/Jungle_Eggventure.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Drift",
-        "arquivo":  "jogos/Corrida/Drift.swf",
-        "categoria":  "Corrida"
+        "nome": "KarimKareem",
+        "arquivo": "jogos/Aventura/KarimKareem.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "F1 Racer",
-        "arquivo":  "jogos/Corrida/F1_Racer.swf",
-        "categoria":  "Corrida"
+        "nome": "Magic Mansion",
+        "arquivo": "jogos/Aventura/Magic_Mansion.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Formula Racing 3009",
-        "arquivo":  "jogos/Corrida/Formula_Racing_3009.swf",
-        "categoria":  "Corrida"
+        "nome": "Magical stars",
+        "arquivo": "jogos/Aventura/magical-stars.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Horse Rancher",
-        "arquivo":  "jogos/Corrida/Horse_Rancher.swf",
-        "categoria":  "Corrida"
+        "nome": "Magicheaven",
+        "arquivo": "jogos/Aventura/magicheaven.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Hyper Drive X",
-        "arquivo":  "jogos/Corrida/Hyper_Drive_X.swf",
-        "categoria":  "Corrida"
+        "nome": "Malle and Lenny",
+        "arquivo": "jogos/Aventura/Malle_and_Lenny.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Ice Ride",
-        "arquivo":  "jogos/Corrida/Ice_Ride.swf",
-        "categoria":  "Corrida"
+        "nome": "Maple Story",
+        "arquivo": "jogos/Aventura/Maple_Story.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "kore karts",
-        "arquivo":  "jogos/Corrida/kore_karts.swf",
-        "categoria":  "Corrida"
+        "nome": "Mardek2",
+        "arquivo": "jogos/Aventura/mardek2.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Monster Truck Maniac 2",
-        "arquivo":  "jogos/Corrida/Monster_Truck_Maniac_2.swf",
-        "categoria":  "Corrida"
+        "nome": "Maries Great Diamond Escape",
+        "arquivo": "jogos/Aventura/Maries_Great_Diamond_Escape.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Motor Madness",
-        "arquivo":  "jogos/Corrida/Motor_Madness.swf",
-        "categoria":  "Corrida"
+        "nome": "Mermaid rescue",
+        "arquivo": "jogos/Aventura/mermaid-rescue.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "No Limits Moto Jump",
-        "arquivo":  "jogos/Corrida/No_Limits_Moto_Jump.swf",
-        "categoria":  "Corrida"
+        "nome": "Mindscape",
+        "arquivo": "jogos/Aventura/mindscape.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Reach the Goal",
-        "arquivo":  "jogos/Corrida/Reach_the_Goal.swf",
-        "categoria":  "Corrida"
+        "nome": "Misterfox",
+        "arquivo": "jogos/Aventura/misterfox.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Snow Drifting Racing",
-        "arquivo":  "jogos/Corrida/Snow_Drifting_Racing.swf",
-        "categoria":  "Corrida"
+        "nome": "Monkey island",
+        "arquivo": "jogos/Aventura/monkey_island.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "sprintflash2",
-        "arquivo":  "jogos/Corrida/sprintflash2.swf",
-        "categoria":  "Corrida"
+        "nome": "Mower Move",
+        "arquivo": "jogos/Aventura/Mower_Move.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Street Whells",
-        "arquivo":  "jogos/Corrida/Street_Whells.swf",
-        "categoria":  "Corrida"
+        "nome": "Mr ball",
+        "arquivo": "jogos/Aventura/mr-ball.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Super Race",
-        "arquivo":  "jogos/Corrida/Super_Race.swf",
-        "categoria":  "Corrida"
+        "nome": "Mrmothball",
+        "arquivo": "jogos/Aventura/mrmothball.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Taxi Rush",
-        "arquivo":  "jogos/Corrida/Taxi_Rush.swf",
-        "categoria":  "Corrida"
+        "nome": "Muscomorpha",
+        "arquivo": "jogos/Aventura/muscomorpha.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Tune and Race",
-        "arquivo":  "jogos/Corrida/Tune-and-Race.swf",
-        "categoria":  "Corrida"
+        "nome": "Namethisgame",
+        "arquivo": "jogos/Aventura/namethisgame.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "T Zero Turbo X",
-        "arquivo":  "jogos/Corrida/T-Zero_Turbo_X.swf",
-        "categoria":  "Corrida"
+        "nome": "NANCY Internal Special Offer 0311",
+        "arquivo": "jogos/Aventura/NANCY_Internal_Special_Offer_0311.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "uphill rush",
-        "arquivo":  "jogos/Corrida/uphill_rush.swf",
-        "categoria":  "Corrida"
+        "nome": "Nerothehero",
+        "arquivo": "jogos/Aventura/nerothehero.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Winter Rider",
-        "arquivo":  "jogos/Corrida/Winter_Rider.swf",
-        "categoria":  "Corrida"
+        "nome": "Ngame",
+        "arquivo": "jogos/Aventura/ngame.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Xenon Prime Racing",
-        "arquivo":  "jogos/Corrida/Xenon_Prime_Racing.swf",
-        "categoria":  "Corrida"
+        "nome": "Nutty Gomba",
+        "arquivo": "jogos/Aventura/Nutty_Gomba.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "apprentice",
-        "arquivo":  "jogos/Culinaria/apprentice.swf",
-        "categoria":  "Culinaria"
+        "nome": "Obnoxius2",
+        "arquivo": "jogos/Aventura/obnoxius2.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "blue bear pizza game",
-        "arquivo":  "jogos/Culinaria/blue-bear-pizza-game.swf",
-        "categoria":  "Culinaria"
+        "nome": "Papa louie",
+        "arquivo": "jogos/Aventura/papa_louie.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "bombones",
-        "arquivo":  "jogos/Culinaria/bombones.swf",
-        "categoria":  "Culinaria"
+        "nome": "Pharaohs tomb",
+        "arquivo": "jogos/Aventura/pharaohs-tomb.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "bread cooking",
-        "arquivo":  "jogos/Culinaria/bread-cooking.swf",
-        "categoria":  "Culinaria"
+        "nome": "Planet pursuit",
+        "arquivo": "jogos/Aventura/planet-pursuit.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "breakfast",
-        "arquivo":  "jogos/Culinaria/breakfast.swf",
-        "categoria":  "Culinaria"
+        "nome": "Pojuko",
+        "arquivo": "jogos/Aventura/pojuko.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "burger restaurant 1",
-        "arquivo":  "jogos/Culinaria/burger-restaurant-1.swf",
-        "categoria":  "Culinaria"
+        "nome": "Polar jump",
+        "arquivo": "jogos/Aventura/polar-jump.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "burger restaurant 2",
-        "arquivo":  "jogos/Culinaria/burger-restaurant-2.swf",
-        "categoria":  "Culinaria"
+        "nome": "Ponpoko",
+        "arquivo": "jogos/Aventura/ponpoko.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "burger tycoon",
-        "arquivo":  "jogos/Culinaria/burger-tycoon.swf",
-        "categoria":  "Culinaria"
+        "nome": "Poonsy",
+        "arquivo": "jogos/Aventura/poonsy.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "cafe waitress",
-        "arquivo":  "jogos/Culinaria/cafe-waitress.swf",
-        "categoria":  "Culinaria"
+        "nome": "Portal",
+        "arquivo": "jogos/Aventura/Portal.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "cake",
-        "arquivo":  "jogos/Culinaria/cake.swf",
-        "categoria":  "Culinaria"
+        "nome": "Pottymouthninja",
+        "arquivo": "jogos/Aventura/pottymouthninja.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "cake decoration",
-        "arquivo":  "jogos/Culinaria/cake-decoration.swf",
-        "categoria":  "Culinaria"
+        "nome": "Prehisto riks",
+        "arquivo": "jogos/Aventura/prehisto-riks.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "cake fabric",
-        "arquivo":  "jogos/Culinaria/cake-fabric.swf",
-        "categoria":  "Culinaria"
+        "nome": "Prehistoric",
+        "arquivo": "jogos/Aventura/prehistoric.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "cake house",
-        "arquivo":  "jogos/Culinaria/cake-house.swf",
-        "categoria":  "Culinaria"
+        "nome": "Quebec",
+        "arquivo": "jogos/Aventura/quebec.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "cake love",
-        "arquivo":  "jogos/Culinaria/cake-love.swf",
-        "categoria":  "Culinaria"
+        "nome": "Quickling",
+        "arquivo": "jogos/Aventura/quickling.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "cookie maker",
-        "arquivo":  "jogos/Culinaria/cookie-maker.swf",
-        "categoria":  "Culinaria"
+        "nome": "Rabbit",
+        "arquivo": "jogos/Aventura/rabbit.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Donuts Shop",
-        "arquivo":  "jogos/Culinaria/Donuts_Shop.swf",
-        "categoria":  "Culinaria"
+        "nome": "Raftinggame",
+        "arquivo": "jogos/Aventura/raftinggame.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "donuts mania",
-        "arquivo":  "jogos/Culinaria/donuts-mania.swf",
-        "categoria":  "Culinaria"
+        "nome": "Raibow monkey rundown",
+        "arquivo": "jogos/Aventura/raibow-monkey-rundown.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "eggs",
-        "arquivo":  "jogos/Culinaria/eggs.swf",
-        "categoria":  "Culinaria"
+        "nome": "Rain forest adventure",
+        "arquivo": "jogos/Aventura/rain-forest-adventure.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "fairy cooking",
-        "arquivo":  "jogos/Culinaria/fairy-cooking.swf",
-        "categoria":  "Culinaria"
+        "nome": "Rainbow spider",
+        "arquivo": "jogos/Aventura/rainbow_spider.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "food memory",
-        "arquivo":  "jogos/Culinaria/food-memory.swf",
-        "categoria":  "Culinaria"
+        "nome": "Raindrops",
+        "arquivo": "jogos/Aventura/Raindrops.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "hamburger girl",
-        "arquivo":  "jogos/Culinaria/hamburger-girl.swf",
-        "categoria":  "Culinaria"
+        "nome": "Rescuelander",
+        "arquivo": "jogos/Aventura/rescuelander.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "healthy fish salad",
-        "arquivo":  "jogos/Culinaria/healthy-fish-salad.swf",
-        "categoria":  "Culinaria"
+        "nome": "Retroland",
+        "arquivo": "jogos/Aventura/retroland.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "holly hobbie muffin maker",
-        "arquivo":  "jogos/Culinaria/holly-hobbie-muffin-maker.swf",
-        "categoria":  "Culinaria"
+        "nome": "Romeo",
+        "arquivo": "jogos/Aventura/romeo.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "hot dog bush",
-        "arquivo":  "jogos/Culinaria/hot-dog-bush.swf",
-        "categoria":  "Culinaria"
+        "nome": "Shopping mall",
+        "arquivo": "jogos/Aventura/shopping-mall.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "how to bake orange crunch cake",
-        "arquivo":  "jogos/Culinaria/how-to-bake-orange-crunch-cake.swf",
-        "categoria":  "Culinaria"
+        "nome": "Space dude",
+        "arquivo": "jogos/Aventura/space_dude.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "how to make a bread pizza",
-        "arquivo":  "jogos/Culinaria/how-to-make-a-bread-pizza.swf",
-        "categoria":  "Culinaria"
+        "nome": "Spacemanbob",
+        "arquivo": "jogos/Aventura/spacemanbob.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "ice cream heaven",
-        "arquivo":  "jogos/Culinaria/ice-cream-heaven.swf",
-        "categoria":  "Culinaria"
+        "nome": "Star pound",
+        "arquivo": "jogos/Aventura/star-pound.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "ice cream parlour",
-        "arquivo":  "jogos/Culinaria/ice-cream-parlour.swf",
-        "categoria":  "Culinaria"
+        "nome": "Starland",
+        "arquivo": "jogos/Aventura/starland.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "ice creams",
-        "arquivo":  "jogos/Culinaria/ice-creams.swf",
-        "categoria":  "Culinaria"
+        "nome": "Sugeh",
+        "arquivo": "jogos/Aventura/sugeh.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "jasmine sushi",
-        "arquivo":  "jogos/Culinaria/jasmine-sushi.swf",
-        "categoria":  "Culinaria"
+        "nome": "Super doggy",
+        "arquivo": "jogos/Aventura/super_doggy.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "jessicas salad bar",
-        "arquivo":  "jogos/Culinaria/jessicas-salad-bar.swf",
-        "categoria":  "Culinaria"
+        "nome": "Super walkland",
+        "arquivo": "jogos/Aventura/super_walkland.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "make macaroni",
-        "arquivo":  "jogos/Culinaria/make-macaroni.swf",
-        "categoria":  "Culinaria"
+        "nome": "Supersonic",
+        "arquivo": "jogos/Aventura/supersonic.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "mile high sundaes",
-        "arquivo":  "jogos/Culinaria/mile-high-sundaes.swf",
-        "categoria":  "Culinaria"
+        "nome": "Swingin Kingdom",
+        "arquivo": "jogos/Aventura/Swingin_Kingdom.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "oscar mayer deli creations",
-        "arquivo":  "jogos/Culinaria/oscar-mayer-deli-creations.swf",
-        "categoria":  "Culinaria"
+        "nome": "Tak",
+        "arquivo": "jogos/Aventura/tak.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "pancake day",
-        "arquivo":  "jogos/Culinaria/pancake-day.swf",
-        "categoria":  "Culinaria"
+        "nome": "The fancy pants 2",
+        "arquivo": "jogos/Aventura/the-fancy-pants-2.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "perfect pizza",
-        "arquivo":  "jogos/Culinaria/perfect-pizza.swf",
-        "categoria":  "Culinaria"
+        "nome": "The Fancy Pants Adventures",
+        "arquivo": "jogos/Aventura/The_Fancy_Pants_Adventures.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Quick Hamburguer",
-        "arquivo":  "jogos/Culinaria/Quick_Hamburguer.swf",
-        "categoria":  "Culinaria"
+        "nome": "The great giana sisters",
+        "arquivo": "jogos/Aventura/the-great-giana-sisters.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "restaurant",
-        "arquivo":  "jogos/Culinaria/restaurant.swf",
-        "categoria":  "Culinaria"
+        "nome": "The great whale escape",
+        "arquivo": "jogos/Aventura/the-great-whale-escape.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "right cookie",
-        "arquivo":  "jogos/Culinaria/right-cookie.swf",
-        "categoria":  "Culinaria"
+        "nome": "The space zebra",
+        "arquivo": "jogos/Aventura/the_space_zebra.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "sandwich cooking game",
-        "arquivo":  "jogos/Culinaria/sandwich-cooking-game.swf",
-        "categoria":  "Culinaria"
+        "nome": "Thecore",
+        "arquivo": "jogos/Aventura/thecore.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "shaquitasbakerymochi",
-        "arquivo":  "jogos/Culinaria/shaquitasbakerymochi.swf",
-        "categoria":  "Culinaria"
+        "nome": "Theguardedgarden",
+        "arquivo": "jogos/Aventura/theguardedgarden.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "smoothie game 101 secure",
-        "arquivo":  "jogos/Culinaria/smoothie_game_101_secure.swf",
-        "categoria":  "Culinaria"
+        "nome": "Themindbender",
+        "arquivo": "jogos/Aventura/themindbender.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "smoothie shop",
-        "arquivo":  "jogos/Culinaria/smoothie-shop.swf",
-        "categoria":  "Culinaria"
+        "nome": "TipsyeLostGold",
+        "arquivo": "jogos/Aventura/TipsyeLostGold.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "snack shop",
-        "arquivo":  "jogos/Culinaria/snack-shop.swf",
-        "categoria":  "Culinaria"
+        "nome": "Toast game",
+        "arquivo": "jogos/Aventura/toast-game.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "soda pop girls bubble catch",
-        "arquivo":  "jogos/Culinaria/soda-pop-girls-bubble-catch.swf",
-        "categoria":  "Culinaria"
+        "nome": "Treasure diving",
+        "arquivo": "jogos/Aventura/treasure-diving.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "sue potatoes",
-        "arquivo":  "jogos/Culinaria/sue-potatoes.swf",
-        "categoria":  "Culinaria"
+        "nome": "Treasure hunt",
+        "arquivo": "jogos/Aventura/treasure-hunt.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "sue sushi",
-        "arquivo":  "jogos/Culinaria/sue-sushi.swf",
-        "categoria":  "Culinaria"
+        "nome": "Treasure planet solar surfer",
+        "arquivo": "jogos/Aventura/treasure-planet-solar-surfer.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "super decorate cake",
-        "arquivo":  "jogos/Culinaria/super-decorate-cake.swf",
-        "categoria":  "Culinaria"
+        "nome": "Treasurecove",
+        "arquivo": "jogos/Aventura/treasurecove.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "sushi king",
-        "arquivo":  "jogos/Culinaria/sushi-king.swf",
-        "categoria":  "Culinaria"
+        "nome": "Tri achnid",
+        "arquivo": "jogos/Aventura/Tri_achnid.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "sushi restaurant",
-        "arquivo":  "jogos/Culinaria/sushi-restaurant.swf",
-        "categoria":  "Culinaria"
+        "nome": "Tubbys big adventure",
+        "arquivo": "jogos/Aventura/tubbys-big-adventure.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "sweettime",
-        "arquivo":  "jogos/Culinaria/sweettime.swf",
-        "categoria":  "Culinaria"
+        "nome": "Tummytrouble",
+        "arquivo": "jogos/Aventura/tummytrouble.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "the great burger builder",
-        "arquivo":  "jogos/Culinaria/the-great-burger-builder.swf",
-        "categoria":  "Culinaria"
+        "nome": "Unicorngame",
+        "arquivo": "jogos/Aventura/unicorngame.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "top that deux",
-        "arquivo":  "jogos/Culinaria/top-that-deux.swf",
-        "categoria":  "Culinaria"
+        "nome": "Wacky ballz",
+        "arquivo": "jogos/Aventura/wacky_ballz.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "tropical fruit salad",
-        "arquivo":  "jogos/Culinaria/tropical-fruit-salad.swf",
-        "categoria":  "Culinaria"
+        "nome": "Weirdville",
+        "arquivo": "jogos/Aventura/weirdville.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "tutti cuti the ice cream parlour",
-        "arquivo":  "jogos/Culinaria/tutti-cuti-the-ice-cream-parlour.swf",
-        "categoria":  "Culinaria"
+        "nome": "WhoBob WhatPants",
+        "arquivo": "jogos/Aventura/WhoBob_WhatPants.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "wedding cake",
-        "arquivo":  "jogos/Culinaria/wedding-cake.swf",
-        "categoria":  "Culinaria"
+        "nome": "Wow",
+        "arquivo": "jogos/Aventura/Wow.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "20000 feet and falling",
-        "arquivo":  "jogos/Esportes/20000_feet_and_falling.swf",
-        "categoria":  "Esportes"
+        "nome": "Wrap Attack",
+        "arquivo": "jogos/Aventura/Wrap_Attack.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "3dmotorbikeracing",
-        "arquivo":  "jogos/Esportes/3dmotorbikeracing.swf",
-        "categoria":  "Esportes"
+        "nome": "Yugopotamia mania",
+        "arquivo": "jogos/Aventura/yugopotamia_mania.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Ape King Free Kick",
-        "arquivo":  "jogos/Esportes/Ape_King_Free_Kick.swf",
-        "categoria":  "Esportes"
+        "nome": "Zom b gone",
+        "arquivo": "jogos/Aventura/zom-b_gone.swf",
+        "categoria": "Aventura"
     },
     {
-        "nome":  "Box Racers",
-        "arquivo":  "jogos/Esportes/Box_Racers.swf",
-        "categoria":  "Esportes"
+        "nome": "247 bombs",
+        "arquivo": "jogos/Classicos/247_bombs.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "DriftRunners",
-        "arquivo":  "jogos/Esportes/DriftRunners.swf",
-        "categoria":  "Esportes"
+        "nome": "Alieninvasion",
+        "arquivo": "jogos/Classicos/alieninvasion.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Futebol da Polly",
-        "arquivo":  "jogos/Esportes/Futebol_da_Polly.swf",
-        "categoria":  "Esportes"
+        "nome": "Anko mako",
+        "arquivo": "jogos/Classicos/anko_mako.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Hurdle Racer",
-        "arquivo":  "jogos/Esportes/Hurdle_Racer.swf",
-        "categoria":  "Esportes"
+        "nome": "Antipacman",
+        "arquivo": "jogos/Classicos/antipacman.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Taekwondo Show",
-        "arquivo":  "jogos/Esportes/Taekwondo_Show.swf",
-        "categoria":  "Esportes"
+        "nome": "Avoid",
+        "arquivo": "jogos/Classicos/avoid.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "age of war",
-        "arquivo":  "jogos/Estrategia/age-of-war.swf",
-        "categoria":  "Estrategia"
+        "nome": "Bittu bomber",
+        "arquivo": "jogos/Classicos/bittu_bomber.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "gemcraft",
-        "arquivo":  "jogos/Estrategia/gemcraft.swf",
-        "categoria":  "Estrategia"
+        "nome": "Bomb it",
+        "arquivo": "jogos/Classicos/bomb_it.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "knightfall",
-        "arquivo":  "jogos/Estrategia/knightfall.swf",
-        "categoria":  "Estrategia"
+        "nome": "Bomb of brave boy",
+        "arquivo": "jogos/Classicos/bomb_of_brave_boy.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "MicroTD2",
-        "arquivo":  "jogos/Estrategia/MicroTD2.swf",
-        "categoria":  "Estrategia"
+        "nome": "Chicken game",
+        "arquivo": "jogos/Classicos/chicken_game.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Portal",
-        "arquivo":  "jogos/Estrategia/Portal.swf",
-        "categoria":  "Estrategia"
+        "nome": "Cloud breakout",
+        "arquivo": "jogos/Classicos/cloud_breakout.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "WarOfGuns",
-        "arquivo":  "jogos/Estrategia/WarOfGuns.swf",
-        "categoria":  "Estrategia"
+        "nome": "CometK",
+        "arquivo": "jogos/Classicos/CometK.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "WorldWar",
-        "arquivo":  "jogos/Estrategia/WorldWar.swf",
-        "categoria":  "Estrategia"
+        "nome": "Donkey kong",
+        "arquivo": "jogos/Classicos/donkey_kong.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "baby show games",
-        "arquivo":  "jogos/Jogos-de-vestir/baby-show-games.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Driller",
+        "arquivo": "jogos/Classicos/driller.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Barber Shop",
-        "arquivo":  "jogos/Jogos-de-vestir/Barber_Shop.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Earth eliminator",
+        "arquivo": "jogos/Classicos/earth_eliminator.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Best Interior Design",
-        "arquivo":  "jogos/Jogos-de-vestir/Best_Interior_Design.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Epsilon Zero",
+        "arquivo": "jogos/Classicos/Epsilon_Zero.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Birthday Dress up",
-        "arquivo":  "jogos/Jogos-de-vestir/Birthday_Dress_up.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Fireworks",
+        "arquivo": "jogos/Classicos/fireworks.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Cute Cat Girl",
-        "arquivo":  "jogos/Jogos-de-vestir/Cute_Cat_Girl.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Flashteroids",
+        "arquivo": "jogos/Classicos/flashteroids.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Decore a Mansão",
-        "arquivo":  "jogos/Jogos-de-vestir/Decore_a_Mansão.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Frantic",
+        "arquivo": "jogos/Classicos/Frantic.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Demi Lovato",
-        "arquivo":  "jogos/Jogos-de-vestir/Demi_Lovato.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Frogger",
+        "arquivo": "jogos/Classicos/frogger.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "DressCode Nightclub Mochi",
-        "arquivo":  "jogos/Jogos-de-vestir/DressCode_Nightclub_Mochi.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Invaders",
+        "arquivo": "jogos/Classicos/invaders.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Festejando o Ano Novo",
-        "arquivo":  "jogos/Jogos-de-vestir/Festejando_o_Ano_Novo.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Island hop",
+        "arquivo": "jogos/Classicos/island_hop.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Garotinha na Neve",
-        "arquivo":  "jogos/Jogos-de-vestir/Garotinha_na_Neve.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Linedodger",
+        "arquivo": "jogos/Classicos/linedodger.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Hannah Montana Makeover",
-        "arquivo":  "jogos/Jogos-de-vestir/Hannah_Montana_Makeover.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Lunar",
+        "arquivo": "jogos/Classicos/lunar.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "happy shopping lover",
-        "arquivo":  "jogos/Jogos-de-vestir/happy-shopping-lover.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Lunarlander",
+        "arquivo": "jogos/Classicos/lunarlander.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Jonas Bros",
-        "arquivo":  "jogos/Jogos-de-vestir/Jonas_Bros.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Monkey menace",
+        "arquivo": "jogos/Classicos/monkey_menace.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Laila",
-        "arquivo":  "jogos/Jogos-de-vestir/Laila.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Pacjungletrip",
+        "arquivo": "jogos/Classicos/pacjungletrip.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Linda para Sair",
-        "arquivo":  "jogos/Jogos-de-vestir/Linda_para_Sair.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Pacman",
+        "arquivo": "jogos/Classicos/pacman.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Maquiagem Escondida",
-        "arquivo":  "jogos/Jogos-de-vestir/Maquiagem_Escondida.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Pacman flash",
+        "arquivo": "jogos/Classicos/pacman_flash.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "melinda in los angeles",
-        "arquivo":  "jogos/Jogos-de-vestir/melinda-in-los-angeles.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Pacmania III",
+        "arquivo": "jogos/Classicos/pacmania_III.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Mermaid Decoration",
-        "arquivo":  "jogos/Jogos-de-vestir/Mermaid_Decoration.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Pang flash",
+        "arquivo": "jogos/Classicos/pang_flash.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "My Little Pony Rainbow",
-        "arquivo":  "jogos/Jogos-de-vestir/My_Little_Pony_Rainbow.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Phit",
+        "arquivo": "jogos/Classicos/phit.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "My Lovely Room",
-        "arquivo":  "jogos/Jogos-de-vestir/My_Lovely_Room.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "PixelRace",
+        "arquivo": "jogos/Classicos/pixelRace.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Penelope Cruz",
-        "arquivo":  "jogos/Jogos-de-vestir/Penelope_Cruz.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Pong",
+        "arquivo": "jogos/Classicos/pong.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Salão de Cabelo Maravilhoso",
-        "arquivo":  "jogos/Jogos-de-vestir/Salão_de_Cabelo_Maravilhoso.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Pong2",
+        "arquivo": "jogos/Classicos/Pong2.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Shopping Town",
-        "arquivo":  "jogos/Jogos-de-vestir/Shopping_Town.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Pyromaniaks",
+        "arquivo": "jogos/Classicos/pyromaniaks.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "StPatrick2",
-        "arquivo":  "jogos/Jogos-de-vestir/StPatrick2.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Radioactive Snakes from Mars",
+        "arquivo": "jogos/Classicos/Radioactive_Snakes_from_Mars.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Sweet Wedding",
-        "arquivo":  "jogos/Jogos-de-vestir/Sweet_Wedding.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Snake Retro",
+        "arquivo": "jogos/Classicos/Snake_Retro.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Unhas dos Sonhos",
-        "arquivo":  "jogos/Jogos-de-vestir/Unhas_dos_Sonhos.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Snake runner",
+        "arquivo": "jogos/Classicos/snake-runner.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Vestindo Celeste",
-        "arquivo":  "jogos/Jogos-de-vestir/Vestindo_Celeste.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "SnakeTutorial",
+        "arquivo": "jogos/Classicos/SnakeTutorial.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Yoga Dress up",
-        "arquivo":  "jogos/Jogos-de-vestir/Yoga_Dress_up.swf",
-        "categoria":  "Jogos-de-vestir"
+        "nome": "Spaceerrands",
+        "arquivo": "jogos/Classicos/spaceerrands.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "aeroacrobat",
-        "arquivo":  "jogos/Nave/aeroacrobat.swf",
-        "categoria":  "Nave"
+        "nome": "Splat inky",
+        "arquivo": "jogos/Classicos/splat_inky.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Aliens Must Die",
-        "arquivo":  "jogos/Nave/Aliens_Must_Die.swf",
-        "categoria":  "Nave"
+        "nome": "Starfly3",
+        "arquivo": "jogos/Classicos/starfly3.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Alpha Bounty",
-        "arquivo":  "jogos/Nave/Alpha_Bounty.swf",
-        "categoria":  "Nave"
+        "nome": "Tetris 3d",
+        "arquivo": "jogos/Classicos/tetris_3d.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Astro Flyer",
-        "arquivo":  "jogos/Nave/Astro_Flyer.swf",
-        "categoria":  "Nave"
+        "nome": "Tetris2beta6",
+        "arquivo": "jogos/Classicos/Tetris2beta6.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "bottleRocket",
-        "arquivo":  "jogos/Nave/bottleRocket.swf",
-        "categoria":  "Nave"
+        "nome": "Tetrix 2",
+        "arquivo": "jogos/Classicos/tetrix_2.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Danny Phantom Frigth Fligth",
-        "arquivo":  "jogos/Nave/Danny_Phantom-Frigth_Fligth.swf",
-        "categoria":  "Nave"
+        "nome": "Tictactoe",
+        "arquivo": "jogos/Classicos/tictactoe.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "Desert Strike",
-        "arquivo":  "jogos/Nave/Desert_Strike.swf",
-        "categoria":  "Nave"
+        "nome": "Tobby ice",
+        "arquivo": "jogos/Classicos/tobby_ice.swf",
+        "categoria": "Classicos"
     },
     {
-        "nome":  "dodge",
-        "arquivo":  "jogos/Nave/dodge.swf",
-        "categoria":  "Nave"
+        "nome": "18 Wheeler 2",
+        "arquivo": "jogos/Corrida/18_Wheeler_2.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Dog Fight 2",
-        "arquivo":  "jogos/Nave/Dog_Fight_2.swf",
-        "categoria":  "Nave"
+        "nome": "2wheelertrauma2",
+        "arquivo": "jogos/Corrida/2wheelertrauma2.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Graff Zeppelin",
-        "arquivo":  "jogos/Nave/Graff_Zeppelin.swf",
-        "categoria":  "Nave"
+        "nome": "3D Car Driver",
+        "arquivo": "jogos/Corrida/3D-Car-Driver.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Hare StarFighter",
-        "arquivo":  "jogos/Nave/Hare_StarFighter.swf",
-        "categoria":  "Nave"
+        "nome": "3D Racing",
+        "arquivo": "jogos/Corrida/3D_Racing.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Head Space",
-        "arquivo":  "jogos/Nave/Head_Space.swf",
-        "categoria":  "Nave"
+        "nome": "3d rally",
+        "arquivo": "jogos/Corrida/3d-rally.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "KND Operação GRADUADOS",
-        "arquivo":  "jogos/Nave/KND-Operação_GRADUADOS.swf",
-        "categoria":  "Nave"
+        "nome": "4x4rally",
+        "arquivo": "jogos/Corrida/4x4rally.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Linear Assault",
-        "arquivo":  "jogos/Nave/Linear_Assault.swf",
-        "categoria":  "Nave"
+        "nome": "Alextrax",
+        "arquivo": "jogos/Corrida/alextrax.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Naval Strike",
-        "arquivo":  "jogos/Nave/Naval_Strike.swf",
-        "categoria":  "Nave"
+        "nome": "Amazingrace",
+        "arquivo": "jogos/Corrida/amazingrace.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Operação Beowulf",
-        "arquivo":  "jogos/Nave/Operação_Beowulf.swf",
-        "categoria":  "Nave"
+        "nome": "Atomicracer",
+        "arquivo": "jogos/Corrida/atomicracer.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "pocket rocket",
-        "arquivo":  "jogos/Nave/pocket-rocket.swf",
-        "categoria":  "Nave"
+        "nome": "ATV Extreme",
+        "arquivo": "jogos/Corrida/ATV_Extreme.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Providence",
-        "arquivo":  "jogos/Nave/Providence.swf",
-        "categoria":  "Nave"
+        "nome": "Big Truck Adventures",
+        "arquivo": "jogos/Corrida/Big_Truck_Adventures.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Rapid Wars",
-        "arquivo":  "jogos/Nave/Rapid_Wars.swf",
-        "categoria":  "Nave"
+        "nome": "Big Truck Adventures 2",
+        "arquivo": "jogos/Corrida/Big_Truck_Adventures_2.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Rescue in Mars",
-        "arquivo":  "jogos/Nave/Rescue_in_Mars.swf",
-        "categoria":  "Nave"
+        "nome": "Bike",
+        "arquivo": "jogos/Corrida/bike.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Sea Walk",
-        "arquivo":  "jogos/Nave/Sea_Walk.swf",
-        "categoria":  "Nave"
+        "nome": "Boat Rush 3D",
+        "arquivo": "jogos/Corrida/Boat_Rush_3D.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Sky Scraper Defense",
-        "arquivo":  "jogos/Nave/Sky_Scraper_Defense.swf",
-        "categoria":  "Nave"
+        "nome": "Car chase",
+        "arquivo": "jogos/Corrida/car_chase.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "SkyLocopter",
-        "arquivo":  "jogos/Nave/SkyLocopter.swf",
-        "categoria":  "Nave"
+        "nome": "City racers",
+        "arquivo": "jogos/Corrida/city-racers.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "space avoider",
-        "arquivo":  "jogos/Nave/space_avoider.swf",
-        "categoria":  "Nave"
+        "nome": "Counter Drift",
+        "arquivo": "jogos/Corrida/Counter_Drift.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Star Defender 4",
-        "arquivo":  "jogos/Nave/Star_Defender_4.swf",
-        "categoria":  "Nave"
+        "nome": "Crazy Orcs Racing",
+        "arquivo": "jogos/Corrida/Crazy_Orcs_Racing.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Star Raider",
-        "arquivo":  "jogos/Nave/Star_Raider.swf",
-        "categoria":  "Nave"
+        "nome": "Drift",
+        "arquivo": "jogos/Corrida/Drift.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Star Serpent Sigma",
-        "arquivo":  "jogos/Nave/Star_Serpent_Sigma.swf",
-        "categoria":  "Nave"
+        "nome": "Drunk driver",
+        "arquivo": "jogos/Corrida/drunk_driver.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "1 of 24",
-        "arquivo":  "jogos/Puzzle/1_of_24.swf",
-        "categoria":  "Puzzle"
+        "nome": "Dunebuggy",
+        "arquivo": "jogos/Corrida/dunebuggy.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "60 seconds dash",
-        "arquivo":  "jogos/Puzzle/60_seconds_dash.swf",
-        "categoria":  "Puzzle"
+        "nome": "F1 Racer",
+        "arquivo": "jogos/Corrida/F1_Racer.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "alphatumbler2",
-        "arquivo":  "jogos/Puzzle/alphatumbler2.swf",
-        "categoria":  "Puzzle"
+        "nome": "Formula Racing 3009",
+        "arquivo": "jogos/Corrida/Formula_Racing_3009.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "angelpang",
-        "arquivo":  "jogos/Puzzle/angelpang.swf",
-        "categoria":  "Puzzle"
+        "nome": "Fourwheelchase",
+        "arquivo": "jogos/Corrida/fourwheelchase.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "AppelFun",
-        "arquivo":  "jogos/Puzzle/AppelFun.swf",
-        "categoria":  "Puzzle"
+        "nome": "Horse Rancher",
+        "arquivo": "jogos/Corrida/Horse_Rancher.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "AtomikKaos2",
-        "arquivo":  "jogos/Puzzle/AtomikKaos2.swf",
-        "categoria":  "Puzzle"
+        "nome": "Hyper Drive X",
+        "arquivo": "jogos/Corrida/Hyper_Drive_X.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Avoidence 2",
-        "arquivo":  "jogos/Puzzle/Avoidence_2.swf",
-        "categoria":  "Puzzle"
+        "nome": "Ice Ride",
+        "arquivo": "jogos/Corrida/Ice_Ride.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Ball Chimes",
-        "arquivo":  "jogos/Puzzle/Ball_Chimes.swf",
-        "categoria":  "Puzzle"
+        "nome": "Iceracer",
+        "arquivo": "jogos/Corrida/iceracer.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Blockin Out",
-        "arquivo":  "jogos/Puzzle/Blockin_Out.swf",
-        "categoria":  "Puzzle"
+        "nome": "Kore karts",
+        "arquivo": "jogos/Corrida/kore_karts.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Change the Balls",
-        "arquivo":  "jogos/Puzzle/Change_the_Balls.swf",
-        "categoria":  "Puzzle"
+        "nome": "Monstatruk",
+        "arquivo": "jogos/Corrida/monstatruk.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "combine",
-        "arquivo":  "jogos/Puzzle/combine.swf",
-        "categoria":  "Puzzle"
+        "nome": "Monster Truck Maniac 2",
+        "arquivo": "jogos/Corrida/Monster_Truck_Maniac_2.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Crazytracker",
-        "arquivo":  "jogos/Puzzle/Crazytracker.swf",
-        "categoria":  "Puzzle"
+        "nome": "Motor Madness",
+        "arquivo": "jogos/Corrida/Motor_Madness.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Cubic Disturbance",
-        "arquivo":  "jogos/Puzzle/Cubic_Disturbance.swf",
-        "categoria":  "Puzzle"
+        "nome": "Motorbike2",
+        "arquivo": "jogos/Corrida/motorbike2.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "dice",
-        "arquivo":  "jogos/Puzzle/dice.swf",
-        "categoria":  "Puzzle"
+        "nome": "Mud bike racing",
+        "arquivo": "jogos/Corrida/mud_bike_racing.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "drop blocks",
-        "arquivo":  "jogos/Puzzle/drop_blocks.swf",
-        "categoria":  "Puzzle"
+        "nome": "Neige",
+        "arquivo": "jogos/Corrida/Neige.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Egg Match",
-        "arquivo":  "jogos/Puzzle/Egg_Match.swf",
-        "categoria":  "Puzzle"
+        "nome": "No Limits Moto Jump",
+        "arquivo": "jogos/Corrida/No_Limits_Moto_Jump.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Encontrando os Erros",
-        "arquivo":  "jogos/Puzzle/Encontrando_os_Erros.swf",
-        "categoria":  "Puzzle"
+        "nome": "Planetracer",
+        "arquivo": "jogos/Corrida/planetracer.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "filler",
-        "arquivo":  "jogos/Puzzle/filler.swf",
-        "categoria":  "Puzzle"
+        "nome": "Racer3",
+        "arquivo": "jogos/Corrida/racer3.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "find the numbers challenge 7",
-        "arquivo":  "jogos/Puzzle/find-the-numbers-challenge-7.swf",
-        "categoria":  "Puzzle"
+        "nome": "Reach the Goal",
+        "arquivo": "jogos/Corrida/Reach_the_Goal.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Garden Bug",
-        "arquivo":  "jogos/Puzzle/Garden_Bug.swf",
-        "categoria":  "Puzzle"
+        "nome": "Ruralracer",
+        "arquivo": "jogos/Corrida/ruralracer.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Gen",
-        "arquivo":  "jogos/Puzzle/Gen.swf",
-        "categoria":  "Puzzle"
+        "nome": "SamDodge",
+        "arquivo": "jogos/Corrida/SamDodge.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Glass Pong",
-        "arquivo":  "jogos/Puzzle/Glass_Pong.swf",
-        "categoria":  "Puzzle"
+        "nome": "Snow Drifting Racing",
+        "arquivo": "jogos/Corrida/Snow_Drifting_Racing.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "HamantashCatcher",
-        "arquivo":  "jogos/Puzzle/HamantashCatcher.swf",
-        "categoria":  "Puzzle"
+        "nome": "SpeedCar",
+        "arquivo": "jogos/Corrida/SpeedCar.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Happy Jungle",
-        "arquivo":  "jogos/Puzzle/Happy_Jungle.swf",
-        "categoria":  "Puzzle"
+        "nome": "SpeedMania",
+        "arquivo": "jogos/Corrida/SpeedMania.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Jigsaw Puzzle",
-        "arquivo":  "jogos/Puzzle/Jigsaw_Puzzle.swf",
-        "categoria":  "Puzzle"
+        "nome": "Splash and Dash",
+        "arquivo": "jogos/Corrida/Splash-and-Dash.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "kermix",
-        "arquivo":  "jogos/Puzzle/kermix.swf",
-        "categoria":  "Puzzle"
+        "nome": "Sprintflash2",
+        "arquivo": "jogos/Corrida/sprintflash2.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "kinetikz 3",
-        "arquivo":  "jogos/Puzzle/kinetikz_3.swf",
-        "categoria":  "Puzzle"
+        "nome": "Street Whells",
+        "arquivo": "jogos/Corrida/Street_Whells.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Laserblock",
-        "arquivo":  "jogos/Puzzle/Laserblock.swf",
-        "categoria":  "Puzzle"
+        "nome": "Super Race",
+        "arquivo": "jogos/Corrida/Super_Race.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "layers",
-        "arquivo":  "jogos/Puzzle/layers.swf",
-        "categoria":  "Puzzle"
+        "nome": "T Zero Turbo X",
+        "arquivo": "jogos/Corrida/T-Zero_Turbo_X.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "leafblightmochi7s",
-        "arquivo":  "jogos/Puzzle/leafblightmochi7s.swf",
-        "categoria":  "Puzzle"
+        "nome": "Taxi Rush",
+        "arquivo": "jogos/Corrida/Taxi_Rush.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "leprechaunsDG",
-        "arquivo":  "jogos/Puzzle/leprechaunsDG.swf",
-        "categoria":  "Puzzle"
+        "nome": "TrailerParkRacing",
+        "arquivo": "jogos/Corrida/TrailerParkRacing.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Levels",
-        "arquivo":  "jogos/Puzzle/Levels.swf",
-        "categoria":  "Puzzle"
+        "nome": "TruckChallenge",
+        "arquivo": "jogos/Corrida/TruckChallenge.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Love Quest",
-        "arquivo":  "jogos/Puzzle/Love_Quest.swf",
-        "categoria":  "Puzzle"
+        "nome": "Tune and Race",
+        "arquivo": "jogos/Corrida/Tune-and-Race.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "magic pen 2",
-        "arquivo":  "jogos/Puzzle/magic-pen-2.swf",
-        "categoria":  "Puzzle"
+        "nome": "Turbospiritxt",
+        "arquivo": "jogos/Corrida/turbospiritxt.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Math Challenge 02",
-        "arquivo":  "jogos/Puzzle/Math_Challenge_02.swf",
-        "categoria":  "Puzzle"
+        "nome": "Uphill rush",
+        "arquivo": "jogos/Corrida/uphill_rush.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Meet My Valentine",
-        "arquivo":  "jogos/Puzzle/Meet_My_Valentine.swf",
-        "categoria":  "Puzzle"
+        "nome": "Wheelers",
+        "arquivo": "jogos/Corrida/wheelers.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Monkey On ALog",
-        "arquivo":  "jogos/Puzzle/Monkey_On_ALog.swf",
-        "categoria":  "Puzzle"
+        "nome": "Winter Rider",
+        "arquivo": "jogos/Corrida/Winter_Rider.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "Octopussie Escape GJ",
-        "arquivo":  "jogos/Puzzle/Octopussie_Escape_GJ.swf",
-        "categoria":  "Puzzle"
+        "nome": "Xenon Prime Racing",
+        "arquivo": "jogos/Corrida/Xenon_Prime_Racing.swf",
+        "categoria": "Corrida"
     },
     {
-        "nome":  "picross final",
-        "arquivo":  "jogos/Puzzle/picross_final.swf",
-        "categoria":  "Puzzle"
+        "nome": "Apprentice",
+        "arquivo": "jogos/Culinaria/apprentice.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Play Puzzle",
-        "arquivo":  "jogos/Puzzle/Play_Puzzle.swf",
-        "categoria":  "Puzzle"
+        "nome": "Blue bear pizza game",
+        "arquivo": "jogos/Culinaria/blue-bear-pizza-game.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Real World",
-        "arquivo":  "jogos/Puzzle/Real_World.swf",
-        "categoria":  "Puzzle"
+        "nome": "Bombones",
+        "arquivo": "jogos/Culinaria/bombones.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Rockem Blocks",
-        "arquivo":  "jogos/Puzzle/Rockem_Blocks.swf",
-        "categoria":  "Puzzle"
+        "nome": "Bread cooking",
+        "arquivo": "jogos/Culinaria/bread-cooking.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Sametris",
-        "arquivo":  "jogos/Puzzle/Sametris.swf",
-        "categoria":  "Puzzle"
+        "nome": "Breakfast",
+        "arquivo": "jogos/Culinaria/breakfast.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "scriballb",
-        "arquivo":  "jogos/Puzzle/scriballb.swf",
-        "categoria":  "Puzzle"
+        "nome": "Burger restaurant 1",
+        "arquivo": "jogos/Culinaria/burger-restaurant-1.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Shauna2",
-        "arquivo":  "jogos/Puzzle/Shauna2.swf",
-        "categoria":  "Puzzle"
+        "nome": "Burger restaurant 2",
+        "arquivo": "jogos/Culinaria/burger-restaurant-2.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "silversphere",
-        "arquivo":  "jogos/Puzzle/silversphere.swf",
-        "categoria":  "Puzzle"
+        "nome": "Burger tycoon",
+        "arquivo": "jogos/Culinaria/burger-tycoon.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "singlenoble",
-        "arquivo":  "jogos/Puzzle/singlenoble.swf",
-        "categoria":  "Puzzle"
+        "nome": "Cafe waitress",
+        "arquivo": "jogos/Culinaria/cafe-waitress.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "snake for ShortSimon",
-        "arquivo":  "jogos/Puzzle/snake_for_ShortSimon.swf",
-        "categoria":  "Puzzle"
+        "nome": "Cake",
+        "arquivo": "jogos/Culinaria/cake.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "splitter",
-        "arquivo":  "jogos/Puzzle/splitter.swf",
-        "categoria":  "Puzzle"
+        "nome": "Cake decoration",
+        "arquivo": "jogos/Culinaria/cake-decoration.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Sprinter Shell",
-        "arquivo":  "jogos/Puzzle/Sprinter_Shell.swf",
-        "categoria":  "Puzzle"
+        "nome": "Cake fabric",
+        "arquivo": "jogos/Culinaria/cake-fabric.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Tail Final2",
-        "arquivo":  "jogos/Puzzle/Tail_Final2.swf",
-        "categoria":  "Puzzle"
+        "nome": "Cake house",
+        "arquivo": "jogos/Culinaria/cake-house.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "tilt",
-        "arquivo":  "jogos/Puzzle/tilt.swf",
-        "categoria":  "Puzzle"
+        "nome": "Cake love",
+        "arquivo": "jogos/Culinaria/cake-love.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "totem destroyer 2",
-        "arquivo":  "jogos/Puzzle/totem-destroyer-2.swf",
-        "categoria":  "Puzzle"
+        "nome": "Cookie maker",
+        "arquivo": "jogos/Culinaria/cookie-maker.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "triPeakSolitaire3D",
-        "arquivo":  "jogos/Puzzle/triPeakSolitaire3D.swf",
-        "categoria":  "Puzzle"
+        "nome": "Donuts mania",
+        "arquivo": "jogos/Culinaria/donuts-mania.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "ValentineHearts",
-        "arquivo":  "jogos/Puzzle/ValentineHearts.swf",
-        "categoria":  "Puzzle"
+        "nome": "Donuts Shop",
+        "arquivo": "jogos/Culinaria/Donuts_Shop.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Way Of The Tangram",
-        "arquivo":  "jogos/Puzzle/Way_Of_The_Tangram.swf",
-        "categoria":  "Puzzle"
+        "nome": "Eggs",
+        "arquivo": "jogos/Culinaria/eggs.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "World Flags Distribution",
-        "arquivo":  "jogos/Puzzle/World_Flags_Distribution.swf",
-        "categoria":  "Puzzle"
+        "nome": "Fairy cooking",
+        "arquivo": "jogos/Culinaria/fairy-cooking.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Airpack",
-        "arquivo":  "jogos/Tiro/Airpack.swf",
-        "categoria":  "Tiro"
+        "nome": "Food memory",
+        "arquivo": "jogos/Culinaria/food-memory.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Asteroid Chunks",
-        "arquivo":  "jogos/Tiro/Asteroid_Chunks.swf",
-        "categoria":  "Tiro"
+        "nome": "Hamburger girl",
+        "arquivo": "jogos/Culinaria/hamburger-girl.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "best tower defense",
-        "arquivo":  "jogos/Tiro/best_tower_defense.swf",
-        "categoria":  "Tiro"
+        "nome": "Healthy fish salad",
+        "arquivo": "jogos/Culinaria/healthy-fish-salad.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "death vs monstars",
-        "arquivo":  "jogos/Tiro/death-vs-monstars.swf",
-        "categoria":  "Tiro"
+        "nome": "Holly hobbie muffin maker",
+        "arquivo": "jogos/Culinaria/holly-hobbie-muffin-maker.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Defender8k",
-        "arquivo":  "jogos/Tiro/Defender8k.swf",
-        "categoria":  "Tiro"
+        "nome": "Hot dog bush",
+        "arquivo": "jogos/Culinaria/hot-dog-bush.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "evilspacestation",
-        "arquivo":  "jogos/Tiro/evilspacestation.swf",
-        "categoria":  "Tiro"
+        "nome": "How to bake orange crunch cake",
+        "arquivo": "jogos/Culinaria/how-to-bake-orange-crunch-cake.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "glow shooter",
-        "arquivo":  "jogos/Tiro/glow_shooter.swf",
-        "categoria":  "Tiro"
+        "nome": "How to make a bread pizza",
+        "arquivo": "jogos/Culinaria/how-to-make-a-bread-pizza.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "GlueFO",
-        "arquivo":  "jogos/Tiro/GlueFO.swf",
-        "categoria":  "Tiro"
+        "nome": "Ice cream heaven",
+        "arquivo": "jogos/Culinaria/ice-cream-heaven.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Guerra de Comida",
-        "arquivo":  "jogos/Tiro/Guerra_de_Comida.swf",
-        "categoria":  "Tiro"
+        "nome": "Ice cream parlour",
+        "arquivo": "jogos/Culinaria/ice-cream-parlour.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "KatataK",
-        "arquivo":  "jogos/Tiro/KatataK.swf",
-        "categoria":  "Tiro"
+        "nome": "Ice creams",
+        "arquivo": "jogos/Culinaria/ice-creams.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Kong TD",
-        "arquivo":  "jogos/Tiro/Kong_TD.swf",
-        "categoria":  "Tiro"
+        "nome": "Jasmine sushi",
+        "arquivo": "jogos/Culinaria/jasmine-sushi.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Pepper The Perps",
-        "arquivo":  "jogos/Tiro/Pepper_The_Perps.swf",
-        "categoria":  "Tiro"
+        "nome": "Jessicas salad bar",
+        "arquivo": "jogos/Culinaria/jessicas-salad-bar.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "PR4",
-        "arquivo":  "jogos/Tiro/PR4.swf",
-        "categoria":  "Tiro"
+        "nome": "Make macaroni",
+        "arquivo": "jogos/Culinaria/make-macaroni.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "ragdoll cannon remake",
-        "arquivo":  "jogos/Tiro/ragdoll-cannon-remake.swf",
-        "categoria":  "Tiro"
+        "nome": "Mile high sundaes",
+        "arquivo": "jogos/Culinaria/mile-high-sundaes.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "RType R",
-        "arquivo":  "jogos/Tiro/RType_R.swf",
-        "categoria":  "Tiro"
+        "nome": "Oscar mayer deli creations",
+        "arquivo": "jogos/Culinaria/oscar-mayer-deli-creations.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "shelter from warm",
-        "arquivo":  "jogos/Tiro/shelter-from-warm.swf",
-        "categoria":  "Tiro"
+        "nome": "Pancake day",
+        "arquivo": "jogos/Culinaria/pancake-day.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "ShipGame",
-        "arquivo":  "jogos/Tiro/ShipGame.swf",
-        "categoria":  "Tiro"
+        "nome": "Perfect pizza",
+        "arquivo": "jogos/Culinaria/perfect-pizza.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "shootavoidk",
-        "arquivo":  "jogos/Tiro/shootavoidk.swf",
-        "categoria":  "Tiro"
+        "nome": "Quick Hamburguer",
+        "arquivo": "jogos/Culinaria/Quick_Hamburguer.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "SirDan And The Magical Balloon Army",
-        "arquivo":  "jogos/Tiro/SirDan_And_The_Magical_Balloon_Army.swf",
-        "categoria":  "Tiro"
+        "nome": "Restaurant",
+        "arquivo": "jogos/Culinaria/restaurant.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Space Bunny",
-        "arquivo":  "jogos/Tiro/Space_Bunny.swf",
-        "categoria":  "Tiro"
+        "nome": "Right cookie",
+        "arquivo": "jogos/Culinaria/right-cookie.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Space Quest",
-        "arquivo":  "jogos/Tiro/Space_Quest.swf",
-        "categoria":  "Tiro"
+        "nome": "Sandwich cooking game",
+        "arquivo": "jogos/Culinaria/sandwich-cooking-game.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Space Quest1",
-        "arquivo":  "jogos/Tiro/Space_Quest1.swf",
-        "categoria":  "Tiro"
+        "nome": "Shaquitasbakerymochi",
+        "arquivo": "jogos/Culinaria/shaquitasbakerymochi.swf",
+        "categoria": "Culinaria"
     },
     {
-        "nome":  "Square Tower Shooter Mochi",
-        "arquivo":  "jogos/Tiro/Square_Tower_Shooter_Mochi.swf",
-        "categoria":  "Tiro"
+        "nome": "Smoothie game 101 secure",
+        "arquivo": "jogos/Culinaria/smoothie_game_101_secure.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Smoothie shop",
+        "arquivo": "jogos/Culinaria/smoothie-shop.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Snack shop",
+        "arquivo": "jogos/Culinaria/snack-shop.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Soda pop girls bubble catch",
+        "arquivo": "jogos/Culinaria/soda-pop-girls-bubble-catch.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Sue potatoes",
+        "arquivo": "jogos/Culinaria/sue-potatoes.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Sue sushi",
+        "arquivo": "jogos/Culinaria/sue-sushi.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Super decorate cake",
+        "arquivo": "jogos/Culinaria/super-decorate-cake.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Sushi king",
+        "arquivo": "jogos/Culinaria/sushi-king.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Sushi restaurant",
+        "arquivo": "jogos/Culinaria/sushi-restaurant.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Sweettime",
+        "arquivo": "jogos/Culinaria/sweettime.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "The great burger builder",
+        "arquivo": "jogos/Culinaria/the-great-burger-builder.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Top that deux",
+        "arquivo": "jogos/Culinaria/top-that-deux.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Tropical fruit salad",
+        "arquivo": "jogos/Culinaria/tropical-fruit-salad.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Tutti cuti the ice cream parlour",
+        "arquivo": "jogos/Culinaria/tutti-cuti-the-ice-cream-parlour.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Wedding cake",
+        "arquivo": "jogos/Culinaria/wedding-cake.swf",
+        "categoria": "Culinaria"
+    },
+    {
+        "nome": "Acedriver",
+        "arquivo": "jogos/Diversos/acedriver.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Argentburst",
+        "arquivo": "jogos/Diversos/argentburst.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Babychute",
+        "arquivo": "jogos/Diversos/babychute.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Balance",
+        "arquivo": "jogos/Diversos/balance.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Balloon hunt",
+        "arquivo": "jogos/Diversos/balloon_hunt.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Beat your vegetables",
+        "arquivo": "jogos/Diversos/beat_your_vegetables/beat_your_vegetables.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Buyitens",
+        "arquivo": "jogos/Diversos/buyitens.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Candydrops",
+        "arquivo": "jogos/Diversos/candydrops.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Candygirl",
+        "arquivo": "jogos/Diversos/candygirl.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Catjump",
+        "arquivo": "jogos/Diversos/catjump.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Docking",
+        "arquivo": "jogos/Diversos/docking.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Draw bounce",
+        "arquivo": "jogos/Diversos/draw_bounce.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Drivers ed",
+        "arquivo": "jogos/Diversos/drivers-ed.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Falldown",
+        "arquivo": "jogos/Diversos/falldown.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Frozen frenzy",
+        "arquivo": "jogos/Diversos/frozen_frenzy.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Hamsterball2",
+        "arquivo": "jogos/Diversos/hamsterball2.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Happy kids",
+        "arquivo": "jogos/Diversos/happy_kids.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Japanesejello",
+        "arquivo": "jogos/Diversos/japanesejello.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Kung Fu Adventure",
+        "arquivo": "jogos/Diversos/Kung-Fu-Adventure.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Lagoonquest",
+        "arquivo": "jogos/Diversos/lagoonquest.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Lightsaberpratice",
+        "arquivo": "jogos/Diversos/lightsaberpratice.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Lines",
+        "arquivo": "jogos/Diversos/lines.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Maggiebakery",
+        "arquivo": "jogos/Diversos/maggiebakery.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Marinebomb",
+        "arquivo": "jogos/Diversos/marinebomb.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Marvin spectrum",
+        "arquivo": "jogos/Diversos/marvin-spectrum.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Massattack",
+        "arquivo": "jogos/Diversos/massattack.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Missile game 3d hs",
+        "arquivo": "jogos/Diversos/missile-game-3d-hs.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Missinginaction",
+        "arquivo": "jogos/Diversos/missinginaction.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Mouse2",
+        "arquivo": "jogos/Diversos/mouse2.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Music smash",
+        "arquivo": "jogos/Diversos/music-smash.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Musicpath",
+        "arquivo": "jogos/Diversos/musicpath.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "New dominoes",
+        "arquivo": "jogos/Diversos/new_dominoes.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "No comment",
+        "arquivo": "jogos/Diversos/no-comment.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Oceancleaning",
+        "arquivo": "jogos/Diversos/oceancleaning.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Orbitron",
+        "arquivo": "jogos/Diversos/orbitron.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Paintcan panic",
+        "arquivo": "jogos/Diversos/paintcan-panic.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Paintnazorin",
+        "arquivo": "jogos/Diversos/paintnazorin.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Panda baseball",
+        "arquivo": "jogos/Diversos/panda-baseball.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Party pals",
+        "arquivo": "jogos/Diversos/party_pals.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Pet",
+        "arquivo": "jogos/Diversos/pet.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Petsfood",
+        "arquivo": "jogos/Diversos/petsfood.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Pigcanfly",
+        "arquivo": "jogos/Diversos/pigcanfly.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Pinguinpanic",
+        "arquivo": "jogos/Diversos/pinguinpanic.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Pizza toss",
+        "arquivo": "jogos/Diversos/pizza_toss.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Plupon",
+        "arquivo": "jogos/Diversos/plupon.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Present panic",
+        "arquivo": "jogos/Diversos/present_panic.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Pretty pretty",
+        "arquivo": "jogos/Diversos/pretty-pretty.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Ragdolls laser",
+        "arquivo": "jogos/Diversos/ragdolls_laser.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Rainyride rainy ride",
+        "arquivo": "jogos/Diversos/rainyride_rainy_ride.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Rocket car",
+        "arquivo": "jogos/Diversos/rocket-car.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Runrun",
+        "arquivo": "jogos/Diversos/runrun.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Sandwichstacker",
+        "arquivo": "jogos/Diversos/sandwichstacker.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Santacoughtchristmas",
+        "arquivo": "jogos/Diversos/santacoughtchristmas.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Savingniimo",
+        "arquivo": "jogos/Diversos/savingniimo.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Scroller",
+        "arquivo": "jogos/Diversos/scroller.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Shopdrop",
+        "arquivo": "jogos/Diversos/shopdrop.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Sleighaway",
+        "arquivo": "jogos/Diversos/sleighaway.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Slingette",
+        "arquivo": "jogos/Diversos/slingette.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Soup server",
+        "arquivo": "jogos/Diversos/soup_server.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Spiderman",
+        "arquivo": "jogos/Diversos/spiderman.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Spongeseek",
+        "arquivo": "jogos/Diversos/spongeseek.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "StarGlider",
+        "arquivo": "jogos/Diversos/StarGlider.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Startpumper",
+        "arquivo": "jogos/Diversos/startpumper.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Subwars",
+        "arquivo": "jogos/Diversos/subwars.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Super m",
+        "arquivo": "jogos/Diversos/super-m.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Superbike",
+        "arquivo": "jogos/Diversos/superbike.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Taxi",
+        "arquivo": "jogos/Diversos/taxi.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Terribletriplets",
+        "arquivo": "jogos/Diversos/terribletriplets.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "The aviator",
+        "arquivo": "jogos/Diversos/the_aviator.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Theking",
+        "arquivo": "jogos/Diversos/theking.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Tightrope",
+        "arquivo": "jogos/Diversos/tightrope.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Tntrunner",
+        "arquivo": "jogos/Diversos/tntrunner.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Tobby balloon",
+        "arquivo": "jogos/Diversos/tobby_balloon.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Tracker",
+        "arquivo": "jogos/Diversos/beat_your_vegetables/tracker.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Trick witchery",
+        "arquivo": "jogos/Diversos/trick-witchery.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "TunnelRush",
+        "arquivo": "jogos/Diversos/TunnelRush.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Upbeat",
+        "arquivo": "jogos/Diversos/upbeat.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Virtual pet",
+        "arquivo": "jogos/Diversos/virtual_pet.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Washing",
+        "arquivo": "jogos/Diversos/washing.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Whomp",
+        "arquivo": "jogos/Diversos/whomp.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Youthclub",
+        "arquivo": "jogos/Diversos/youthclub.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "Zap to it",
+        "arquivo": "jogos/Diversos/zap-to-it.swf",
+        "categoria": "Diversos"
+    },
+    {
+        "nome": "12holexmas",
+        "arquivo": "jogos/Esportes/12holexmas.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "20000 feet and falling",
+        "arquivo": "jogos/Esportes/20000_feet_and_falling.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "3dmotorbikeracing",
+        "arquivo": "jogos/Esportes/3dmotorbikeracing.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "All star skate park",
+        "arquivo": "jogos/Esportes/all-star-skate-park.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Americanfootball",
+        "arquivo": "jogos/Esportes/americanfootball.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Aniki",
+        "arquivo": "jogos/Esportes/aniki.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Ape King Free Kick",
+        "arquivo": "jogos/Esportes/Ape_King_Free_Kick.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Archery",
+        "arquivo": "jogos/Esportes/archery.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Bikemaniaonice",
+        "arquivo": "jogos/Esportes/bikemaniaonice.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Bmxpark",
+        "arquivo": "jogos/Esportes/bmxpark.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Box Racers",
+        "arquivo": "jogos/Esportes/Box_Racers.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Canyon",
+        "arquivo": "jogos/Esportes/canyon.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Demolation football",
+        "arquivo": "jogos/Esportes/demolation_football.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "DriftRunners",
+        "arquivo": "jogos/Esportes/DriftRunners.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Everybodysgolf",
+        "arquivo": "jogos/Esportes/everybodysgolf.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Fisherman sam",
+        "arquivo": "jogos/Esportes/fisherman_sam.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Football a track",
+        "arquivo": "jogos/Esportes/football_a_track.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Football header",
+        "arquivo": "jogos/Esportes/football_header.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Footballchallange",
+        "arquivo": "jogos/Esportes/footballchallange.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Funny baseball",
+        "arquivo": "jogos/Esportes/funny_baseball.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Futebol da Polly",
+        "arquivo": "jogos/Esportes/Futebol_da_Polly.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Handball",
+        "arquivo": "jogos/Esportes/handball.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Hurdle Racer",
+        "arquivo": "jogos/Esportes/Hurdle_Racer.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Japanpingpong",
+        "arquivo": "jogos/Esportes/japanpingpong.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Jum jump jump",
+        "arquivo": "jogos/Esportes/jum_jump_jump.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Kickups",
+        "arquivo": "jogos/Esportes/kickups.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Kingofdefenders",
+        "arquivo": "jogos/Esportes/kingofdefenders.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Magic soccer",
+        "arquivo": "jogos/Esportes/magic_soccer.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Minigolf",
+        "arquivo": "jogos/Esportes/minigolf.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Minipool2",
+        "arquivo": "jogos/Esportes/minipool2.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Miniputt3",
+        "arquivo": "jogos/Esportes/miniputt3.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Mobike",
+        "arquivo": "jogos/Esportes/mobike.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Montain bike",
+        "arquivo": "jogos/Esportes/montain-bike.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Motocrossfm",
+        "arquivo": "jogos/Esportes/motocrossfm.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Mulanfireaway",
+        "arquivo": "jogos/Esportes/mulanfireaway.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Needforadventure",
+        "arquivo": "jogos/Esportes/needforadventure.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Nightboarding",
+        "arquivo": "jogos/Esportes/nightboarding.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Outlaw tire toss",
+        "arquivo": "jogos/Esportes/outlaw_tire_toss.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Pearldiver",
+        "arquivo": "jogos/Esportes/pearldiver.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Penales",
+        "arquivo": "jogos/Esportes/penales.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Penalty challenge",
+        "arquivo": "jogos/Esportes/penalty_challenge.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Pinchhitter",
+        "arquivo": "jogos/Esportes/pinchhitter.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Ping pong 3d",
+        "arquivo": "jogos/Esportes/ping_pong_3d.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Pitching machine",
+        "arquivo": "jogos/Esportes/pitching_machine.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Putt putt challenge",
+        "arquivo": "jogos/Esportes/putt_putt_challenge.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Riskyrider",
+        "arquivo": "jogos/Esportes/riskyrider.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Runronaldorun",
+        "arquivo": "jogos/Esportes/runronaldorun.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Santa ski jump",
+        "arquivo": "jogos/Esportes/santa_ski_jump.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Shootout",
+        "arquivo": "jogos/Esportes/shootout.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Slalom",
+        "arquivo": "jogos/Esportes/slalom.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Snowboardbetty",
+        "arquivo": "jogos/Esportes/snowboardbetty.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Snowthrow",
+        "arquivo": "jogos/Esportes/snowthrow.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Super headers",
+        "arquivo": "jogos/Esportes/super_headers.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Super surf",
+        "arquivo": "jogos/Esportes/super_surf.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Superspeed soccer",
+        "arquivo": "jogos/Esportes/superspeed_soccer.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Table hockey",
+        "arquivo": "jogos/Esportes/table_hockey.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Tabletop cricket",
+        "arquivo": "jogos/Esportes/tabletop_cricket.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Taekwondo Show",
+        "arquivo": "jogos/Esportes/Taekwondo_Show.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Taz football frenzy",
+        "arquivo": "jogos/Esportes/taz-football-frenzy.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Three point shotout",
+        "arquivo": "jogos/Esportes/three_point_shotout.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Toboggan jump",
+        "arquivo": "jogos/Esportes/toboggan_jump.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Ultimate billiards",
+        "arquivo": "jogos/Esportes/ultimate_billiards.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Uphillrush",
+        "arquivo": "jogos/Esportes/uphillrush.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Wildkite",
+        "arquivo": "jogos/Esportes/wildkite.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Wipeout",
+        "arquivo": "jogos/Esportes/wipeout.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "WurstWerfen",
+        "arquivo": "jogos/Esportes/WurstWerfen.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Yetsports flamingo drive",
+        "arquivo": "jogos/Esportes/yetsports_flamingo_drive.swf",
+        "categoria": "Esportes"
+    },
+    {
+        "nome": "Ageofwar",
+        "arquivo": "jogos/Estrategia/ageofwar.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Aliens",
+        "arquivo": "jogos/Estrategia/aliens.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Blobwars",
+        "arquivo": "jogos/Estrategia/blobwars.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Bowling defense",
+        "arquivo": "jogos/Estrategia/bowling-defense.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Checkersboardgame",
+        "arquivo": "jogos/Estrategia/checkersboardgame.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Connect4",
+        "arquivo": "jogos/Estrategia/connect4.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Crazychess",
+        "arquivo": "jogos/Estrategia/crazychess.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Deadofnight",
+        "arquivo": "jogos/Estrategia/deadofnight.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Defender",
+        "arquivo": "jogos/Estrategia/defender.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Domino",
+        "arquivo": "jogos/Estrategia/domino.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Easychess",
+        "arquivo": "jogos/Estrategia/easychess.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Flashludo",
+        "arquivo": "jogos/Estrategia/flashludo.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Gemcraft",
+        "arquivo": "jogos/Estrategia/gemcraft.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Jeukakuro",
+        "arquivo": "jogos/Estrategia/jeukakuro.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Knightfall",
+        "arquivo": "jogos/Estrategia/knightfall.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "MicroTD2",
+        "arquivo": "jogos/Estrategia/MicroTD2.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Mindfields2",
+        "arquivo": "jogos/Estrategia/mindfields2.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Navybattle",
+        "arquivo": "jogos/Estrategia/navybattle.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Portal",
+        "arquivo": "jogos/Estrategia/Portal.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Proximity",
+        "arquivo": "jogos/Estrategia/proximity.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Puissance4",
+        "arquivo": "jogos/Estrategia/puissance4.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Puzzle freak",
+        "arquivo": "jogos/Estrategia/puzzle-freak.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Puzzlefreack",
+        "arquivo": "jogos/Estrategia/puzzlefreack.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Rebound",
+        "arquivo": "jogos/Estrategia/rebound.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Schoolwars",
+        "arquivo": "jogos/Estrategia/schoolwars.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Singlenoble",
+        "arquivo": "jogos/Estrategia/singlenoble.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Studantpark",
+        "arquivo": "jogos/Estrategia/studantpark.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Tarnation",
+        "arquivo": "jogos/Estrategia/tarnation.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Templeguadian",
+        "arquivo": "jogos/Estrategia/templeguadian.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Thenewland",
+        "arquivo": "jogos/Estrategia/thenewland.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Toonmarooned",
+        "arquivo": "jogos/Estrategia/toonmarooned.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "WarOfGuns",
+        "arquivo": "jogos/Estrategia/WarOfGuns.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "WorldWar",
+        "arquivo": "jogos/Estrategia/WorldWar.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Ww2commander",
+        "arquivo": "jogos/Estrategia/ww2commander.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Xenotactic",
+        "arquivo": "jogos/Estrategia/xenotactic.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Xiangqi",
+        "arquivo": "jogos/Estrategia/xiangqi.swf",
+        "categoria": "Estrategia"
+    },
+    {
+        "nome": "Baby show games",
+        "arquivo": "jogos/Jogos-de-vestir/baby-show-games.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Barber Shop",
+        "arquivo": "jogos/Jogos-de-vestir/Barber_Shop.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Best Interior Design",
+        "arquivo": "jogos/Jogos-de-vestir/Best_Interior_Design.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Birthday Dress up",
+        "arquivo": "jogos/Jogos-de-vestir/Birthday_Dress_up.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Cute Cat Girl",
+        "arquivo": "jogos/Jogos-de-vestir/Cute_Cat_Girl.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Decore a Mansão",
+        "arquivo": "jogos/Jogos-de-vestir/Decore_a_Mansão.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Demi Lovato",
+        "arquivo": "jogos/Jogos-de-vestir/Demi_Lovato.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "DressCode Nightclub Mochi",
+        "arquivo": "jogos/Jogos-de-vestir/DressCode_Nightclub_Mochi.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Festejando o Ano Novo",
+        "arquivo": "jogos/Jogos-de-vestir/Festejando_o_Ano_Novo.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Garotinha na Neve",
+        "arquivo": "jogos/Jogos-de-vestir/Garotinha_na_Neve.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Hannah Montana Makeover",
+        "arquivo": "jogos/Jogos-de-vestir/Hannah_Montana_Makeover.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Happy shopping lover",
+        "arquivo": "jogos/Jogos-de-vestir/happy-shopping-lover.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Jonas Bros",
+        "arquivo": "jogos/Jogos-de-vestir/Jonas_Bros.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Laila",
+        "arquivo": "jogos/Jogos-de-vestir/Laila.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Linda para Sair",
+        "arquivo": "jogos/Jogos-de-vestir/Linda_para_Sair.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Maquiagem Escondida",
+        "arquivo": "jogos/Jogos-de-vestir/Maquiagem_Escondida.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Melinda in los angeles",
+        "arquivo": "jogos/Jogos-de-vestir/melinda-in-los-angeles.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Mermaid Decoration",
+        "arquivo": "jogos/Jogos-de-vestir/Mermaid_Decoration.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "My Little Pony Rainbow",
+        "arquivo": "jogos/Jogos-de-vestir/My_Little_Pony_Rainbow.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "My Lovely Room",
+        "arquivo": "jogos/Jogos-de-vestir/My_Lovely_Room.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Penelope Cruz",
+        "arquivo": "jogos/Jogos-de-vestir/Penelope_Cruz.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Salão de Cabelo Maravilhoso",
+        "arquivo": "jogos/Jogos-de-vestir/Salão_de_Cabelo_Maravilhoso.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Shopping Town",
+        "arquivo": "jogos/Jogos-de-vestir/Shopping_Town.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "StPatrick2",
+        "arquivo": "jogos/Jogos-de-vestir/StPatrick2.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Sweet Wedding",
+        "arquivo": "jogos/Jogos-de-vestir/Sweet_Wedding.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Unhas dos Sonhos",
+        "arquivo": "jogos/Jogos-de-vestir/Unhas_dos_Sonhos.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Vestindo Celeste",
+        "arquivo": "jogos/Jogos-de-vestir/Vestindo_Celeste.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Yoga Dress up",
+        "arquivo": "jogos/Jogos-de-vestir/Yoga_Dress_up.swf",
+        "categoria": "Jogos-de-vestir"
+    },
+    {
+        "nome": "Ant arena",
+        "arquivo": "jogos/Luta/ant_arena.swf",
+        "categoria": "Luta"
+    },
+    {
+        "nome": "Brucelee",
+        "arquivo": "jogos/Luta/brucelee.swf",
+        "categoria": "Luta"
+    },
+    {
+        "nome": "Celebrityfighter",
+        "arquivo": "jogos/Luta/celebrityfighter.swf",
+        "categoria": "Luta"
+    },
+    {
+        "nome": "Egg fighter",
+        "arquivo": "jogos/Luta/egg_fighter.swf",
+        "categoria": "Luta"
+    },
+    {
+        "nome": "Knock out",
+        "arquivo": "jogos/Luta/knock_out.swf",
+        "categoria": "Luta"
+    },
+    {
+        "nome": "Kungfufighting",
+        "arquivo": "jogos/Luta/kungfufighting.swf",
+        "categoria": "Luta"
+    },
+    {
+        "nome": "Mask boxing",
+        "arquivo": "jogos/Luta/mask_boxing.swf",
+        "categoria": "Luta"
+    },
+    {
+        "nome": "A banda de sue",
+        "arquivo": "jogos/Moda/a-banda-de-sue.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "A sala de aula",
+        "arquivo": "jogos/Moda/a-sala-de-aula.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "A sala de bratz",
+        "arquivo": "jogos/Moda/a-sala-de-bratz.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "A sala de layla",
+        "arquivo": "jogos/Moda/a-sala-de-layla.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Aline",
+        "arquivo": "jogos/Moda/aline.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Ana",
+        "arquivo": "jogos/Moda/ana.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Ana luisa",
+        "arquivo": "jogos/Moda/ana-luisa.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Analy",
+        "arquivo": "jogos/Moda/analy.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Babys bedroom",
+        "arquivo": "jogos/Moda/babys-bedroom.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Baile de gala",
+        "arquivo": "jogos/Moda/baile-de-gala.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Banheiro de bruna",
+        "arquivo": "jogos/Moda/banheiro-de-bruna.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Bathroom",
+        "arquivo": "jogos/Moda/bathroom.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Bed makeover",
+        "arquivo": "jogos/Moda/bed-makeover.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Bedroom",
+        "arquivo": "jogos/Moda/bedroom.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Boy girls",
+        "arquivo": "jogos/Moda/boy-girls.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Bratz",
+        "arquivo": "jogos/Moda/bratz.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Bratz estilista",
+        "arquivo": "jogos/Moda/bratz-estilista.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Britney",
+        "arquivo": "jogos/Moda/britney.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Cabeleireira",
+        "arquivo": "jogos/Moda/cabeleireira.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Casa da claudia",
+        "arquivo": "jogos/Moda/casa-da-claudia.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Cozinha suzy",
+        "arquivo": "jogos/Moda/cozinha-suzy.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Dance party",
+        "arquivo": "jogos/Moda/dance-party.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Emily",
+        "arquivo": "jogos/Moda/emily.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Espelho magico",
+        "arquivo": "jogos/Moda/espelho-magico.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Fashion pair",
+        "arquivo": "jogos/Moda/fashion-pair.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "From night",
+        "arquivo": "jogos/Moda/from-night.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Gabriela",
+        "arquivo": "jogos/Moda/gabriela.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Giovanna",
+        "arquivo": "jogos/Moda/giovanna.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Halloween",
+        "arquivo": "jogos/Moda/halloween.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Jordana",
+        "arquivo": "jogos/Moda/jordana.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Ken sandy",
+        "arquivo": "jogos/Moda/ken-sandy.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Luiza",
+        "arquivo": "jogos/Moda/luiza.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Maquiagem carol",
+        "arquivo": "jogos/Moda/maquiagem-carol.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Maquiagem lana",
+        "arquivo": "jogos/Moda/maquiagem-lana.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Mayara",
+        "arquivo": "jogos/Moda/mayara.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Melissa",
+        "arquivo": "jogos/Moda/melissa.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Milene",
+        "arquivo": "jogos/Moda/milene.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Miuk",
+        "arquivo": "jogos/Moda/miuk.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "My lovely home",
+        "arquivo": "jogos/Moda/my_lovely_home.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "My shop dress up",
+        "arquivo": "jogos/Moda/my-shop-dress-up.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Nicole",
+        "arquivo": "jogos/Moda/nicole.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Patty",
+        "arquivo": "jogos/Moda/patty.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Perfect girl",
+        "arquivo": "jogos/Moda/perfect-girl.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Rebeca",
+        "arquivo": "jogos/Moda/rebeca.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Rock star",
+        "arquivo": "jogos/Moda/rock-star.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Room maker",
+        "arquivo": "jogos/Moda/room-maker.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Salao de beleza",
+        "arquivo": "jogos/Moda/salao-de-beleza.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Samara",
+        "arquivo": "jogos/Moda/samara.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Sweet stylin",
+        "arquivo": "jogos/Moda/sweet-stylin.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Tatiana",
+        "arquivo": "jogos/Moda/tatiana.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Vanessa",
+        "arquivo": "jogos/Moda/vanessa.swf",
+        "categoria": "Moda"
+    },
+    {
+        "nome": "Aeroacrobat",
+        "arquivo": "jogos/Nave/aeroacrobat.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Aliens Must Die",
+        "arquivo": "jogos/Nave/Aliens_Must_Die.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Alpha Bounty",
+        "arquivo": "jogos/Nave/Alpha_Bounty.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Astro Flyer",
+        "arquivo": "jogos/Nave/Astro_Flyer.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "BottleRocket",
+        "arquivo": "jogos/Nave/bottleRocket.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Danny Phantom Frigth Fligth",
+        "arquivo": "jogos/Nave/Danny_Phantom-Frigth_Fligth.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Desert Strike",
+        "arquivo": "jogos/Nave/Desert_Strike.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Dodge",
+        "arquivo": "jogos/Nave/dodge.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Dog Fight 2",
+        "arquivo": "jogos/Nave/Dog_Fight_2.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Graff Zeppelin",
+        "arquivo": "jogos/Nave/Graff_Zeppelin.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Hare StarFighter",
+        "arquivo": "jogos/Nave/Hare_StarFighter.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Head Space",
+        "arquivo": "jogos/Nave/Head_Space.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "KND Operação GRADUADOS",
+        "arquivo": "jogos/Nave/KND-Operação_GRADUADOS.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Linear Assault",
+        "arquivo": "jogos/Nave/Linear_Assault.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Naval Strike",
+        "arquivo": "jogos/Nave/Naval_Strike.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Operação Beowulf",
+        "arquivo": "jogos/Nave/Operação_Beowulf.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Pocket rocket",
+        "arquivo": "jogos/Nave/pocket-rocket.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Providence",
+        "arquivo": "jogos/Nave/Providence.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Rapid Wars",
+        "arquivo": "jogos/Nave/Rapid_Wars.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Rescue in Mars",
+        "arquivo": "jogos/Nave/Rescue_in_Mars.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Sea Walk",
+        "arquivo": "jogos/Nave/Sea_Walk.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Sky Scraper Defense",
+        "arquivo": "jogos/Nave/Sky_Scraper_Defense.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "SkyLocopter",
+        "arquivo": "jogos/Nave/SkyLocopter.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Space avoider",
+        "arquivo": "jogos/Nave/space_avoider.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Star Defender 4",
+        "arquivo": "jogos/Nave/Star_Defender_4.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Star Raider",
+        "arquivo": "jogos/Nave/Star_Raider.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "Star Serpent Sigma",
+        "arquivo": "jogos/Nave/Star_Serpent_Sigma.swf",
+        "categoria": "Nave"
+    },
+    {
+        "nome": "1 of 24",
+        "arquivo": "jogos/Puzzle/1_of_24.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "60 seconds dash",
+        "arquivo": "jogos/Puzzle/60_seconds_dash.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "8 queens",
+        "arquivo": "jogos/Puzzle/8_queens.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "A arca de noe",
+        "arquivo": "jogos/Puzzle/a_arca_de_noe.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Alphatumbler2",
+        "arquivo": "jogos/Puzzle/alphatumbler2.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Angelpang",
+        "arquivo": "jogos/Puzzle/angelpang.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "AppelFun",
+        "arquivo": "jogos/Puzzle/AppelFun.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Arachnid falls",
+        "arquivo": "jogos/Puzzle/arachnid_falls.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "AtomikKaos2",
+        "arquivo": "jogos/Puzzle/AtomikKaos2.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Avoidence 2",
+        "arquivo": "jogos/Puzzle/Avoidence_2.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Ball Chimes",
+        "arquivo": "jogos/Puzzle/Ball_Chimes.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Ballselect",
+        "arquivo": "jogos/Puzzle/ballselect.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Block mover",
+        "arquivo": "jogos/Puzzle/block_mover.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Blockin Out",
+        "arquivo": "jogos/Puzzle/Blockin_Out.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Blue",
+        "arquivo": "jogos/Puzzle/blue.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Cake heaven",
+        "arquivo": "jogos/Puzzle/cake_heaven.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Change the Balls",
+        "arquivo": "jogos/Puzzle/Change_the_Balls.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "China",
+        "arquivo": "jogos/Puzzle/china.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Cloud breakout",
+        "arquivo": "jogos/Puzzle/cloud_breakout.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Coki",
+        "arquivo": "jogos/Puzzle/coki.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Combine",
+        "arquivo": "jogos/Puzzle/combine.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Conjecture",
+        "arquivo": "jogos/Puzzle/conjecture.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Crazytracker",
+        "arquivo": "jogos/Puzzle/Crazytracker.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Crocodile",
+        "arquivo": "jogos/Puzzle/crocodile.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Cubic Disturbance",
+        "arquivo": "jogos/Puzzle/Cubic_Disturbance.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Cubrius",
+        "arquivo": "jogos/Puzzle/cubrius.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Dice",
+        "arquivo": "jogos/Puzzle/dice.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Dino",
+        "arquivo": "jogos/Puzzle/dino.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Dr joe",
+        "arquivo": "jogos/Puzzle/dr_joe.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Dragons mountain",
+        "arquivo": "jogos/Puzzle/dragons_mountain.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Drop blocks",
+        "arquivo": "jogos/Puzzle/drop_blocks.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Egg Match",
+        "arquivo": "jogos/Puzzle/Egg_Match.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Encontrando os Erros",
+        "arquivo": "jogos/Puzzle/Encontrando_os_Erros.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Excit recode",
+        "arquivo": "jogos/Puzzle/excit_recode.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Filler",
+        "arquivo": "jogos/Puzzle/filler.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Find the numbers challenge 7",
+        "arquivo": "jogos/Puzzle/find-the-numbers-challenge-7.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Fruit bubble",
+        "arquivo": "jogos/Puzzle/fruit_bubble.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Fruit fall",
+        "arquivo": "jogos/Puzzle/fruit_fall.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Fruitselect",
+        "arquivo": "jogos/Puzzle/fruitselect.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Garden Bug",
+        "arquivo": "jogos/Puzzle/Garden_Bug.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Gen",
+        "arquivo": "jogos/Puzzle/Gen.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Glass Pong",
+        "arquivo": "jogos/Puzzle/Glass_Pong.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Glops",
+        "arquivo": "jogos/Puzzle/glops.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Gold strike",
+        "arquivo": "jogos/Puzzle/gold_strike.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Guest",
+        "arquivo": "jogos/Puzzle/guest.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "HamantashCatcher",
+        "arquivo": "jogos/Puzzle/HamantashCatcher.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Happy Jungle",
+        "arquivo": "jogos/Puzzle/Happy_Jungle.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Harrythehamster",
+        "arquivo": "jogos/Puzzle/harrythehamster.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Hunga hatch",
+        "arquivo": "jogos/Puzzle/hunga_hatch.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "IcyCandy",
+        "arquivo": "jogos/Puzzle/IcyCandy.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Im Stuck",
+        "arquivo": "jogos/Puzzle/Im-Stuck.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Jigsaw Puzzle",
+        "arquivo": "jogos/Puzzle/Jigsaw_Puzzle.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Jigsawn",
+        "arquivo": "jogos/Puzzle/Jigsawn.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Jingo",
+        "arquivo": "jogos/Puzzle/jingo.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Kermix",
+        "arquivo": "jogos/Puzzle/kermix.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Kinetikz 3",
+        "arquivo": "jogos/Puzzle/kinetikz_3.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Labirinto 2",
+        "arquivo": "jogos/Puzzle/labirinto_2.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Laserblock",
+        "arquivo": "jogos/Puzzle/Laserblock.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Layers",
+        "arquivo": "jogos/Puzzle/layers.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Leafblightmochi7s",
+        "arquivo": "jogos/Puzzle/leafblightmochi7s.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "LeprechaunsDG",
+        "arquivo": "jogos/Puzzle/leprechaunsDG.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Less quick",
+        "arquivo": "jogos/Puzzle/less_quick.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Levels",
+        "arquivo": "jogos/Puzzle/Levels.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "LockedOffice",
+        "arquivo": "jogos/Puzzle/LockedOffice.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Love Quest",
+        "arquivo": "jogos/Puzzle/Love_Quest.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Magic pen 2",
+        "arquivo": "jogos/Puzzle/magic-pen-2.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Magicbounceball",
+        "arquivo": "jogos/Puzzle/magicbounceball.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Magnetism2",
+        "arquivo": "jogos/Puzzle/Magnetism2.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Marchzuma",
+        "arquivo": "jogos/Puzzle/marchzuma.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Math Challenge 02",
+        "arquivo": "jogos/Puzzle/Math_Challenge_02.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Meet My Valentine",
+        "arquivo": "jogos/Puzzle/Meet_My_Valentine.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Meno tst",
+        "arquivo": "jogos/Puzzle/meno_tst.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "MinimaLemmings",
+        "arquivo": "jogos/Puzzle/MinimaLemmings.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Mongol fiere",
+        "arquivo": "jogos/Puzzle/mongol_fiere.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Monkey On ALog",
+        "arquivo": "jogos/Puzzle/Monkey_On_ALog.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "More bloons",
+        "arquivo": "jogos/Puzzle/more_bloons.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Octopussie Escape GJ",
+        "arquivo": "jogos/Puzzle/Octopussie_Escape_GJ.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Orb final",
+        "arquivo": "jogos/Puzzle/orb_final.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Penguinpush",
+        "arquivo": "jogos/Puzzle/penguinpush.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Pharaohstreasure",
+        "arquivo": "jogos/Puzzle/pharaohstreasure.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Picross final",
+        "arquivo": "jogos/Puzzle/picross_final.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Play Puzzle",
+        "arquivo": "jogos/Puzzle/Play_Puzzle.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Pucca",
+        "arquivo": "jogos/Puzzle/pucca.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Puzzled",
+        "arquivo": "jogos/Puzzle/puzzled.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Qobix",
+        "arquivo": "jogos/Puzzle/Qobix.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Quest in the dark",
+        "arquivo": "jogos/Puzzle/quest_in_the_dark.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Quick stack",
+        "arquivo": "jogos/Puzzle/quick_stack.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Rastrodocaracol",
+        "arquivo": "jogos/Puzzle/rastrodocaracol.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Real World",
+        "arquivo": "jogos/Puzzle/Real_World.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Reunion",
+        "arquivo": "jogos/Puzzle/reunion.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Ripley",
+        "arquivo": "jogos/Puzzle/Ripley.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Rockem Blocks",
+        "arquivo": "jogos/Puzzle/Rockem_Blocks.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Sametris",
+        "arquivo": "jogos/Puzzle/Sametris.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Scriballb",
+        "arquivo": "jogos/Puzzle/scriballb.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Scribble",
+        "arquivo": "jogos/Puzzle/scribble.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Shauna2",
+        "arquivo": "jogos/Puzzle/Shauna2.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Silversphere",
+        "arquivo": "jogos/Puzzle/silversphere.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Singlenoble",
+        "arquivo": "jogos/Puzzle/singlenoble.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Snake for ShortSimon",
+        "arquivo": "jogos/Puzzle/snake_for_ShortSimon.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Speedycat",
+        "arquivo": "jogos/Puzzle/speedycat.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Spin swim blue",
+        "arquivo": "jogos/Puzzle/spin-swim-blue.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Splash",
+        "arquivo": "jogos/Puzzle/splash.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Splitter",
+        "arquivo": "jogos/Puzzle/splitter.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Sprinter Shell",
+        "arquivo": "jogos/Puzzle/Sprinter_Shell.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Starshine",
+        "arquivo": "jogos/Puzzle/starshine.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Submachine 3",
+        "arquivo": "jogos/Puzzle/Submachine-3.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Super saimon",
+        "arquivo": "jogos/Puzzle/super_saimon.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Swapjob",
+        "arquivo": "jogos/Puzzle/swapjob.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Tabuto",
+        "arquivo": "jogos/Puzzle/tabuto.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Tail Final2",
+        "arquivo": "jogos/Puzzle/Tail_Final2.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Tba",
+        "arquivo": "jogos/Puzzle/tba.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Teleporter",
+        "arquivo": "jogos/Puzzle/teleporter.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Tetrisarcade",
+        "arquivo": "jogos/Puzzle/tetrisarcade.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "The flying",
+        "arquivo": "jogos/Puzzle/the_flying.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "The House haunted",
+        "arquivo": "jogos/Puzzle/The-House-haunted.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "The timewaster",
+        "arquivo": "jogos/Puzzle/the_timewaster.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "TheGreyRoom",
+        "arquivo": "jogos/Puzzle/TheGreyRoom.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Thejowelsgear",
+        "arquivo": "jogos/Puzzle/thejowelsgear.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Tilt",
+        "arquivo": "jogos/Puzzle/tilt.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Totem destroyer 2",
+        "arquivo": "jogos/Puzzle/totem-destroyer-2.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Tower constructor",
+        "arquivo": "jogos/Puzzle/tower_constructor.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "TriPeakSolitaire3D",
+        "arquivo": "jogos/Puzzle/triPeakSolitaire3D.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "ValentineHearts",
+        "arquivo": "jogos/Puzzle/ValentineHearts.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "VectorDodge",
+        "arquivo": "jogos/Puzzle/VectorDodge.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Way Of The Tangram",
+        "arquivo": "jogos/Puzzle/Way_Of_The_Tangram.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Where am I",
+        "arquivo": "jogos/Puzzle/Where-am-I.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "World Flags Distribution",
+        "arquivo": "jogos/Puzzle/World_Flags_Distribution.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Wreckanoid",
+        "arquivo": "jogos/Puzzle/wreckanoid.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Xmas2004",
+        "arquivo": "jogos/Puzzle/xmas2004.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Zwingo",
+        "arquivo": "jogos/Puzzle/zwingo.swf",
+        "categoria": "Puzzle"
+    },
+    {
+        "nome": "Airpack",
+        "arquivo": "jogos/Tiro/Airpack.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Asteroid Chunks",
+        "arquivo": "jogos/Tiro/Asteroid_Chunks.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Best tower defense",
+        "arquivo": "jogos/Tiro/best_tower_defense.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Death vs monstars",
+        "arquivo": "jogos/Tiro/death-vs-monstars.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Defender8k",
+        "arquivo": "jogos/Tiro/Defender8k.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Evilspacestation",
+        "arquivo": "jogos/Tiro/evilspacestation.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Glow shooter",
+        "arquivo": "jogos/Tiro/glow_shooter.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "GlueFO",
+        "arquivo": "jogos/Tiro/GlueFO.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Guerra de Comida",
+        "arquivo": "jogos/Tiro/Guerra_de_Comida.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "KatataK",
+        "arquivo": "jogos/Tiro/KatataK.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Kong TD",
+        "arquivo": "jogos/Tiro/Kong_TD.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Pepper The Perps",
+        "arquivo": "jogos/Tiro/Pepper_The_Perps.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "PR4",
+        "arquivo": "jogos/Tiro/PR4.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Ragdoll cannon remake",
+        "arquivo": "jogos/Tiro/ragdoll-cannon-remake.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "RType R",
+        "arquivo": "jogos/Tiro/RType_R.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Shelter from warm",
+        "arquivo": "jogos/Tiro/shelter-from-warm.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "ShipGame",
+        "arquivo": "jogos/Tiro/ShipGame.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Shootavoidk",
+        "arquivo": "jogos/Tiro/shootavoidk.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "SirDan And The Magical Balloon Army",
+        "arquivo": "jogos/Tiro/SirDan_And_The_Magical_Balloon_Army.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Space Bunny",
+        "arquivo": "jogos/Tiro/Space_Bunny.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Space Quest",
+        "arquivo": "jogos/Tiro/Space_Quest.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Space Quest1",
+        "arquivo": "jogos/Tiro/Space_Quest1.swf",
+        "categoria": "Tiro"
+    },
+    {
+        "nome": "Square Tower Shooter Mochi",
+        "arquivo": "jogos/Tiro/Square_Tower_Shooter_Mochi.swf",
+        "categoria": "Tiro"
     }
 ]
