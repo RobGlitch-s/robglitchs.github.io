@@ -4318,5 +4318,10 @@
         "nome": "Square Tower Shooter Mochi",
         "arquivo": "jogos/Tiro/Square_Tower_Shooter_Mochi.swf",
         "categoria": "Tiro"
+    },
+    {   
+        "nome": "battle_in_megaville",
+        "arquivo": "jogos/Luta/battle_in_megaville.swf",
+        "categoria": "Luta"
     }
 ]
