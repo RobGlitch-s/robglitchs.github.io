@@ -330,6 +330,15 @@
                         opcao.dataset.categoria =
                             jogo.categoria;
 
+                        opcao.dataset.plataforma =
+                            jogo.plataforma ||
+                            identificarPlataforma(jogo.arquivo);
+
+                        if (jogo.parent) {
+                            opcao.dataset.parent =
+                                jogo.parent;
+                        }
+
 
                         opcao.textContent =
                             jogo.categoria +
@@ -366,6 +375,7 @@
         let canvasSWF2JS = null;
 
         let elementoOriginalSWF2JS = null;
+        let playerEmulatorJS = null;
 
 
         /*
@@ -374,6 +384,17 @@
 
         let jogoCarregado = false;
 
+
+
+        function identificarPlataforma(arquivo) {
+            const extensao = arquivo.split(".").pop().toLowerCase();
+
+            if (extensao === "swf") return "flash";
+            if (extensao === "sfc" || extensao === "smc") return "snes";
+            if (extensao === "zip") return "mame";
+
+            return "desconhecida";
+        }
 
 
         /* =========================================
@@ -483,7 +504,9 @@
 
                 carregarJogo(
                     jogo.arquivo,
-                    jogo.nome
+                    jogo.nome,
+                    jogo.plataforma || identificarPlataforma(jogo.arquivo),
+                    jogo.parent || ""
                 );
 
             }
@@ -564,7 +587,10 @@
 
             carregarJogo(
                 arquivoSWF,
-                nomeJogo
+                nomeJogo,
+                opcaoSelecionada.dataset.plataforma ||
+                    identificarPlataforma(arquivoSWF),
+                opcaoSelecionada.dataset.parent || ""
             );
 
         }
@@ -577,7 +603,9 @@
 
         function carregarJogo(
             arquivoSWF,
-            nomeJogo
+            nomeJogo,
+            plataforma = null,
+            parent = ""
         ) {
 
             const areaJogo =
@@ -598,9 +626,9 @@
                 );
 
 
-            /*
-             * Descobre o emulador.
-             */
+            if (!plataforma) {
+                plataforma = identificarPlataforma(arquivoSWF);
+            }
 
             const emuladorSelecionado =
                 document.querySelector(
@@ -657,44 +685,50 @@
 
 
 
-            /* =====================================
-               RUFFLE
-               ===================================== */
-
-            if (
-                emuladorSelecionado ===
-                "ruffle"
-            ) {
-
+            if (plataforma === "snes") {
                 nomeEmulador.textContent =
-                    "Ruffle";
+                    "Super Nintendo - EmulatorJS";
 
-
-                iniciarRuffle(
-                    arquivoSWF
+                iniciarEmulatorJS(
+                    arquivoSWF,
+                    "snes",
+                    parent
                 );
-
             }
 
-
-
-            /* =====================================
-               SWF2JS
-               ===================================== */
-
             else if (
-                emuladorSelecionado ===
-                "swf2js"
+                plataforma === "mame" ||
+                plataforma === "mame2003" ||
+                plataforma === "mame0.243"
             ) {
-
                 nomeEmulador.textContent =
-                    "swf2js";
+                    "MAME - EmulatorJS";
 
-
-                iniciarSWF2JS(
-                    arquivoSWF
+                iniciarEmulatorJS(
+                    arquivoSWF,
+                    plataforma === "mame"
+                        ? "mame2003"
+                        : plataforma,
+                    parent
                 );
+            }
 
+            else if (plataforma === "flash" &&
+                     emuladorSelecionado === "ruffle") {
+                nomeEmulador.textContent = "Ruffle";
+                iniciarRuffle(arquivoSWF);
+            }
+
+            else if (plataforma === "flash" &&
+                     emuladorSelecionado === "swf2js") {
+                nomeEmulador.textContent = "swf2js";
+                iniciarSWF2JS(arquivoSWF);
+            }
+
+            else {
+                mostrarErro(
+                    "Plataforma de jogo não reconhecida."
+                );
             }
 
 
@@ -716,6 +750,44 @@
 
         }
 
+
+
+        function iniciarEmulatorJS(arquivo, plataforma, parent = "") {
+            const container = document.getElementById("container-swf");
+
+            const urlJogo = new URL(
+                arquivo,
+                window.location.href
+            ).href;
+
+            let urlEmulator =
+                "emulator.html?core=" +
+                encodeURIComponent(plataforma) +
+                "&game=" +
+                encodeURIComponent(urlJogo);
+
+            if (parent) {
+                const urlParent = new URL(
+                    parent,
+                    window.location.href
+                ).href;
+
+                urlEmulator +=
+                    "&parent=" +
+                    encodeURIComponent(urlParent);
+            }
+
+            const iframe = document.createElement("iframe");
+
+            iframe.className = "emulatorjs-frame";
+            iframe.title = "Emulador online";
+            iframe.src = urlEmulator;
+
+            container.innerHTML = "";
+            container.appendChild(iframe);
+
+            playerEmulatorJS = iframe;
+        }
 
 
         /* =========================================
@@ -1343,6 +1415,11 @@
 
             elementoOriginalSWF2JS =
                 null;
+
+            if (playerEmulatorJS) {
+                playerEmulatorJS.remove();
+                playerEmulatorJS = null;
+            }
 
 
             /*

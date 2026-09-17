@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glitch's Games - EmulatorJS</title>
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #game {
+            width: 100%;
+            height: 100%;
+        }
+
+        #erro {
+            box-sizing: border-box;
+            padding: 24px;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        #erro strong {
+            color: #00e5ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="game"></div>
+    <div id="erro" hidden></div>
+
+    <script>
+        (function () {
+            const parametros = new URLSearchParams(
+                window.location.search
+            );
+
+            const core = parametros.get("core");
+            const game = parametros.get("game");
+            const parent = parametros.get("parent");
+
+            const erro = document.getElementById("erro");
+
+            function mostrarErro(mensagem) {
+                erro.hidden = false;
+                erro.innerHTML = mensagem;
+            }
+
+            if (!core || !game) {
+                mostrarErro(
+                    "<strong>Erro:</strong> o núcleo ou o caminho da ROM não foi informado."
+                );
+                return;
+            }
+
+            /*
+             * URLSearchParams já decodifica os parâmetros.
+             * Portanto, não usamos decodeURIComponent aqui.
+             */
+            window.EJS_player = "#game";
+            window.EJS_core = core;
+            window.EJS_gameUrl = game;
+            window.EJS_gameName = "Glitch's Games";
+            window.EJS_pathtodata =
+                "https://cdn.emulatorjs.org/stable/data/";
+
+            /*
+             * Inicia o jogo assim que o EmulatorJS terminar
+             * de carregar.
+             */
+            window.EJS_startOnLoaded = true;
+
+            /*
+             * Mantém a informação da ROM parent para diagnóstico.
+             * O arquivo parent/BIOS também precisa existir no projeto.
+             */
+            if (parent) {
+                window.EJS_gameParentUrl = parent;
+            }
+
+            const loader = document.createElement("script");
+            loader.src =
+                "https://cdn.emulatorjs.org/stable/data/loader.js";
+
+            loader.onerror = function () {
+                mostrarErro(
+                    "<strong>Erro:</strong> não foi possível carregar o EmulatorJS. " +
+                    "Verifique a conexão com a internet."
+                );
+            };
+
+            document.body.appendChild(loader);
+        })();
+    </script>
+</body>
+</html>
