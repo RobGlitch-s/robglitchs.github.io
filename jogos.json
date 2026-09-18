@@ -5191,107 +5191,45 @@
         "plataforma": "Flash"
     },
     {
-        "nome": "neogeo",
-        "arquivo": "jogos/MAME/neogeo.zip",
-        "categoria": "MAME",
-        "plataforma": "mame"
-    },
-    {
-        "nome": "kf2k2mp",
-        "arquivo": "jogos/MAME/kf2k2mp.zip",
-        "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
-    },
-    {
-        "nome": "kf2k2mp2",
-        "arquivo": "jogos/MAME/kf2k2mp2.zip",
-        "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
-    },
-    {
-        "nome": "kf2k5uni",
-        "arquivo": "jogos/MAME/kf2k5uni.zip",
-        "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
-    },
-    {
-        "nome": "kof2k4se",
-        "arquivo": "jogos/MAME/kof2k4se.zip",
-        "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
-    },
-    {
         "nome": "kof94",
         "arquivo": "jogos/MAME/kof94.zip",
         "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
+        "plataforma": "fbneo"
     },
     {
         "nome": "kof95",
-        "arquivo": "jogos/MAME/kof95.zip",
+        "arquivo": "jogos/MAME/kof95a.zip",
         "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
+        "plataforma": "fbneo"
     },
     {
         "nome": "kof96",
-        "arquivo": "jogos/MAME/kof96.zip",
+        "arquivo": "jogos/MAME/kof96h.zip",
         "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
+        "plataforma": "fbneo"
     },
     {
         "nome": "kof97",
-        "arquivo": "jogos/MAME/kof97.zip",
+        "arquivo": "jogos/MAME/kof97a.zip",
         "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
+        "plataforma": "fbneo"
     },
     {
         "nome": "kof98",
         "arquivo": "jogos/MAME/kof98.zip",
         "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
+        "plataforma": "fbneo"
     },
     {
         "nome": "kof99",
-        "arquivo": "jogos/MAME/kof99.zip",
+        "arquivo": "jogos/MAME/kof99p.zip",
         "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
+        "plataforma": "fbneo"
     },
     {
         "nome": "kof2000",
-        "arquivo": "jogos/MAME/kof2000.zip",
+        "arquivo": "jogos/MAME/kof2000n.zip",
         "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
-    },
-    {
-        "nome": "kof2001",
-        "arquivo": "jogos/MAME/kof2001.zip",
-        "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
-    },
-    {
-        "nome": "kof2002",
-        "arquivo": "jogos/MAME/kof2002.zip",
-        "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
-    },
-    {
-        "nome": "kof2003",
-        "arquivo": "jogos/MAME/kof2003.zip",
-        "categoria": "MAME",
-        "plataforma": "mame",
-        "parent": "jogos/MAME/neogeo.zip"
+        "plataforma": "fbneo"
     }
 ]

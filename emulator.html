@@ -8,12 +8,12 @@
     <style>
         html,
         body {
-            width: 100%;
-            height: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            width: 100%;
+            height: 100%;
             background: #000;
+            overflow: hidden;
         }
 
         #game {
@@ -35,20 +35,25 @@
     </style>
 </head>
 <body>
+
     <div id="game"></div>
     <div id="erro" hidden></div>
 
     <script>
         (function () {
-            const parametros = new URLSearchParams(
-                window.location.search
-            );
+            const parametros =
+                new URLSearchParams(
+                    window.location.search
+                );
 
-            const core = parametros.get("core");
-            const game = parametros.get("game");
-            const parent = parametros.get("parent");
+            const core =
+                parametros.get("core");
 
-            const erro = document.getElementById("erro");
+            const game =
+                parametros.get("game");
+
+            const erro =
+                document.getElementById("erro");
 
             function mostrarErro(mensagem) {
                 erro.hidden = false;
@@ -62,32 +67,19 @@
                 return;
             }
 
-            /*
-             * URLSearchParams já decodifica os parâmetros.
-             * Portanto, não usamos decodeURIComponent aqui.
-             */
+            // O jogo ZIP é autocontido.
+            // Não usamos parent, BIOS separado ou neogeo.zip externo.
             window.EJS_player = "#game";
             window.EJS_core = core;
             window.EJS_gameUrl = game;
             window.EJS_gameName = "Glitch's Games";
             window.EJS_pathtodata =
                 "https://cdn.emulatorjs.org/stable/data/";
-
-            /*
-             * Inicia o jogo assim que o EmulatorJS terminar
-             * de carregar.
-             */
             window.EJS_startOnLoaded = true;
 
-            /*
-             * Mantém a informação da ROM parent para diagnóstico.
-             * O arquivo parent/BIOS também precisa existir no projeto.
-             */
-            if (parent) {
-                window.EJS_gameParentUrl = parent;
-            }
+            const loader =
+                document.createElement("script");
 
-            const loader = document.createElement("script");
             loader.src =
                 "https://cdn.emulatorjs.org/stable/data/loader.js";
 

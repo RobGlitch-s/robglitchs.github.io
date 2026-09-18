@@ -699,18 +699,45 @@
             else if (
                 plataforma === "mame" ||
                 plataforma === "mame2003" ||
-                plataforma === "mame0.243"
+                plataforma === "mame0.243" ||
+                plataforma === "fbneo"
             ) {
-                nomeEmulador.textContent =
-                    "MAME - EmulatorJS";
 
-                iniciarEmulatorJS(
-                    arquivoSWF,
-                    plataforma === "mame"
-                        ? "mame2003"
-                        : plataforma,
-                    parent
-                );
+                // ==========================================
+                // FINALBURN NEO
+                // ==========================================
+
+                if (plataforma === "fbneo") {
+
+                    nomeEmulador.textContent =
+                        "Neo Geo - FinalBurn Neo";
+
+                    iniciarEmulatorJS(
+                        arquivoSWF,
+                        "fbneo"
+                    );
+
+                }
+
+                // ==========================================
+                // MAME
+                // ==========================================
+
+                else {
+
+                    nomeEmulador.textContent =
+                        "MAME - EmulatorJS";
+
+                    iniciarEmulatorJS(
+                        arquivoSWF,
+                        plataforma === "mame"
+                            ? "mame2003"
+                            : plataforma,
+                        parent
+                    );
+
+                }
+
             }
 
             else if (plataforma === "flash" &&
@@ -750,45 +777,106 @@
 
         }
 
+        function iniciarEmulatorJS(
+            arquivo,
+            plataforma
+        ) {
+            const containerSWF =
+                document.getElementById(
+                    "container-swf"
+                );
 
+            if (!containerSWF) {
+                console.error(
+                    "EmulatorJS: #container-swf não foi encontrado."
+                );
+                return;
+            }
 
-        function iniciarEmulatorJS(arquivo, plataforma, parent = "") {
-            const container = document.getElementById("container-swf");
-
-            const urlJogo = new URL(
-                arquivo,
-                window.location.href
-            ).href;
-
-            let urlEmulator =
-                "emulator.html?core=" +
-                encodeURIComponent(plataforma) +
-                "&game=" +
-                encodeURIComponent(urlJogo);
-
-            if (parent) {
-                const urlParent = new URL(
-                    parent,
+            // URL absoluta da ROM.
+            const gameUrl =
+                new URL(
+                    arquivo,
                     window.location.href
                 ).href;
 
-                urlEmulator +=
-                    "&parent=" +
-                    encodeURIComponent(urlParent);
+            // EmulatorJS recebe somente o core e a ROM.
+            // Para FBNeo, a ROM ZIP é autocontida e não usamos
+            // neogeo.zip separado nem parâmetro parent/BIOS.
+            const url =
+                "emulator.html" +
+                "?core=" +
+                encodeURIComponent(plataforma) +
+                "&game=" +
+                encodeURIComponent(gameUrl);
+
+            console.log(
+                "===================================="
+            );
+
+            console.log(
+                "EmulatorJS - Core:",
+                plataforma
+            );
+
+            console.log(
+                "EmulatorJS - Jogo:",
+                gameUrl
+            );
+
+            console.log(
+                "EmulatorJS - Parent/BIOS: DESATIVADO"
+            );
+
+            console.log(
+                "EmulatorJS - URL:",
+                url
+            );
+
+            console.log(
+                "===================================="
+            );
+
+            // Remove o player anterior.
+            if (playerEmulatorJS) {
+                playerEmulatorJS.remove();
+                playerEmulatorJS = null;
             }
 
-            const iframe = document.createElement("iframe");
+            // Cria um iframe novo para cada jogo.
+            const iframe =
+                document.createElement("iframe");
 
-            iframe.className = "emulatorjs-frame";
-            iframe.title = "Emulador online";
-            iframe.src = urlEmulator;
+            iframe.className =
+                "emulatorjs-frame";
 
-            container.innerHTML = "";
-            container.appendChild(iframe);
+            iframe.title =
+                "Glitch's Games - EmulatorJS";
+
+            iframe.src = url;
+
+            iframe.allow = "fullscreen";
+
+            iframe.setAttribute(
+                "allowfullscreen",
+                ""
+            );
+
+            iframe.setAttribute(
+                "frameborder",
+                "0"
+            );
+
+            containerSWF.innerHTML = "";
+
+            containerSWF.classList.add(
+                "emulator-online"
+            );
+
+            containerSWF.appendChild(iframe);
 
             playerEmulatorJS = iframe;
         }
-
 
         /* =========================================
            INICIAR RUFFLE
