@@ -5231,5 +5231,29 @@
         "arquivo": "jogos/MAME/kof2000n.zip",
         "categoria": "MAME",
         "plataforma": "fbneo"
+    },
+    {
+        "nome": "kf2k2mp2",
+        "arquivo": "jogos/MAME/kf2k2mp2.zip",
+        "categoria": "MAME",
+        "plataforma": "fbneo"
+    },
+    {
+        "nome": "kf2k2pls",
+        "arquivo": "jogos/MAME/kf2k2pls.zip",
+        "categoria": "MAME",
+        "plataforma": "fbneo"
+    },
+    {
+        "nome": "kf2k3upl",
+        "arquivo": "jogos/MAME/kf2k3upl.zip",
+        "categoria": "MAME",
+        "plataforma": "fbneo"
+    },
+    {
+        "nome": "kf10thep",
+        "arquivo": "jogos/MAME/kf10thep.zip",
+        "categoria": "MAME",
+        "plataforma": "fbneo"
     }
 ]
