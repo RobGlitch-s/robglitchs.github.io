@@ -5198,19 +5198,19 @@
     },
     {
         "nome": "kof95",
-        "arquivo": "jogos/MAME/kof95a.zip",
+        "arquivo": "jogos/MAME/kof95.zip",
         "categoria": "MAME",
         "plataforma": "fbneo"
     },
     {
         "nome": "kof96",
-        "arquivo": "jogos/MAME/kof96h.zip",
+        "arquivo": "jogos/MAME/kof96.zip",
         "categoria": "MAME",
         "plataforma": "fbneo"
     },
     {
         "nome": "kof97",
-        "arquivo": "jogos/MAME/kof97a.zip",
+        "arquivo": "jogos/MAME/kof97.zip",
         "categoria": "MAME",
         "plataforma": "fbneo"
     },
@@ -5222,13 +5222,13 @@
     },
     {
         "nome": "kof99",
-        "arquivo": "jogos/MAME/kof99p.zip",
+        "arquivo": "jogos/MAME/kof99.zip",
         "categoria": "MAME",
         "plataforma": "fbneo"
     },
     {
         "nome": "kof2000",
-        "arquivo": "jogos/MAME/kof2000n.zip",
+        "arquivo": "jogos/MAME/kof2000.zip",
         "categoria": "MAME",
         "plataforma": "fbneo"
     },
