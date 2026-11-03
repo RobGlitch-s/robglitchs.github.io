@@ -5255,5 +5255,11 @@
         "arquivo": "jogos/MAME/kf10thep.zip",
         "categoria": "MAME",
         "plataforma": "fbneo"
+    },
+    {
+        "nome": "Duelo Psíquico",
+        "arquivo": "jogos/Luta/duelo-psiquico.html",
+        "categoria": "Luta",
+        "plataforma": "html"
     }
 ]
