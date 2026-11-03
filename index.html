@@ -392,6 +392,7 @@
             if (extensao === "swf") return "flash";
             if (extensao === "sfc" || extensao === "smc") return "snes";
             if (extensao === "zip") return "mame";
+            if (extensao === "html" || extensao === "htm") return "html";
 
             return "desconhecida";
         }
@@ -630,6 +631,9 @@
                 plataforma = identificarPlataforma(arquivoSWF);
             }
 
+            // O jogos.json pode ter "Flash", "FLASH" etc.
+            plataforma = plataforma.toLowerCase();
+
             const emuladorSelecionado =
                 document.querySelector(
                     'input[name="emulador"]:checked'
@@ -738,6 +742,11 @@
 
                 }
 
+            }
+
+            else if (plataforma === "html") {
+                nomeEmulador.textContent = "HTML5";
+                iniciarJogoHTML(arquivoSWF, nomeJogo);
             }
 
             else if (plataforma === "flash" &&
@@ -876,6 +885,55 @@
             containerSWF.appendChild(iframe);
 
             playerEmulatorJS = iframe;
+        }
+
+        /* =========================================
+           INICIAR JOGO HTML5
+           ========================================= */
+
+        function iniciarJogoHTML(
+            arquivo,
+            nomeJogo
+        ) {
+            const containerSWF =
+                document.getElementById(
+                    "container-swf"
+                );
+
+            // Jogos HTML rodam sozinhos: basta abrir
+            // o arquivo num iframe. Reaproveita
+            // playerEmulatorJS para o limparPlayer().
+            const iframe =
+                document.createElement("iframe");
+
+            iframe.className =
+                "emulatorjs-frame";
+
+            iframe.title =
+                nomeJogo;
+
+            iframe.src = arquivo;
+
+            // "fullscreen" no allow já libera a tela cheia.
+            iframe.allow = "fullscreen; autoplay; gamepad";
+
+            containerSWF.innerHTML = "";
+
+            containerSWF.classList.add(
+                "emulator-online"
+            );
+
+            containerSWF.appendChild(iframe);
+
+            playerEmulatorJS = iframe;
+
+            // Foca o iframe para o teclado funcionar.
+            iframe.addEventListener(
+                "load",
+                function () {
+                    iframe.focus();
+                }
+            );
         }
 
         /* =========================================
