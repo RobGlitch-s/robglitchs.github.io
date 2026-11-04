@@ -69,6 +69,17 @@
   <div id="moves"><div class="box">
     <h2>LISTA DE GOLPES — <span id="mvName">ATHENA</span></h2>
     <div id="mvTabs"></div>
+    <div id="mvMix" style="display:none;border:1px solid #ffd23f;border-radius:6px;padding:6px 10px;margin:0 0 8px;background:rgba(255,210,63,.08)">
+      <h3 style="margin-top:2px">MIX ATHENA — como trocar</h3>
+      <table>
+        <tr><td class="c">Q / E</td><td>Athena anterior / próxima (jogador 2: <kbd>Num1</kbd> / <kbd>Num3</kbd>)</td></tr>
+        <tr><td class="c">L3 / R3</td><td>no controle (clique dos analógicos) — configurável em OPÇÕES</td></tr>
+        <tr><td class="c">◄ MIX / MIX ►</td><td>botões no alto da tela, no celular</td></tr>
+        <tr><td class="c">Ordem</td><td>98 → Neo → 2K3 → KOF M → XIV → (volta à 98). Começa sempre como a 98.</td></tr>
+        <tr><td class="c">Quando</td><td>só no chão, parada, andando ou agachada (não troca no meio de golpe, pulo ou super). Vida, barra e posição continuam.</td></tr>
+      </table>
+      <p style="opacity:.8;margin:4px 0 0">Os golpes abaixo são da Athena que está em campo agora.</p>
+    </div>
     <div class="keys">
       <b></b><b>Jogador 1</b><b>Jogador 2</b>
       <span>Direções</span><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><span>setas</span>
@@ -78,6 +89,7 @@
       <span>D chute forte</span><span><kbd>I</kbd></span><span><kbd>Num8</kbd> ou <kbd>N</kbd></span>
       <span>Atalho A+B / C+D</span><span><kbd>L</kbd> / <kbd>O</kbd></span><span><kbd>Num6</kbd> / <kbd>Num9</kbd></span>
       <span>Pausa</span><span><kbd>Enter</kbd></span><span><kbd>Backspace</kbd></span>
+      <span>Mix Athena: trocar</span><span><kbd>Q</kbd> / <kbd>E</kbd></span><span><kbd>Num1</kbd> / <kbd>Num3</kbd></span>
       <span>Tela cheia</span><span colspan="2"><kbd>F</kbd> (ou o botão TELA CHEIA)</span><span></span>
       <span>Hitboxes</span><span colspan="2"><kbd>H</kbd> (vermelho = ataque, azul = corpo)</span><span></span>
     </div>
@@ -329,7 +341,7 @@
       <div class="tb" data-k="c">C</div><div class="tb" data-k="d">D</div><div class="tb" data-k="cd">CD</div>
       <div class="tb" data-k="a">A</div><div class="tb" data-k="b">B</div><div class="tb" data-k="ab">AB</div>
     </div>
-    <div id="tTop"><div class="tb s" id="tFs" style="font-size:3.4vmin"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.6" style="vertical-align:-.15em"><path d="M3 9V3h6M15 3h6v6M21 15v6h-6M9 21H3v-6"/></svg></div><div class="tb s" data-k="start">PAUSA</div></div>
+    <div id="tTop"><div class="tb s" id="tFs" style="font-size:3.4vmin"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.6" style="vertical-align:-.15em"><path d="M3 9V3h6M15 3h6v6M21 15v6h-6M9 21H3v-6"/></svg></div><div class="tb s mixb" data-k="mixP" style="display:none">◄ MIX</div><div class="tb s mixb" data-k="mixN" style="display:none">MIX ►</div><div class="tb s" data-k="start">PAUSA</div></div>
   </div>
 </div>
 <div id="rot"><div style="font-size:40px">↻</div>GIRE O CELULAR<br>PARA JOGAR NA HORIZONTAL</div>
@@ -532,8 +544,8 @@ document.addEventListener('visibilitychange', () => appHide(document.hidden));
 
 // ---------------- entrada (teclado / controle / toque) ----------------
 const KEYMAP = {
-  1: { up: ['KeyW'], down: ['KeyS'], left: ['KeyA'], right: ['KeyD'], a: ['KeyJ'], b: ['KeyK'], c: ['KeyU'], d: ['KeyI'], ab: ['KeyL'], cd: ['KeyO'], taunt: ['KeyY'], start: ['Enter', 'Escape'] },
-  2: { up: ['ArrowUp'], down: ['ArrowDown'], left: ['ArrowLeft'], right: ['ArrowRight'], a: ['Numpad4', 'Comma'], b: ['Numpad5', 'Period'], c: ['Numpad7', 'KeyM'], d: ['Numpad8', 'KeyN'], ab: ['Numpad6', 'Slash'], cd: ['Numpad9', 'KeyB'], taunt: ['Numpad0'], start: ['NumpadEnter', 'Backspace'] }
+  1: { up: ['KeyW'], down: ['KeyS'], left: ['KeyA'], right: ['KeyD'], a: ['KeyJ'], b: ['KeyK'], c: ['KeyU'], d: ['KeyI'], ab: ['KeyL'], cd: ['KeyO'], taunt: ['KeyY'], start: ['Enter', 'Escape'], mixP: ['KeyQ'], mixN: ['KeyE'] },
+  2: { up: ['ArrowUp'], down: ['ArrowDown'], left: ['ArrowLeft'], right: ['ArrowRight'], a: ['Numpad4', 'Comma'], b: ['Numpad5', 'Period'], c: ['Numpad7', 'KeyM'], d: ['Numpad8', 'KeyN'], ab: ['Numpad6', 'Slash'], cd: ['Numpad9', 'KeyB'], taunt: ['Numpad0'], start: ['NumpadEnter', 'Backspace'], mixP: ['Numpad1'], mixN: ['Numpad3'] }
 };
 // teclas configuráveis por jogador (OPÇÕES): ficam salvas no navegador; ENTER/ESC continuam valendo como START para o jogador 1
 const KEYDEF = JSON.parse(JSON.stringify(KEYMAP));
@@ -545,7 +557,7 @@ const KeyCfgStore = {
 };
 KeyCfgStore.load();
 const keys = {};
-const touch = { taunt: 0, up: 0, down: 0, left: 0, right: 0, a: 0, b: 0, c: 0, d: 0, ab: 0, cd: 0, ac: 0, bd: 0, bc: 0, abc: 0, start: 0 };
+const touch = { taunt: 0, up: 0, down: 0, left: 0, right: 0, a: 0, b: 0, c: 0, d: 0, ab: 0, cd: 0, ac: 0, bd: 0, bc: 0, abc: 0, start: 0, mixP: 0, mixN: 0 };
 addEventListener('keydown', e => {
   if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;   // digitando no lobby
   if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'Backspace', 'Slash'].includes(e.code)) e.preventDefault();
@@ -640,14 +652,14 @@ const Pads = {
   defMap(p) {
     // ○ às vezes chega como "Voltar" do celular (tecla GoBack ou volta de página): vale como D
     const back = [{ t: 'k', c: 'key:GoBack' }, { t: 'k', c: 'key:BrowserBack' }, { t: 'k', c: 'BrowserBack' }];
-    if (p.mapping === 'standard') return { a: 2, b: 0, c: 3, d: [1, ...back], ab: [4, 6], cd: [5, 7], taunt: 8, start: 9 };
+    if (p.mapping === 'standard') return { a: 2, b: 0, c: 3, d: [1, ...back], ab: [4, 6], cd: [5, 7], taunt: 8, start: 9, mixP: 10, mixN: 11 };
     // Chrome no Android: controle "não reconhecido" vem na mesma ordem do padrão (✕ ○ □ △ L1 R1 L2 R2 SELECT START)
-    if (/Android/i.test(navigator.userAgent)) return { a: 2, b: 0, c: 3, d: [1, ...back], ab: [4, 6, { t: 'a', n: 3, s: 1, th: 0.3 }], cd: [5, 7, { t: 'a', n: 4, s: 1, th: 0.3 }], taunt: 8, start: 9 };
+    if (/Android/i.test(navigator.userAgent)) return { a: 2, b: 0, c: 3, d: [1, ...back], ab: [4, 6, { t: 'a', n: 3, s: 1, th: 0.3 }], cd: [5, 7, { t: 'a', n: 4, s: 1, th: 0.3 }], taunt: 8, start: 9, mixP: 10, mixN: 11 };
     // controles estilo PS4/PS3 (originais ou genéricos) fora do modo padrão: □ ✕ ○ △ = 0 1 2 3;
     // L2/R2 às vezes viram eixos (3 e 4), que também valem como A+B / C+D
     if (/054c|sony|playstation|dualshock|dualsense|wireless controller|ps[345]|p[345] ?controller|gamesir|8bitdo|ipega|shanwan|twin usb/i.test(p.id))
-      return { a: 0, b: 1, c: 3, d: 2, ab: [4, 6, { t: 'a', n: 3, s: 1, th: 0.3 }], cd: [5, 7, { t: 'a', n: 4, s: 1, th: 0.3 }], taunt: 8, start: 9 };
-    return { a: 3, b: 2, c: 0, d: 1, ab: [6, 4], cd: [7, 5], taunt: 8, start: 9 };
+      return { a: 0, b: 1, c: 3, d: 2, ab: [4, 6, { t: 'a', n: 3, s: 1, th: 0.3 }], cd: [5, 7, { t: 'a', n: 4, s: 1, th: 0.3 }], taunt: 8, start: 9, mixP: 10, mixN: 11 };
+    return { a: 3, b: 2, c: 0, d: 1, ab: [6, 4], cd: [7, 5], taunt: 8, start: 9, mixP: 10, mixN: 11 };
   },
   // botões: configuração do jogador para esse controle > configuração do controle > mapa automático
   map(p, pl) { return (pl && this.maps['J' + pl + ':' + p.id]) || this.maps[p.id] || this.defMap(p); },
@@ -680,7 +692,7 @@ function padState(i) {
   }
   // direcional configurado pelo jogador (botão ou eixo), para controles genéricos
   if (m.dirs) for (const k of ['up', 'down', 'left', 'right']) { const d = m.dirs[k]; if (!d) continue; if (d.t === 'k' ? B(d) : d.t === 'b' ? B(d.n) : d.th != null ? B(d) : (p.axes[d.n] || 0) * d.s > 0.5) r[k] = true; }
-  r.a = any(m.a); r.b = any(m.b); r.c = any(m.c); r.d = any(m.d); r.ab = any(m.ab); r.cd = any(m.cd); r.taunt = any(m.taunt); r.start = any(m.start);
+  r.a = any(m.a); r.b = any(m.b); r.c = any(m.c); r.d = any(m.d); r.ab = any(m.ab); r.cd = any(m.cd); r.taunt = any(m.taunt); r.start = any(m.start); r.mixP = any(m.mixP != null ? m.mixP : 10); r.mixN = any(m.mixN != null ? m.mixN : 11);
   return r;
 }
 // sente o golpe: vibra o controle (e o celular, no toque) de quem controla a lutadora
@@ -4786,6 +4798,27 @@ class Fighter {
     this.cpuGuard = 0; this.cpuMove = 0; this.maxT = 0; this.noBound = false; this.orbs = false; this.reflecting = false; this.flash = 0;
     this.change(0);
   }
+  // ---- Mix Athena: troca de personagem no meio da luta (Q / E), na ordem da tela de seleção ----
+  canMix() {
+    return !!this.mix && Game.roundState === 'fight' && !(Game.superT > 0) && this.ctrl && this.type !== 'A' && this.y >= 0 && this.pause === 0
+      && [0, 10, 11, 12, 20, 21].includes(this.state) && !this.holding && this.life > 0;
+  }
+  swapChar(dir) {
+    const ids = mixList(), i = Math.max(0, ids.indexOf(this.ch.id)), id = ids[(i + dir + ids.length) % ids.length];
+    const keep = {};
+    for (const k of ['side', 'team', 'tgt', 'ctl', 'power', 'life', 'redLife', 'dead', 'x', 'facing', 'hist', 'buf', 'lastPress', 'inp', 'dir', 'mix', 'mixPal', 'mixT', 'defMul', 'combo', 'comboDmg']) keep[k] = this[k];
+    Game.explods = Game.explods.filter(e => e.owner !== this && e.bind !== this);   // efeitos presos na personagem anterior
+    for (const k of Object.keys(this)) delete this[k];   // estados próprios da personagem anterior (cristais, contadores...) somem
+    Object.assign(this, keep);
+    const ch = CHARS[id]; this.ch = ch; this.ST = ch.ST; this.atl = palAtlas(ch, (this.mixPal || 0) % ch.palNames.length); this.anim = new Anim(0, ch.pack.anims);
+    this.y = 0; this.vx = 0; this.vy = 0; this.pause = 0; this.shakeT = 0; this.invul = 0; this.trail = [];
+    this.comboShow = null; this.juggle = 15; this.push = true; this.hd = null; this.contact = false;
+    this.cpuGuard = 0; this.cpuMove = 0; this.maxT = 0; this.noBound = false; this.orbs = false; this.reflecting = false;
+    this.change(0);
+    this.flash = 10; this.after = 14;
+    Audio_.play(6, 6, null, 0.7);
+    for (const an of [6100]) Game.addExplod({ anim: an, x: this.x, y: -60, facing: this.facing, ch: COMMON, pal: palAtlas(COMMON, 0), scale: 0.6, add: true });
+  }
   // tamanho da barra: 3 estoques (KOF 98/2002/M) ou 5 (KOF XIV)
   get pmax() { return (this.ch.stocks || 8) * STOCK; }   // barra de especial: até 8 estoques para todas
   get opp() { return this.tgt || (this.team === 1 ? Game.p2 : Game.p1); }
@@ -5074,11 +5107,17 @@ const Game = {
     const net = this.net;
     const c1 = net ? new NetCtl(net, 0) : new HumanCtl(1);
     const c2 = net && this.mode === 'vs2' ? new NetCtl(net, 1) : this.mode === 'vs2' ? new HumanCtl(2) : null;
-    this.p1 = new Fighter(1, CHARS[this.char1], this.pal1, c1);
-    this.p2 = new Fighter(2, CHARS[this.char2], this.pal2, c2);
+    // "mix" = Mix Athena: começa como a Athena '98 e troca durante a luta
+    const mk = (side, id, pal, ctl) => {
+      if (id !== 'mix') return new Fighter(side, CHARS[id], pal, ctl);
+      const f = new Fighter(side, CHARS[MIX_START], (pal || 0) % CHARS[MIX_START].palNames.length, ctl);
+      f.mix = true; f.mixPal = pal || 0; f.mixT = 300; return f;
+    };
+    this.p1 = mk(1, this.char1, this.pal1, c1);
+    this.p2 = mk(2, this.char2, this.pal2, c2);
     this.p3 = null; this.F = [this.p1, this.p2];
     if (this.mode === 'coop') {
-      this.p3 = new Fighter(3, CHARS[this.char3], this.pal3, net ? new NetCtl(net, 1) : new HumanCtl(2));
+      this.p3 = mk(3, this.char3, this.pal3, net ? new NetCtl(net, 1) : new HumanCtl(2));
       this.F.push(this.p3);
       this.p2.defMul = 0.55;   // a CPU aguenta mais quando enfrenta duas
     }
@@ -5124,6 +5163,12 @@ const Game = {
         else if (this.roundState === 'fight') r = this.ai.think();
         f.readInput(r, e);
       }
+    }
+    // Mix Athena: Q / E (ou L3 / R3, ou os botões MIX do toque) trocam a personagem; a CPU troca sozinha de tempos em tempos
+    for (const f of F) if (f.mix) {
+      const ed = f.inp.edge || {};
+      if ((ed.mixN || ed.mixP) && f.canMix()) f.swapChar(ed.mixN ? 1 : -1);
+      else if (!f.ctl && this.mode !== 'train' && --f.mixT <= 0) { if (f.canMix()) { f.swapChar(Math.random() < 0.5 ? 1 : -1); f.mixT = 360 + Math.floor(Math.random() * 420); } else f.mixT = 20; }
     }
     if (this.superT > 0) {   // superpausa: tudo congela
       this.superT--;
@@ -5427,7 +5472,7 @@ const Game = {
         } else this.say('EMPATE', 160);
       }
       if (this.rsT > 190) {
-        if (this.wins[0] >= 2 || this.wins[1] >= 2) { this.scene = 'results'; this.menuIdx = 0; return; }
+        if (this.wins[0] >= 2 || this.wins[1] >= 2) { if (Arcade.on) { Arcade.matchEnd(this.wins[0] > this.wins[1]); return; } this.scene = 'results'; this.menuIdx = 0; return; }
         this.round++; this.startRound(false);
       }
     }
@@ -5848,6 +5893,7 @@ const Stage = {
 
 // ---------------- texto ----------------
 const FONT = '"Press Start 2P", monospace';
+const fname = (f) => (f.mix ? 'MIX · ' : '') + f.ch.short;   // nome no placar (Mix Athena mostra a atual)
 function txt(s, x, y, col, size, align, outline) {
   ctx.font = `${size || 8}px ${FONT}`; ctx.textAlign = align || 'left'; ctx.textBaseline = 'top';
   const o = outline == null ? '#000' : outline;
@@ -5979,15 +6025,15 @@ function drawHUD() {
   if (c) {   // co-op: duas barras do time à esquerda
     drawBar(12, 12, 178, 7, a.life / LIFE, a.redLife / LIFE, true, lc(a));
     drawBar(30, 22, 135, 4, c.life / LIFE, c.redLife / LIFE, true, lc(c));
-    txt(nm[0] + ' ' + a.ch.short, 12, 30, '#7fd4ff', 8);
-    txt(nm[2] + ' ' + c.ch.short, 12, 40, '#9dffb0', 8);
+    txt(nm[0] + ' ' + fname(a), 12, 30, '#7fd4ff', 8);
+    txt(nm[2] + ' ' + fname(c), 12, 40, '#9dffb0', 8);
   } else {
     drawBar(12, 12, 178, 9, a.life / LIFE, a.redLife / LIFE, true, lc(a));
-    txt(a.ch.short, 12, 25, '#fff', 8);
+    txt(fname(a), 12, 25, '#fff', 8);
     txt(nm[0], 12, 35, '#7fd4ff', 8);
   }
   drawBar(237, 12, 178, 9, b.life / LIFE, b.redLife / LIFE, false, lc(b));
-  txt(b.ch.short, 415, 25, '#fff', 8, 'right');
+  txt(fname(b), 415, 25, '#fff', 8, 'right');
   txt(nm[1], 415, 35, '#ff8fb8', 8, 'right');
   // tempo
   ctx.fillStyle = '#1a0f22'; ctx.fillRect(196, 6, 35, 22);
@@ -6044,7 +6090,7 @@ function drawInputLog() {
 // Usa a capacidade "room" do artefato: cada sala é uma sala nomeada ("dp-" + código).
 // Tudo trafega pela presença (estado absoluto, reenviado sozinho): lobby, escolhas e as entradas da luta.
 // Netcode lockstep: as duas telas simulam a mesma luta com as mesmas entradas, atrasadas alguns quadros.
-const BTN = ['up', 'down', 'left', 'right', 'a', 'b', 'c', 'd', 'taunt', 'start'];
+const BTN = ['up', 'down', 'left', 'right', 'a', 'b', 'c', 'd', 'taunt', 'start', 'mixP', 'mixN'];
 const B32 = '0123456789abcdefghijklmnopqrstuv';
 const encBtn = r => { let v = 0; BTN.forEach((k, i) => { if (r[k]) v |= 1 << i; }); return v; };
 const decBtn = v => { const r = {}; BTN.forEach((k, i) => { r[k] = !!((v >> i) & 1); }); return r; };
@@ -6356,25 +6402,25 @@ const Net = {
   pullSel() {
     const r = this.remote(); const p = Sel.p[this.other()]; if (!r || !p) return;
     const s = r.presence.sel; if (!s || s.k !== this.startedMid + 1) { if (p.phase !== 'char') p.phase = 'char'; return; }
-    const list = rosterList();
+    const list = selList();
     if (s.i !== p.idx && s.i >= 0 && s.i < list.length) { p.idx = s.i; Sel.setAnim(p); }
-    p.pal = Math.max(0, Math.min(CHARS[list[p.idx]].palNames.length - 1, s.p | 0)); p.phase = ['char', 'pal', 'ready'].includes(s.ph) ? s.ph : 'char';
+    p.pal = Math.max(0, Math.min(palCount(list[p.idx]) - 1, s.p | 0)); p.phase = ['char', 'pal', 'ready'].includes(s.ph) ? s.ph : 'char';
   },
   // anfitrião: as duas prontas → manda a configuração da luta
   hostStart() {
     if (this.role !== 'h' || this.phase !== 'sel') return;
-    const list = rosterList(), a = Sel.p[0], b = Sel.p[1];
+    const list = selList(), real = rosterList(), a = Sel.p[0], b = Sel.p[1];
     const sorted = this.rtt.slice().sort((x, y) => x - y), rtt = sorted.length ? sorted[Math.floor(sorted.length / 2)] : 150;
     const delay = rtt < 90 ? 1 : rtt < 180 ? 2 : 3;   // com rollback, só um atraso mínimo
     const go = { mid: this.startedMid + 1, seed: Math.floor(Math.random() * 2 ** 31), delay, diff: Game.diff, tlim: Game.tlim, c1: list[a.idx], p1: a.pal };
     if (this.mode === 'coop') {
       go.c3 = list[b.idx]; go.p3 = b.pal;
-      go.c2 = list[Math.floor(Math.random() * list.length)]; const np = CHARS[go.c2].palNames.length;
+      go.c2 = real[Math.floor(Math.random() * real.length)]; const np = CHARS[go.c2].palNames.length;
       go.p2 = Math.floor(Math.random() * np);
       for (let t = 0; t < np && ((go.c2 === go.c1 && go.p2 === go.p1) || (go.c2 === go.c3 && go.p2 === go.p3)); t++) go.p2 = (go.p2 + 1) % np;
     } else {
       go.c2 = list[b.idx]; go.p2 = b.pal;
-      if (go.c1 === go.c2 && go.p1 === go.p2) go.p2 = (go.p2 + 1) % CHARS[go.c2].palNames.length;
+      if (go.c1 === go.c2 && go.p1 === go.p2) go.p2 = (go.p2 + 1) % palCount(go.c2);
     }
     this.set({ go });
     this.begin(go);
@@ -6586,13 +6632,14 @@ let clicks = [];
 let menuAnim = null;   // criado no boot (precisa dos dados do personagem)
 const ROSTER = ['kofm', 'a98', 'neo', 'xiv', 'pd03'];
 const rosterList = () => ROSTER.filter(id => CHARS[id] && CHARS[id].pack);
-const MODES = [['cpu', '1P  VS  CPU'], ['vs2', '1P  VS  2P'], ['coop', '1P + 2P  CO-OP  VS CPU'], ['online', 'ONLINE  (CÓDIGO DE SALA)'], ['train', 'TREINO'], ['moves', 'LISTA DE GOLPES'], ['opts', 'OPÇÕES  (TELA CHEIA, CONTROLES)']];
+const MODES = [['cpu', '1P  VS  CPU'], ['arcade', 'ARCADE  (CHEFE: MIX ATHENA)'], ['vs2', '1P  VS  2P'], ['coop', '1P + 2P  CO-OP  VS CPU'], ['online', 'ONLINE  (CÓDIGO DE SALA)'], ['train', 'TREINO'], ['moves', 'LISTA DE GOLPES'], ['opts', 'OPÇÕES  (TELA CHEIA, CONTROLES)']];
 const isOnline = () => !!Net.nroom;
 const twoPick = () => Game.mode === 'vs2' || Game.mode === 'coop';
 // nomes no placar: [lado esquerdo, lado direito, parceira do co-op]
 function playerNames() {
   if (Game.net) { const you = 'VOCÊ', fr = 'AMIGO'; return Game.mode === 'coop' ? (Net.me === 0 ? [you, 'CPU', fr] : [fr, 'CPU', you]) : (Net.me === 0 ? [you, fr] : [fr, you]); }
   if (Game.mode === 'coop') return ['P1', 'CPU', 'P2'];
+  if (Arcade.on) return ['P1', Arcade.isBoss() ? 'CHEFE FINAL' : 'LUTA ' + (Arcade.stage + 1) + '/' + Arcade.ladder.length];
   return ['P1', Game.mode === 'cpu' ? 'CPU' : Game.mode === 'train' ? 'BONECO' : 'P2'];
 }
 function matchWinText(w, final) {
@@ -6639,17 +6686,18 @@ const Scenes = {
     if (ok()) { Game.scene = 'menu'; Audio_.play(6, 6); }
   },
   menu() {
+    if (Arcade.on) Arcade.quit();
     Stage.draw(Game.camX, 0); ctx.fillStyle = 'rgba(10,0,25,0.6)'; ctx.fillRect(0, 0, W, H);
     txt('DUELO PSÍQUICO', W / 2, 24, '#ff7ad9', 16, 'center', '#5a0a3a');
     Game.menuIdx = navMenu(MODES.length + 2, Game.menuIdx);
-    MODES.forEach((m, i) => menuItem(m[1], W / 2, 46 + i * 20, Game.menuIdx === i, () => { Game.menuIdx = i; choose(); }, 9));
+    MODES.forEach((m, i) => menuItem(m[1], W / 2, 44 + i * 17, Game.menuIdx === i, () => { Game.menuIdx = i; choose(); }, 9));
     const di = MODES.length;
-    menuItem('CPU: ◄ ' + DIFFS[Game.diff] + ' ►', W / 2, 46 + di * 20 + 4, Game.menuIdx === di, () => { Game.diff = (Game.diff + 1) % nDiffs(); }, 8);
+    menuItem('CPU: ◄ ' + DIFFS[Game.diff] + ' ►', W / 2, 44 + di * 17 + 4, Game.menuIdx === di, () => { Game.diff = (Game.diff + 1) % nDiffs(); }, 8);
     if (Game.menuIdx === di && (M1.edge.left || M1.edge.right)) Game.diff = (Game.diff + (M1.edge.left ? nDiffs() - 1 : 1)) % nDiffs();
     // tempo da luta: 60 s, 99 s ou infinito
     const TL = [60, 99, 0], tName = (v) => v ? v + ' SEGUNDOS' : 'INFINITO';
     const cycleT = (d) => { const i = TL.indexOf(Game.tlim); Game.tlim = TL[(i + (d || 1) + TL.length) % TL.length]; try { localStorage.setItem('dpTime', String(Game.tlim)); } catch (e) { } };
-    menuItem('TEMPO: ◄ ' + tName(Game.tlim) + ' ►', W / 2, 46 + di * 20 + 18, Game.menuIdx === di + 1, () => { Game.menuIdx = di + 1; cycleT(1); }, 8);
+    menuItem('TEMPO: ◄ ' + tName(Game.tlim) + ' ►', W / 2, 44 + di * 17 + 18, Game.menuIdx === di + 1, () => { Game.menuIdx = di + 1; cycleT(1); }, 8);
     if (Game.menuIdx === di + 1 && (M1.edge.left || M1.edge.right || M2.edge.left || M2.edge.right)) cycleT(M1.edge.left || M2.edge.left ? -1 : 1);
     txt('↑↓ escolher   J/ENTER confirmar   (clique também funciona)', W / 2, 218, '#a99bc0', 8, 'center', '');
     function choose() {
@@ -6658,6 +6706,7 @@ const Scenes = {
       if (!m) { Game.diff = (Game.diff + 1) % nDiffs(); return; }
       if (m[0] === 'moves') { showMoves(true); return; }
       if (m[0] === 'opts') { Game.scene = 'options'; Game.optIdx = 0; Audio_.play(6, 6); return; }
+      if (m[0] === 'arcade') { Arcade.on = true; Arcade.savedDiff = Game.diff; Game.mode = 'cpu'; Game.scene = 'select'; Sel.reset(); Audio_.play(6, 6); return; }
       if (m[0] === 'online') { Net.msg = ''; Game.scene = 'online'; lobShow(); Audio_.play(6, 6); return; }
       Game.mode = m[0]; Game.scene = 'select'; Sel.reset(); Audio_.play(6, 6);
     }
@@ -6744,7 +6793,7 @@ const lobEl = id => document.getElementById(id);
 // configuração dos botões de um controle (para os genéricos e adaptadores de PS2)
 const PadCfg = {
   steps: [['up', 'CIMA (direcional)'], ['down', 'BAIXO (direcional)'], ['left', 'ESQUERDA (direcional)'], ['right', 'DIREITA (direcional)'],
-    ['a', 'A — SOCO FRACO'], ['b', 'B — CHUTE FRACO'], ['c', 'C — SOCO FORTE'], ['d', 'D — CHUTE FORTE'], ['ab', 'A+B (atalho)'], ['cd', 'C+D (atalho)'], ['start', 'START / PAUSA'], ['taunt', 'PROVOCAÇÃO']],
+    ['a', 'A — SOCO FRACO'], ['b', 'B — CHUTE FRACO'], ['c', 'C — SOCO FORTE'], ['d', 'D — CHUTE FORTE'], ['ab', 'A+B (atalho)'], ['cd', 'C+D (atalho)'], ['start', 'START / PAUSA'], ['taunt', 'PROVOCAÇÃO'], ['mixP', 'MIX ATHENA: ANTERIOR'], ['mixN', 'MIX ATHENA: PRÓXIMA']],
   start(pl) { this.pl = pl || 1; this.pad = null; this.i = 0; this.map = null; this.prev = null; this.wait = 20; Game.scene = 'padcfg'; },
   snapshot(p) { return { b: p.buttons.map(b => b.pressed || b.value > 0.5), a: p.axes.map(v => v) }; },
   draw() {
@@ -6761,7 +6810,7 @@ const PadCfg = {
       txt('do JOGADOR ' + this.pl + ' (ele passa a ser desse jogador)', W / 2, 106, '#fff', 10, 'center');
       for (const p of pads) if (p.buttons.some(b => b.pressed || b.value > 0.5)) {
         this.pad = p.id; this.padIdx = p.index;
-        if (Pads.assign[this.pl] !== p.index) { Pads.assign[this.pl] = p.index; const o = this.pl === 1 ? 2 : 1; if (Pads.assign[o] === p.index) Pads.assign[o] = null; Pads.save(); } this.map = { a: null, b: null, c: null, d: null, ab: null, cd: null, start: null, taunt: null, dirs: {} }; this.wait = 25; this.prev = null; this.base = null; }
+        if (Pads.assign[this.pl] !== p.index) { Pads.assign[this.pl] = p.index; const o = this.pl === 1 ? 2 : 1; if (Pads.assign[o] === p.index) Pads.assign[o] = null; Pads.save(); } this.map = { a: null, b: null, c: null, d: null, ab: null, cd: null, start: null, taunt: null, mixP: null, mixN: null, dirs: {} }; this.wait = 25; this.prev = null; this.base = null; }
       return;
     }
     const p = pads.find(q => q.index === this.padIdx) || pads.find(q => q.id === this.pad);
@@ -6790,7 +6839,7 @@ const PadCfg = {
     this.i++; this.wait = 12; this.prev = null; Audio_.play(6, 6, null, 0.5);
     if (this.i >= this.steps.length) {
       const p = Pads.list().find(q => q.id === this.pad), def = p ? Pads.defMap(p) : {};
-      for (const kk of ['a', 'b', 'c', 'd', 'ab', 'cd', 'start', 'taunt']) if (this.map[kk] == null) this.map[kk] = def[kk];
+      for (const kk of ['a', 'b', 'c', 'd', 'ab', 'cd', 'start', 'taunt', 'mixP', 'mixN']) if (this.map[kk] == null) this.map[kk] = def[kk];
       Pads.maps['J' + this.pl + ':' + this.pad] = this.map; Pads.save(); Game.scene = 'options'; fsToast('Controle do jogador ' + this.pl + ' configurado!');
     }
   },
@@ -6897,19 +6946,36 @@ function pauseMenu() {
 
 // ---------------- seleção de personagem ----------------
 // Cada jogador escolhe a personagem (grade) e depois a cor. Contra CPU/treino, o jogador 1 também escolhe a oponente.
+// "Mix Athena": não é uma personagem nova — começa como a Athena '98 e troca com Q / E durante a luta
+const MIX_ID = 'mix', MIX_START = 'a98';
+const MIX_ORDER = ['a98', 'neo', 'pd03', 'kofm', 'xiv'];   // ordem da troca: E = próxima, Q = anterior
+const mixList = () => MIX_ORDER.filter(id => CHARS[id] && CHARS[id].pack);
+const selList = () => [...rosterList(), MIX_ID];
+const selCh = (id) => CHARS[id === MIX_ID ? MIX_START : id];
+const palCount = (id) => id === MIX_ID ? Math.min(...rosterList().map(c => CHARS[c].palNames.length)) : CHARS[id].palNames.length;
+const SEL_INFO = {
+  kofm: ['EQUILIBRADA, MAX', 'COM A+B+C'],
+  a98: ["A CLÁSSICA DE '98", 'PHOENIX E CHARGE'],
+  neo: ['RÁPIDA E AGRESSIVA', 'SDM DE 3 BARRAS'],
+  xiv: ['MODERNA: COMBOS,', 'EX E PSYCHO BURST'],
+  pd03: ['TÉCNICA DE 2003:', 'PSYCHIC 10 E T'],
+  mix: ['TODAS NUMA SÓ!', 'TROCA: Q ◄  ► E'],
+};
 const Sel = {
   p: null, turn: 0,
   reset() {
-    const list = rosterList();
-    this.p = [0, 1].map(i => ({ idx: Math.min(i, list.length - 1), pal: i, phase: 'char', anim: null }));
+    const list = selList();
+    this.p = [0, 1].map(i => ({ idx: Math.min(i, list.length - 1), pal: i, phase: 'char', anim: null, animId: null, t: 0 }));
     this.turn = 0;   // em cpu/treino: 0 = escolhendo a própria, 1 = escolhendo a oponente
     this.p.forEach(p => this.setAnim(p));
   },
-  setAnim(p) { const ch = CHARS[rosterList()[p.idx]]; p.anim = new Anim(0, ch.pack.anims); },
+  // personagem mostrada na prévia (a Mix passa por todas)
+  showId(p) { const id = selList()[p.idx]; if (id !== MIX_ID) return id; const r = mixList(); return r[Math.floor((p.t || 0) / 70) % r.length]; },
+  setAnim(p) { p.t = 0; const id = this.showId(p); p.animId = id; p.anim = new Anim(0, CHARS[id].pack.anims); },
   ctlFor(pl) { if (isOnline()) return pl === Net.me ? Net.ctl : null; if (twoPick()) return pl === 0 ? M1 : M2; return this.turn === pl ? M1 : null; },
   input(pl) {
     const c = this.ctlFor(pl); if (!c) return;
-    const p = this.p[pl], list = rosterList(), e = c.edge, n = list.length, cols = 2;
+    const p = this.p[pl], list = selList(), e = c.edge, n = list.length, cols = 3;
     if (p.phase === 'char') {
       let i = p.idx;
       if (e.left) i = (i + n - 1) % n; if (e.right) i = (i + 1) % n;
@@ -6920,82 +6986,223 @@ const Sel = {
       else if (e.b && isOnline()) { Net.leaveNow(); Game.scene = 'online'; Game.menuIdx = 0; }
       else if (e.b && pl === 0) Game.scene = 'menu';
     } else if (p.phase === 'pal') {
-      const np = CHARS[list[p.idx]].palNames.length;
+      const np = palCount(list[p.idx]);
       if (e.left) p.pal = (p.pal + np - 1) % np; if (e.right) p.pal = (p.pal + 1) % np;
-      if (e.a || e.start) { p.phase = 'ready'; const ch = CHARS[list[p.idx]]; Audio_.play(ch.S.taunt[0], ch.S.taunt[1], 'v' + (pl + 1), 1, ch.id); if (!twoPick() && pl === 0) this.turn = 1; }
+      if (e.a || e.start) { p.phase = 'ready'; const ch = CHARS[this.showId(p)]; Audio_.play(ch.S.taunt[0], ch.S.taunt[1], 'v' + (pl + 1), 1, ch.id); if (!twoPick() && pl === 0 && !Arcade.on) this.turn = 1; }
       if (e.b) p.phase = 'char';
     } else if (p.phase === 'ready' && e.b) { p.phase = 'pal'; if (!twoPick()) this.turn = pl; }
   },
   freePal(pl, want) {   // evita duas lutadoras iguais com a mesma cor
-    const o = this.p[1 - pl], list = rosterList();
-    if (o.phase !== 'char' && o.idx === this.p[pl].idx && o.pal === want) return (want + 1) % CHARS[list[o.idx]].palNames.length;
+    const o = this.p[1 - pl], list = selList();
+    if (o.phase !== 'char' && o.idx === this.p[pl].idx && o.pal === want) return (want + 1) % palCount(list[o.idx]);
     return want;
   },
   draw() {
-    Stage.draw(Game.camX, 0); ctx.fillStyle = 'rgba(10,0,25,0.62)'; ctx.fillRect(0, 0, W, H);
-    const list = rosterList();
+    Stage.draw(Game.camX, 0); ctx.fillStyle = 'rgba(10,0,25,0.66)'; ctx.fillRect(0, 0, W, H);
+    const list = selList(), PC = ['#58b8ff', '#ff5fa8'];
     if (isOnline()) Net.pullSel();
-    const title = isOnline() ? 'SALA ' + Net.code + (Game.mode === 'coop' ? ' — CO-OP' : ' — CONTRA') : twoPick() ? 'ESCOLHAM AS LUTADORAS' : this.turn === 0 ? 'ESCOLHA SUA LUTADORA' : (Game.mode === 'train' ? 'ESCOLHA O BONECO' : 'ESCOLHA A OPONENTE');
-    txt(title, W / 2, 8, '#fff', 10, 'center', '#5a0a3a');
     this.input(0); this.input(1);
     if (isOnline()) Net.pubSel();
-    // grade de retratos (tronco da pose parada de cada uma)
-    const cols = 2, tw = 58, th = 58, gx = W / 2 - tw - 3, gy = 34;
+    // painéis laterais de cada jogador (faixa colorida que some para o meio)
+    [0, 1].forEach(pl => {
+      const x0 = pl === 0 ? 0 : W - 150, g = ctx.createLinearGradient(pl === 0 ? 0 : W, 0, pl === 0 ? 150 : W - 150, 0);
+      g.addColorStop(0, pl === 0 ? 'rgba(40,90,190,0.55)' : 'rgba(190,40,120,0.55)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(x0, 0, 150, H);
+    });
+    const title = Arcade.on ? 'ARCADE — ESCOLHA SUA LUTADORA' : isOnline() ? 'SALA ' + Net.code + (Game.mode === 'coop' ? ' — CO-OP' : ' — CONTRA') : twoPick() ? 'ESCOLHAM AS LUTADORAS' : this.turn === 0 ? 'ESCOLHA SUA LUTADORA' : (Game.mode === 'train' ? 'ESCOLHA O BONECO' : 'ESCOLHA A OPONENTE');
+    txt(title, W / 2, 7, '#fff', 10, 'center', '#5a0a3a');
+    // grade de retratos 3 × 2 (a última é a Mix Athena)
+    const cols = 3, tw = 38, th = 38, gap = 4, gx = Math.round(W / 2 - (cols * tw + (cols - 1) * gap) / 2), gy = 28;
     list.forEach((id, i) => {
-      const ch = CHARS[id], x = gx + (i % cols) * (tw + 6), y = gy + Math.floor(i / cols) * (th + 6);
-      ctx.fillStyle = '#1b1028'; ctx.fillRect(x, y, tw, th);
+      const x = gx + (i % cols) * (tw + gap), y = gy + Math.floor(i / cols) * (th + gap);
+      const shownId = id === MIX_ID ? mixList()[Math.floor(Game.frame / 40) % mixList().length] : id, ch = CHARS[shownId];
+      const bg = ctx.createLinearGradient(0, y, 0, y + th); bg.addColorStop(0, id === MIX_ID ? '#3d1f5c' : '#2a1840'); bg.addColorStop(1, '#120a1e');
+      ctx.fillStyle = bg; ctx.fillRect(x, y, tw, th);
       ctx.save(); ctx.beginPath(); ctx.rect(x, y, tw, th); ctx.clip();
-      const fr = ch.pack.anims[0][1][0]; drawSpr(palAtlas(ch, 0), fr[0], x + tw / 2, y + (ch.tileY || 92), 1, fr[1], fr[2], fr[6]);
+      const fr = ch.pack.anims[0][1][0]; drawSpr(palAtlas(ch, 0), fr[0], x + tw / 2, y + (ch.tileY || 92) * 0.66, 1, fr[1], fr[2], fr[6], 1, false, false, 0.66);
       ctx.restore();
-      ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(x, y + th - 11, tw, 11);
-      txt(ch.tag || ch.short, x + tw / 2, y + th - 10, '#fff', 8, 'center', '');
-      const on = [0, 1].filter(pl => this.p[pl].idx === i && (twoPick() || this.turn === pl || this.p[pl].phase !== 'char'));
-      on.forEach((pl, k) => { ctx.strokeStyle = pl === 0 ? '#58b8ff' : '#ff5fa8'; ctx.lineWidth = 2; ctx.strokeRect(x + 1 + k * 3, y + 1 + k * 3, tw - 2 - k * 6, th - 2 - k * 6); ctx.lineWidth = 1; });
+      ctx.fillStyle = 'rgba(0,0,0,0.65)'; ctx.fillRect(x, y + th - 9, tw, 9);
+      const lab = id === MIX_ID ? 'MIX' : (ch.tag || ch.short);
+      txt(lab, x + tw / 2, y + th - 9, id === MIX_ID ? 'hsl(' + (Game.frame * 4 % 360) + ',90%,70%)' : '#fff', 8, 'center', '');
+      ctx.strokeStyle = 'rgba(255,255,255,0.18)'; ctx.strokeRect(x + 0.5, y + 0.5, tw - 1, th - 1);
+      const on = [0, 1].filter(pl => this.p[pl].idx === i && (twoPick() || this.turn === pl || this.p[pl].phase !== 'char' || isOnline()));
+      on.forEach((pl, k) => { const blink = this.p[pl].phase === 'char' && Game.frame % 30 < 15; ctx.strokeStyle = PC[pl]; ctx.lineWidth = blink ? 3 : 2; ctx.strokeRect(x + 1 + k * 3, y + 1 + k * 3, tw - 2 - k * 6, th - 2 - k * 6); ctx.lineWidth = 1;
+        txt(pl === 0 ? '1P' : '2P', x + (k ? tw - 2 : 2), y + 2, PC[pl], 8, k ? 'right' : 'left'); });
       clicks.push({ x, y, w: tw, h: th, fn: () => { const pl = isOnline() ? Net.me : twoPick() ? 0 : this.turn; const p = this.p[pl]; if (p.phase === 'char') { if (p.idx === i) { p.phase = 'pal'; } else { p.idx = i; this.setAnim(p); } } } });
     });
-    // prévias grandes
+    txt('VS', W / 2, 118, '#ffd23f', 16, 'center', '#5a0a3a');
+    // prévias grandes de cada jogador
     [0, 1].forEach(pl => {
-      const p = this.p[pl], ch = CHARS[list[p.idx]], x = pl === 0 ? 70 : W - 70;
+      const p = this.p[pl], id = list[p.idx], x = pl === 0 ? 72 : W - 72;
       const label = isOnline() ? (pl === Net.me ? 'VOCÊ' : 'AMIGO') : pl === 0 ? 'JOGADOR 1' : Game.mode === 'cpu' ? 'CPU' : Game.mode === 'train' ? 'BONECO' : 'JOGADOR 2';
-      txt(label, x, 26, pl === 0 ? '#7fd4ff' : '#ff8fb8', 8, 'center');
-      if (!twoPick() && pl === 1 && this.turn === 0) { txt('?', x, 100, '#ff8fb8', 24, 'center'); return; }
+      txt(label, x, 24, pl === 0 ? '#7fd4ff' : '#ff8fb8', 8, 'center');
+      if (Arcade.on && pl === 1) { txt('?', x, 80, '#ff8fb8', 32, 'center'); txt('6 LUTAS', x, 130, '#ffd23f', 8, 'center'); txt('CHEFE FINAL:', x, 146, '#ff8fb8', 8, 'center'); txt('MIX ATHENA', x, 158, 'hsl(' + (Game.frame * 4 % 360) + ',90%,72%)', 10, 'center'); return; }
+      if (!twoPick() && pl === 1 && this.turn === 0 && !isOnline()) { txt('?', x, 90, '#ff8fb8', 32, 'center'); return; }
+      // a Mix passa por todas na prévia
+      p.t = (p.t || 0) + 1; const sid = this.showId(p);
+      if (sid !== p.animId) { p.animId = sid; p.anim = new Anim(0, CHARS[sid].pack.anims); }
+      const ch = CHARS[sid], np = palCount(id), pal = p.pal % ch.palNames.length;
+      // brilho no chão e a lutadora ampliada
+      const glow = ctx.createRadialGradient(x, 168, 2, x, 168, 46); glow.addColorStop(0, pl === 0 ? 'rgba(90,170,255,0.55)' : 'rgba(255,90,170,0.55)'); glow.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = glow; ctx.fillRect(x - 50, 150, 100, 36);
       p.anim.step(); const f = p.anim.f;
-      drawSpr(palAtlas(ch, p.pal), f[0], x, 178, pl === 0 ? 1 : -1, f[1], f[2], f[6]);
-      txt(ch.short, x, 184, '#fff', 8, 'center');
-      txt(ch.game || '', x, 194, '#bba8dc', 8, 'center', '');
-      if (p.phase === 'pal') txt('◄ COR ' + (p.pal + 1) + '/' + ch.palNames.length + ' ►', x, 206, '#ffd23f', 8, 'center');
-      if (p.phase === 'ready') txt('PRONTA!', x, 206, '#ffd23f', 8, 'center');
+      drawSpr(palAtlas(ch, pal), f[0], x, 168, pl === 0 ? 1 : -1, f[1], f[2], f[6], 1, false, false, 1.35);
+      // placa com o nome
+      const nm = id === MIX_ID ? 'MIX ATHENA' : ch.short, info = SEL_INFO[id] || ['', ''];
+      ctx.fillStyle = 'rgba(0,0,0,0.55)'; ctx.fillRect(x - 66, 170, 132, 13);
+      ctx.fillStyle = PC[pl]; ctx.fillRect(x - 66, 170, 132, 1); ctx.fillRect(x - 66, 182, 132, 1);
+      txt(nm, x, 172, id === MIX_ID ? 'hsl(' + (Game.frame * 4 % 360) + ',90%,72%)' : '#fff', 10, 'center');
+      txt(id === MIX_ID ? '98 · NEO · 2K3 · KOF M · XIV' : (ch.game || ''), x, 186, '#bba8dc', 8, 'center', '');
+      txt(info[0], x, 196, '#e8dcff', 8, 'center', ''); txt(info[1], x, 205, '#e8dcff', 8, 'center', '');
+      if (p.phase === 'pal') txt('◄ COR ' + (p.pal + 1) + '/' + np + ' ►', x, 215, '#ffd23f', 8, 'center');
+      if (p.phase === 'ready') txt('PRONTA!', x, 215, '#ffd23f', 8, 'center');
       if (p.phase === 'pal' && (!isOnline() || pl === Net.me)) {
-        clicks.push({ x: x - 60, y: 60, w: 60, h: 120, fn: () => { p.pal = (p.pal + ch.palNames.length - 1) % ch.palNames.length; } });
-        clicks.push({ x, y: 60, w: 60, h: 120, fn: () => { p.pal = (p.pal + 1) % ch.palNames.length; } });
+        clicks.push({ x: x - 60, y: 40, w: 60, h: 130, fn: () => { p.pal = (p.pal + np - 1) % np; } });
+        clicks.push({ x, y: 40, w: 60, h: 130, fn: () => { p.pal = (p.pal + 1) % np; } });
       }
     });
     const help = this.p.some(p => p.phase === 'pal') ? '←→ cor   J confirmar   K voltar' : '←↑↓→ escolher   J confirmar   K voltar';
-    txt(help, W / 2, isOnline() ? 214 : 226, '#a99bc0', 8, 'center', '');
+    txt(help, W / 2, isOnline() ? 214 : 228, '#a99bc0', 8, 'center', '');
     const allReady = this.p.every(p => p.phase === 'ready');
-    if (Game.mode === 'coop') txt('JUNTAS CONTRA UMA CPU SURPRESA', W / 2, 160, '#9dffb0', 8, 'center', '');
-    if (Game.mode === 'cpu' && Game.diff === 3) txt('CPU EXTREMA: CALCULA DISTÂNCIA, PROJÉTEIS E PULOS', W / 2, 160, '#ff9d9d', 8, 'center', '');
+    if (Game.mode === 'coop') txt('JUNTAS CONTRA', W / 2, 142, '#9dffb0', 8, 'center', ''), txt('UMA CPU SURPRESA', W / 2, 151, '#9dffb0', 8, 'center', '');
+    if (Game.mode === 'cpu' && Game.diff === 3) txt('CPU EXTREMA', W / 2, 142, '#ff9d9d', 8, 'center', '');
     if (isOnline()) {
       if (allReady) { if (Net.role === 'h') Net.hostStart(); else txt('COMEÇANDO...', W / 2, 172, '#ffd23f', 8, 'center'); }
-      else if (this.p[Net.me].phase === 'ready') txt('AGUARDANDO O AMIGO...', W / 2, 172, '#ff8fb8', 8, 'center');
+      else if (this.p[Net.me].phase === 'ready') txt('AGUARDANDO...', W / 2, 172, '#ff8fb8', 8, 'center');
       return;
     }
+    if (Arcade.on) { if (this.p[0].phase === 'ready') Arcade.begin(selList()[this.p[0].idx], this.p[0].pal); return; }
     if (this.p[0].phase === 'ready' && this.p[1].phase !== 'char' && !twoPick() || allReady)
       menuItem('LUTAR!', W / 2, 172, true, () => { this.p.forEach(p => p.phase = 'ready'); this.go(); }, 8);
     if (allReady) this.go();
   },
   go() {
-    const list = rosterList(), [a, b] = this.p;
+    const list = selList(), [a, b] = this.p;
     Game.char1 = list[a.idx]; Game.char2 = list[b.idx]; Game.pal1 = a.pal; Game.pal2 = b.pal;
     if (Game.mode === 'coop') {   // co-op local: a segunda escolha é a parceira; a CPU é sorteada
+      const real = rosterList();
       Game.char3 = Game.char2; Game.pal3 = Game.pal2;
-      Game.char2 = list[Math.floor(Math.random() * list.length)]; const np = CHARS[Game.char2].palNames.length; Game.pal2 = Math.floor(Math.random() * np);
+      Game.char2 = real[Math.floor(Math.random() * real.length)]; const np = CHARS[Game.char2].palNames.length; Game.pal2 = Math.floor(Math.random() * np);
       for (let t = 0; t < np && ((Game.char2 === Game.char1 && Game.pal2 === Game.pal1) || (Game.char2 === Game.char3 && Game.pal2 === Game.pal3)); t++) Game.pal2 = (Game.pal2 + 1) % np;
     }
-    if (Game.char1 === Game.char2 && Game.pal1 === Game.pal2) Game.pal2 = (Game.pal2 + 1) % CHARS[Game.char2].palNames.length;
+    if (Game.char1 === Game.char2 && Game.pal1 === Game.pal2) Game.pal2 = (Game.pal2 + 1) % palCount(Game.char2);
     Game.startMatch();
   }
 };
+
+// ---------------- MODO ARCADE ----------------
+// 5 lutas contra as Athenas (ordem sorteada, dificuldade subindo) e a chefe final: a MIX ATHENA (CPU EXTREMA, mais resistente).
+const Arcade = {
+  on: false, savedDiff: 1, pid: null, pal: 0, ladder: [], stage: 0, score: 0, conts: 0, t0: 0, frames: 0, last: null, cnt: 0, wait: 0,
+  DIFF: [1, 1, 2, 2, 2, 3],
+  isBoss() { return this.on && this.ladder[this.stage] === MIX_ID; },
+  best() { try { return +localStorage.getItem('dpArcadeBest') || 0; } catch (e) { return 0; } },
+  begin(pid, pal) {
+    const r = rosterList().slice();
+    for (let i = r.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [r[i], r[j]] = [r[j], r[i]]; }
+    Object.assign(this, { pid, pal, ladder: [...r, MIX_ID], stage: 0, score: 0, conts: 0, frames: 0, last: null, wait: 0 });
+    Game.scene = 'arcade'; Audio_.play(6, 6);
+  },
+  quit() { this.on = false; Game.diff = this.savedDiff; },
+  fight() {
+    const id = this.ladder[this.stage], np = palCount(id);
+    let pal = Math.floor(Math.random() * np); if (id === this.pid && pal === this.pal % np) pal = (pal + 1) % np;
+    Game.mode = 'cpu'; Game.char1 = this.pid; Game.pal1 = this.pal; Game.char2 = id; Game.pal2 = pal;
+    Game.diff = this.DIFF[Math.min(this.stage, this.DIFF.length - 1)];
+    Game.startMatch(); this.f0 = Game.frame;
+    if (this.isBoss()) { Game.p2.defMul = 0.75; Game.p2.mixT = 150; }   // chefe: aguenta mais e troca de Athena com frequência
+  },
+  matchEnd(won) {
+    const p = Game.p1;
+    this.frames += Math.max(0, (Game.frame || 0) - (this.f0 || 0));
+    if (won) {
+      const lifeB = Math.round(p.life) * 10, perfect = p.life >= LIFE, pts = 10000 * (this.stage + 1) + lifeB + (perfect ? 20000 : 0);
+      this.score += pts; this.last = { won: true, pts, lifeB, perfect };
+      this.stage++;
+      if (this.stage >= this.ladder.length) { try { if (this.score > this.best()) localStorage.setItem('dpArcadeBest', String(this.score)); } catch (e) { } Game.scene = 'arcadeEnd'; this.wait = 40; return; }
+      Game.scene = 'arcade'; this.wait = 0;
+    } else { this.last = { won: false }; this.cnt = 10 * 60; Game.scene = 'arcadeCont'; }
+  },
+};
+// telas do arcade
+const ladderTile = (id, x, y, w, h, st) => {
+  const sid = id === MIX_ID ? mixList()[Math.floor(Game.frame / 40) % mixList().length] : id, ch = CHARS[sid];
+  ctx.fillStyle = id === MIX_ID ? '#3a0f2a' : '#1b1028'; ctx.fillRect(x, y, w, h);
+  ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+  const fr = ch.pack.anims[0][1][0]; drawSpr(palAtlas(ch, 0), fr[0], x + w / 2, y + (ch.tileY || 92) * 0.7, 1, fr[1], fr[2], fr[6], st === 'done' ? 0.35 : 1, false, false, 0.7);
+  ctx.restore();
+  if (st === 'done') txt('✔', x + w / 2, y + h / 2 - 8, '#9dffb0', 14, 'center');
+  ctx.strokeStyle = st === 'now' ? (Game.frame % 30 < 15 ? '#ffd23f' : '#ff7ad9') : id === MIX_ID ? '#ff5f5f' : 'rgba(255,255,255,0.25)';
+  ctx.lineWidth = st === 'now' ? 3 : 1; ctx.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1); ctx.lineWidth = 1;
+  txt(id === MIX_ID ? 'CHEFE' : (ch.tag || ch.short), x + w / 2, y + h + 2, id === MIX_ID ? '#ff7a7a' : '#ddd', 8, 'center', '');
+};
+const bigFighter = (id, pal, x, facing, sc) => {
+  const sid = id === MIX_ID ? mixList()[Math.floor(Game.frame / 70) % mixList().length] : id, ch = CHARS[sid];
+  const key = 'bf' + x; if (!bigFighter[key] || bigFighter[key].id !== sid) bigFighter[key] = { id: sid, anim: new Anim(0, ch.pack.anims) };
+  const a = bigFighter[key].anim; a.step(); const f = a.f;
+  drawSpr(palAtlas(ch, pal % ch.palNames.length), f[0], x, 196, facing, f[1], f[2], f[6], 1, false, false, sc || 1.2);
+  return ch;
+};
+Object.assign(Scenes, {
+  arcade() {
+    const A = Arcade;
+    Stage.draw(Game.camX, 0); ctx.fillStyle = 'rgba(10,0,25,0.7)'; ctx.fillRect(0, 0, W, H);
+    txt('ARCADE', W / 2, 6, '#ff7ad9', 14, 'center', '#5a0a3a');
+    const n = A.ladder.length, tw = 40, gap = 8, x0 = Math.round(W / 2 - (n * tw + (n - 1) * gap) / 2);
+    A.ladder.forEach((id, i) => ladderTile(id, x0 + i * (tw + gap), 26, tw, 40, i < A.stage ? 'done' : i === A.stage ? 'now' : ''));
+    const id = A.ladder[A.stage], boss = id === MIX_ID;
+    txt(boss ? 'CHEFE FINAL!' : 'LUTA ' + (A.stage + 1) + ' DE ' + n, W / 2, 84, boss ? '#ff5f5f' : '#fff', boss ? 14 : 12, 'center', '#5a0a3a');
+    txt('CPU: ' + DIFFS[A.DIFF[Math.min(A.stage, A.DIFF.length - 1)]], W / 2, 104, '#ff9d9d', 8, 'center', '');
+    const me = bigFighter(A.pid, A.pal, 92, 1);
+    const op = bigFighter(id, 0, W - 92, -1);
+    txt('VS', W / 2, 130, '#ffd23f', 18, 'center', '#5a0a3a');
+    txt(A.pid === MIX_ID ? 'MIX ATHENA' : me.short, 92, 200, '#7fd4ff', 8, 'center');
+    txt(boss ? 'MIX ATHENA' : op.short, W - 92, 200, boss ? 'hsl(' + (Game.frame * 4 % 360) + ',90%,72%)' : '#ff8fb8', 8, 'center');
+    if (A.last && A.last.won) {
+      txt('+' + A.last.pts + ' PONTOS' + (A.last.perfect ? '  (PERFEITO!)' : ''), W / 2, 150, '#9dffb0', 8, 'center', '');
+    }
+    txt('PONTOS ' + A.score + '   RECORDE ' + Math.max(A.best(), A.score), W / 2, 214, '#ffd23f', 8, 'center', '');
+    A.wait++;
+    if (Game.frame % 60 < 42) txt('APERTE J PARA LUTAR', W / 2, 168, '#fff', 8, 'center');
+    clicks.push({ x: 0, y: 0, w: W, h: H, fn: () => A.fight() });
+    if (A.wait > 15 && (ok() || A.wait > 60 * 6)) A.fight();
+    if (back()) { Game.scene = 'menu'; Game.menuIdx = 0; }
+  },
+  arcadeCont() {
+    const A = Arcade;
+    drawFight(); ctx.fillStyle = 'rgba(10,0,25,0.72)'; ctx.fillRect(0, 0, W, H);
+    if (A.cnt <= 0) {
+      txt('FIM DE JOGO', W / 2, 90, '#ff5f5f', 16, 'center', '#5a0a3a');
+      txt('PONTOS ' + A.score, W / 2, 120, '#ffd23f', 8, 'center', '');
+      if (--A.cnt < -150 || (A.cnt < -30 && ok())) { Game.scene = 'menu'; Game.menuIdx = 0; }
+      return;
+    }
+    A.cnt--;
+    txt('CONTINUAR?', W / 2, 70, '#fff', 16, 'center', '#5a0a3a');
+    txt(String(Math.ceil(A.cnt / 60)), W / 2, 100, '#ffd23f', 28, 'center', '#5a0a3a');
+    txt('J = SIM (tenta a mesma luta de novo)   K = NÃO', W / 2, 150, '#c9b6e6', 8, 'center', '');
+    txt('PONTOS ' + A.score + '   CONTINUES ' + A.conts, W / 2, 166, '#ffd23f', 8, 'center', '');
+    menuItem('SIM', W / 2 - 50, 186, true, () => { A.conts++; A.fight(); }, 10);
+    menuItem('NÃO', W / 2 + 50, 186, false, () => { A.cnt = 0; }, 10);
+    if (ok()) { A.conts++; A.fight(); }
+    else if (back()) A.cnt = 0;
+  },
+  arcadeEnd() {
+    const A = Arcade;
+    Stage.draw(Game.camX = (STAGE_W - W) / 2 + Math.sin(Game.frame / 200) * 120, 0); Stage.drawPetals(Game.camX);
+    ctx.fillStyle = 'rgba(10,0,25,0.55)'; ctx.fillRect(0, 0, W, H);
+    txt('PARABÉNS!', W / 2, 14, '#ffd23f', 18, 'center', '#5a0a3a');
+    txt('VOCÊ DERROTOU A MIX ATHENA!', W / 2, 42, 'hsl(' + (Game.frame * 4 % 360) + ',90%,72%)', 10, 'center');
+    bigFighter(A.pid, A.pal, 100, 1, 1.4);
+    const sec = Math.round(A.frames / 60), rec = A.best();
+    const L = [['PONTOS', A.score], ['RECORDE', Math.max(rec, A.score)], ['CONTINUES', A.conts], ['TEMPO DE LUTA', Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0')]];
+    L.forEach(([k, v], i) => { txt(k, 220, 76 + i * 20, '#c9b6e6', 8); txt(String(v), 400, 76 + i * 20, '#fff', 10, 'right'); });
+    if (A.score >= rec && A.score > 0) txt('NOVO RECORDE!', 310, 160, '#9dffb0', 10, 'center');
+    A.wait--;
+    if (A.wait <= 0 && Game.frame % 60 < 42) txt('APERTE J', 310, 190, '#fff', 8, 'center');
+    if (A.wait <= 0 && ok()) { Game.scene = 'menu'; Game.menuIdx = 0; }
+  },
+});
 
 // lista de golpes (HTML por cima do canvas)
 function showMoves(on, cid) {
@@ -7010,6 +7217,9 @@ function showMoves(on, cid) {
     bt.onclick = () => showMoves(true, id); tabs.appendChild(bt);
   }
   document.querySelectorAll('#mvList .mv').forEach(d => d.classList.toggle('on', d.dataset.char === cid));
+  // jogando com a Mix Athena: explicação da troca no topo (os golpes são da Athena em campo)
+  const mixOn = Game.scene === 'fight' && Game.p1 && Game.p1.mix && cid === Game.p1.ch.id;
+  document.getElementById('mvMix').style.display = mixOn ? 'block' : 'none';
   document.getElementById('mvName').textContent = CHARS[cid].name.toUpperCase();
 }
 document.getElementById('movesClose').onclick = () => showMoves(false);
@@ -7021,8 +7231,12 @@ function frame(now) {
   while (acc >= 1000 / 60) { acc -= 1000 / 60; if (!window.__manual) update(); }
   requestAnimationFrame(frame);
 }
+let mixBtnOn = null;
 function update() {
   try { Music.tick(); } catch (e) { }
+  // botões de toque "◄ MIX / MIX ►" só aparecem quando há uma Mix Athena controlada aqui
+  const mxOn = Game.scene === 'fight' && !!(Game.F || []).some(f => f.mix && f.ctl);
+  if (mxOn !== mixBtnOn) { mixBtnOn = mxOn; document.querySelectorAll('#tTop .mixb').forEach(el => { el.style.display = mxOn ? '' : 'none'; }); }
   if (Game.codeOpen) return;
   M1.read(); M2.read();
   if (Game.net && (Game.scene === 'fight' || Net.pendingEnd)) { onlineFight(); return; }
