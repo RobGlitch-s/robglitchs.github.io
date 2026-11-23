@@ -45,6 +45,10 @@ Os sprites e sons vieram de personagens de M.U.G.E.N feitos por fãs. Créditos 
 
 M.U.G.E.N é um motor da Elecbyte.
 
+### Música das lutas
+
+**"Fast fight / battle music (looped)"**, de **Ville Nousiainen (Mutkanto)** — [soundcloud.com/mutkanto](http://soundcloud.com/mutkanto), publicada no [OpenGameArt.org](https://opengameart.org/node/55385) com licença **CC0** (domínio público). Agradecimentos também a [xcvgsystems.com](http://xcvgsystems.com).
+
 O motor de luta em HTML5, a IA, o modo online, a Athena Mix, os menus e os efeitos visuais foram feitos para este projeto.
 
 ## Pedidos de remoção
@@ -55,4 +59,4 @@ Se você é dono de algum conteúdo usado aqui (SNK ou autor de algum personagem
 
 - Não vende nada, não tem anúncios e não aceita doações.
 - Não usa o logotipo de The King of Fighters nem da SNK.
-- Não tem música de fundo de jogos da SNK.
+- Não tem música de jogos da SNK: a trilha das lutas é CC0 (domínio público).
