@@ -10367,6 +10367,7 @@ const Game = {
       }
       // vitória da partida: espera o J (ou toque) depois da cena; online e demonstração seguem sozinhos
       if (this.rsT > 150 && (this.wins[0] >= 2 || this.wins[1] >= 2) && WinFX.waitsKey() && !this.winGo) {
+        if (this.rsT < 175) return;   // o retrato precisa aparecer antes
         if (ok()) this.winGo = true;
         if (!this.winGo) return;
         this.rsT = Math.max(this.rsT, 191);
@@ -11807,7 +11808,7 @@ const MixPick = {
     this.next = next; this.E = [];
     for (const f of g.F) if (f.mix) {
       const human = !!f.ctl && !f.cpu;
-      const e = { f, human, idx: Math.max(0, ids.indexOf(f.ch.id)), done: false, anim: null, animId: null, moved: 0 };
+      const e = { f, human, idx: Math.max(0, ids.indexOf(f.ch.id)), done: false, anim: null, animId: null, moved: 0, armed: false };
       if (!human) { e.idx = this.cpuChoice(f, ids); e.done = true; }
       this.E.push(e);
     }
@@ -11820,7 +11821,10 @@ const MixPick = {
     const g = Game, ids = mixList();
     for (const e of this.E) {
       if (e.done || !e.human) continue;
-      const ed = (e.f.ctl && e.f.ctl.edge) || {};
+      const ed = (e.f.ctl && e.f.ctl.edge) || {}, raw = (e.f.ctl && e.f.ctl.raw) || {};
+      // o J que confirmou a tela anterior pode ainda estar apertado: só vale depois de soltar e apertar de novo
+      if (!raw.a && !raw.start) e.armed = true;
+      if (!e.armed || g.rsT < 10) continue;
       if (ed.left || ed.right) { e.idx = (e.idx + (ed.left ? -1 : 1) + ids.length) % ids.length; e.moved = g.rsT; try { Audio_.play(6, 6, null, 0.4); } catch (x) { } }
       if (ed.a || ed.start) { e.done = true; e.doneT = g.rsT; try { Audio_.play(6, 6); } catch (x) { } }
     }
@@ -12882,7 +12886,10 @@ function navMenu(n, idx) {
   if (e1.down || e2.down) { idx = (idx + 1) % n; Audio_.play(6, 6, null, 0.4); }
   return idx;
 }
-const ok = () => M1.edge.a || M1.edge.start || M2.edge.a || M2.edge.start;
+// cada tela nova ignora o confirmar por alguns quadros (o mesmo aperto não passa duas telas de uma vez)
+let okScene = null, okSceneT = 0;
+const okFresh = () => { if (Game.scene !== okScene) { okScene = Game.scene; okSceneT = Game.frame; } return Game.frame - okSceneT > 10; };
+const ok = () => (M1.edge.a || M1.edge.start || M2.edge.a || M2.edge.start) && okFresh();
 const back = () => M1.edge.b || M2.edge.b || keys.Escape && M1.edge.start;
 
 // ---------------- DEMONSTRAÇÃO (tela inicial parada por 15 s) ----------------
@@ -13926,7 +13933,7 @@ function update() {
   const mxOn = Game.scene === 'fight' && !!(Game.F || []).some(f => f.mix && f.ctl);
   if (mxOn !== mixBtnOn) { mixBtnOn = mxOn; document.querySelectorAll('#tTop .mixb').forEach(el => { el.style.display = mxOn ? '' : 'none'; }); }
   if (Game.codeOpen) return;
-  M1.read(); M2.read();
+  M1.read(); M2.read(); okFresh();
   if (Game.net && (Game.scene === 'fight' || Net.pendingEnd)) { onlineFight(); return; }
   if (isOnline()) { Net.ctl.read(); Net.lobby(); if (Game.scene === 'fight' && Game.net) return; }
   if (Game.movesOpen) { if (M1.edge.start || M1.edge.b || M1.edge.a || M2.edge.start) showMoves(false); return; }
