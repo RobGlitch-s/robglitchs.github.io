@@ -11886,6 +11886,39 @@ const WinFX = {
 // ---------------- Mix Athena: escolha da Athena antes de cada round ----------------
 const MixPick = {
   E: [], next: 'ready', LIMIT: 600,
+  // miniaturas: os quadros da pose parada de cada Athena recortados uma vez só em imagens pequenas
+  // (montar a folha de sprites colorida a cada quadro travava o jogo); no máximo uma Athena nova por quadro
+  TH: {}, built: -1,
+  thumbs(id, pal) {
+    const key = id + ':' + pal; if (this.TH[key]) return this.TH[key];
+    if (this.built === Game.frame) return null; this.built = Game.frame;
+    const ch = CHARS[id], name = ch.palNames[pal % ch.palNames.length], out = {};
+    // colore só o retângulo de cada quadro (e não a folha inteira de sprites)
+    const raw = atob(ch.pack.pals[name]), P = new Uint8Array(768); for (let i = 0; i < 768; i++) P[i] = raw.charCodeAt(i);
+    const I = ch.idx, IW = I.width;
+    for (const fr of ch.pack.anims[0][1]) {
+      const sid = fr[0], sp = ch.pack.spr[sid]; if (!sp || out[sid]) continue;
+      const w = Math.max(1, sp[3]), h = Math.max(1, sp[4]), c = document.createElement('canvas'); c.width = w; c.height = h;
+      const x = c.getContext('2d');
+      if (sp[0] === 0) {
+        const im = x.createImageData(w, h), o = im.data, d = I.data;
+        for (let yy = 0; yy < h; yy++) for (let xx = 0; xx < w; xx++) {
+          const v = d[((sp[2] + yy) * IW + sp[1] + xx) * 4]; if (!v) continue;
+          const q = (yy * w + xx) * 4; o[q] = P[v * 3]; o[q + 1] = P[v * 3 + 1]; o[q + 2] = P[v * 3 + 2]; o[q + 3] = 255;
+        }
+        x.putImageData(im, 0, 0);
+      } else if (ch.fxImg) x.drawImage(ch.fxImg, sp[1], sp[2], w, h, 0, 0, w, h);
+      out[sid] = { c, ax: sp[5], ay: sp[6], k: sp[7] || 1, w, h };
+    }
+    return (this.TH[key] = out);
+  },
+  // desenha um quadro da miniatura (mesma conta do drawSpr)
+  drawThumb(T, fr, x, y, facing, alpha, sc) {
+    const t = T && T[fr[0]]; if (!t) return;
+    const eff = facing * (fr[6] ? -1 : 1), px = Math.round(x + facing * fr[1] * sc), py = Math.round(y + fr[2] * sc);
+    ctx.save(); ctx.globalAlpha = alpha; ctx.translate(px, py); if (eff < 0) ctx.scale(-1, 1);
+    ctx.drawImage(t.c, -t.ax * sc, -t.ay * sc, t.w * t.k * sc, t.h * t.k * sc); ctx.restore();
+  },
   start(next) {
     const g = Game, ids = mixList();
     this.next = next; this.E = [];
@@ -11944,13 +11977,13 @@ const MixPick = {
       // vizinhas (pequenas, apagadas)
       for (const d of [-1, 1]) {
         const nid = ids[(e.idx + d + ids.length) % ids.length], nc = CHARS[nid], nf = nc.pack.anims[0][1][0];
-        drawSpr(palAtlas(nc, (e.f.mixPal || 0) % nc.palNames.length), nf[0], cx + d * 62, cy + 98, e.f.team === 1 ? 1 : -1, nf[1], nf[2], nf[6], 0.35, false, false, 0.5);
+        this.drawThumb(this.thumbs(nid, e.f.mixPal || 0), nf, cx + d * 62, cy + 98, e.f.team === 1 ? 1 : -1, 0.35, 0.5);
       }
       // a escolhida, animada
       if (e.animId !== id) { e.anim = new Anim(0, ch.pack.anims); e.animId = id; }
       if (g.frame !== e.lastF) { e.anim.step(); e.lastF = g.frame; }
       const fr = e.anim.f, pop = e.moved && t - e.moved < 6 ? 1 + (6 - (t - e.moved)) * 0.03 : 1;
-      drawSpr(palAtlas(ch, (e.f.mixPal || 0) % ch.palNames.length), fr[0], cx, cy + 101, e.f.team === 1 ? 1 : -1, fr[1], fr[2], fr[6], 1, false, false, 0.72 * pop);
+      this.drawThumb(this.thumbs(id, e.f.mixPal || 0), fr, cx, cy + 101, e.f.team === 1 ? 1 : -1, 1, 0.72 * pop);
       if (!e.done) { txt('◄', cx - 84, cy + 54, '#fff', 12, 'left', ''); txt('►', cx + 84, cy + 54, '#fff', 12, 'right', ''); }
       ctx.restore();
       ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(cx - 92, cy + 102, 184, 18);
