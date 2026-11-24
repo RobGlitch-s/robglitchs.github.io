@@ -11630,6 +11630,7 @@ const CamFX = {
   },
   active() { return this.t >= 0; },
   // quem aparece primeiro e quem aparece depois (a que entra por baixo fica para depois, quando já está subindo)
+  both() { const g = Game; return this.late(g.p1) && this.late(g.p2); },
   order() { const g = Game; return this.late(g.p1) && !this.late(g.p2) ? [g.p2, g.p1] : [g.p1, g.p2]; },
   // devolve { z: zoom, px, py: ponto da tela que vai para o centro, k: quanto a cena ainda está "ligada" (0..1), shot }
   view(cam) {
@@ -11642,6 +11643,12 @@ const CamFX = {
     const zoomOf = (f, u) => this.late(f) ? 1.5 + 0.3 * u : 1.85 + 0.2 * u;
     const mid = { x: W / 2, y: H * 0.55 };
     let z, P, shot;
+    if (this.both()) {   // as duas entram por baixo: uma tomada só com as duas, subindo junto com elas
+      const g = Game, a = at(g.p1, 0), b = at(g.p2, 0), c = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      if (t < T2) { const u = t / T2; z = 1.35 + 0.12 * u; P = c; shot = 1; }
+      else { const u = this.ease((t - T2) / (LEN - T2)), z0 = 1.47; z = z0 + (1 - z0) * u; P = { x: c.x + (mid.x - c.x) * u, y: c.y + (mid.y - c.y) * u }; shot = 3; }
+      return { z, px: P.x, py: P.y, k: t < T2 ? 1 : 1 - this.ease((t - T2) / (LEN - T2)), shot, u: t };
+    }
     if (t < 50) { const u = t / 50, pA = at(A, 0); z = zoomOf(A, u); P = { x: pA.x + 6 * u, y: pA.y }; shot = 1; }
     else if (t < T2) {
       const u = (t - 50) / (T2 - 50), w = this.ease(Math.min(1, u / 0.3)), pA = at(A, 1), pB = at(B, 0);
@@ -11669,7 +11676,7 @@ const CamFX = {
     if (!this.active()) return;
     const v = this.v, g = Game, t = this.t, bar = Math.round(28 * v.k);
     ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, bar); ctx.fillRect(0, H - bar, W, bar);
-    const cut = t < 6 ? 1 - t / 6 : (t >= 50 && t < 56) ? 1 - (t - 50) / 6 : 0;
+    const cut = t < 6 ? 1 - t / 6 : (!this.both() && t >= 50 && t < 56) ? 1 - (t - 50) / 6 : 0;
     if (cut > 0) { ctx.fillStyle = `rgba(255,255,255,${0.55 * cut})`; ctx.fillRect(0, 0, W, H); }
     const cap = (f, side, u) => {
       const inA = this.ease(Math.min(1, u / 12)), out = u > 40 ? 1 - this.ease((u - 40) / 10) : 1, al = inA * out;
@@ -11682,7 +11689,8 @@ const CamFX = {
       ctx.restore();
     };
     const [A, B] = this.order(), T2 = this.T2(), side = (f) => f.team === 1 ? -1 : 1;
-    if (t < 50) cap(A, side(A), t); else if (t < T2) cap(B, side(B), (t - 50) * 50 / (T2 - 50));
+    if (this.both()) { if (t < T2) { const u = t * 50 / T2; cap(g.p1, -1, u); cap(g.p2, 1, u); } }
+    else if (t < 50) cap(A, side(A), t); else if (t < T2) cap(B, side(B), (t - 50) * 50 / (T2 - 50));
     if (t > 20 && t < this.T2() && v.k > 0.5) txt('J/A PULA', W - 8, 4 + bar * 0 + 2, 'rgba(255,255,255,0.45)', 8, 'right', '');
   },
   hudAlpha() { return this.active() ? 1 - this.v.k : 1; },
