@@ -9999,7 +9999,8 @@ const Game = {
     this.projs = []; this.explods = []; this.cine = false; this.cineBlack = false; this.grayT = 0; this.camLock = false; this.timer = this.tlim || 99; this.timerT = 0; this.slow = 0; this.superT = 0;
     this.camX = (STAGE_W - W) / 2;
     this.koVictim = null;
-    if (intro && this.mode !== 'train') { for (const f of this.F) f.change(190); this.roundState = 'intro'; }
+    this.introSeq = null; this.introCur = null;
+    if (intro && this.mode !== 'train') { this.beginIntro(); this.roundState = 'intro'; }
     else this.roundState = this.mode === 'train' ? 'fight' : 'ready';
     this.rsT = 0;
     // Mix Athena: antes de cada round escolhe com qual Athena começa (a troca Q/E continua valendo na luta)
@@ -10325,6 +10326,17 @@ const Game = {
     const F = this.F;
     if (rs === 'mixpick') { MixPick.logic(); return; }
     if (rs === 'intro') {
+      if (this.introSeq) {
+        // qualquer botão pula as introduções
+        if (this.rsT > 8 && [M1, M2].some(c => c && c.edge && ['a', 'b', 'c', 'd', 'start'].some(k => c.edge[k]))) { this.skipIntro(); return; }
+        const f = this.introCur; this.introT++;
+        if (!f || f.state !== 190 || this.introT > 300) {   // segurança: a mais longa (2003) leva ~234 quadros
+          if (f && f.state === 190) f.change(0);
+          this.introI++;
+          if (!this.nextIntro()) { this.introCur = null; this.introSeq = null; this.roundState = 'ready'; this.rsT = 0; }
+        }
+        return;
+      }
       if (this.rsT > 120 || F.every(f => f.state === 0)) { F.forEach(f => f.state !== 0 && f.change(0)); this.roundState = 'ready'; this.rsT = 0; }
     } else if (rs === 'ready') {
       if (this.rsT === 1) this.say(this.round === 3 ? 'ROUND FINAL' : 'ROUND ' + this.round, 70);
@@ -10378,6 +10390,26 @@ const Game = {
         this.round++; this.startRound(false);
       }
     }
+  },
+  // introduções: com a câmera ligada (fora do online), uma lutadora por vez — a próxima só aparece quando começa a entrada dela
+  beginIntro() {
+    const seq = !this.net && typeof CamFX !== 'undefined' && CamFX.on;
+    for (const f of this.F) f.hidden = false;
+    if (!seq) { for (const f of this.F) f.change(190); return; }
+    const L = [...this.F].sort((a, b) => (a.team - b.team) || (a.slot - b.slot));
+    this.introSeq = L; this.introI = 0; this.introT = 0;
+    for (const f of L) { f.change(0); f.hidden = true; }
+    this.nextIntro();
+  },
+  nextIntro() {
+    const f = this.introSeq[this.introI]; if (!f) return false;
+    f.hidden = false; f.change(190); this.introCur = f; this.introT = 0; return true;
+  },
+  // termina todas as introduções na hora (botão para pular)
+  skipIntro() {
+    if (this.introSeq) for (const f of this.introSeq) f.hidden = false;
+    for (const f of this.F) if (f.state === 190) f.change(0);
+    this.introSeq = null; this.introCur = null; this.roundState = 'ready'; this.rsT = 0;
   },
   endRound(w) {
     this.winner = w; if (w >= 0) this.wins[w]++; else { this.wins[0]++; this.wins[1]++; }
@@ -11605,37 +11637,85 @@ const VFX = {
 // 1) close na lutadora da esquerda · 2) a câmera corre até a da direita · 3) abre até o enquadramento normal
 const CamFX = {
   on: (() => { try { return localStorage.getItem('dpCam') !== '0'; } catch (e) { return true; } })(),
-  t: -1, last: -1, skip: false, LEN: 150,
+  t: -1, last: -1, skip: false, mid: null,
   save() { try { localStorage.setItem('dpCam', this.on ? '1' : '0'); } catch (e) { } },
   ease: (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x),
+  // avança o relógio da cena uma vez por quadro de jogo
+  // Athenas que entram por baixo (a 2003 sobe por um portão no chão): a câmera mostra antes a outra e
+  // filma a subida dela com enquadramento mais aberto e baixo, acompanhando até o rosto
+  LATE: { pd03: true },
+  late(f) { return !!(f && this.LATE[f.ch.id]); },
+  T2() { const g = Game; return (this.late(g.p1) || this.late(g.p2)) ? 118 : 100; },
+  len() { return this.T2() + 50; },
   // avança o relógio da cena uma vez por quadro de jogo
   tick() {
     const g = Game;
     if (!this.on || g.mode === 'train') { this.t = -1; return; }
-    if (g.roundState === 'intro' && g.rsT <= 2 && g.round === 1 && this.t < 0) { this.t = 0; this.skip = false; this.last = g.frame; }
+    if (g.roundState === 'intro' && g.rsT <= 2 && g.round === 1 && (this.t < 0 || this.mid !== g.matchId)) { this.t = 0; this.skip = false; this.last = g.frame; this.mid = g.matchId; this.seq = !!g.introSeq; this.sCur = null; this.sPrev = null; this.sFrom = null; this.sLast = null; this.sOut = null; }
     if (this.t < 0) return;
     if (g.frame !== this.last) { this.t += Math.max(1, Math.min(3, g.frame - this.last)); this.last = g.frame; }
     // qualquer botão pula a cena; e ela nunca passa do começo da luta
     if (this.t > 8 && !this.skip && [M1, M2].some(c => c && c.edge && Object.keys(c.edge).some(k => c.edge[k] && /^(a|b|c|d|start)$/.test(k)))) this.skip = true;
-    if (this.skip || g.roundState === 'fight') this.t = Math.max(this.t, this.LEN - 14);
-    if (this.t >= this.LEN || g.roundState === 'ko' || g.roundState === 'timeup') this.t = -1;
+    if (g.roundState === 'ko' || g.roundState === 'timeup') { this.t = -1; return; }
+    if (this.seq) { if (g.roundState === 'fight' && this.sOut == null) this.sOut = this.t - 30; return; }   // o fim é pela própria sequência
+    const L = this.len();
+    if (this.skip || g.roundState === 'fight') this.t = Math.max(this.t, L - 14);
+    if (this.t >= L) this.t = -1;
   },
   active() { return this.t >= 0; },
+  // quem aparece primeiro e quem aparece depois (a que entra por baixo fica para depois, quando já está subindo)
+  both() { const g = Game; return this.late(g.p1) && this.late(g.p2); },
+  order() { const g = Game; return this.late(g.p1) && !this.late(g.p2) ? [g.p2, g.p1] : [g.p1, g.p2]; },
+  // modo uma por vez: a câmera segue quem está fazendo a entrada; troca com um giro rápido; no fim abre
+  seqView(cam) {
+    const g = Game, t = this.t, cur = g.introCur;
+    const at = (f) => {
+      if (!this.late(f)) return { x: f.x - cam, y: GY + f.y - 72, z: 1.85 };
+      const rise = this.ease(f.state === 190 && f.anim ? Math.max(0, f.anim.elem - 1) / 9 : 1);
+      return { x: f.x - cam, y: GY + f.y - 26 - 46 * rise, z: 1.5 + 0.3 * rise };
+    };
+    if (cur && cur !== this.sCur) { this.sPrev = this.sCur; this.sCur = cur; this.sT = t; this.sFrom = this.sLast; }
+    if (!cur && this.sOut == null) this.sOut = t;
+    let v;
+    if (this.sOut == null) {
+      const p = at(cur), el = t - this.sT, push = Math.min(0.15, el * 0.0015);
+      v = { x: p.x, y: p.y, z: p.z + push };
+      if (this.sFrom && el < 18) { const w = this.ease(el / 18); v = { x: this.sFrom.x + (v.x - this.sFrom.x) * w, y: this.sFrom.y + (v.y - this.sFrom.y) * w, z: this.sFrom.z + (v.z - this.sFrom.z) * w }; }
+      this.sLast = v;
+    } else {
+      const u = this.ease((t - this.sOut) / 40), f0 = this.sLast || { x: W / 2, y: H * 0.55, z: 1 };
+      v = { x: f0.x + (W / 2 - f0.x) * u, y: f0.y + (H * 0.55 - f0.y) * u, z: f0.z + (1 - f0.z) * u };
+      if (t - this.sOut >= 40) this.t = -1;
+    }
+    return { z: v.z, px: v.x, py: v.y, k: this.sOut == null ? 1 : 1 - this.ease((t - this.sOut) / 40), shot: 1, u: t };
+  },
   // devolve { z: zoom, px, py: ponto da tela que vai para o centro, k: quanto a cena ainda está "ligada" (0..1), shot }
   view(cam) {
-    const g = Game, t = this.t, a = g.p1, b = g.p2;
-    const at = (f) => ({ x: f.x - cam, y: GY + f.y - 72 });   // do peito para cima (as mais altas também cabem)
-    const pA = at(a), pB = at(b), mid = { x: W / 2, y: H * 0.55 };
+    if (this.seq) return this.seqView(cam);
+    const t = this.t, [A, B] = this.order(), T2 = this.T2(), LEN = this.len();
+    const at = (f, u) => {   // peito/rosto; quem entra por baixo: começa no chão (portão) e sobe junto com ela
+      if (!this.late(f)) return { x: f.x - cam, y: GY + f.y - 72 };
+      const rise = this.ease((f.anim && f.state === 190 ? Math.max(0, f.anim.elem - 1) / 9 : 1));
+      return { x: f.x - cam, y: GY + f.y - 26 - 46 * Math.max(rise, u || 0) };
+    };
+    const zoomOf = (f, u) => this.late(f) ? 1.5 + 0.3 * u : 1.85 + 0.2 * u;
+    const mid = { x: W / 2, y: H * 0.55 };
     let z, P, shot;
-    if (t < 50) { const u = t / 50; z = 1.85 + 0.2 * u; P = { x: pA.x + 6 * u, y: pA.y }; shot = 1; }
-    else if (t < 100) {
-      const u = (t - 50) / 50, w = this.ease(Math.min(1, u / 0.35));   // giro rápido de câmera e depois segura
-      z = 1.85 + 0.2 * Math.max(0, (u - 0.35) / 0.65); P = { x: pA.x + (pB.x - pA.x) * w, y: pA.y + (pB.y - pA.y) * w }; shot = 2;
+    if (this.both()) {   // as duas entram por baixo: uma tomada só com as duas, subindo junto com elas
+      const g = Game, a = at(g.p1, 0), b = at(g.p2, 0), c = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      if (t < T2) { const u = t / T2; z = 1.35 + 0.12 * u; P = c; shot = 1; }
+      else { const u = this.ease((t - T2) / (LEN - T2)), z0 = 1.47; z = z0 + (1 - z0) * u; P = { x: c.x + (mid.x - c.x) * u, y: c.y + (mid.y - c.y) * u }; shot = 3; }
+      return { z, px: P.x, py: P.y, k: t < T2 ? 1 : 1 - this.ease((t - T2) / (LEN - T2)), shot, u: t };
+    }
+    if (t < 50) { const u = t / 50, pA = at(A, 0); z = zoomOf(A, u); P = { x: pA.x + 6 * u, y: pA.y }; shot = 1; }
+    else if (t < T2) {
+      const u = (t - 50) / (T2 - 50), w = this.ease(Math.min(1, u / 0.3)), pA = at(A, 1), pB = at(B, 0);
+      z = zoomOf(A, 1) + (zoomOf(B, Math.max(0, (u - 0.3) / 0.7)) - zoomOf(A, 1)) * w; P = { x: pA.x + (pB.x - pA.x) * w, y: pA.y + (pB.y - pA.y) * w }; shot = 2;
     } else {
-      const u = this.ease((t - 100) / (this.LEN - 100)); z = 2.05 + (1 - 2.05) * u;
+      const u = this.ease((t - T2) / (LEN - T2)), pB = at(B, 1), z0 = zoomOf(B, 1); z = z0 + (1 - z0) * u;
       P = { x: pB.x + (mid.x - pB.x) * u, y: pB.y + (mid.y - pB.y) * u }; shot = 3;
     }
-    const k = t < 100 ? 1 : 1 - this.ease((t - 100) / (this.LEN - 100));
+    const k = t < T2 ? 1 : 1 - this.ease((t - T2) / (LEN - T2));
     return { z, px: P.x, py: P.y, k, shot, u: t };
   },
   // aplica o zoom no mundo (cenário + lutadoras); o HUD é desenhado depois, sem zoom
@@ -11654,7 +11734,7 @@ const CamFX = {
     if (!this.active()) return;
     const v = this.v, g = Game, t = this.t, bar = Math.round(28 * v.k);
     ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, bar); ctx.fillRect(0, H - bar, W, bar);
-    const cut = t < 6 ? 1 - t / 6 : (t >= 50 && t < 56) ? 1 - (t - 50) / 6 : 0;
+    const cut = t < 6 ? 1 - t / 6 : this.seq ? (this.sFrom && t - this.sT < 5 ? 0.5 * (1 - (t - this.sT) / 5) : 0) : (!this.both() && t >= 50 && t < 56) ? 1 - (t - 50) / 6 : 0;
     if (cut > 0) { ctx.fillStyle = `rgba(255,255,255,${0.55 * cut})`; ctx.fillRect(0, 0, W, H); }
     const cap = (f, side, u) => {
       const inA = this.ease(Math.min(1, u / 12)), out = u > 40 ? 1 - this.ease((u - 40) / 10) : 1, al = inA * out;
@@ -11666,8 +11746,11 @@ const CamFX = {
       { const nm = playerNames(); txt(nm[f === g.p1 ? 0 : 1] || '', x, H - bar - 44, '#ff9ad6', 8, al2, ''); }
       ctx.restore();
     };
-    if (t < 50) cap(g.p1, -1, t); else if (t < 100) cap(g.p2, 1, t - 50);
-    if (t > 20 && t < 100 && v.k > 0.5) txt('J/A PULA', W - 8, 4 + bar * 0 + 2, 'rgba(255,255,255,0.45)', 8, 'right', '');
+    const [A, B] = this.order(), T2 = this.T2(), side = (f) => f.team === 1 ? -1 : 1;
+    if (this.seq) { if (this.sCur && this.sOut == null) cap(this.sCur, side(this.sCur), Math.min(t - this.sT, 39)); }
+    else if (this.both()) { if (t < T2) { const u = t * 50 / T2; cap(g.p1, -1, u); cap(g.p2, 1, u); } }
+    else if (t < 50) cap(A, side(A), t); else if (t < T2) cap(B, side(B), (t - 50) * 50 / (T2 - 50));
+    if (t > 20 && (this.seq ? this.sOut == null : t < this.T2()) && v.k > 0.5) txt('J/A PULA', W - 8, 4 + bar * 0 + 2, 'rgba(255,255,255,0.45)', 8, 'right', '');
   },
   hudAlpha() { return this.active() ? 1 - this.v.k : 1; },
 };
@@ -11803,6 +11886,39 @@ const WinFX = {
 // ---------------- Mix Athena: escolha da Athena antes de cada round ----------------
 const MixPick = {
   E: [], next: 'ready', LIMIT: 600,
+  // miniaturas: os quadros da pose parada de cada Athena recortados uma vez só em imagens pequenas
+  // (montar a folha de sprites colorida a cada quadro travava o jogo); no máximo uma Athena nova por quadro
+  TH: {}, built: -1,
+  thumbs(id, pal) {
+    const key = id + ':' + pal; if (this.TH[key]) return this.TH[key];
+    if (this.built === Game.frame) return null; this.built = Game.frame;
+    const ch = CHARS[id], name = ch.palNames[pal % ch.palNames.length], out = {};
+    // colore só o retângulo de cada quadro (e não a folha inteira de sprites)
+    const raw = atob(ch.pack.pals[name]), P = new Uint8Array(768); for (let i = 0; i < 768; i++) P[i] = raw.charCodeAt(i);
+    const I = ch.idx, IW = I.width;
+    for (const fr of ch.pack.anims[0][1]) {
+      const sid = fr[0], sp = ch.pack.spr[sid]; if (!sp || out[sid]) continue;
+      const w = Math.max(1, sp[3]), h = Math.max(1, sp[4]), c = document.createElement('canvas'); c.width = w; c.height = h;
+      const x = c.getContext('2d');
+      if (sp[0] === 0) {
+        const im = x.createImageData(w, h), o = im.data, d = I.data;
+        for (let yy = 0; yy < h; yy++) for (let xx = 0; xx < w; xx++) {
+          const v = d[((sp[2] + yy) * IW + sp[1] + xx) * 4]; if (!v) continue;
+          const q = (yy * w + xx) * 4; o[q] = P[v * 3]; o[q + 1] = P[v * 3 + 1]; o[q + 2] = P[v * 3 + 2]; o[q + 3] = 255;
+        }
+        x.putImageData(im, 0, 0);
+      } else if (ch.fxImg) x.drawImage(ch.fxImg, sp[1], sp[2], w, h, 0, 0, w, h);
+      out[sid] = { c, ax: sp[5], ay: sp[6], k: sp[7] || 1, w, h };
+    }
+    return (this.TH[key] = out);
+  },
+  // desenha um quadro da miniatura (mesma conta do drawSpr)
+  drawThumb(T, fr, x, y, facing, alpha, sc) {
+    const t = T && T[fr[0]]; if (!t) return;
+    const eff = facing * (fr[6] ? -1 : 1), px = Math.round(x + facing * fr[1] * sc), py = Math.round(y + fr[2] * sc);
+    ctx.save(); ctx.globalAlpha = alpha; ctx.translate(px, py); if (eff < 0) ctx.scale(-1, 1);
+    ctx.drawImage(t.c, -t.ax * sc, -t.ay * sc, t.w * t.k * sc, t.h * t.k * sc); ctx.restore();
+  },
   start(next) {
     const g = Game, ids = mixList();
     this.next = next; this.E = [];
@@ -11812,7 +11928,7 @@ const MixPick = {
       if (!human) { e.idx = this.cpuChoice(f, ids); e.done = true; }
       this.E.push(e);
     }
-    if (this.E.some(e => e.human)) { g.roundState = 'mixpick'; g.rsT = 0; for (const f of g.F) if (f.state === 190) f.change(0); }
+    if (this.E.some(e => e.human)) { g.roundState = 'mixpick'; g.rsT = 0; g.introSeq = null; g.introCur = null; for (const f of g.F) { f.hidden = false; if (f.state === 190) f.change(0); } }
     else this.apply();   // só CPUs: escolhem na hora, sem parar a luta
   },
   // a CPU varia: não repete a Athena com que começou o round anterior
@@ -11840,7 +11956,7 @@ const MixPick = {
       e.f.mixT = 300;
     }
     this.E = [];
-    if (this.next === 'intro') { for (const f of g.F) f.change(190); g.roundState = 'intro'; } else g.roundState = this.next;
+    if (this.next === 'intro') { g.beginIntro(); g.roundState = 'intro'; } else g.roundState = this.next;
     g.rsT = 0;
   },
   // painel de cada Mix (do lado dela): a Athena grande no meio, as vizinhas pequenas, ◄ ► e o nome
@@ -11861,13 +11977,13 @@ const MixPick = {
       // vizinhas (pequenas, apagadas)
       for (const d of [-1, 1]) {
         const nid = ids[(e.idx + d + ids.length) % ids.length], nc = CHARS[nid], nf = nc.pack.anims[0][1][0];
-        drawSpr(palAtlas(nc, (e.f.mixPal || 0) % nc.palNames.length), nf[0], cx + d * 62, cy + 98, e.f.team === 1 ? 1 : -1, nf[1], nf[2], nf[6], 0.35, false, false, 0.5);
+        this.drawThumb(this.thumbs(nid, e.f.mixPal || 0), nf, cx + d * 62, cy + 98, e.f.team === 1 ? 1 : -1, 0.35, 0.5);
       }
       // a escolhida, animada
       if (e.animId !== id) { e.anim = new Anim(0, ch.pack.anims); e.animId = id; }
       if (g.frame !== e.lastF) { e.anim.step(); e.lastF = g.frame; }
       const fr = e.anim.f, pop = e.moved && t - e.moved < 6 ? 1 + (6 - (t - e.moved)) * 0.03 : 1;
-      drawSpr(palAtlas(ch, (e.f.mixPal || 0) % ch.palNames.length), fr[0], cx, cy + 101, e.f.team === 1 ? 1 : -1, fr[1], fr[2], fr[6], 1, false, false, 0.72 * pop);
+      this.drawThumb(this.thumbs(id, e.f.mixPal || 0), fr, cx, cy + 101, e.f.team === 1 ? 1 : -1, 1, 0.72 * pop);
       if (!e.done) { txt('◄', cx - 84, cy + 54, '#fff', 12, 'left', ''); txt('►', cx + 84, cy + 54, '#fff', 12, 'right', ''); }
       ctx.restore();
       ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(cx - 92, cy + 102, 184, 18);
