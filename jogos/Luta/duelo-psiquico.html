@@ -10002,6 +10002,8 @@ const Game = {
     if (intro && this.mode !== 'train') { for (const f of this.F) f.change(190); this.roundState = 'intro'; }
     else this.roundState = this.mode === 'train' ? 'fight' : 'ready';
     this.rsT = 0;
+    // Mix Athena: antes de cada round escolhe com qual Athena começa (a troca Q/E continua valendo na luta)
+    if (this.mode !== 'train' && !this.net && !this.demo && this.F.some(f => f.mix)) MixPick.start(this.roundState);
   },
 
   // ---------- passo de simulação ----------
@@ -10321,6 +10323,7 @@ const Game = {
   roundLogic() {
     const rs = this.roundState; this.rsT++;
     const F = this.F;
+    if (rs === 'mixpick') { MixPick.logic(); return; }
     if (rs === 'intro') {
       if (this.rsT > 120 || F.every(f => f.state === 0)) { F.forEach(f => f.state !== 0 && f.change(0)); this.roundState = 'ready'; this.rsT = 0; }
     } else if (rs === 'ready') {
@@ -11796,6 +11799,80 @@ const WinFX = {
     if (this.waitsKey() && this.style !== 'mix' && t > 150 && Math.floor(t / 20) % 2 === 0) txt(touchActive ? 'APERTE A PARA CONTINUAR' : 'J  CONTINUAR', W - 12, 222, '#fff', 8, 'right', '#5a0a3a');
   },
 };
+// ---------------- Mix Athena: escolha da Athena antes de cada round ----------------
+const MixPick = {
+  E: [], next: 'ready', LIMIT: 600,
+  start(next) {
+    const g = Game, ids = mixList();
+    this.next = next; this.E = [];
+    for (const f of g.F) if (f.mix) {
+      const human = !!f.ctl && !f.cpu;
+      const e = { f, human, idx: Math.max(0, ids.indexOf(f.ch.id)), done: false, anim: null, animId: null, moved: 0 };
+      if (!human) { e.idx = this.cpuChoice(f, ids); e.done = true; }
+      this.E.push(e);
+    }
+    if (this.E.some(e => e.human)) { g.roundState = 'mixpick'; g.rsT = 0; for (const f of g.F) if (f.state === 190) f.change(0); }
+    else this.apply();   // só CPUs: escolhem na hora, sem parar a luta
+  },
+  // a CPU varia: não repete a Athena com que começou o round anterior
+  cpuChoice(f, ids) { let i = Math.floor(Math.random() * ids.length); if (ids[i] === f.ch.id && ids.length > 1) i = (i + 1 + Math.floor(Math.random() * (ids.length - 1))) % ids.length; return i; },
+  logic() {
+    const g = Game, ids = mixList();
+    for (const e of this.E) {
+      if (e.done || !e.human) continue;
+      const ed = (e.f.ctl && e.f.ctl.edge) || {};
+      if (ed.left || ed.right) { e.idx = (e.idx + (ed.left ? -1 : 1) + ids.length) % ids.length; e.moved = g.rsT; try { Audio_.play(6, 6, null, 0.4); } catch (x) { } }
+      if (ed.a || ed.start) { e.done = true; e.doneT = g.rsT; try { Audio_.play(6, 6); } catch (x) { } }
+    }
+    if (g.rsT >= this.LIMIT) for (const e of this.E) e.done = true;   // tempo esgotado: fica a que estava marcada
+    const last = Math.max(0, ...this.E.map(e => e.doneT || 0));
+    if (this.E.every(e => e.done) && g.rsT >= last + 18) this.apply();
+  },
+  apply() {
+    const g = Game, ids = mixList();
+    for (const e of this.E) {
+      const id = ids[e.idx];
+      if (id && id !== e.f.ch.id) { e.f.swapChar(0, id); e.f.flash = 0; e.f.after = 0; g.explods = g.explods.filter(x => x.owner !== e.f && x.bind !== e.f); }
+      e.f.mixT = 300;
+    }
+    this.E = [];
+    if (this.next === 'intro') { for (const f of g.F) f.change(190); g.roundState = 'intro'; } else g.roundState = this.next;
+    g.rsT = 0;
+  },
+  // painel de cada Mix (do lado dela): a Athena grande no meio, as vizinhas pequenas, ◄ ► e o nome
+  draw() {
+    const g = Game; if (g.roundState !== 'mixpick') return;
+    const ids = mixList(), t = g.rsT;
+    ctx.fillStyle = 'rgba(8,0,18,0.62)'; ctx.fillRect(0, 0, W, H);
+    txt('MIX ATHENA', W / 2, 44, '#ff7ad9', 14, 'center', '#5a0a3a');
+    txt('ESCOLHA COM QUAL ATHENA COMEÇA O ' + (g.round === 3 ? 'ROUND FINAL' : 'ROUND ' + g.round), W / 2, 62, '#fff', 8, 'center', '');
+    txt(Math.max(0, Math.ceil((this.LIMIT - t) / 60)) + '', W / 2, 78, '#ffd23f', 10, 'center', '');
+    const sides = { 1: 0, 2: 0 };
+    for (const e of this.E) {
+      const k = sides[e.f.team]++, cx = (e.f.team === 1 ? 108 : W - 108) + (e.f.team === 1 ? 1 : -1) * k * 12, cy = 86 + k * 6;
+      const id = ids[e.idx], ch = CHARS[id];
+      ctx.fillStyle = 'rgba(20,4,34,0.88)'; ctx.fillRect(cx - 92, cy, 184, 120);
+      ctx.save(); ctx.beginPath(); ctx.rect(cx - 92, cy, 184, 120); ctx.clip();
+      ctx.strokeStyle = e.done ? '#ffd23f' : (e.f.team === 1 ? '#7fd4ff' : '#ff8fb8'); ctx.lineWidth = 1; ctx.strokeRect(cx - 91.5, cy + 0.5, 183, 119);
+      // vizinhas (pequenas, apagadas)
+      for (const d of [-1, 1]) {
+        const nid = ids[(e.idx + d + ids.length) % ids.length], nc = CHARS[nid], nf = nc.pack.anims[0][1][0];
+        drawSpr(palAtlas(nc, (e.f.mixPal || 0) % nc.palNames.length), nf[0], cx + d * 62, cy + 98, e.f.team === 1 ? 1 : -1, nf[1], nf[2], nf[6], 0.35, false, false, 0.5);
+      }
+      // a escolhida, animada
+      if (e.animId !== id) { e.anim = new Anim(0, ch.pack.anims); e.animId = id; }
+      if (g.frame !== e.lastF) { e.anim.step(); e.lastF = g.frame; }
+      const fr = e.anim.f, pop = e.moved && t - e.moved < 6 ? 1 + (6 - (t - e.moved)) * 0.03 : 1;
+      drawSpr(palAtlas(ch, (e.f.mixPal || 0) % ch.palNames.length), fr[0], cx, cy + 101, e.f.team === 1 ? 1 : -1, fr[1], fr[2], fr[6], 1, false, false, 0.72 * pop);
+      if (!e.done) { txt('◄', cx - 84, cy + 54, '#fff', 12, 'left', ''); txt('►', cx + 84, cy + 54, '#fff', 12, 'right', ''); }
+      ctx.restore();
+      ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(cx - 92, cy + 102, 184, 18);
+      txt(ch.short, cx, cy + 106, '#fff', 10, 'center', '#5a0a3a');
+      const who = e.human ? (e.f.ctl && e.f.ctl.pl ? 'P' + e.f.ctl.pl : 'JOGADOR') : 'CPU';
+      txt(who + (e.done ? ' · PRONTA!' : e.human ? ' · ◄ ► ESCOLHE · J CONFIRMA' : ''), cx, cy + 4, e.done ? '#ffd23f' : '#c9b6e6', 8, 'center', '');
+    }
+  },
+};
 function drawFight() {
   const g = Game, cam = Math.round(g.camX);
   const sy = g.shake > 0 ? (g.frame % 2 ? 2 : -2) : 0;
@@ -11837,6 +11914,7 @@ function drawFight() {
     ctx.fillStyle = `rgba(255,120,200,${Math.min(0.5, k / 60)})`; ctx.fillRect(0, 96, W, 30);
     txt(g.superName, W / 2 + (k - 20) * 1.5, 105, '#fff', 10, 'center', '#600030');
   }
+  MixPick.draw();
   WinFX.capture();   // a foto do golpe final sai sem as barras de vida
   const ha = Math.min(camOn ? CamFX.hudAlpha() : 1, WinFX.hudAlpha());
   if (ha < 1) { ctx.save(); ctx.globalAlpha = ha; drawHUD(); ctx.restore(); } else drawHUD();
@@ -13857,7 +13935,7 @@ function update() {
   if (Game.demo) { Demo.frame(); return; }
   if (Game.scene === 'fight') {
     if (!Game.paused) {
-      if ((M1.edge.start || ((Game.mode === 'vs2' || Game.mode === 'coop' || (Game.mode === 'train' && Game.dummy === 6)) && M2.edge.start)) && Game.roundState !== 'win') { Game.paused = true; Game.pauseIdx = 0; Game.pauseFrame = true; }
+      if ((M1.edge.start || ((Game.mode === 'vs2' || Game.mode === 'coop' || (Game.mode === 'train' && Game.dummy === 6)) && M2.edge.start)) && Game.roundState !== 'win' && Game.roundState !== 'mixpick') { Game.paused = true; Game.pauseIdx = 0; Game.pauseFrame = true; }
       else Game.step();
     }
     drawFight();
