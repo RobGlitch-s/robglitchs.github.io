@@ -9999,7 +9999,8 @@ const Game = {
     this.projs = []; this.explods = []; this.cine = false; this.cineBlack = false; this.grayT = 0; this.camLock = false; this.timer = this.tlim || 99; this.timerT = 0; this.slow = 0; this.superT = 0;
     this.camX = (STAGE_W - W) / 2;
     this.koVictim = null;
-    if (intro && this.mode !== 'train') { for (const f of this.F) f.change(190); this.roundState = 'intro'; }
+    this.introSeq = null; this.introCur = null;
+    if (intro && this.mode !== 'train') { this.beginIntro(); this.roundState = 'intro'; }
     else this.roundState = this.mode === 'train' ? 'fight' : 'ready';
     this.rsT = 0;
     // Mix Athena: antes de cada round escolhe com qual Athena começa (a troca Q/E continua valendo na luta)
@@ -10325,6 +10326,17 @@ const Game = {
     const F = this.F;
     if (rs === 'mixpick') { MixPick.logic(); return; }
     if (rs === 'intro') {
+      if (this.introSeq) {
+        // qualquer botão pula as introduções
+        if (this.rsT > 8 && [M1, M2].some(c => c && c.edge && ['a', 'b', 'c', 'd', 'start'].some(k => c.edge[k]))) { this.skipIntro(); return; }
+        const f = this.introCur; this.introT++;
+        if (!f || f.state !== 190 || this.introT > 300) {   // segurança: a mais longa (2003) leva ~234 quadros
+          if (f && f.state === 190) f.change(0);
+          this.introI++;
+          if (!this.nextIntro()) { this.introCur = null; this.introSeq = null; this.roundState = 'ready'; this.rsT = 0; }
+        }
+        return;
+      }
       if (this.rsT > 120 || F.every(f => f.state === 0)) { F.forEach(f => f.state !== 0 && f.change(0)); this.roundState = 'ready'; this.rsT = 0; }
     } else if (rs === 'ready') {
       if (this.rsT === 1) this.say(this.round === 3 ? 'ROUND FINAL' : 'ROUND ' + this.round, 70);
@@ -10378,6 +10390,26 @@ const Game = {
         this.round++; this.startRound(false);
       }
     }
+  },
+  // introduções: com a câmera ligada (fora do online), uma lutadora por vez — a próxima só aparece quando começa a entrada dela
+  beginIntro() {
+    const seq = !this.net && typeof CamFX !== 'undefined' && CamFX.on;
+    for (const f of this.F) f.hidden = false;
+    if (!seq) { for (const f of this.F) f.change(190); return; }
+    const L = [...this.F].sort((a, b) => (a.team - b.team) || (a.slot - b.slot));
+    this.introSeq = L; this.introI = 0; this.introT = 0;
+    for (const f of L) { f.change(0); f.hidden = true; }
+    this.nextIntro();
+  },
+  nextIntro() {
+    const f = this.introSeq[this.introI]; if (!f) return false;
+    f.hidden = false; f.change(190); this.introCur = f; this.introT = 0; return true;
+  },
+  // termina todas as introduções na hora (botão para pular)
+  skipIntro() {
+    if (this.introSeq) for (const f of this.introSeq) f.hidden = false;
+    for (const f of this.F) if (f.state === 190) f.change(0);
+    this.introSeq = null; this.introCur = null; this.roundState = 'ready'; this.rsT = 0;
   },
   endRound(w) {
     this.winner = w; if (w >= 0) this.wins[w]++; else { this.wins[0]++; this.wins[1]++; }
@@ -11619,21 +11651,47 @@ const CamFX = {
   tick() {
     const g = Game;
     if (!this.on || g.mode === 'train') { this.t = -1; return; }
-    if (g.roundState === 'intro' && g.rsT <= 2 && g.round === 1 && (this.t < 0 || this.mid !== g.matchId)) { this.t = 0; this.skip = false; this.last = g.frame; this.mid = g.matchId; }
+    if (g.roundState === 'intro' && g.rsT <= 2 && g.round === 1 && (this.t < 0 || this.mid !== g.matchId)) { this.t = 0; this.skip = false; this.last = g.frame; this.mid = g.matchId; this.seq = !!g.introSeq; this.sCur = null; this.sPrev = null; this.sFrom = null; this.sLast = null; this.sOut = null; }
     if (this.t < 0) return;
     if (g.frame !== this.last) { this.t += Math.max(1, Math.min(3, g.frame - this.last)); this.last = g.frame; }
     // qualquer botão pula a cena; e ela nunca passa do começo da luta
     if (this.t > 8 && !this.skip && [M1, M2].some(c => c && c.edge && Object.keys(c.edge).some(k => c.edge[k] && /^(a|b|c|d|start)$/.test(k)))) this.skip = true;
+    if (g.roundState === 'ko' || g.roundState === 'timeup') { this.t = -1; return; }
+    if (this.seq) { if (g.roundState === 'fight' && this.sOut == null) this.sOut = this.t - 30; return; }   // o fim é pela própria sequência
     const L = this.len();
     if (this.skip || g.roundState === 'fight') this.t = Math.max(this.t, L - 14);
-    if (this.t >= L || g.roundState === 'ko' || g.roundState === 'timeup') this.t = -1;
+    if (this.t >= L) this.t = -1;
   },
   active() { return this.t >= 0; },
   // quem aparece primeiro e quem aparece depois (a que entra por baixo fica para depois, quando já está subindo)
   both() { const g = Game; return this.late(g.p1) && this.late(g.p2); },
   order() { const g = Game; return this.late(g.p1) && !this.late(g.p2) ? [g.p2, g.p1] : [g.p1, g.p2]; },
+  // modo uma por vez: a câmera segue quem está fazendo a entrada; troca com um giro rápido; no fim abre
+  seqView(cam) {
+    const g = Game, t = this.t, cur = g.introCur;
+    const at = (f) => {
+      if (!this.late(f)) return { x: f.x - cam, y: GY + f.y - 72, z: 1.85 };
+      const rise = this.ease(f.state === 190 && f.anim ? Math.max(0, f.anim.elem - 1) / 9 : 1);
+      return { x: f.x - cam, y: GY + f.y - 26 - 46 * rise, z: 1.5 + 0.3 * rise };
+    };
+    if (cur && cur !== this.sCur) { this.sPrev = this.sCur; this.sCur = cur; this.sT = t; this.sFrom = this.sLast; }
+    if (!cur && this.sOut == null) this.sOut = t;
+    let v;
+    if (this.sOut == null) {
+      const p = at(cur), el = t - this.sT, push = Math.min(0.15, el * 0.0015);
+      v = { x: p.x, y: p.y, z: p.z + push };
+      if (this.sFrom && el < 18) { const w = this.ease(el / 18); v = { x: this.sFrom.x + (v.x - this.sFrom.x) * w, y: this.sFrom.y + (v.y - this.sFrom.y) * w, z: this.sFrom.z + (v.z - this.sFrom.z) * w }; }
+      this.sLast = v;
+    } else {
+      const u = this.ease((t - this.sOut) / 40), f0 = this.sLast || { x: W / 2, y: H * 0.55, z: 1 };
+      v = { x: f0.x + (W / 2 - f0.x) * u, y: f0.y + (H * 0.55 - f0.y) * u, z: f0.z + (1 - f0.z) * u };
+      if (t - this.sOut >= 40) this.t = -1;
+    }
+    return { z: v.z, px: v.x, py: v.y, k: this.sOut == null ? 1 : 1 - this.ease((t - this.sOut) / 40), shot: 1, u: t };
+  },
   // devolve { z: zoom, px, py: ponto da tela que vai para o centro, k: quanto a cena ainda está "ligada" (0..1), shot }
   view(cam) {
+    if (this.seq) return this.seqView(cam);
     const t = this.t, [A, B] = this.order(), T2 = this.T2(), LEN = this.len();
     const at = (f, u) => {   // peito/rosto; quem entra por baixo: começa no chão (portão) e sobe junto com ela
       if (!this.late(f)) return { x: f.x - cam, y: GY + f.y - 72 };
@@ -11676,7 +11734,7 @@ const CamFX = {
     if (!this.active()) return;
     const v = this.v, g = Game, t = this.t, bar = Math.round(28 * v.k);
     ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, bar); ctx.fillRect(0, H - bar, W, bar);
-    const cut = t < 6 ? 1 - t / 6 : (!this.both() && t >= 50 && t < 56) ? 1 - (t - 50) / 6 : 0;
+    const cut = t < 6 ? 1 - t / 6 : this.seq ? (this.sFrom && t - this.sT < 5 ? 0.5 * (1 - (t - this.sT) / 5) : 0) : (!this.both() && t >= 50 && t < 56) ? 1 - (t - 50) / 6 : 0;
     if (cut > 0) { ctx.fillStyle = `rgba(255,255,255,${0.55 * cut})`; ctx.fillRect(0, 0, W, H); }
     const cap = (f, side, u) => {
       const inA = this.ease(Math.min(1, u / 12)), out = u > 40 ? 1 - this.ease((u - 40) / 10) : 1, al = inA * out;
@@ -11689,9 +11747,10 @@ const CamFX = {
       ctx.restore();
     };
     const [A, B] = this.order(), T2 = this.T2(), side = (f) => f.team === 1 ? -1 : 1;
-    if (this.both()) { if (t < T2) { const u = t * 50 / T2; cap(g.p1, -1, u); cap(g.p2, 1, u); } }
+    if (this.seq) { if (this.sCur && this.sOut == null) cap(this.sCur, side(this.sCur), Math.min(t - this.sT, 39)); }
+    else if (this.both()) { if (t < T2) { const u = t * 50 / T2; cap(g.p1, -1, u); cap(g.p2, 1, u); } }
     else if (t < 50) cap(A, side(A), t); else if (t < T2) cap(B, side(B), (t - 50) * 50 / (T2 - 50));
-    if (t > 20 && t < this.T2() && v.k > 0.5) txt('J/A PULA', W - 8, 4 + bar * 0 + 2, 'rgba(255,255,255,0.45)', 8, 'right', '');
+    if (t > 20 && (this.seq ? this.sOut == null : t < this.T2()) && v.k > 0.5) txt('J/A PULA', W - 8, 4 + bar * 0 + 2, 'rgba(255,255,255,0.45)', 8, 'right', '');
   },
   hudAlpha() { return this.active() ? 1 - this.v.k : 1; },
 };
@@ -11836,7 +11895,7 @@ const MixPick = {
       if (!human) { e.idx = this.cpuChoice(f, ids); e.done = true; }
       this.E.push(e);
     }
-    if (this.E.some(e => e.human)) { g.roundState = 'mixpick'; g.rsT = 0; for (const f of g.F) if (f.state === 190) f.change(0); }
+    if (this.E.some(e => e.human)) { g.roundState = 'mixpick'; g.rsT = 0; g.introSeq = null; g.introCur = null; for (const f of g.F) { f.hidden = false; if (f.state === 190) f.change(0); } }
     else this.apply();   // só CPUs: escolhem na hora, sem parar a luta
   },
   // a CPU varia: não repete a Athena com que começou o round anterior
@@ -11864,7 +11923,7 @@ const MixPick = {
       e.f.mixT = 300;
     }
     this.E = [];
-    if (this.next === 'intro') { for (const f of g.F) f.change(190); g.roundState = 'intro'; } else g.roundState = this.next;
+    if (this.next === 'intro') { g.beginIntro(); g.roundState = 'intro'; } else g.roundState = this.next;
     g.rsT = 0;
   },
   // painel de cada Mix (do lado dela): a Athena grande no meio, as vizinhas pequenas, ◄ ► e o nome
