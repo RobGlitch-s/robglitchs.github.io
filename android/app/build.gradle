@@ -1,0 +1,40 @@
+plugins {
+    id 'com.android.application'
+}
+
+// versão: o GitHub Actions passa o número da execução (cada APK novo tem versionCode maior)
+def runNo = (System.getenv("VERSION_CODE") ?: "1") as int
+
+android {
+    namespace 'com.robglitch.duelopsiquico'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.robglitch.duelopsiquico'
+        minSdk 21
+        targetSdk 34
+        versionCode 100 + runNo
+        versionName "9." + runNo
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(System.getenv("KS_PATH") ?: "release.jks")
+            storePassword System.getenv("KS_PASS")
+            keyAlias System.getenv("KS_ALIAS") ?: "duelo"
+            keyPassword System.getenv("KS_PASS")
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    // o jogo (index.html) vai sem compressão extra: abre mais rápido
+    androidResources {
+        noCompress 'html'
+    }
+}

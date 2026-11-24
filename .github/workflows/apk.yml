@@ -1,0 +1,71 @@
+# Gera o APK do Duelo Psíquico (Android) a partir de jogos/Luta/duelo-psiquico.html
+# e publica em Releases: tag "apk" (main) ou "apk-teste" (outros branches).
+name: APK do Duelo Psíquico
+
+on:
+  push:
+    paths:
+      - 'android/**'
+      - 'jogos/Luta/duelo-psiquico.html'
+      - '.github/workflows/apk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Copiar o jogo para dentro do app
+        run: cp jogos/Luta/duelo-psiquico.html android/app/src/main/assets/index.html
+
+      # chave de assinatura: use os segredos KEYSTORE_B64 e KEYSTORE_PASS para o APK sempre ter a mesma chave
+      # (sem eles, cada APK sai com uma chave nova e é preciso desinstalar o anterior antes de instalar)
+      - name: Chave de assinatura
+        env:
+          KEYSTORE_B64: ${{ secrets.KEYSTORE_B64 }}
+          KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
+        run: |
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > android/app/release.jks
+            echo "KS_PASS=$KEYSTORE_PASS" >> "$GITHUB_ENV"
+          else
+            echo "::warning::Sem KEYSTORE_B64: usando uma chave temporária"
+            keytool -genkeypair -keystore android/app/release.jks -alias duelo -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass temporaria -keypass temporaria -dname "CN=Duelo Psiquico"
+            echo "KS_PASS=temporaria" >> "$GITHUB_ENV"
+          fi
+
+      - name: Montar o APK
+        env:
+          VERSION_CODE: ${{ github.run_number }}
+        run: gradle -p android assembleRelease --no-daemon
+
+      - name: Renomear
+        run: cp android/app/build/outputs/apk/release/app-release.apk duelo-psiquico.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: duelo-psiquico-apk
+          path: duelo-psiquico.apk
+
+      - name: Publicar em Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${GITHUB_REF_NAME}" = "main" ]; then TAG=apk; TITLE="Duelo Psíquico (Android)"; PRE=""; else TAG=apk-teste; TITLE="Duelo Psíquico (Android) - teste ${GITHUB_REF_NAME}"; PRE="--prerelease"; fi
+          gh release delete "$TAG" -y --cleanup-tag || true
+          gh release create "$TAG" duelo-psiquico.apk --target "$GITHUB_SHA" --title "$TITLE" $PRE \
+            --notes "APK gerado automaticamente (execução ${{ github.run_number }}, versão 9.${{ github.run_number }}). Instale no Android permitindo 'fontes desconhecidas'."
