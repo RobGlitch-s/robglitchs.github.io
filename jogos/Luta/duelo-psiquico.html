@@ -9951,7 +9951,12 @@ const Game = {
     // cenário: o escolhido na tela de cenários (ALEATÓRIO sorteia um)
     { let sid = this.stage || 'temple'; if (sid === 'random') sid = STAGES[Math.floor(Math.random() * STAGES.length)].id; Stage.use(sid); }
     // "mix" = Mix Athena: começa como a Athena 2000 (a neutra) e troca durante a luta
+    // cores únicas: cada lutadora tem uma cor diferente (1-5 valem para todas as Athenas, Mix incluída);
+    // quem foi escolhida primeiro fica com a cor, as seguintes pulam para a próxima livre
+    const usedPal = new Set();
+    const uniqPal = (id, pal) => { const np = Math.max(1, palCount(id)); pal = (pal | 0) % np; for (let t = 0; t < np; t++) { const q = (pal + t) % np; if (!usedPal.has(q)) { usedPal.add(q); return q; } } return pal; };
     const mk = (side, id, pal, ctl) => {
+      pal = uniqPal(id, pal);
       if (id !== 'mix') return new Fighter(side, CHARS[id], pal, ctl);
       const f = new Fighter(side, CHARS[MIX_START], (pal || 0) % CHARS[MIX_START].palNames.length, ctl);
       f.mix = true; f.mixPal = pal || 0; f.mixT = 300; return f;
@@ -9974,6 +9979,7 @@ const Game = {
       for (const f of this.F) if (f.cpu) f.ai = cpuFor(f, this.diff);
       this.char1 = this.p1.ch.id; this.char2 = this.p2.ch.id;
     } else {
+    if (this.mode === 'coop') { this.pal1 = uniqPal(this.char1, this.pal1); this.pal3 = uniqPal(this.char3, this.pal3); usedPal.delete(this.pal1); usedPal.delete(this.pal3); this.pal2 = (() => { const t = new Set([this.pal1, this.pal3]), np = palCount(this.char2); let q = this.pal2 | 0; for (let k = 0; k < np && t.has(q % np); k++) q++; return q % np; })(); }
     this.p1 = mk(1, this.char1, this.pal1, c1);
     this.p2 = mk(2, this.char2, this.pal2, c2);
     this.p3 = null; this.F = [this.p1, this.p2];
@@ -12518,7 +12524,7 @@ const Net = {
   // escalação a partir das escolhas (cada um escolheu a sua lutadora e, se for o caso, a parceira CPU)
   buildLineup() {
     const F = this.form(), Q = netQueues(F), list = selList(), L = [], used = [];
-    const add = (e, id, pal) => { const np = palCount(id); for (let t = 0; t < np && used.some(u => u[0] === id && u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: e.ctl, char: id, pal }); };
+    const add = (e, id, pal) => { const np = palCount(id); for (let t = 0; t < np && used.some(u => u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: e.ctl, char: id, pal }); };
     Q.q.forEach((q, s) => q.forEach((e, k) => { const p = Sel.p[s], r = p.res[k] || { idx: p.idx, pal: p.pal }; add(e, list[r.idx], r.pal); }));
     for (const e of Q.rnd) { const [id, pal] = botPick(this.cfg, e); add(Object.assign({}, e, { ctl: 'cpu' }), id, pal); }
     return L;
@@ -12527,7 +12533,7 @@ const Net = {
   arcFight(L) {
     const A = this.arc, F = this.form();
     const team = L.filter(e => e.team === 1), used = team.map(e => [e.char, e.pal]);
-    const add = (slot, id) => { const np = palCount(id); let pal = Math.floor(Math.random() * np); for (let t = 0; t < np && used.some(u => u[0] === id && u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); team.push({ team: 2, slot, ctl: 'cpu', char: id, pal }); };
+    const add = (slot, id) => { const np = palCount(id); let pal = Math.floor(Math.random() * np); for (let t = 0; t < np && used.some(u => u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); team.push({ team: 2, slot, ctl: 'cpu', char: id, pal }); };
     add(0, A.ladder[A.stage]);
     if (F.t2.length > 1) add(1, A.mates[A.stage]);
     return team;
@@ -12940,7 +12946,7 @@ const Room = {
   startLocal() {
     const F = this.form(); if (F.err) return;
     const Q = netQueues(F), list = selList(), L = [], used = [], tok = c => c[0] === 's' ? 'p' + (+c[1] + 1) : 'cpu';
-    const add = (e, id, pal) => { const np = palCount(id); for (let t = 0; t < np && used.some(u => u[0] === id && u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: tok(e.ctl), char: id, pal }); };
+    const add = (e, id, pal) => { const np = palCount(id); for (let t = 0; t < np && used.some(u => u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: tok(e.ctl), char: id, pal }); };
     Q.q.forEach((q, s) => q.forEach(e => { const p = Sel.p[s], r = p.res[0] || { idx: p.idx, pal: p.pal }; add(e, list[r.idx], r.pal); }));
     for (const e of Q.rnd) { const [id, pal] = botPick(this.cfg(), e); add(e, id, pal); }
     for (const p of Sel.p) if (p.phase === 'ready') p.phase = 'pal';   // ao voltar, cada uma confirma de novo
@@ -13542,16 +13548,17 @@ const Sel = {
       else if (e.b && pl === 0) Game.scene = 'menu';
     } else if (p.phase === 'pal') {
       const np = palCount(list[p.idx]);
-      if (e.left) p.pal = (p.pal + np - 1) % np; if (e.right) p.pal = (p.pal + 1) % np;
+      if (e.left || e.right) { const d = e.left ? np - 1 : 1, tk = this.takenPal(pl); let q = p.pal; for (let t = 0; t < np; t++) { q = (q + d) % np; if (q !== tk) break; } p.pal = q; }
       if ((e.a || e.start) && this.advance(pl)) { /* próxima lutadora da fila */ }
       else if (e.a || e.start) { p.phase = 'ready'; const ch = CHARS[this.showId(p)]; const tv = ch.S.taunt || ch.S.win1; if (tv) Audio_.play(tv[0], tv[1], 'v' + (pl + 1), 1, ch.id); if (!twoPick() && pl === 0 && !Arcade.on) this.turn = 1; }
       if (e.b) p.phase = 'char';
     } else if (p.phase === 'ready' && e.b) { p.phase = 'pal'; if (!twoPick()) this.turn = pl; }
   },
-  freePal(pl, want) {   // evita duas lutadoras iguais com a mesma cor
-    const o = this.p[1 - pl], list = selList();
-    if (o.phase !== 'char' && o.idx === this.p[pl].idx && o.pal === want) return (want + 1) % palCount(list[o.idx]);
-    return want;
+  // cor que a outra jogadora já escolheu (qualquer Athena, Mix incluída) — quem escolheu primeiro fica com ela
+  takenPal(pl) { const o = this.p[1 - pl]; return o && o.phase !== 'char' ? o.pal : -1; },
+  freePal(pl, want) {   // nunca repete a cor da outra jogadora
+    const np = palCount(selList()[this.p[pl].idx]), tk = this.takenPal(pl);
+    return want === tk ? (want + 1) % np : want % np;
   },
   // ---- SALA DE TIMES (online e offline, até 4 jogadores + CPUs): cada um escolhe a sua lutadora e a cor do time ----
   resetNet() { this.resetRoom(); },
@@ -13611,7 +13618,10 @@ const Sel = {
       else if (e.b) Room.leave(s);
     } else if (p.phase === 'pal') {
       const np = palCount(list[p.idx]);
-      if (e.left) p.pal = (p.pal + np - 1) % np; if (e.right) p.pal = (p.pal + 1) % np;
+      // cores já tomadas por quem escolheu antes (jogadoras da sala e CPUs) não podem se repetir
+      const tk = new Set([0, 1, 2, 3].filter(i => i !== s && this.p[i] && Room.playing(i) && this.p[i].phase !== 'char').map(i => this.p[i].pal));
+      if (tk.size < np && tk.has(p.pal)) { let q = p.pal; for (let t = 0; t < np && tk.has(q); t++) q = (q + 1) % np; p.pal = q; }
+      if (e.left || e.right) { const d = e.left ? np - 1 : 1; let q = p.pal; for (let t = 0; t < np; t++) { q = (q + d) % np; if (!tk.has(q)) break; } p.pal = q; }
       if (e.a || e.start) {
         p.res = [{ idx: p.idx, pal: p.pal }];
         const ch = CHARS[this.showId(p)]; const tv = ch.S.taunt || ch.S.win1; if (tv) Audio_.play(tv[0], tv[1], 'v' + (s % 2 + 1), 1, ch.id);
@@ -13799,14 +13809,14 @@ const Sel = {
     if (this.Q) [0, 1].forEach(pl => this.qOf(pl).forEach((e, k) => { const p = this.p[pl], r = p.res[k] || { idx: p.idx, pal: p.pal }; T.push({ slot: e.slot, ctl: e.ctl, char: list[r.idx], pal: r.pal }); }));
     else T.push({ slot: 0, ctl: 'p1', char: list[this.p[0].idx], pal: this.p[0].pal });
     T.sort((a, b) => a.slot - b.slot);
-    if (T[1] && T[1].char === T[0].char && T[1].pal === T[0].pal) T[1].pal = (T[1].pal + 1) % palCount(T[1].char);
+    if (T[1] && T[1].pal === T[0].pal) T[1].pal = (T[1].pal + 1) % palCount(T[1].char);
     return T;
   },
   go() {
     const list = selList(), [a, b] = this.p;
     if (this.Q) {   // formação com duplas: monta a escalação de cada time
       const L = [], used = [];
-      const add = (e, id, pal) => { const np = palCount(id); for (let t = 0; t < np && used.some(u => u[0] === id && u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: e.ctl, char: id, pal }); };
+      const add = (e, id, pal) => { const np = palCount(id); for (let t = 0; t < np && used.some(u => u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: e.ctl, char: id, pal }); };
       [0, 1].forEach(pl => this.qOf(pl).forEach((e, k) => { const p = this.p[pl], r = p.res[k] || { idx: p.idx, pal: p.pal }; add(e, list[r.idx], r.pal); }));
       const real = rosterList();
       for (const e of this.Q.rnd) { const id = real[Math.floor(Math.random() * real.length)]; add(e, id, Math.floor(Math.random() * CHARS[id].palNames.length)); }
@@ -13821,9 +13831,9 @@ const Sel = {
       const real = rosterList();
       Game.char3 = Game.char2; Game.pal3 = Game.pal2;
       Game.char2 = real[Math.floor(Math.random() * real.length)]; const np = CHARS[Game.char2].palNames.length; Game.pal2 = Math.floor(Math.random() * np);
-      for (let t = 0; t < np && ((Game.char2 === Game.char1 && Game.pal2 === Game.pal1) || (Game.char2 === Game.char3 && Game.pal2 === Game.pal3)); t++) Game.pal2 = (Game.pal2 + 1) % np;
+      for (let t = 0; t < np && (Game.pal2 === Game.pal1 || Game.pal2 === Game.pal3); t++) Game.pal2 = (Game.pal2 + 1) % np;
     }
-    if (Game.char1 === Game.char2 && Game.pal1 === Game.pal2) Game.pal2 = (Game.pal2 + 1) % palCount(Game.char2);
+    if (Game.mode !== 'coop' && Game.pal1 === Game.pal2) Game.pal2 = (Game.pal2 + 1) % palCount(Game.char2);
     StageSel.open();
   }
 };
@@ -13901,7 +13911,7 @@ const Arcade = {
     Game.mode = 'cpu'; Game.setup = null; Game.lineup = null; Game.char1 = this.pid; Game.pal1 = this.pal; Game.char2 = id; Game.pal2 = pal;
     if (this.duo()) {   // duplas: monta a escalação dos dois times
       const F = this.form, L = [], used = [];
-      const add = (team, slot, ctl, cid, p) => { const n = palCount(cid); for (let t = 0; t < n && used.some(u => u[0] === cid && u[1] === p); t++) p = (p + 1) % n; used.push([cid, p]); L.push({ team, slot, ctl, char: cid, pal: p }); };
+      const add = (team, slot, ctl, cid, p) => { const n = palCount(cid); for (let t = 0; t < n && used.some(u => u[1] === p); t++) p = (p + 1) % n; used.push([cid, p]); L.push({ team, slot, ctl, char: cid, pal: p }); };
       this.team.forEach(e => add(1, e.slot, e.ctl, e.char, e.pal));
       add(2, 0, 'cpu', id, pal);
       if (F.t2.length > 1) { const m = this.mates[this.stage]; add(2, 1, 'cpu', m, Math.floor(Math.random() * palCount(m))); }
