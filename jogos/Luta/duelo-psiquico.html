@@ -47,6 +47,15 @@
   #toast { position: absolute; left: 50%; top: 40%; transform: translateX(-50%); background: rgba(10,0,25,.92); border: 1px solid var(--accent); border-radius: 6px; padding: 8px 12px; font-size: 13px; max-width: 86%; text-align: center; z-index: 8; opacity: 0; transition: opacity .3s; pointer-events: none; }
   #rot { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: #0b0612; z-index: 9; font: 12px "Press Start 2P", monospace; color: var(--accent); text-align: center; padding: 20px; }
   @media (orientation: portrait) { body.touch #rot { display: flex; } }
+  #codes { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(8,2,16,.9); z-index: 6; }
+  #codes .box { background: var(--panel); border: 2px solid var(--accent); border-radius: 8px; padding: 14px 18px; width: min(92%, 420px); display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center; font-size: clamp(10px, 1.5vw, 13px); }
+  #codes h2 { font: 12px "Press Start 2P", monospace; color: var(--accent); margin: 0; }
+  #codes input { background: #0b0612; color: #fff; border: 1px solid #5b4580; border-radius: 5px; padding: 8px 10px; font: 14px monospace; width: 80%; text-align: center; }
+  #codes .row { display: flex; gap: 8px; justify-content: center; }
+  #codes button { background: var(--accent); color: #200; border: 0; border-radius: 6px; padding: 8px 10px; font: 8px "Press Start 2P", monospace; cursor: pointer; }
+  #codes button.alt { background: #2c1d40; color: var(--fg); border: 1px solid #5b4580; }
+  #codes #cmsg { min-height: 1.4em; margin: 0; color: #ffd23f; }
+  #codes ul { margin: 0; padding: 0; list-style: none; color: #c9b6e6; }
   #lob { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(8,2,16,.9); z-index: 6; }
   #lob .box { background: var(--panel); border: 2px solid var(--accent); border-radius: 8px; padding: 12px 16px; width: min(96%, 560px); max-height: 96%; overflow: auto; display: flex; flex-direction: column; gap: 8px; align-items: center; font-size: clamp(10px, 1.5vw, 13px); text-align: center; user-select: text; -webkit-user-select: text; }
   #lob h2 { font: 12px "Press Start 2P", monospace; color: var(--accent); margin: 0; }
@@ -567,6 +576,14 @@
     </div>
     <p id="lmsg"></p>
     <button class="alt" onclick="lobBack()">VOLTAR</button>
+  </div></div>
+  <div id="codes"><div class="box">
+    <h2>CÓDIGOS</h2>
+    <span>Digite um código secreto para liberar extras.</span>
+    <input id="cin" placeholder="CÓDIGO" maxlength="24" autocomplete="off" spellcheck="false" onkeydown="if(event.key==='Enter'){event.preventDefault();codeTry();}else if(event.key==='Escape'){event.preventDefault();codeClose();}">
+    <div class="row"><button onclick="codeTry()">CONFIRMAR</button><button class="alt" onclick="codeClose()">VOLTAR</button></div>
+    <p id="cmsg"></p>
+    <ul id="clist"></ul>
   </div></div>
   <div id="netBar"><button id="netLeave">SAIR DA SALA</button></div>
   <button id="fsBtn" title="Tela cheia (F)"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.6" style="vertical-align:-.15em"><path d="M3 9V3h6M15 3h6v6M21 15v6h-6M9 21H3v-6"/></svg> TELA CHEIA</button>
@@ -4682,10 +4699,10 @@ def(3800, {
     const a = f.anim; f.invul = a.elem < 3 ? 2 : 0;
     const fire = () => {
       const v = 4.8 + (f.spbD ? 1.8 : 0);
-      const orb = Game.addProj(f, { anim: 3030, x: f.x + 22 * f.facing, y: -72, vx: v, box: 3032, hitAnim: 1015, extra: { pierce: true, noReflect: true, reflectNull: true, noClash: true, realProj: true, rehit: 6, nh: 0,
+      const orb = Game.addProj(f, { anim: 3030, x: f.x + 22 * f.facing, y: -72, vx: v, box: 3032, hitAnim: 1015, extra: { pierce: true, noReflect: true, reflectNull: true, noClash: true, realProj: true, clashPow: 10, rehit: 6, nh: 0,
         update(p) { if (p.t === 5) Audio_.play(3010, 2, null, 1, 'pd03'); if (p.anim.done) { p.anim.elem = 0; p.anim.done = false; } if (p.hd.used && !p.cnt) { p.cnt = true; p.nh++; } if (!p.hd.used) p.cnt = false; if (p.nh >= 2) { p.alive = false; Game.addExplod({ anim: 1015, x: p.x, y: p.y, facing: p.facing, pal: p.pal, ch: p.ch, add: true }); } } },
         hd: HS03({ dmg: 22, at: 'H', gf: 'M', gv: [-3, 0], av: [-2, -4], p: [0, 8], stun: 20, hs: [300, 2] }) });
-      for (const sg of [1, -1]) Game.addProj(f, { anim: 3020, x: orb.x, y: -72, vx: v, box: 3022, extra: { pierce: true, noReflect: true, reflectNull: true, noClash: true, realProj: true, noLand: true, orb, sg, ph: 0, rehit: 8, hitAnim: 1015,
+      for (const sg of [1, -1]) Game.addProj(f, { anim: 3020, x: orb.x, y: -72, vx: v, box: 3022, extra: { pierce: true, noReflect: true, reflectNull: true, noClash: true, realProj: true, clashPow: 10, noLand: true, orb, sg, ph: 0, rehit: 8, hitAnim: 1015,
         update(p) { if (!p.orb.alive) { if (!p.orb.nulled) p.alive = false; return; } p.ph++; if (p.hd.used && !p.cnt) { p.cnt = true; p.nh = (p.nh || 0) + 1; } if (!p.hd.used) p.cnt = false; if (p.nh >= 1) p.hd.used = true; p.x = p.orb.x; p.y = -72 + p.sg * 34 * Math.sin(p.ph * 0.1745); p.front = Math.cos(p.ph * 0.1745) * p.sg > 0; } },
         hd: HS03({ dmg: 10, at: 'H', gf: 'M', gv: [-2, 0], av: [-2, -4], p: [0, 6], stun: 20, hs: [300, 2] }) });
     };
@@ -9610,7 +9627,7 @@ class Fighter {
     // situação atual (charge, defesa, pulo): a nova personagem continua no mesmo ponto
     const was = { st: this.state, charge: !!(this.def && this.def.charge), y: this.y, vx: this.vx, vy: this.vy, stun: this.stun, time: this.time, chgT: this.chgT || 0, hop: this.hop, superJ: this.superJ };
     const keep = {};
-    for (const k of ['side', 'team', 'slot', 'ai', 'tgt', 'ctl', 'power', 'life', 'redLife', 'dead', 'x', 'facing', 'hist', 'buf', 'lastPress', 'inp', 'dir', 'mix', 'mixPal', 'mixT', 'defMul', 'combo', 'comboDmg']) keep[k] = this[k];
+    for (const k of ['side', 'team', 'slot', 'ai', 'tgt', 'ctl', 'power', 'life', 'redLife', 'dead', 'x', 'facing', 'hist', 'buf', 'lastPress', 'inp', 'dir', 'mix', 'pure', 'mixPal', 'mixT', 'defMul', 'combo', 'comboDmg']) keep[k] = this[k];
     Game.explods = Game.explods.filter(e => e.owner !== this && e.bind !== this);   // efeitos presos na personagem anterior
     for (const k of Object.keys(this)) delete this[k];   // estados próprios da personagem anterior (cristais, contadores...) somem
     Object.assign(this, keep);
@@ -9951,10 +9968,16 @@ const Game = {
     // cenário: o escolhido na tela de cenários (ALEATÓRIO sorteia um)
     { let sid = this.stage || 'temple'; if (sid === 'random') sid = STAGES[Math.floor(Math.random() * STAGES.length)].id; Stage.use(sid); }
     // "mix" = Mix Athena: começa como a Athena 2000 (a neutra) e troca durante a luta
+    // cores únicas: cada lutadora tem uma cor diferente (1-5 valem para todas as Athenas, Mix incluída);
+    // quem foi escolhida primeiro fica com a cor, as seguintes pulam para a próxima livre
+    const usedPal = new Set();
+    const uniqPal = (id, pal) => { const np = Math.max(1, palCount(id)); pal = (pal | 0) % MIX_PURE % np; for (let t = 0; t < np; t++) { const q = (pal + t) % np; if (!usedPal.has(q)) { usedPal.add(q); return q; } } return pal; };
     const mk = (side, id, pal, ctl) => {
+      const pure = id === 'mix' && (pal | 0) >= MIX_PURE;
+      pal = uniqPal(id, (pal | 0) % MIX_PURE);
       if (id !== 'mix') return new Fighter(side, CHARS[id], pal, ctl);
       const f = new Fighter(side, CHARS[MIX_START], (pal || 0) % CHARS[MIX_START].palNames.length, ctl);
-      f.mix = true; f.mixPal = pal || 0; f.mixT = 300; return f;
+      f.mix = true; f.pure = pure; f.mixPal = pal || 0; f.mixT = 300; return f;
     };
     this.p4 = null;
     if (this.lineup && (net || this.setup)) {
@@ -9974,6 +9997,7 @@ const Game = {
       for (const f of this.F) if (f.cpu) f.ai = cpuFor(f, this.diff);
       this.char1 = this.p1.ch.id; this.char2 = this.p2.ch.id;
     } else {
+    if (this.mode === 'coop') { const k1 = this.pal1 >= MIX_PURE ? MIX_PURE : 0, k3 = this.pal3 >= MIX_PURE ? MIX_PURE : 0; this.pal1 = uniqPal(this.char1, this.pal1); this.pal3 = uniqPal(this.char3, this.pal3); usedPal.delete(this.pal1); usedPal.delete(this.pal3); const t = new Set([this.pal1, this.pal3]); this.pal1 += k1; this.pal3 += k3; this.pal2 = (() => { const np = palCount(this.char2); let q = (this.pal2 | 0) % MIX_PURE; for (let k = 0; k < np && t.has(q % np); k++) q++; return q % np; })(); }
     this.p1 = mk(1, this.char1, this.pal1, c1);
     this.p2 = mk(2, this.char2, this.pal2, c2);
     this.p3 = null; this.F = [this.p1, this.p2];
@@ -10000,11 +10024,11 @@ const Game = {
     this.camX = (STAGE_W - W) / 2;
     this.koVictim = null;
     this.introSeq = null; this.introCur = null;
-    if (intro && this.mode !== 'train') { this.beginIntro(); this.roundState = 'intro'; }
+    if (intro) { this.beginIntro(); this.roundState = 'intro'; }   // o treino também tem as apresentações (como no arcade)
     else this.roundState = this.mode === 'train' ? 'fight' : 'ready';
     this.rsT = 0;
     // Mix Athena: antes de cada round escolhe com qual Athena começa (a troca Q/E continua valendo na luta)
-    if (this.mode !== 'train' && !this.net && !this.demo && this.F.some(f => f.mix)) MixPick.start(this.roundState);
+    if (this.mode !== 'train' && !this.demo && this.F.some(f => f.mix)) MixPick.start(this.roundState);   // online também
   },
 
   // ---------- passo de simulação ----------
@@ -10158,6 +10182,7 @@ const Game = {
       }
     // projétil contra projétil — regra geral de força:
     //   Crystal Shoot (9) destrói qualquer outro projétil · Psycho Ball EX (clashPow 1) destrói todos menos o Crystal Shoot
+    //   Super Psycho Ball Attack (clashPow 10, um Crystal Shoot melhorado) destrói qualquer outro projétil, o Crystal Shoot incluído
     //   projéteis comuns (0): força igual, os dois somem. Projéteis "noClash" (supers que atravessam) só são destruídos por um mais forte.
     const pow = (p) => p.clashWin ? 9 : (p.clashPow || 0);
     const real = (p) => !p.noClash || p.realProj || p.travel === true;
@@ -10328,16 +10353,20 @@ const Game = {
     if (rs === 'intro') {
       if (this.introSeq) {
         // qualquer botão pula as introduções
-        if (this.rsT > 8 && [M1, M2].some(c => c && c.edge && ['a', 'b', 'c', 'd', 'start'].some(k => c.edge[k]))) { this.skipIntro(); return; }
+        // online: pula com os botões que chegaram pela rede (iguais nas duas telas); offline: J1/J2 locais
+        const skipK = ['a', 'b', 'c', 'd'];
+        const sk = this.net ? F.some(f => f.ctl instanceof NetCtl && f.ctl.edge && skipK.some(k => f.ctl.edge[k]))
+          : [M1, M2].some(c => c && c.edge && [...skipK, 'start'].some(k => c.edge[k]));
+        if (this.rsT > 8 && sk) { this.skipIntro(); return; }
         const f = this.introCur; this.introT++;
         if (!f || f.state !== 190 || this.introT > 300) {   // segurança: a mais longa (2003) leva ~234 quadros
           if (f && f.state === 190) f.change(0);
           this.introI++;
-          if (!this.nextIntro()) { this.introCur = null; this.introSeq = null; this.roundState = 'ready'; this.rsT = 0; }
+          if (!this.nextIntro()) { this.introCur = null; this.introSeq = null; this.roundState = this.mode === 'train' ? 'fight' : 'ready'; this.rsT = 0; }
         }
         return;
       }
-      if (this.rsT > 120 || F.every(f => f.state === 0)) { F.forEach(f => f.state !== 0 && f.change(0)); this.roundState = 'ready'; this.rsT = 0; }
+      if (this.rsT > 120 || F.every(f => f.state === 0)) { F.forEach(f => f.state !== 0 && f.change(0)); this.roundState = this.mode === 'train' ? 'fight' : 'ready'; this.rsT = 0; }
     } else if (rs === 'ready') {
       if (this.rsT === 1) this.say(this.round === 3 ? 'ROUND FINAL' : 'ROUND ' + this.round, 70);
       if (this.rsT === 75) this.say('LUTEM!', 40);
@@ -10393,7 +10422,9 @@ const Game = {
   },
   // introduções: com a câmera ligada (fora do online), uma lutadora por vez — a próxima só aparece quando começa a entrada dela
   beginIntro() {
-    const seq = !this.net && typeof CamFX !== 'undefined' && CamFX.on;
+    // uma por vez: offline quando a câmera está ligada; online SEMPRE (as duas telas precisam simular igual,
+    // então não pode depender da opção de cada um — a câmera em si continua sendo só visual e segue a opção local)
+    const seq = !!this.net || (typeof CamFX !== 'undefined' && CamFX.on);
     for (const f of this.F) f.hidden = false;
     if (!seq) { for (const f of this.F) f.change(190); return; }
     const L = [...this.F].sort((a, b) => (a.team - b.team) || (a.slot - b.slot));
@@ -10409,7 +10440,7 @@ const Game = {
   skipIntro() {
     if (this.introSeq) for (const f of this.introSeq) f.hidden = false;
     for (const f of this.F) if (f.state === 190) f.change(0);
-    this.introSeq = null; this.introCur = null; this.roundState = 'ready'; this.rsT = 0;
+    this.introSeq = null; this.introCur = null; this.roundState = this.mode === 'train' ? 'fight' : 'ready'; this.rsT = 0;
   },
   endRound(w) {
     this.winner = w; if (w >= 0) this.wins[w]++; else { this.wins[0]++; this.wins[1]++; }
@@ -11650,12 +11681,12 @@ const CamFX = {
   // avança o relógio da cena uma vez por quadro de jogo
   tick() {
     const g = Game;
-    if (!this.on || g.mode === 'train') { this.t = -1; return; }
-    if (g.roundState === 'intro' && g.rsT <= 2 && g.round === 1 && (this.t < 0 || this.mid !== g.matchId)) { this.t = 0; this.skip = false; this.last = g.frame; this.mid = g.matchId; this.seq = !!g.introSeq; this.sCur = null; this.sPrev = null; this.sFrom = null; this.sLast = null; this.sOut = null; }
+    if (!this.on) { this.t = -1; return; }
+    if (g.roundState === 'intro' && g.rsT <= 6 && g.round === 1 && (this.t < 0 || this.mid !== g.matchId)) { this.t = 0; this.skip = false; this.last = g.frame; this.mid = g.matchId; this.seq = !!g.introSeq; this.sCur = null; this.sPrev = null; this.sFrom = null; this.sLast = null; this.sOut = null; }
     if (this.t < 0) return;
     if (g.frame !== this.last) { this.t += Math.max(1, Math.min(3, g.frame - this.last)); this.last = g.frame; }
     // qualquer botão pula a cena; e ela nunca passa do começo da luta
-    if (this.t > 8 && !this.skip && [M1, M2].some(c => c && c.edge && Object.keys(c.edge).some(k => c.edge[k] && /^(a|b|c|d|start)$/.test(k)))) this.skip = true;
+    if (this.t > 8 && !this.skip && !g.net && [M1, M2].some(c => c && c.edge && Object.keys(c.edge).some(k => c.edge[k] && /^(a|b|c|d|start)$/.test(k)))) this.skip = true;
     if (g.roundState === 'ko' || g.roundState === 'timeup') { this.t = -1; return; }
     if (this.seq) { if (g.roundState === 'fight' && this.sOut == null) this.sOut = this.t - 30; return; }   // o fim é pela própria sequência
     const L = this.len();
@@ -11885,7 +11916,11 @@ const WinFX = {
 };
 // ---------------- Mix Athena: escolha da Athena antes de cada round ----------------
 const MixPick = {
-  E: [], next: 'ready', LIMIT: 600,
+  // o estado da escolha mora no Game (Game.mixE / Game.mixNext): assim entra na fotografia do rollback
+  // e a escolha online fica igual nas duas telas (cada jogador escolhe com os botões que vão pela rede)
+  get E() { return Game.mixE || (Game.mixE = []); }, set E(v) { Game.mixE = v; },
+  get next() { return Game.mixNext || 'ready'; }, set next(v) { Game.mixNext = v; },
+  LIMIT: 600, RA: new WeakMap(),
   // miniaturas: os quadros da pose parada de cada Athena recortados uma vez só em imagens pequenas
   // (montar a folha de sprites colorida a cada quadro travava o jogo); no máximo uma Athena nova por quadro
   TH: {}, built: -1,
@@ -11924,7 +11959,7 @@ const MixPick = {
     this.next = next; this.E = [];
     for (const f of g.F) if (f.mix) {
       const human = !!f.ctl && !f.cpu;
-      const e = { f, human, idx: Math.max(0, ids.indexOf(f.ch.id)), done: false, anim: null, animId: null, moved: 0, armed: false };
+      const e = { f, human, idx: Math.max(0, ids.indexOf(f.ch.id)), done: false, moved: 0, armed: false };
       if (!human) { e.idx = this.cpuChoice(f, ids); e.done = true; }
       this.E.push(e);
     }
@@ -11980,15 +12015,17 @@ const MixPick = {
         this.drawThumb(this.thumbs(nid, e.f.mixPal || 0), nf, cx + d * 62, cy + 98, e.f.team === 1 ? 1 : -1, 0.35, 0.5);
       }
       // a escolhida, animada
-      if (e.animId !== id) { e.anim = new Anim(0, ch.pack.anims); e.animId = id; }
-      if (g.frame !== e.lastF) { e.anim.step(); e.lastF = g.frame; }
-      const fr = e.anim.f, pop = e.moved && t - e.moved < 6 ? 1 + (6 - (t - e.moved)) * 0.03 : 1;
+      // animação só de tela: fica fora do estado da luta (o rollback do online não a faz pular)
+      const R = this.RA.get(e) || {}; this.RA.set(e, R);
+      if (R.id !== id) { R.anim = new Anim(0, ch.pack.anims); R.id = id; }
+      if (g.frame !== R.lastF) { R.anim.step(); R.lastF = g.frame; }
+      const fr = R.anim.f, pop = e.moved && t - e.moved < 6 ? 1 + (6 - (t - e.moved)) * 0.03 : 1;
       this.drawThumb(this.thumbs(id, e.f.mixPal || 0), fr, cx, cy + 101, e.f.team === 1 ? 1 : -1, 1, 0.72 * pop);
       if (!e.done) { txt('◄', cx - 84, cy + 54, '#fff', 12, 'left', ''); txt('►', cx + 84, cy + 54, '#fff', 12, 'right', ''); }
       ctx.restore();
       ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(cx - 92, cy + 102, 184, 18);
       txt(ch.short, cx, cy + 106, '#fff', 10, 'center', '#5a0a3a');
-      const who = e.human ? (e.f.ctl && e.f.ctl.pl ? 'P' + e.f.ctl.pl : 'JOGADOR') : 'CPU';
+      const who = e.human ? (e.f.ctl instanceof NetCtl ? (e.f.ctl.i === Net.me ? 'VOCÊ' : 'J' + (e.f.ctl.i + 1)) : e.f.ctl && e.f.ctl.pl ? 'P' + e.f.ctl.pl : 'JOGADOR') : 'CPU';
       txt(who + (e.done ? ' · PRONTA!' : e.human ? ' · ◄ ► ESCOLHE · J CONFIRMA' : ''), cx, cy + 4, e.done ? '#ffd23f' : '#c9b6e6', 8, 'center', '');
     }
   },
@@ -12319,7 +12356,8 @@ const WSNet = {
   close() { if (this.ws) { const w = this.ws; this.ws = null; try { w.close(); } catch (e) { } } },
 };
 
-const MAXPRED = 10;   // no máximo 10 quadros de previsão (~0,17 s); passou disso, espera a rede
+const MAXPRED = 10;
+const NETV = 3;   // versão do protocolo online (3: entradas com 3 letras por quadro, cabem Q/E da Mix); versões diferentes não jogam juntas   // no máximo 10 quadros de previsão (~0,17 s); passou disso, espera a rede
 // gerador aleatório da luta: o estado fica em Game.rs, então volta junto no rollback
 function seededRandom() { let a = Game.rs = (Game.rs + 0x6D2B79F5) | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
 
@@ -12430,7 +12468,7 @@ const Net = {
     this.leaveNow(true);
     this.nroom = r; this.code = code; this.role = role; this.me = role === 'h' ? 0 : -1;
     this.msg = ''; this.mid = 0; this.startedMid = 0; this.goneT = 0; this.rtt = []; this.seats = []; this.cfg = { mode: 'luta', bots: [] }; this.fk = 0; this.arc = null; this.lastGo = null;
-    r.presence(role === 'h' ? { r: 'h', v: 2 } : { r: 'g', v: 2 });
+    r.presence(role === 'h' ? { r: 'h', v: NETV } : { r: 'g', v: NETV });
     this.phase = role === 'h' ? 'wait' : 'seek'; this.joinT = Game.frame;
     lobHide(); Game.scene = 'online';
   },
@@ -12465,7 +12503,7 @@ const Net = {
       if (this.phase !== 'fight') {
         const alive = id => ps.some(p => p.peer === id);
         let seats = [this.myPeer, ...this.seats.slice(1).filter(alive)];
-        for (const p of ps) if (!p.sameTab && p.presence.r === 'g' && !seats.includes(p.peer) && seats.length < 4) seats.push(p.peer);
+        for (const p of ps) if (!p.sameTab && p.presence.r === 'g' && !seats.includes(p.peer) && seats.length < 4) { if (p.presence.v === NETV) seats.push(p.peer); else if (this.oldWarn !== p.peer) { this.oldWarn = p.peer; fsToast('Um jogador tentou entrar com outra versão do jogo — os dois precisam da versão mais nova.'); } }
         if (seats.join() !== this.seats.join()) { this.seats = seats; this.set({ seats }); }
       }
       if (this.seats.length > 1 && this.phase === 'wait') { this.phase = 'sel'; this.set({ form: { cfg: this.cfg, k: this.fk, diff: Game.diff } }); this.enterSelect(); }
@@ -12480,6 +12518,7 @@ const Net = {
       const mySeat = this.seats.indexOf(this.myPeer);
       if (mySeat !== this.me) { const was = this.me; this.me = mySeat; if (Game.scene === 'select') Sel.moveSeat(was, mySeat); }
       if (this.phase === 'seek') {
+        if (h && h.presence.v !== NETV) { this.fail('O anfitrião está com outra versão do jogo. Os dois precisam atualizar para a versão mais nova.'); return; }
         if (h && this.me > 0) { this.phase = 'sel'; this.enterSelect(); }
         else if (h && this.seats.length >= 4 && this.me < 0) { this.fail('Essa sala já está cheia (4 jogadores).'); return; }
         else if (!h && Game.frame - this.joinT > 60 * 12) { this.fail('Sala ' + this.code + ' não encontrada. Confira o código.'); return; }
@@ -12498,7 +12537,7 @@ const Net = {
   // publica a escolha local; as dos outros aparecem na tela de seleção
   pubSel(force) {
     const p = Sel.p && Sel.p[this.me]; if (!p) return;
-    const s = { i: p.idx, p: p.pal, ph: p.phase, qi: p.qi, tm: p.team, r: p.res.map(r => [r.idx, r.pal]), k: this.startedMid + 1 };
+    const s = { i: p.idx, p: p.pal, pu: p.pure ? 1 : 0, ph: p.phase, qi: p.qi, tm: p.team, r: p.res.map(r => [r.idx, r.pal]), k: this.startedMid + 1 };
     const key = JSON.stringify(s); if (!force && key === this.selKey) return;
     this.selKey = key; this.set({ sel: s });
   },
@@ -12512,14 +12551,14 @@ const Net = {
       if (v.tm === 1 || v.tm === 2) p.team = v.tm;
       if (v.i !== p.idx && v.i >= 0 && v.i < list.length) { p.idx = v.i; Sel.setAnim(p); }
       p.pal = Math.max(0, Math.min(palCount(list[p.idx]) - 1, v.p | 0)); p.phase = ['char', 'pal', 'ready'].includes(v.ph) ? v.ph : 'char';
-      p.qi = v.qi | 0; p.res = (v.r || []).map(([i, pl]) => ({ idx: i, pal: pl }));
+      p.qi = v.qi | 0; p.pure = !!v.pu; p.res = (v.r || []).map(([i, pl]) => ({ idx: i, pal: pl }));
     }
   },
   // escalação a partir das escolhas (cada um escolheu a sua lutadora e, se for o caso, a parceira CPU)
   buildLineup() {
     const F = this.form(), Q = netQueues(F), list = selList(), L = [], used = [];
-    const add = (e, id, pal) => { const np = palCount(id); for (let t = 0; t < np && used.some(u => u[0] === id && u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: e.ctl, char: id, pal }); };
-    Q.q.forEach((q, s) => q.forEach((e, k) => { const p = Sel.p[s], r = p.res[k] || { idx: p.idx, pal: p.pal }; add(e, list[r.idx], r.pal); }));
+    const add = (e, id, pal) => { pal = linePal(used, id, pal); used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: e.ctl, char: id, pal }); };
+    Q.q.forEach((q, s) => q.forEach((e, k) => { const p = Sel.p[s], r = p.res[k] || { idx: p.idx, pal: p.pal }; add(e, list[r.idx], pk(p, r.idx, r.pal)); }));
     for (const e of Q.rnd) { const [id, pal] = botPick(this.cfg, e); add(Object.assign({}, e, { ctl: 'cpu' }), id, pal); }
     return L;
   },
@@ -12527,7 +12566,7 @@ const Net = {
   arcFight(L) {
     const A = this.arc, F = this.form();
     const team = L.filter(e => e.team === 1), used = team.map(e => [e.char, e.pal]);
-    const add = (slot, id) => { const np = palCount(id); let pal = Math.floor(Math.random() * np); for (let t = 0; t < np && used.some(u => u[0] === id && u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); team.push({ team: 2, slot, ctl: 'cpu', char: id, pal }); };
+    const add = (slot, id) => { const np = palCount(id); let pal = Math.floor(Math.random() * np); for (let t = 0; t < np && used.some(u => u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); team.push({ team: 2, slot, ctl: 'cpu', char: id, pal }); };
     add(0, A.ladder[A.stage]);
     if (F.t2.length > 1) add(1, A.mates[A.stage]);
     return team;
@@ -12571,7 +12610,7 @@ const Net = {
     const R = Math.random; Math.random = seededRandom;
     try {
       Game.startMatch();
-      if (this.arc && this.arc.ladder[this.arc.stage] === MIX_ID) { Game.p2.defMul = (Game.p2.defMul || 1) * 0.75; Game.p2.mixT = 150; }
+      if (this.arc && this.arc.ladder[this.arc.stage] === MIX_ID) { Game.p2.defMul = (Game.p2.defMul || 1) * 0.75; Game.p2.mixT = 150; Game.p2.pure = true; }   // chefe: sem os bônus/reduções da Mix
     } finally { Math.random = R; }
     RB.init();
   },
@@ -12600,9 +12639,9 @@ const Net = {
       const pr = r.presence, arr = this.inp[o], used = this.used[o];
       if (pr.inp && pr.inp.mid === this.mid && typeof pr.inp.d === 'string') {
         const f0 = pr.inp.f | 0, d = pr.inp.d;
-        for (let k = 0; k + 1 < d.length; k += 2) {
-          const f = f0 + k / 2; if (arr[f] !== undefined) continue;
-          const v = B32.indexOf(d[k]) * 32 + B32.indexOf(d[k + 1]); arr[f] = v;
+        for (let k = 0; k + 2 < d.length; k += 3) {
+          const f = f0 + k / 3; if (arr[f] !== undefined) continue;
+          const v = B32.indexOf(d[k]) * 1024 + B32.indexOf(d[k + 1]) * 32 + B32.indexOf(d[k + 2]); arr[f] = v;
           if (f < this.simF && used[f] !== undefined && used[f] !== v) rb = Math.min(rb, f);
           if (f > this.recvMax[o]) this.recvMax[o] = f;
         }
@@ -12637,7 +12676,7 @@ const Net = {
     if (this.me < 0 || !this.act.includes(this.me)) { this.set({ ack: { mid: this.mid, f: this.remConf } }); return; }
     const mine = this.inp[this.me];
     const from = Math.max(this.delay, this.remoteAck + 1, this.localNext - 150);
-    let d = ''; for (let f = from; f < this.localNext; f++) { const v = mine[f] || 0; d += B32[v >> 5] + B32[v & 31]; }
+    let d = ''; for (let f = from; f < this.localNext; f++) { const v = (mine[f] || 0) & 32767; d += B32[v >> 10] + B32[(v >> 5) & 31] + B32[v & 31]; }   // 3 letras por quadro: os 12 botões (Q/E da Mix incluídos) cabem; com 2 letras só cabiam 10
     this.set({ inp: { mid: this.mid, f: from, d, ld: this.simF - (this.recvMin == null ? this.simF : this.recvMin) }, ack: { mid: this.mid, f: this.remConf } });
   },
   checksum() {
@@ -12940,8 +12979,8 @@ const Room = {
   startLocal() {
     const F = this.form(); if (F.err) return;
     const Q = netQueues(F), list = selList(), L = [], used = [], tok = c => c[0] === 's' ? 'p' + (+c[1] + 1) : 'cpu';
-    const add = (e, id, pal) => { const np = palCount(id); for (let t = 0; t < np && used.some(u => u[0] === id && u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: tok(e.ctl), char: id, pal }); };
-    Q.q.forEach((q, s) => q.forEach(e => { const p = Sel.p[s], r = p.res[0] || { idx: p.idx, pal: p.pal }; add(e, list[r.idx], r.pal); }));
+    const add = (e, id, pal) => { pal = linePal(used, id, pal); used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: tok(e.ctl), char: id, pal }); };
+    Q.q.forEach((q, s) => q.forEach(e => { const p = Sel.p[s], r = p.res[0] || { idx: p.idx, pal: p.pal }; add(e, list[r.idx], pk(p, r.idx, r.pal)); }));
     for (const e of Q.rnd) { const [id, pal] = botPick(this.cfg(), e); add(e, id, pal); }
     for (const p of Sel.p) if (p.phase === 'ready') p.phase = 'pal';   // ao voltar, cada uma confirma de novo
     const S = { label: F.label, t1: F.t1.map(tok), t2: F.t2.map(tok) };
@@ -13053,6 +13092,12 @@ const Scenes = {
     if (Game.frame % 60 < 40) txt('APERTE ENTER OU J', 120, 176, '#fff', 8, 'center');
     txt('sprites/sons: personagens de MUGEN enviados pelo jogador', 213, 228, 'rgba(255,255,255,0.55)', 8, 'center', '');
     clicks.push({ x: 0, y: 0, w: W, h: H, fn: () => { Game.scene = 'menu'; } });
+    // aba CÓDIGOS (clique/toque, ou U no teclado / botão C no controle)
+    const cx = W - 78, cy = 6, cw = 72, chh = 16;
+    ctx.fillStyle = 'rgba(30,10,50,0.85)'; ctx.fillRect(cx, cy, cw, chh); ctx.strokeStyle = '#ff7ad9'; ctx.strokeRect(cx + 0.5, cy + 0.5, cw - 1, chh - 1);
+    txt('CÓDIGOS (U)', cx + cw / 2, cy + 4, '#ffd6f0', 8, 'center', '');
+    clicks.push({ x: cx, y: cy, w: cw, h: chh, fn: () => codeOpen() });
+    if (M1.edge.c || M2.edge.c) { codeOpen(); return; }
     if (ok()) { Game.scene = 'menu'; Audio_.play(6, 6); }
   },
   menu() {
@@ -13237,6 +13282,8 @@ const Scenes = {
     const quit = () => { Net.set({ arcq: Net.mid }); Net.arc = null; Net.enterSelect(); };
     if (won && last) {
       txt('VOCÊS ZERARAM O ARCADE!', W / 2, 110, '#ffd23f', 12, 'center', '#5a0a3a'); txt('continues usados: ' + A.conts, W / 2, 130, '#fff', 8, 'center');
+      if (Game.arcUnl !== Net.mid) { Game.arcUnl = Net.mid; Game.arcNew = !mixPureOn(); try { localStorage.setItem('dpMixPure', '1'); } catch (e) { } }   // venceu a chefe: libera a Mix versão chefe
+      if (Game.arcNew) txt('LIBERADA: MIX ATHENA VERSÃO CHEFE!', W / 2, 146, 'hsl(' + (Game.frame * 4 % 360) + ',90%,72%)', 8, 'center');
       if (host) { menuItem('VOLTAR PARA A SALA', W / 2, 170, true, quit, 10); if (ok()) quit(); } else txt('o anfitrião volta para a sala', W / 2, 170, '#c9b6e6', 8, 'center', '');
       return;
     }
@@ -13406,6 +13453,22 @@ function lobShow(msg) {
   if (!lobEl('lsv').value) { let v = ''; try { v = localStorage.getItem('dpSrv') || ''; } catch (e) { } lobEl('lsv').value = v || (location.protocol === 'file:' ? 'ws://SEU-SERVIDOR:8080' : (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host); }
   for (const k in keys) keys[k] = false;
 }
+// ---- CÓDIGOS (tela inicial): cada código libera um extra e fica salvo neste aparelho ----
+// guardados só como "impressão" (hash) do texto, sem diferenciar maiúsculas/minúsculas nem espaços
+const codeHash = t => { let h = 0x811c9dc5; for (const c of String(t).toLowerCase().replace(/\s+/g, '')) { h ^= c.charCodeAt(0); h = Math.imul(h, 0x01000193); } return (h >>> 0).toString(36); };
+const CODES = [
+  { h: '1lm31rl', name: 'MIX ATHENA VERSÃO CHEFE', on: () => mixPureOn(), give() { try { localStorage.setItem('dpMixPure', '1'); } catch (e) { } } },
+];
+function codeList() { document.getElementById('clist').innerHTML = CODES.filter(c => c.on()).map(c => '<li>✓ ' + c.name + '</li>').join(''); }
+function codeOpen() { const el = document.getElementById('codes'); el.style.display = 'flex'; Game.codeOpen = true; const i = document.getElementById('cin'); i.value = ''; document.getElementById('cmsg').textContent = ''; codeList(); setTimeout(() => i.focus(), 30); }
+function codeClose() { document.getElementById('codes').style.display = 'none'; Game.codeOpen = false; M1.read(); M2.read(); okScene = null; }
+function codeTry() {
+  const i = document.getElementById('cin'), m = document.getElementById('cmsg'), h = codeHash(i.value);
+  const c = i.value.trim() && CODES.find(c => c.h === h);
+  if (!c) { m.style.color = '#ff8f8f'; m.textContent = 'CÓDIGO INVÁLIDO'; Audio_.play(6, 6, null, 0.4); i.select(); return; }
+  const had = c.on(); c.give(); m.style.color = '#9dffb0'; m.textContent = had ? c.name + ' JÁ ESTAVA LIBERADA' : 'LIBERADA: ' + c.name + '!';
+  Audio_.play(6, 6); i.value = ''; codeList();
+}
 function lobHide() { lobEl('lob').style.display = 'none'; Game.codeOpen = false; M1.read(); M2.read(); }
 function lobBack() {
   if (Net.inviting && Net.nroom) { Net.inviting = false; lobHide(); return; }   // só fechou o convite: continua na sala
@@ -13477,7 +13540,13 @@ const MIX_ID = 'mix', MIX_START = 'a2k';
 // Mix Athena: a 2000 é neutra e é com ela que a luta começa; as anteriores batem mais forte e as seguintes mais fraco,
 // em degraus de duas em duas (só vale na Mix)
 const MIX_ATK = { a94: 0.3, a95: 0.3, a96: 0.2, a97: 0.2, a98: 0.1, a99: 0.1, a2k: 0, a01: -0.1, neo: -0.1, pd03: -0.2, a11: -0.2, kofm: -0.3, xiv: -0.3 };
-const mixAtk = (f) => (f && f.mix ? 1 + (MIX_ATK[f.ch.id] || 0) : 1);
+const mixAtk = (f) => (f && f.mix && !f.pure ? 1 + (MIX_ATK[f.ch.id] || 0) : 1);   // a versão chefe (pure) não tem bônus nem redução
+// Mix Athena versão chefe (sem bônus/redução de ataque): liberada depois de vencer a chefe final do arcade.
+// Na escalação ela viaja dentro da cor: cor + MIX_PURE (60 = múltiplo de 1..6, então cor % nº de cores continua certa)
+const MIX_PURE = 60;
+const mixPureOn = () => { try { return localStorage.getItem('dpMixPure') === '1'; } catch (e) { return false; } };
+const pk = (p, idx, pal) => (pal % MIX_PURE) + (p && p.pure && selList()[idx] === MIX_ID ? MIX_PURE : 0);
+function linePal(used, id, pal) { const pu = pal >= MIX_PURE ? MIX_PURE : 0, np = palCount(id); pal %= MIX_PURE; for (let t = 0; t < np && used.some(u => u[1] % MIX_PURE === pal); t++) pal = (pal + 1) % np; return pal + pu; }
 const MIX_ORDER = ['a94', 'a95', 'a96', 'a97', 'a98', 'a99', 'a2k', 'a01', 'neo', 'pd03', 'a11', 'kofm', 'xiv'];   // ordem da troca: E = próxima, Q = anterior
 const mixList = () => MIX_ORDER.filter(id => CHARS[id] && CHARS[id].pack);
 const selList = () => [...rosterList(), MIX_ID];
@@ -13542,16 +13611,18 @@ const Sel = {
       else if (e.b && pl === 0) Game.scene = 'menu';
     } else if (p.phase === 'pal') {
       const np = palCount(list[p.idx]);
-      if (e.left) p.pal = (p.pal + np - 1) % np; if (e.right) p.pal = (p.pal + 1) % np;
+      if ((e.up || e.down) && list[p.idx] === MIX_ID && mixPureOn()) { p.pure = !p.pure; Audio_.play(6, 6, null, 0.4); }   // Mix: versão normal ou versão chefe
+      if (e.left || e.right) { const d = e.left ? np - 1 : 1, tk = this.takenPal(pl); let q = p.pal; for (let t = 0; t < np; t++) { q = (q + d) % np; if (q !== tk) break; } p.pal = q; }
       if ((e.a || e.start) && this.advance(pl)) { /* próxima lutadora da fila */ }
       else if (e.a || e.start) { p.phase = 'ready'; const ch = CHARS[this.showId(p)]; const tv = ch.S.taunt || ch.S.win1; if (tv) Audio_.play(tv[0], tv[1], 'v' + (pl + 1), 1, ch.id); if (!twoPick() && pl === 0 && !Arcade.on) this.turn = 1; }
       if (e.b) p.phase = 'char';
     } else if (p.phase === 'ready' && e.b) { p.phase = 'pal'; if (!twoPick()) this.turn = pl; }
   },
-  freePal(pl, want) {   // evita duas lutadoras iguais com a mesma cor
-    const o = this.p[1 - pl], list = selList();
-    if (o.phase !== 'char' && o.idx === this.p[pl].idx && o.pal === want) return (want + 1) % palCount(list[o.idx]);
-    return want;
+  // cor que a outra jogadora já escolheu (qualquer Athena, Mix incluída) — quem escolheu primeiro fica com ela
+  takenPal(pl) { const o = this.p[1 - pl]; return o && o.phase !== 'char' ? o.pal : -1; },
+  freePal(pl, want) {   // nunca repete a cor da outra jogadora
+    const np = palCount(selList()[this.p[pl].idx]), tk = this.takenPal(pl);
+    return want === tk ? (want + 1) % np : want % np;
   },
   // ---- SALA DE TIMES (online e offline, até 4 jogadores + CPUs): cada um escolhe a sua lutadora e a cor do time ----
   resetNet() { this.resetRoom(); },
@@ -13611,7 +13682,14 @@ const Sel = {
       else if (e.b) Room.leave(s);
     } else if (p.phase === 'pal') {
       const np = palCount(list[p.idx]);
-      if (e.left) p.pal = (p.pal + np - 1) % np; if (e.right) p.pal = (p.pal + 1) % np;
+      // cores já tomadas por quem escolheu antes (jogadoras da sala e CPUs) não podem se repetir
+      const tk = new Set([0, 1, 2, 3].filter(i => i !== s && this.p[i] && Room.playing(i) && this.p[i].phase !== 'char').map(i => this.p[i].pal));
+      // só cede a cor para quem já confirmou ou tem prioridade (lugar menor); sem isso, online as duas telas
+      // trocavam de cor ao mesmo tempo, uma fugindo da outra, e a sala ficava piscando/dessincronizada
+      const yield_ = new Set([0, 1, 2, 3].filter(i => i !== s && this.p[i] && Room.playing(i) && (this.p[i].phase === 'ready' || (this.p[i].phase === 'pal' && i < s))).map(i => this.p[i].pal));
+      if (yield_.size < np && yield_.has(p.pal)) { let q = p.pal; for (let t = 0; t < np && yield_.has(q); t++) q = (q + 1) % np; p.pal = q; }
+      if ((e.up || e.down) && list[p.idx] === MIX_ID && mixPureOn()) { p.pure = !p.pure; Audio_.play(6, 6, null, 0.4); }
+      if (e.left || e.right) { const d = e.left ? np - 1 : 1; let q = p.pal; for (let t = 0; t < np; t++) { q = (q + d) % np; if (!tk.has(q)) break; } p.pal = q; }
       if (e.a || e.start) {
         p.res = [{ idx: p.idx, pal: p.pal }];
         const ch = CHARS[this.showId(p)]; const tv = ch.S.taunt || ch.S.win1; if (tv) Audio_.play(tv[0], tv[1], 'v' + (s % 2 + 1), 1, ch.id);
@@ -13672,6 +13750,7 @@ const Sel = {
       txt(pickBot ? 'CPU ' + p.qi + ': ' + (id === MIX_ID ? 'MIX' : ch.short) : (on ? '' : 'J' + (s + 1) + ' ') + (id === MIX_ID ? 'MIX' : ch.short), x, yb + 2, pickBot ? '#ffd23f' : on ? '#fff' : SEATC[s], 8, 'center', '');
       if (cfg.mode === 'luta' && !pickBot) { txt('TIME ' + TEAMN[p.team], x, yb + 11, TEAMC[p.team], 8, 'center'); clicks.push({ x: x - 40, y: yb + 9, w: 80, h: 11, fn: () => this.setTeam(p.team === 1 ? 2 : 1, s) }); }
       if (p.phase === 'pal') txt('◄ COR ' + (p.pal + 1) + '/' + np + ' ►', x, yb + 20, '#ffd23f', 8, 'center', '');
+      if (id === MIX_ID && p.phase !== 'char' && mixPureOn()) txt((p.phase === 'pal' ? '▲▼ ' : '') + (p.pure ? 'CHEFE' : 'NORMAL'), x, yb + 29, p.pure ? '#ff7a7a' : '#9dffb0', 8, 'center', '');
       if (p.phase === 'ready') txt('PRONTA!', x, yb + 20, '#ffd23f', 8, 'center', '');
     });
     // times (direita)
@@ -13769,15 +13848,19 @@ const Sel = {
       ctx.fillStyle = PC[pl]; ctx.fillRect(x - 66, 170, 132, 1); ctx.fillRect(x - 66, 182, 132, 1);
       txt(nm, x, 172, id === MIX_ID ? 'hsl(' + (Game.frame * 4 % 360) + ',90%,72%)' : '#fff', 10, 'center');
       txt(id === MIX_ID ? "DE '94 ATÉ XIV · 13 ATHENAS" : (ch.game || ''), x, 186, '#bba8dc', 8, 'center', '');
-      txt(info[0], x, 196, '#e8dcff', 8, 'center', ''); txt(info[1], x, 205, '#e8dcff', 8, 'center', '');
+      txt(info[0], x, 196, '#e8dcff', 8, 'center', '');
+      // Mix: versão normal (com bônus/redução) ou versão chefe (sem) — liberada vencendo a chefe do arcade
+      if (id === MIX_ID && p.phase !== 'char' && mixPureOn()) txt((p.phase === 'pal' ? '▲▼ ' : '') + (p.pure ? 'VERSÃO CHEFE (SEM BÔNUS)' : 'VERSÃO NORMAL'), x, 205, p.pure ? '#ff8f8f' : '#9dffb0', 8, 'center', '');
+      else txt(info[1], x, 205, '#e8dcff', 8, 'center', '');
       if (p.phase === 'pal') txt('◄ COR ' + (p.pal + 1) + '/' + np + ' ►', x, 215, '#ffd23f', 8, 'center');
+
       if (p.phase === 'ready') txt('PRONTA!', x, 215, '#ffd23f', 8, 'center');
       if (p.phase === 'pal' && (!isOnline() || pl === Net.me)) {
         clicks.push({ x: x - 60, y: 40, w: 60, h: 130, fn: () => { p.pal = (p.pal + np - 1) % np; } });
         clicks.push({ x, y: 40, w: 60, h: 130, fn: () => { p.pal = (p.pal + 1) % np; } });
       }
     });
-    const help = this.p.some(p => p.phase === 'pal') ? '←→ cor   J confirmar   K voltar' : '←↑↓→ escolher   J confirmar   K voltar';
+    const help = this.p.some(p => p.phase === 'pal') ? (this.p.some(p => p.phase === 'pal' && selList()[p.idx] === MIX_ID) && mixPureOn() ? '←→ cor  ↑↓ versão  J confirmar' : '←→ cor   J confirmar   K voltar') : '←↑↓→ escolher   J confirmar   K voltar';
     txt(help, W / 2, isOnline() ? 214 : 228, '#a99bc0', 8, 'center', '');
     const allReady = this.p.every(p => p.phase === 'ready');
     if (Game.mode === 'coop') txt('JUNTAS CONTRA', W / 2, 142, '#9dffb0', 8, 'center', ''), txt('UMA CPU SURPRESA', W / 2, 151, '#9dffb0', 8, 'center', '');
@@ -13796,18 +13879,18 @@ const Sel = {
   // time escolhido para o arcade: [{slot, ctl, char, pal}]
   arcadeTeam() {
     const list = selList(), T = [];
-    if (this.Q) [0, 1].forEach(pl => this.qOf(pl).forEach((e, k) => { const p = this.p[pl], r = p.res[k] || { idx: p.idx, pal: p.pal }; T.push({ slot: e.slot, ctl: e.ctl, char: list[r.idx], pal: r.pal }); }));
-    else T.push({ slot: 0, ctl: 'p1', char: list[this.p[0].idx], pal: this.p[0].pal });
+    if (this.Q) [0, 1].forEach(pl => this.qOf(pl).forEach((e, k) => { const p = this.p[pl], r = p.res[k] || { idx: p.idx, pal: p.pal }; T.push({ slot: e.slot, ctl: e.ctl, char: list[r.idx], pal: pk(p, r.idx, r.pal) }); }));
+    else T.push({ slot: 0, ctl: 'p1', char: list[this.p[0].idx], pal: pk(this.p[0], this.p[0].idx, this.p[0].pal) });
     T.sort((a, b) => a.slot - b.slot);
-    if (T[1] && T[1].char === T[0].char && T[1].pal === T[0].pal) T[1].pal = (T[1].pal + 1) % palCount(T[1].char);
+    if (T[1] && T[1].pal % MIX_PURE === T[0].pal % MIX_PURE) T[1].pal = (T[1].pal % MIX_PURE + 1) % palCount(T[1].char) + (T[1].pal >= MIX_PURE ? MIX_PURE : 0);
     return T;
   },
   go() {
     const list = selList(), [a, b] = this.p;
     if (this.Q) {   // formação com duplas: monta a escalação de cada time
       const L = [], used = [];
-      const add = (e, id, pal) => { const np = palCount(id); for (let t = 0; t < np && used.some(u => u[0] === id && u[1] === pal); t++) pal = (pal + 1) % np; used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: e.ctl, char: id, pal }); };
-      [0, 1].forEach(pl => this.qOf(pl).forEach((e, k) => { const p = this.p[pl], r = p.res[k] || { idx: p.idx, pal: p.pal }; add(e, list[r.idx], r.pal); }));
+      const add = (e, id, pal) => { pal = linePal(used, id, pal); used.push([id, pal]); L.push({ team: e.team, slot: e.slot, ctl: e.ctl, char: id, pal }); };
+      [0, 1].forEach(pl => this.qOf(pl).forEach((e, k) => { const p = this.p[pl], r = p.res[k] || { idx: p.idx, pal: p.pal }; add(e, list[r.idx], pk(p, r.idx, r.pal)); }));
       const real = rosterList();
       for (const e of this.Q.rnd) { const id = real[Math.floor(Math.random() * real.length)]; add(e, id, Math.floor(Math.random() * CHARS[id].palNames.length)); }
       Game.lineup = L;
@@ -13816,14 +13899,14 @@ const Sel = {
       StageSel.open(); return;
     }
     Game.lineup = null;
-    Game.char1 = list[a.idx]; Game.char2 = list[b.idx]; Game.pal1 = a.pal; Game.pal2 = b.pal;
+    Game.char1 = list[a.idx]; Game.char2 = list[b.idx]; Game.pal1 = pk(a, a.idx, a.pal); Game.pal2 = pk(b, b.idx, b.pal);
     if (Game.mode === 'coop') {   // co-op local: a segunda escolha é a parceira; a CPU é sorteada
       const real = rosterList();
       Game.char3 = Game.char2; Game.pal3 = Game.pal2;
       Game.char2 = real[Math.floor(Math.random() * real.length)]; const np = CHARS[Game.char2].palNames.length; Game.pal2 = Math.floor(Math.random() * np);
-      for (let t = 0; t < np && ((Game.char2 === Game.char1 && Game.pal2 === Game.pal1) || (Game.char2 === Game.char3 && Game.pal2 === Game.pal3)); t++) Game.pal2 = (Game.pal2 + 1) % np;
+      for (let t = 0; t < np && (Game.pal2 === Game.pal1 % MIX_PURE || Game.pal2 === Game.pal3 % MIX_PURE); t++) Game.pal2 = (Game.pal2 + 1) % np;
     }
-    if (Game.char1 === Game.char2 && Game.pal1 === Game.pal2) Game.pal2 = (Game.pal2 + 1) % palCount(Game.char2);
+    if (Game.mode !== 'coop' && Game.pal1 % MIX_PURE === Game.pal2 % MIX_PURE) Game.pal2 = (Game.pal2 % MIX_PURE + 1) % palCount(Game.char2) + (Game.pal2 >= MIX_PURE ? MIX_PURE : 0);
     StageSel.open();
   }
 };
@@ -13886,6 +13969,7 @@ const Arcade = {
   best() { try { return +localStorage.getItem('dpArcadeBest') || 0; } catch (e) { return 0; } },
   duo() { return !!this.form && (this.form.t1.length > 1 || this.form.t2.length > 1); },
   begin(team) {
+    this.unlock = false;
     const r = rosterList().slice();
     for (let i = r.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [r[i], r[j]] = [r[j], r[i]]; }
     const ladder = [...r, MIX_ID];
@@ -13901,7 +13985,7 @@ const Arcade = {
     Game.mode = 'cpu'; Game.setup = null; Game.lineup = null; Game.char1 = this.pid; Game.pal1 = this.pal; Game.char2 = id; Game.pal2 = pal;
     if (this.duo()) {   // duplas: monta a escalação dos dois times
       const F = this.form, L = [], used = [];
-      const add = (team, slot, ctl, cid, p) => { const n = palCount(cid); for (let t = 0; t < n && used.some(u => u[0] === cid && u[1] === p); t++) p = (p + 1) % n; used.push([cid, p]); L.push({ team, slot, ctl, char: cid, pal: p }); };
+      const add = (team, slot, ctl, cid, p) => { p = linePal(used, cid, p); used.push([cid, p]); L.push({ team, slot, ctl, char: cid, pal: p }); };
       this.team.forEach(e => add(1, e.slot, e.ctl, e.char, e.pal));
       add(2, 0, 'cpu', id, pal);
       if (F.t2.length > 1) { const m = this.mates[this.stage]; add(2, 1, 'cpu', m, Math.floor(Math.random() * palCount(m))); }
@@ -13911,7 +13995,7 @@ const Arcade = {
     const others = STAGES.filter(s => s.id !== 'cave');
     Game.stage = this.isBoss() ? 'cave' : others[Math.floor(Math.random() * others.length)].id;   // a chefe luta na Caverna de Cristais
     Game.startMatch(); this.f0 = Game.frame;
-    if (this.isBoss()) { Game.p2.defMul = (Game.p2.defMul || 1) * 0.75; Game.p2.mixT = 150; }   // chefe: aguenta mais e troca de Athena com frequência
+    if (this.isBoss()) { Game.p2.defMul = (Game.p2.defMul || 1) * 0.75; Game.p2.mixT = 150; Game.p2.pure = true; }   // chefe: aguenta mais, troca de Athena com frequência e não tem os bônus/reduções da Mix
   },
   matchEnd(won) {
     const T = Game.F.filter(f => f.team === 1), p = { life: T.reduce((s, f) => s + Math.max(0, f.life), 0) / T.length };
@@ -13919,6 +14003,7 @@ const Arcade = {
     if (won) {
       const lifeB = Math.round(p.life) * 10, perfect = p.life >= LIFE, pts = 10000 * (this.stage + 1) + lifeB + (perfect ? 20000 : 0);
       this.score += pts; this.last = { won: true, pts, lifeB, perfect };
+      if (this.isBoss()) { this.unlock = !mixPureOn(); try { localStorage.setItem('dpMixPure', '1'); } catch (e) { } }   // venceu a chefe: libera a Mix versão chefe
       this.stage++;
       if (this.stage >= this.ladder.length) { try { if (this.score > this.best()) localStorage.setItem('dpArcadeBest', String(this.score)); } catch (e) { } Game.scene = 'arcadeEnd'; this.wait = 40; return; }
       Game.scene = 'arcade'; this.wait = 0;
@@ -14009,8 +14094,9 @@ Object.assign(Scenes, {
     const L = [['PONTOS', A.score], ['RECORDE', Math.max(rec, A.score)], ['CONTINUES', A.conts], ['TEMPO DE LUTA', Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0')]];
     L.forEach(([k, v], i) => { txt(k, 220, 76 + i * 20, '#c9b6e6', 8); txt(String(v), 400, 76 + i * 20, '#fff', 10, 'right'); });
     if (A.score >= rec && A.score > 0) txt('NOVO RECORDE!', 310, 160, '#9dffb0', 10, 'center');
+    if (A.unlock) { txt('LIBERADA: MIX ATHENA VERSÃO CHEFE!', 310, 170, 'hsl(' + (Game.frame * 4 % 360) + ',90%,72%)', 8, 'center'); txt('sem bônus · ▲▼ ao escolher a cor da Mix', 310, 179, '#c9b6e6', 8, 'center', ''); }
     A.wait--;
-    if (A.wait <= 0 && Game.frame % 60 < 42) txt('APERTE J', 310, 190, '#fff', 8, 'center');
+    if (A.wait <= 0 && Game.frame % 60 < 42) txt('APERTE J', 310, A.unlock ? 194 : 190, '#fff', 8, 'center');
     if (A.wait <= 0 && ok()) { Game.scene = 'menu'; Game.menuIdx = 0; }
   },
 });
