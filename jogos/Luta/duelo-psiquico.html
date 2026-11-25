@@ -107,7 +107,7 @@
     <p style="opacity:.8;margin:6px 0 0">Online: cada jogador usa o próprio teclado (qualquer um dos dois esquemas) ou controle; ENTER pergunta se quer sair da sala. Co-op: as duas jogadoras enfrentam juntas uma CPU mais resistente.</p>
     <p style="opacity:.8;margin:6px 0 0">Controles de Xbox, PlayStation (PS3/PS4/PS5, PS2 com adaptador) e genéricos funcionam: □/X = A, ✕/A = B, △/Y = C, ○/B = D, L1/LB = A+B, R1/RB = C+D, START = pausa. Para controles genéricos, configure os botões em OPÇÕES. Comandos considerando a lutadora virada para a direita.</p>
     <p style="margin:8px 0 0"><b>Todas as personagens — Assistentes (meia barra):</b> A+C = Kensou aparece na frente e solta o Super Psycho Ball · B+D = Kula aparece atrás e avança com o Diamond Edge (funciona até apanhando, defendendo ou caída)</p>
-    <p style="margin:4px 0 0"><b>Só a Mix Athena — Ajudantes (2 barras):</b> ↓↙←↓↙← + A+B = a Athena 2003 pula na frente e solta o Super Psycho Ball Attack · ↓↘→↓↘→ + A+B = a Athena XIV pula atrás e solta o Crystal Shoot · ←↙↓↘→ + A+B = uma Athena aleatória pula em cima da inimiga e faz o Shining Crystal Bit · →↘↓↙← + A+B = uma Athena aleatória pula em cima da inimiga e faz o Super Phoenix Infinity · <b>(1 barra)</b> ↓↙← + A+B = uma Athena com Psycho Shoot sai de um portal atrás da Mix e solta o golpe · ↓↘→ + A+B = uma Athena com Psycho Sword sai de um portal na frente da inimiga e faz o golpe</p>
+    <p style="margin:4px 0 0"><b>Só a Mix Athena — Ajudantes (2 barras):</b> ↓↙←↓↙← + A+B = a Athena 2003 pula na frente e solta o Super Psycho Ball Attack · ↓↘→↓↘→ + A+B = a Athena XIV pula atrás e solta o Crystal Shoot · ←↙↓↘→ + A+B = uma Athena aleatória pula em cima da inimiga e faz o Shining Crystal Bit · →↘↓↙← + A+B = uma Athena aleatória pula por cima da inimiga e faz o Phoenix Fang Arrow · <b>(1 barra)</b> ↓↙← + A+B = uma Athena com Psycho Shoot sai de um portal atrás da Mix e solta o golpe · ↓↘→ + A+B = uma Athena com Psycho Sword sai de um portal na frente da inimiga e faz o golpe</p>
     <div id="mvList">
     <div class="mv" data-char="kofm">
     <h3>Movimentos</h3>
@@ -3920,18 +3920,20 @@ def(4520, {
 //   ↓↙←↓↙← + A+B   Athena 2003 pula na frente e solta o Super Psycho Ball Attack
 //   ↓↘→↓↘→ + A+B   Athena XIV pula atrás e solta o Crystal Shoot
 //   ←↙↓↘→ + A+B    uma Athena aleatória pula em cima da inimiga e faz o Shining Crystal Bit
-//   →↘↓↙← + A+B    uma Athena aleatória (das que têm) pula em cima da inimiga e faz o Super Phoenix Infinity
+//   →↘↓↙← + A+B    uma Athena aleatória (das que têm) pula por cima da inimiga e, no ar, faz o Phoenix Fang Arrow
 //   ↓↙← + A+B      (1 barra) uma Athena com Psycho Shoot sai de um portal (espelho quebrado) atrás da Mix e solta o golpe
 //   ↓↘→ + A+B      (1 barra) uma Athena com Psycho Sword sai do portal na frente da inimiga e faz o golpe
 // A ajudante é uma lutadora de verdade (usa o golpe original dela), mas fica fora da luta: não apanha, não empurra,
 // não conta para a vitória; entra pulando, faz o golpe e sai pulando.
 const HELP_ST = { pd03: 3800, xiv: 2050 };
-const HELP_COST = { pd03: 2, xiv: 2, bit: 2, spi: 2, shoot: 1, sword: 1 };
+const HELP_COST = { pd03: 2, xiv: 2, bit: 2, fang: 2, shoot: 1, sword: 1 };
 const SHOOT_ST = { neo: 1800, pd03: 1750, a94: 1051, a2k: 1110 };   // Psycho Shoot (versão C)
 const HSWORD_ST = { kofm: 1310, a98: 1030, neo: 1550, xiv: 11500, pd03: 1350, a95: 1310, a11: 1101, a99: 1210, a2k: 1350, a01: 1550, a96: 1110, a97: 1310 };   // Psycho Sword (versão C)
 const PORTAL = { open: 14, life: 54 };   // portal "espelho quebrado": racha, abre, fica aberto e fecha
 function portalAdd(x) { (Game.portals || (Game.portals = [])).push({ x, y: -62, t: 0 }); Audio_.play(199, 0, null, 0.6, 'xiv'); }
-const SPI_ST = { kofm: 2200, xiv: 2200, a11: 2200, a96: 2200, a97: 22200 };   // Super Phoenix Infinity (início, no chão)
+const FANG_ST = { a94: 3020, a96: 3100, a97: 2400, a98: 2000, a99: 3100, a2k: 3700, a01: 2000, neo: 2000, pd03: 3200, a11: 2100, xiv: 2100 };   // Phoenix Fang Arrow (no ar)
+// de onde cada uma começa o mergulho para acertar (distância antes da inimiga, altura) — medido no jogo
+const FANG_POS = { a97: [45, -110], a01: [100, -80], neo: [125, -80], a2k: [100, -110], a96: [100, -110], pd03: [100, -110] };
 function scbState(ch) {   // Shining Crystal Bit no chão (1 barra) de cada personagem
   if (ch._scb !== undefined) return ch._scb;
   if (ch.id === 'neo' && ch.ST[3000]) return (ch._scb = 3000);   // Neo: scbNeo(1 barra)
@@ -3944,7 +3946,7 @@ function mixHelpTry(f) {
   if (!f.mix || !f.ctrl || f.type === 'A' || Game.roundState !== 'fight' || f.life <= 0 || !f.both('a', 'b')) return false;
   const h = f.hist;
   // as sequências longas primeiro (↓↙←↓↙← contém ↓↙←, ←↙↓↘→ contém ↓↘→ ...)
-  const kind = hasMotion(h, MOT.QCB2, 40) ? 'pd03' : hasMotion(h, MOT.QCF2, 40) ? 'xiv' : hasMotion(h, MOT.HCF, 24) ? 'bit' : hasMotion(h, MOT.HCB, 24) ? 'spi'
+  const kind = hasMotion(h, MOT.QCB2, 40) ? 'pd03' : hasMotion(h, MOT.QCF2, 40) ? 'xiv' : hasMotion(h, MOT.HCF, 24) ? 'bit' : hasMotion(h, MOT.HCB, 24) ? 'fang'
     : hasMotion(h, MOT.QCB, 16) ? 'shoot' : hasMotion(h, MOT.QCF, 16) ? 'sword' : null;
   if (!kind) return false;
   const cost = HELP_COST[kind] * STOCK;
@@ -3955,12 +3957,12 @@ function mixHelpSpawn(f, kind) {
   const en = f.opp;
   let id = kind;
   if (kind === 'bit') { const L = mixList().filter(c => CHARS[c] && scbState(CHARS[c])); id = L[Math.floor(Math.random() * L.length)]; }
-  if (kind === 'spi') { const L = mixList().filter(c => CHARS[c] && SPI_ST[c] && CHARS[c].ST[SPI_ST[c]]); id = L[Math.floor(Math.random() * L.length)]; }
+  if (kind === 'fang') { const L = mixList().filter(c => CHARS[c] && FANG_ST[c] && CHARS[c].ST[FANG_ST[c]]); id = L[Math.floor(Math.random() * L.length)]; }
   const TB = kind === 'shoot' ? SHOOT_ST : kind === 'sword' ? HSWORD_ST : null;
   if (TB) { const L = mixList().filter(c => CHARS[c] && TB[c] && CHARS[c].ST[TB[c]]); id = L[Math.floor(Math.random() * L.length)]; }
   const ch = CHARS[id]; if (!ch) return;
   const h = new Fighter(f.side, ch, (f.mixPal || 0) % ch.palNames.length, null, f.team, 9);
-  Object.assign(h, { helper: true, hOwner: f, hKind: kind, hMove: kind === 'bit' ? scbState(ch) : kind === 'spi' ? SPI_ST[id] : TB ? TB[id] : HELP_ST[kind], hPh: 0, hT: 0, tgt: en, power: h.pmax, push: false, noBound: true, invul: 9999, ai: { think: () => ({}) } });
+  Object.assign(h, { helper: true, hOwner: f, hKind: kind, hMove: kind === 'bit' ? scbState(ch) : kind === 'fang' ? FANG_ST[id] : TB ? TB[id] : HELP_ST[kind], hPh: 0, hT: 0, tgt: en, power: h.pmax, push: false, noBound: true, invul: 9999, ai: { think: () => ({}) } });
   const d = en.x >= f.x ? 1 : -1;
   if (TB) {   // sai do portal: atrás da Mix (Psycho Shoot) ou na frente da inimiga (Psycho Sword)
     const cl = (x) => Math.max(Game.camX + 34, Math.min(Game.camX + W - 34, x));   // portal sempre dentro da tela
@@ -3969,11 +3971,15 @@ function mixHelpSpawn(f, kind) {
     h.x = px; h.y = 0; h.facing = d; h.hidden = true; h.hPh = -1; h.hWait = PORTAL.open + 7; h.hLand = kind === 'shoot' ? cl(f.x - 48 * d) : en.x - 62 * d;
     portalAdd(px); Game.helpers.push(h); return;
   }
-  const tx = kind === 'pd03' ? f.x + 55 * d : kind === 'xiv' ? f.x - 50 * d : en.x - 6 * d;   // bit / spi: em cima da inimiga
+  const tx = kind === 'pd03' ? f.x + 55 * d : kind === 'xiv' ? f.x - 50 * d : en.x - 6 * d;   // bit: em cima da inimiga
   h.x = f.x - 20 * d; h.y = 0; h.facing = d;
   h.change(50);
-  const vy = kind === 'bit' || kind === 'spi' ? -11 : -8.5, g = ch.K.grav || 0.5, T = 2 * -vy / g;
+  const vy = kind === 'bit' ? -11 : kind === 'fang' ? -12 : -8.5, g = ch.K.grav || 0.5, T = 2 * -vy / g;
   h.vy = vy; h.vx = (tx - h.x) / T * h.facing;   // física: x += vx * facing
+  if (kind === 'fang') {   // o ponto mais alto do pulo é onde o mergulho começa
+    const [fx, fy] = FANG_POS[id] || [80, -110], vy0 = -Math.sqrt(2 * g * -fy), Ta = -vy0 / g;
+    h.vy = vy0; h.vx = (en.x - fx * d - h.x) / Ta * h.facing;
+  }
   Game.addExplod({ anim: 1701, x: h.x, y: 0, facing: d, pal: palAtlas(CHARS.xiv, 0), ch: CHARS.xiv, add: true });   // brilho de chegada
   Audio_.play(199, 0, null, 1, 'xiv');
   Game.helpers.push(h);
@@ -3989,7 +3995,11 @@ function mixHelpStep() {
       continue;
     }
     if (h.hPh === 3) { if (--h.hWait <= 0) h.gone = true; else if (h.hWait === 6) h.hidden = true; continue; }   // entrando de volta no portal
-    if (h.hPh === 0 && h.state === 0 && h.y >= 0 && h.hT > 4) {   // pousou: vira para a inimiga e faz o golpe
+    if (h.hPh === 0 && h.hKind === 'fang' && h.state === 50 && h.vy >= -0.5 && h.y < -40) {   // no alto do pulo: Phoenix Fang Arrow
+      h.facing = en.x >= h.x ? 1 : -1; h.power = h.pmax; h.airAttack = false;
+      if (h.hMove && h.ST[h.hMove]) h.change(h.hMove);
+      h.hPh = 1; h.hMoveT = 0;
+    } else if (h.hPh === 0 && h.state === 0 && h.y >= 0 && h.hT > 4) {   // pousou: vira para a inimiga e faz o golpe
       h.facing = en.x >= h.x ? 1 : -1; h.power = h.pmax;
       if (h.hMove && h.ST[h.hMove]) h.change(h.hMove);
       h.hPh = 1; h.hMoveT = 0;
