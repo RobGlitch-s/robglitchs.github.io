@@ -10028,7 +10028,7 @@ const Game = {
     else this.roundState = this.mode === 'train' ? 'fight' : 'ready';
     this.rsT = 0;
     // Mix Athena: antes de cada round escolhe com qual Athena começa (a troca Q/E continua valendo na luta)
-    if (this.mode !== 'train' && !this.net && !this.demo && this.F.some(f => f.mix)) MixPick.start(this.roundState);
+    if (this.mode !== 'train' && !this.demo && this.F.some(f => f.mix)) MixPick.start(this.roundState);   // online também
   },
 
   // ---------- passo de simulação ----------
@@ -11916,7 +11916,11 @@ const WinFX = {
 };
 // ---------------- Mix Athena: escolha da Athena antes de cada round ----------------
 const MixPick = {
-  E: [], next: 'ready', LIMIT: 600,
+  // o estado da escolha mora no Game (Game.mixE / Game.mixNext): assim entra na fotografia do rollback
+  // e a escolha online fica igual nas duas telas (cada jogador escolhe com os botões que vão pela rede)
+  get E() { return Game.mixE || (Game.mixE = []); }, set E(v) { Game.mixE = v; },
+  get next() { return Game.mixNext || 'ready'; }, set next(v) { Game.mixNext = v; },
+  LIMIT: 600, RA: new WeakMap(),
   // miniaturas: os quadros da pose parada de cada Athena recortados uma vez só em imagens pequenas
   // (montar a folha de sprites colorida a cada quadro travava o jogo); no máximo uma Athena nova por quadro
   TH: {}, built: -1,
@@ -11955,7 +11959,7 @@ const MixPick = {
     this.next = next; this.E = [];
     for (const f of g.F) if (f.mix) {
       const human = !!f.ctl && !f.cpu;
-      const e = { f, human, idx: Math.max(0, ids.indexOf(f.ch.id)), done: false, anim: null, animId: null, moved: 0, armed: false };
+      const e = { f, human, idx: Math.max(0, ids.indexOf(f.ch.id)), done: false, moved: 0, armed: false };
       if (!human) { e.idx = this.cpuChoice(f, ids); e.done = true; }
       this.E.push(e);
     }
@@ -12011,15 +12015,17 @@ const MixPick = {
         this.drawThumb(this.thumbs(nid, e.f.mixPal || 0), nf, cx + d * 62, cy + 98, e.f.team === 1 ? 1 : -1, 0.35, 0.5);
       }
       // a escolhida, animada
-      if (e.animId !== id) { e.anim = new Anim(0, ch.pack.anims); e.animId = id; }
-      if (g.frame !== e.lastF) { e.anim.step(); e.lastF = g.frame; }
-      const fr = e.anim.f, pop = e.moved && t - e.moved < 6 ? 1 + (6 - (t - e.moved)) * 0.03 : 1;
+      // animação só de tela: fica fora do estado da luta (o rollback do online não a faz pular)
+      const R = this.RA.get(e) || {}; this.RA.set(e, R);
+      if (R.id !== id) { R.anim = new Anim(0, ch.pack.anims); R.id = id; }
+      if (g.frame !== R.lastF) { R.anim.step(); R.lastF = g.frame; }
+      const fr = R.anim.f, pop = e.moved && t - e.moved < 6 ? 1 + (6 - (t - e.moved)) * 0.03 : 1;
       this.drawThumb(this.thumbs(id, e.f.mixPal || 0), fr, cx, cy + 101, e.f.team === 1 ? 1 : -1, 1, 0.72 * pop);
       if (!e.done) { txt('◄', cx - 84, cy + 54, '#fff', 12, 'left', ''); txt('►', cx + 84, cy + 54, '#fff', 12, 'right', ''); }
       ctx.restore();
       ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(cx - 92, cy + 102, 184, 18);
       txt(ch.short, cx, cy + 106, '#fff', 10, 'center', '#5a0a3a');
-      const who = e.human ? (e.f.ctl && e.f.ctl.pl ? 'P' + e.f.ctl.pl : 'JOGADOR') : 'CPU';
+      const who = e.human ? (e.f.ctl instanceof NetCtl ? (e.f.ctl.i === Net.me ? 'VOCÊ' : 'J' + (e.f.ctl.i + 1)) : e.f.ctl && e.f.ctl.pl ? 'P' + e.f.ctl.pl : 'JOGADOR') : 'CPU';
       txt(who + (e.done ? ' · PRONTA!' : e.human ? ' · ◄ ► ESCOLHE · J CONFIRMA' : ''), cx, cy + 4, e.done ? '#ffd23f' : '#c9b6e6', 8, 'center', '');
     }
   },
