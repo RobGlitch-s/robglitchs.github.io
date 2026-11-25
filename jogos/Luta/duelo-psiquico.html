@@ -106,6 +106,7 @@
     </div>
     <p style="opacity:.8;margin:6px 0 0">Online: cada jogador usa o próprio teclado (qualquer um dos dois esquemas) ou controle; ENTER pergunta se quer sair da sala. Co-op: as duas jogadoras enfrentam juntas uma CPU mais resistente.</p>
     <p style="opacity:.8;margin:6px 0 0">Controles de Xbox, PlayStation (PS3/PS4/PS5, PS2 com adaptador) e genéricos funcionam: □/X = A, ✕/A = B, △/Y = C, ○/B = D, L1/LB = A+B, R1/RB = C+D, START = pausa. Para controles genéricos, configure os botões em OPÇÕES. Comandos considerando a lutadora virada para a direita.</p>
+    <p style="margin:8px 0 0"><b>Todas as personagens — Assistentes (meia barra):</b> A+C = Kensou aparece na frente e solta o Super Psycho Ball · B+D = Kula aparece atrás e avança com o Diamond Edge (funciona até apanhando, defendendo ou caída)</p>
     <div id="mvList">
     <div class="mv" data-char="kofm">
     <h3>Movimentos</h3>
@@ -2975,7 +2976,6 @@ const xivPre = function (f) {
   return 0;
 };
 XIV.preCommands = function (f) {
-  if (f.assistT > 0) f.assistT--;
   // fora do controle (no meio de um golpe), um comando de especial não sai, então A+C / B+D chamam o ajudante
   const cmdOk = f.ctrl || (f.contact && (f.ch.cancel.normal.has(f.state) || f.ch.cancel.special.has(f.state)));
   const h = f.hist, motion = cmdOk && ((f.both('a', 'c') && hasMotion(h, MOT.QCB, 16) && f.power >= STOCK / 2 && f.type !== 'A') || hasMotion(h, MOT.QCB2, 40) || hasMotion(h, MOT.QCF2, 40) || hasMotion(h, MOT.FBFB, 30) || hasMotion(h, MOT.QCB2F, 40));
@@ -3914,14 +3914,31 @@ def(4520, {
 
 // ---- Assistentes (500 de barra): A+C = Kensou (Super Psycho Ball), B+D = Kula (Diamond Edge) ----
 // No CNS são helpers 1701 / 1710 que aparecem na frente / atrás da Athena; aqui viram "projéteis" com a animação deles.
+// Golpe GLOBAL: vale para todas as personagens (as animações, sons e cores vêm sempre da Athena XIV).
+// chamada global (todas menos a XIV, que tem a própria checagem no preCommands): A+C ou B+D sem nenhum comando de
+// especial na hora. A+B+C (modo MAX) e B+C+D não chamam; → + A+C da 2003 também não.
+function assistTry(f) {
+  if (f.ch.id === 'xiv' || Game.roundState !== 'fight' || f.life <= 0) return false;
+  const near = k => f.pr(k) || Game.frame - (f.lastPress[k] || -99) <= 3;
+  const AC = f.both('a', 'c') && !near('b') && !near('d'), BD = f.both('b', 'd') && !near('a') && !near('c');
+  if (!AC && !BD) return false;
+  const h = f.hist;
+  if ([MOT.QCB, MOT.QCF, MOT.DP, MOT.HCF, MOT.HCB, MOT.DBDF].some(m => hasMotion(h, m, 16))) return false;
+  if ([MOT.QCB2, MOT.QCF2, MOT.HCB2, MOT.HCBF, MOT.QCB2F, MOT.FBFB].some(m => m && hasMotion(h, m, 40))) return false;
+  if (f.ch.id === 'pd03' && AC && f.dir === 6) return false;
+  if (!xivAssist(f, BD)) return false;
+  f.consume(); return true;
+}
 function xivAssist(f, kula) {
   if (f.power < 500 || f.assistT > 0 || f.def.super || f.life <= 0 || f.dead) return false;   // vale também apanhando, defendendo ou caída
-  f.power -= 500; f.assistT = 140; f.snd(199, 0);
+  const XC = CHARS.xiv; if (!XC) return false;
+  const pal = f.ch === XC ? f.atl : palAtlas(XC, Math.max(0, f.ch.palNames.indexOf(f.atl.pname)) % XC.palNames.length);
+  f.power -= 500; f.assistT = 140; Audio_.play(199, 0, null, 1, 'xiv');
   const d = f.facing, front = kula ? -60 : 60;
   let x = f.x + front * d;
   if (x < Game.camX + 20 || x > Game.camX + W - 20) x = f.x - front * d;
-  Game.addExplod({ anim: 1701, x, y: 0, facing: d, pal: f.atl, add: true });
-  const p = Game.addProj(f, { anim: kula ? 1710 : 1702, x, y: 0, vx: 0, box: kula ? 1710 : 1702,
+  Game.addExplod({ anim: 1701, x, y: 0, facing: d, pal, ch: XC, add: true });
+  const p = Game.addProj(f, { anim: kula ? 1710 : 1702, x, y: 0, vx: 0, box: kula ? 1710 : 1702, ch: XC, pal,
     extra: { animBox: true, pierce: true, noReflect: true, noClash: true, noTrail: true, assist: true, front: false, kula,
       update(q) {
         q.vx = 0; q.vy = 0; const e = q.anim.elem + 1, o = q.owner;
@@ -3931,7 +3948,7 @@ function xivAssist(f, kula) {
           if (q.anim.etick === 0 && e === 6) Audio_.play(1700, 1, null, 1, 'xiv');
           if (q.anim.etick === 0 && e === 9) {
             Audio_.play(1700, 2, null, 1, 'xiv');
-            Game.addProj(o, { anim: 1703, x: q.x - 30 * q.facing, y: q.y - 30, vx: 4.5, hitAnim: 1704, box: 1703, extra: { facingFix: q.facing },
+            Game.addProj(o, { anim: 1703, x: q.x - 30 * q.facing, y: q.y - 30, vx: 4.5, hitAnim: 1704, box: 1703, ch: q.ch, pal: q.pal, extra: { facingFix: q.facing },
               hd: HX({ dmg: 45, at: 'H', gf: 'M', gv: [-6, 0], av: [-4, -5], p: [4, 12], hs: [410, 0], kind: 'S', jug: 0, noCharScale: true }) }).vx = 4.5 * q.facing;
           }
           if (e >= 14) q.y -= 30;
@@ -9635,7 +9652,7 @@ class Fighter {
     // situação atual (charge, defesa, pulo): a nova personagem continua no mesmo ponto
     const was = { st: this.state, charge: !!(this.def && this.def.charge), y: this.y, vx: this.vx, vy: this.vy, stun: this.stun, time: this.time, chgT: this.chgT || 0, hop: this.hop, superJ: this.superJ };
     const keep = {};
-    for (const k of ['side', 'team', 'slot', 'ai', 'tgt', 'ctl', 'power', 'life', 'redLife', 'dead', 'x', 'facing', 'hist', 'buf', 'lastPress', 'inp', 'dir', 'mix', 'pure', 'mixPal', 'mixT', 'defMul', 'combo', 'comboDmg']) keep[k] = this[k];
+    for (const k of ['side', 'team', 'slot', 'ai', 'tgt', 'ctl', 'power', 'life', 'redLife', 'dead', 'x', 'facing', 'hist', 'buf', 'lastPress', 'inp', 'dir', 'mix', 'pure', 'assistT', 'mixPal', 'mixT', 'defMul', 'combo', 'comboDmg']) keep[k] = this[k];
     Game.explods = Game.explods.filter(e => e.owner !== this && e.bind !== this);   // efeitos presos na personagem anterior
     for (const k of Object.keys(this)) delete this[k];   // estados próprios da personagem anterior (cristais, contadores...) somem
     Object.assign(this, keep);
@@ -9797,6 +9814,7 @@ class Fighter {
     if (this.life <= 0 || Game.roundState !== 'fight') return;
     let id = 0;
     if (this.ch.preCommands && this.ch.preCommands(this)) return;
+    if (assistTry(this)) return;   // assistentes da XIV (golpe global)
     // escape de agarrão: apertar um botão de ataque nos primeiros 10 quadros do arremesso
     const th = this.thrower;
     if (this.state === 1150 && th && th.def.throw === 'ground' && th.time <= 10 && th.opp === this) {
@@ -9834,6 +9852,7 @@ class Fighter {
     if (s.run) s.run(this);
     if (this.anim === an && an.sets === sets0) an.ranAt = an.stepN;   // quadro já processado (a pausa de acerto não repete sons e golpes)
     if (this.invul > 0) this.invul--;
+    if (this.assistT > 0) this.assistT--;
     if (this.maxT > 0) { this.maxT--; if (Game.mode === 'train' && Game.trainPower) this.maxT = Math.max(this.maxT, 2); }
     if (this.after > 0) this.after--; if (this.pfxT > 0) this.pfxT--; if (this.flash > 0) this.flash--;
     this.time++;
@@ -9928,8 +9947,9 @@ const Game = {
   },
   spark(anim, x, y, facing) { return this.addExplod({ anim, x, y, facing, ch: COMMON, pal: palAtlas(COMMON, 0) }); },
   addProj(f, o) {
-    const p = { owner: f, anim: new Anim(o.anim, f.ch.pack.anims), x: o.x, y: o.y, vx: o.vx * f.facing, facing: f.facing, hd: Object.assign({}, o.hd, { used: false }), hitAnim: o.hitAnim, alive: true, pal: f.atl, trail: [], boxAnim: o.box || f.ch.projBox, ch: f.ch, ...(o.extra || {}) };
-    if (p.scale == null && f.ch.pack.escale && f.ch.pack.escale[o.anim]) p.scale = f.ch.pack.escale[o.anim];   // projscale / size.scale do CNS
+    const pch = o.ch || f.ch;   // o.ch/o.pal: projétil com as animações e cores de outra personagem (ex.: assistentes da XIV em todas)
+    const p = { owner: f, anim: new Anim(o.anim, pch.pack.anims), x: o.x, y: o.y, vx: o.vx * f.facing, facing: f.facing, hd: Object.assign({}, o.hd, { used: false }), hitAnim: o.hitAnim, alive: true, pal: o.pal || f.atl, trail: [], boxAnim: o.box || pch.projBox, ch: pch, ...(o.extra || {}) };
+    if (p.scale == null && pch.pack.escale && pch.pack.escale[o.anim]) p.scale = pch.pack.escale[o.anim];   // projscale / size.scale do CNS
     if ((CS_ST[f.ch.id] || []).includes(f.state) || (CB_BREAK[f.ch.id] || []).includes(f.state)) p.cs = true;   // Crystal Shoot (ou outro golpe que quebra o Crystal Bit)
     p.anim.fresh = false; this.projs.push(p); return p;
   },
