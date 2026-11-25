@@ -47,6 +47,15 @@
   #toast { position: absolute; left: 50%; top: 40%; transform: translateX(-50%); background: rgba(10,0,25,.92); border: 1px solid var(--accent); border-radius: 6px; padding: 8px 12px; font-size: 13px; max-width: 86%; text-align: center; z-index: 8; opacity: 0; transition: opacity .3s; pointer-events: none; }
   #rot { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: #0b0612; z-index: 9; font: 12px "Press Start 2P", monospace; color: var(--accent); text-align: center; padding: 20px; }
   @media (orientation: portrait) { body.touch #rot { display: flex; } }
+  #codes { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(8,2,16,.9); z-index: 6; }
+  #codes .box { background: var(--panel); border: 2px solid var(--accent); border-radius: 8px; padding: 14px 18px; width: min(92%, 420px); display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center; font-size: clamp(10px, 1.5vw, 13px); }
+  #codes h2 { font: 12px "Press Start 2P", monospace; color: var(--accent); margin: 0; }
+  #codes input { background: #0b0612; color: #fff; border: 1px solid #5b4580; border-radius: 5px; padding: 8px 10px; font: 14px monospace; width: 80%; text-align: center; }
+  #codes .row { display: flex; gap: 8px; justify-content: center; }
+  #codes button { background: var(--accent); color: #200; border: 0; border-radius: 6px; padding: 8px 10px; font: 8px "Press Start 2P", monospace; cursor: pointer; }
+  #codes button.alt { background: #2c1d40; color: var(--fg); border: 1px solid #5b4580; }
+  #codes #cmsg { min-height: 1.4em; margin: 0; color: #ffd23f; }
+  #codes ul { margin: 0; padding: 0; list-style: none; color: #c9b6e6; }
   #lob { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(8,2,16,.9); z-index: 6; }
   #lob .box { background: var(--panel); border: 2px solid var(--accent); border-radius: 8px; padding: 12px 16px; width: min(96%, 560px); max-height: 96%; overflow: auto; display: flex; flex-direction: column; gap: 8px; align-items: center; font-size: clamp(10px, 1.5vw, 13px); text-align: center; user-select: text; -webkit-user-select: text; }
   #lob h2 { font: 12px "Press Start 2P", monospace; color: var(--accent); margin: 0; }
@@ -567,6 +576,14 @@
     </div>
     <p id="lmsg"></p>
     <button class="alt" onclick="lobBack()">VOLTAR</button>
+  </div></div>
+  <div id="codes"><div class="box">
+    <h2>CÓDIGOS</h2>
+    <span>Digite um código secreto para liberar extras.</span>
+    <input id="cin" placeholder="CÓDIGO" maxlength="24" autocomplete="off" spellcheck="false" onkeydown="if(event.key==='Enter'){event.preventDefault();codeTry();}else if(event.key==='Escape'){event.preventDefault();codeClose();}">
+    <div class="row"><button onclick="codeTry()">CONFIRMAR</button><button class="alt" onclick="codeClose()">VOLTAR</button></div>
+    <p id="cmsg"></p>
+    <ul id="clist"></ul>
   </div></div>
   <div id="netBar"><button id="netLeave">SAIR DA SALA</button></div>
   <button id="fsBtn" title="Tela cheia (F)"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.6" style="vertical-align:-.15em"><path d="M3 9V3h6M15 3h6v6M21 15v6h-6M9 21H3v-6"/></svg> TELA CHEIA</button>
@@ -10336,7 +10353,11 @@ const Game = {
     if (rs === 'intro') {
       if (this.introSeq) {
         // qualquer botão pula as introduções
-        if (this.rsT > 8 && [M1, M2].some(c => c && c.edge && ['a', 'b', 'c', 'd', 'start'].some(k => c.edge[k]))) { this.skipIntro(); return; }
+        // online: pula com os botões que chegaram pela rede (iguais nas duas telas); offline: J1/J2 locais
+        const skipK = ['a', 'b', 'c', 'd'];
+        const sk = this.net ? F.some(f => f.ctl instanceof NetCtl && f.ctl.edge && skipK.some(k => f.ctl.edge[k]))
+          : [M1, M2].some(c => c && c.edge && [...skipK, 'start'].some(k => c.edge[k]));
+        if (this.rsT > 8 && sk) { this.skipIntro(); return; }
         const f = this.introCur; this.introT++;
         if (!f || f.state !== 190 || this.introT > 300) {   // segurança: a mais longa (2003) leva ~234 quadros
           if (f && f.state === 190) f.change(0);
@@ -10401,7 +10422,9 @@ const Game = {
   },
   // introduções: com a câmera ligada (fora do online), uma lutadora por vez — a próxima só aparece quando começa a entrada dela
   beginIntro() {
-    const seq = !this.net && typeof CamFX !== 'undefined' && CamFX.on;
+    // uma por vez: offline quando a câmera está ligada; online SEMPRE (as duas telas precisam simular igual,
+    // então não pode depender da opção de cada um — a câmera em si continua sendo só visual e segue a opção local)
+    const seq = !!this.net || (typeof CamFX !== 'undefined' && CamFX.on);
     for (const f of this.F) f.hidden = false;
     if (!seq) { for (const f of this.F) f.change(190); return; }
     const L = [...this.F].sort((a, b) => (a.team - b.team) || (a.slot - b.slot));
@@ -11659,11 +11682,11 @@ const CamFX = {
   tick() {
     const g = Game;
     if (!this.on) { this.t = -1; return; }
-    if (g.roundState === 'intro' && g.rsT <= 2 && g.round === 1 && (this.t < 0 || this.mid !== g.matchId)) { this.t = 0; this.skip = false; this.last = g.frame; this.mid = g.matchId; this.seq = !!g.introSeq; this.sCur = null; this.sPrev = null; this.sFrom = null; this.sLast = null; this.sOut = null; }
+    if (g.roundState === 'intro' && g.rsT <= 6 && g.round === 1 && (this.t < 0 || this.mid !== g.matchId)) { this.t = 0; this.skip = false; this.last = g.frame; this.mid = g.matchId; this.seq = !!g.introSeq; this.sCur = null; this.sPrev = null; this.sFrom = null; this.sLast = null; this.sOut = null; }
     if (this.t < 0) return;
     if (g.frame !== this.last) { this.t += Math.max(1, Math.min(3, g.frame - this.last)); this.last = g.frame; }
     // qualquer botão pula a cena; e ela nunca passa do começo da luta
-    if (this.t > 8 && !this.skip && [M1, M2].some(c => c && c.edge && Object.keys(c.edge).some(k => c.edge[k] && /^(a|b|c|d|start)$/.test(k)))) this.skip = true;
+    if (this.t > 8 && !this.skip && !g.net && [M1, M2].some(c => c && c.edge && Object.keys(c.edge).some(k => c.edge[k] && /^(a|b|c|d|start)$/.test(k)))) this.skip = true;
     if (g.roundState === 'ko' || g.roundState === 'timeup') { this.t = -1; return; }
     if (this.seq) { if (g.roundState === 'fight' && this.sOut == null) this.sOut = this.t - 30; return; }   // o fim é pela própria sequência
     const L = this.len();
@@ -13063,6 +13086,12 @@ const Scenes = {
     if (Game.frame % 60 < 40) txt('APERTE ENTER OU J', 120, 176, '#fff', 8, 'center');
     txt('sprites/sons: personagens de MUGEN enviados pelo jogador', 213, 228, 'rgba(255,255,255,0.55)', 8, 'center', '');
     clicks.push({ x: 0, y: 0, w: W, h: H, fn: () => { Game.scene = 'menu'; } });
+    // aba CÓDIGOS (clique/toque, ou U no teclado / botão C no controle)
+    const cx = W - 78, cy = 6, cw = 72, chh = 16;
+    ctx.fillStyle = 'rgba(30,10,50,0.85)'; ctx.fillRect(cx, cy, cw, chh); ctx.strokeStyle = '#ff7ad9'; ctx.strokeRect(cx + 0.5, cy + 0.5, cw - 1, chh - 1);
+    txt('CÓDIGOS (U)', cx + cw / 2, cy + 4, '#ffd6f0', 8, 'center', '');
+    clicks.push({ x: cx, y: cy, w: cw, h: chh, fn: () => codeOpen() });
+    if (M1.edge.c || M2.edge.c) { codeOpen(); return; }
     if (ok()) { Game.scene = 'menu'; Audio_.play(6, 6); }
   },
   menu() {
@@ -13417,6 +13446,22 @@ function lobShow(msg) {
   lobEl('lob').style.display = 'flex'; Game.codeOpen = true; lobPane('lobMain'); lobMsg(msg || Net.msg || '');
   if (!lobEl('lsv').value) { let v = ''; try { v = localStorage.getItem('dpSrv') || ''; } catch (e) { } lobEl('lsv').value = v || (location.protocol === 'file:' ? 'ws://SEU-SERVIDOR:8080' : (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host); }
   for (const k in keys) keys[k] = false;
+}
+// ---- CÓDIGOS (tela inicial): cada código libera um extra e fica salvo neste aparelho ----
+// guardados só como "impressão" (hash) do texto, sem diferenciar maiúsculas/minúsculas nem espaços
+const codeHash = t => { let h = 0x811c9dc5; for (const c of String(t).toLowerCase().replace(/\s+/g, '')) { h ^= c.charCodeAt(0); h = Math.imul(h, 0x01000193); } return (h >>> 0).toString(36); };
+const CODES = [
+  { h: '1lm31rl', name: 'MIX ATHENA VERSÃO CHEFE', on: () => mixPureOn(), give() { try { localStorage.setItem('dpMixPure', '1'); } catch (e) { } } },
+];
+function codeList() { document.getElementById('clist').innerHTML = CODES.filter(c => c.on()).map(c => '<li>✓ ' + c.name + '</li>').join(''); }
+function codeOpen() { const el = document.getElementById('codes'); el.style.display = 'flex'; Game.codeOpen = true; const i = document.getElementById('cin'); i.value = ''; document.getElementById('cmsg').textContent = ''; codeList(); setTimeout(() => i.focus(), 30); }
+function codeClose() { document.getElementById('codes').style.display = 'none'; Game.codeOpen = false; M1.read(); M2.read(); okScene = null; }
+function codeTry() {
+  const i = document.getElementById('cin'), m = document.getElementById('cmsg'), h = codeHash(i.value);
+  const c = i.value.trim() && CODES.find(c => c.h === h);
+  if (!c) { m.style.color = '#ff8f8f'; m.textContent = 'CÓDIGO INVÁLIDO'; Audio_.play(6, 6, null, 0.4); i.select(); return; }
+  const had = c.on(); c.give(); m.style.color = '#9dffb0'; m.textContent = had ? c.name + ' JÁ ESTAVA LIBERADA' : 'LIBERADA: ' + c.name + '!';
+  Audio_.play(6, 6); i.value = ''; codeList();
 }
 function lobHide() { lobEl('lob').style.display = 'none'; Game.codeOpen = false; M1.read(); M2.read(); }
 function lobBack() {
