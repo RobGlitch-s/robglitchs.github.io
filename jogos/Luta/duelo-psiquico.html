@@ -12327,7 +12327,8 @@ const WSNet = {
   close() { if (this.ws) { const w = this.ws; this.ws = null; try { w.close(); } catch (e) { } } },
 };
 
-const MAXPRED = 10;   // no máximo 10 quadros de previsão (~0,17 s); passou disso, espera a rede
+const MAXPRED = 10;
+const NETV = 3;   // versão do protocolo online (3: entradas com 3 letras por quadro, cabem Q/E da Mix); versões diferentes não jogam juntas   // no máximo 10 quadros de previsão (~0,17 s); passou disso, espera a rede
 // gerador aleatório da luta: o estado fica em Game.rs, então volta junto no rollback
 function seededRandom() { let a = Game.rs = (Game.rs + 0x6D2B79F5) | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
 
@@ -12438,7 +12439,7 @@ const Net = {
     this.leaveNow(true);
     this.nroom = r; this.code = code; this.role = role; this.me = role === 'h' ? 0 : -1;
     this.msg = ''; this.mid = 0; this.startedMid = 0; this.goneT = 0; this.rtt = []; this.seats = []; this.cfg = { mode: 'luta', bots: [] }; this.fk = 0; this.arc = null; this.lastGo = null;
-    r.presence(role === 'h' ? { r: 'h', v: 2 } : { r: 'g', v: 2 });
+    r.presence(role === 'h' ? { r: 'h', v: NETV } : { r: 'g', v: NETV });
     this.phase = role === 'h' ? 'wait' : 'seek'; this.joinT = Game.frame;
     lobHide(); Game.scene = 'online';
   },
@@ -12473,7 +12474,7 @@ const Net = {
       if (this.phase !== 'fight') {
         const alive = id => ps.some(p => p.peer === id);
         let seats = [this.myPeer, ...this.seats.slice(1).filter(alive)];
-        for (const p of ps) if (!p.sameTab && p.presence.r === 'g' && !seats.includes(p.peer) && seats.length < 4) seats.push(p.peer);
+        for (const p of ps) if (!p.sameTab && p.presence.r === 'g' && !seats.includes(p.peer) && seats.length < 4) { if (p.presence.v === NETV) seats.push(p.peer); else if (this.oldWarn !== p.peer) { this.oldWarn = p.peer; fsToast('Um jogador tentou entrar com outra versão do jogo — os dois precisam da versão mais nova.'); } }
         if (seats.join() !== this.seats.join()) { this.seats = seats; this.set({ seats }); }
       }
       if (this.seats.length > 1 && this.phase === 'wait') { this.phase = 'sel'; this.set({ form: { cfg: this.cfg, k: this.fk, diff: Game.diff } }); this.enterSelect(); }
@@ -12488,6 +12489,7 @@ const Net = {
       const mySeat = this.seats.indexOf(this.myPeer);
       if (mySeat !== this.me) { const was = this.me; this.me = mySeat; if (Game.scene === 'select') Sel.moveSeat(was, mySeat); }
       if (this.phase === 'seek') {
+        if (h && h.presence.v !== NETV) { this.fail('O anfitrião está com outra versão do jogo. Os dois precisam atualizar para a versão mais nova.'); return; }
         if (h && this.me > 0) { this.phase = 'sel'; this.enterSelect(); }
         else if (h && this.seats.length >= 4 && this.me < 0) { this.fail('Essa sala já está cheia (4 jogadores).'); return; }
         else if (!h && Game.frame - this.joinT > 60 * 12) { this.fail('Sala ' + this.code + ' não encontrada. Confira o código.'); return; }
@@ -12579,7 +12581,7 @@ const Net = {
     const R = Math.random; Math.random = seededRandom;
     try {
       Game.startMatch();
-      if (this.arc && this.arc.ladder[this.arc.stage] === MIX_ID) { Game.p2.defMul = (Game.p2.defMul || 1) * 0.75; Game.p2.mixT = 150; }
+      if (this.arc && this.arc.ladder[this.arc.stage] === MIX_ID) { Game.p2.defMul = (Game.p2.defMul || 1) * 0.75; Game.p2.mixT = 150; Game.p2.pure = true; }   // chefe: sem os bônus/reduções da Mix
     } finally { Math.random = R; }
     RB.init();
   },
@@ -12608,9 +12610,9 @@ const Net = {
       const pr = r.presence, arr = this.inp[o], used = this.used[o];
       if (pr.inp && pr.inp.mid === this.mid && typeof pr.inp.d === 'string') {
         const f0 = pr.inp.f | 0, d = pr.inp.d;
-        for (let k = 0; k + 1 < d.length; k += 2) {
-          const f = f0 + k / 2; if (arr[f] !== undefined) continue;
-          const v = B32.indexOf(d[k]) * 32 + B32.indexOf(d[k + 1]); arr[f] = v;
+        for (let k = 0; k + 2 < d.length; k += 3) {
+          const f = f0 + k / 3; if (arr[f] !== undefined) continue;
+          const v = B32.indexOf(d[k]) * 1024 + B32.indexOf(d[k + 1]) * 32 + B32.indexOf(d[k + 2]); arr[f] = v;
           if (f < this.simF && used[f] !== undefined && used[f] !== v) rb = Math.min(rb, f);
           if (f > this.recvMax[o]) this.recvMax[o] = f;
         }
@@ -12645,7 +12647,7 @@ const Net = {
     if (this.me < 0 || !this.act.includes(this.me)) { this.set({ ack: { mid: this.mid, f: this.remConf } }); return; }
     const mine = this.inp[this.me];
     const from = Math.max(this.delay, this.remoteAck + 1, this.localNext - 150);
-    let d = ''; for (let f = from; f < this.localNext; f++) { const v = mine[f] || 0; d += B32[v >> 5] + B32[v & 31]; }
+    let d = ''; for (let f = from; f < this.localNext; f++) { const v = (mine[f] || 0) & 32767; d += B32[v >> 10] + B32[(v >> 5) & 31] + B32[v & 31]; }   // 3 letras por quadro: os 12 botões (Q/E da Mix incluídos) cabem; com 2 letras só cabiam 10
     this.set({ inp: { mid: this.mid, f: from, d, ld: this.simF - (this.recvMin == null ? this.simF : this.recvMin) }, ack: { mid: this.mid, f: this.remConf } });
   },
   checksum() {
@@ -13245,6 +13247,8 @@ const Scenes = {
     const quit = () => { Net.set({ arcq: Net.mid }); Net.arc = null; Net.enterSelect(); };
     if (won && last) {
       txt('VOCÊS ZERARAM O ARCADE!', W / 2, 110, '#ffd23f', 12, 'center', '#5a0a3a'); txt('continues usados: ' + A.conts, W / 2, 130, '#fff', 8, 'center');
+      if (Game.arcUnl !== Net.mid) { Game.arcUnl = Net.mid; Game.arcNew = !mixPureOn(); try { localStorage.setItem('dpMixPure', '1'); } catch (e) { } }   // venceu a chefe: libera a Mix versão chefe
+      if (Game.arcNew) txt('LIBERADA: MIX ATHENA VERSÃO CHEFE!', W / 2, 146, 'hsl(' + (Game.frame * 4 % 360) + ',90%,72%)', 8, 'center');
       if (host) { menuItem('VOLTAR PARA A SALA', W / 2, 170, true, quit, 10); if (ok()) quit(); } else txt('o anfitrião volta para a sala', W / 2, 170, '#c9b6e6', 8, 'center', '');
       return;
     }
@@ -13629,7 +13633,10 @@ const Sel = {
       const np = palCount(list[p.idx]);
       // cores já tomadas por quem escolheu antes (jogadoras da sala e CPUs) não podem se repetir
       const tk = new Set([0, 1, 2, 3].filter(i => i !== s && this.p[i] && Room.playing(i) && this.p[i].phase !== 'char').map(i => this.p[i].pal));
-      if (tk.size < np && tk.has(p.pal)) { let q = p.pal; for (let t = 0; t < np && tk.has(q); t++) q = (q + 1) % np; p.pal = q; }
+      // só cede a cor para quem já confirmou ou tem prioridade (lugar menor); sem isso, online as duas telas
+      // trocavam de cor ao mesmo tempo, uma fugindo da outra, e a sala ficava piscando/dessincronizada
+      const yield_ = new Set([0, 1, 2, 3].filter(i => i !== s && this.p[i] && Room.playing(i) && (this.p[i].phase === 'ready' || (this.p[i].phase === 'pal' && i < s))).map(i => this.p[i].pal));
+      if (yield_.size < np && yield_.has(p.pal)) { let q = p.pal; for (let t = 0; t < np && yield_.has(q); t++) q = (q + 1) % np; p.pal = q; }
       if ((e.up || e.down) && list[p.idx] === MIX_ID && mixPureOn()) { p.pure = !p.pure; Audio_.play(6, 6, null, 0.4); }
       if (e.left || e.right) { const d = e.left ? np - 1 : 1; let q = p.pal; for (let t = 0; t < np; t++) { q = (q + d) % np; if (!tk.has(q)) break; } p.pal = q; }
       if (e.a || e.start) {
