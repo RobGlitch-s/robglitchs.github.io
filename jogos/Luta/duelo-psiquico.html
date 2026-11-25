@@ -5400,7 +5400,9 @@ const crystal94 = (air) => ({
       if (f.hd && f.hd.boxes && !f.hd.used) f.hd.boxes = [[-26 + dx, -88 + dy, 21 + dx, -41 + dy], [-26 - dx, -88 + dy, 21 - dx, -41 + dy]];
       if (t >= 182) { crystalEnd94(f); }
     }
-    if (air) { if (a.elem >= 91) { f.vy = 0.47 * Math.max(0, a.elem - 90); } if (a.elem >= 91 && f.y >= 0) { crystalEnd94(f); f.change(3015); } }
+    // no ar: quando os cristais acabam (ou a animação chega ao fim) o especial termina e ela cai normalmente até o chão
+    // (antes ela ficava parada na pose do especial descendo devagar até encostar no chão)
+    if (air) { if ((f.cbT >= 182 && !f.cbEx) || a.elem >= 91) { crystalEnd94(f); f.change(3016); } }
     else if (a.done) { crystalEnd94(f); f.change(0); }
   }
 });
@@ -5413,6 +5415,10 @@ function crystalEnd94(f) {
 }
 def(3000, crystal94(false)); def(3010, crystal94(true));
 def(3015, { anim: 1011, mt: 'I', vel: [0, 0], enter(f) { f.y = 0; f.vy = 0; f.type = 'S'; }, run(f) { if (f.anim.done) f.toIdle(); } });
+// queda depois do Shining Crystal Bit no ar: animação de descida do pulo, gravidade normal, aterrissa no chão
+def(3016, { anim: 41, type: 'A', ph: 'N', mt: 'I', vel: [0, 0],
+  enter(f) { const A = f.ch.A, id = A.jumpN + (A.jumpFallAdd || 0); f.setAnim(f.ch.pack.anims[id] ? id : A.jumpN); f.vx = 0; f.vy = Math.max(f.vy, 0); f.hd = null; },
+  run(f) { f.vy += 0.47; if (f.vy > 0 && f.y + f.vy >= 0) { f.y = 0; f.vy = 0; f.change(52); } } });
 // Crystal Shoot: os cristais se juntam acima da cabeça (-17, -130), viram uma esfera (3005) e são arremessados
 // (A: reto · C: subindo · no ar: em diagonal para baixo). Segurar o soco segura a esfera.
 const cshoot94 = (up) => ({
@@ -7999,7 +8005,7 @@ def(3020, {
   anim: 3020, type: 'S', ph: 'N', mt: 'I', vel: [0, 0],
   enter(f) { crystalEnd01(f); f.hd = null; f.snd(0, 0); if (f.cbAir) { f.type = 'A'; f.setAnim(3520); } },
   run(f) {
-    if (f.cbAir) { if (f.time >= 26) { f.vy += 0.5; if (f.anim.done && f.anim.id !== 1520) f.setAnim(1520); if (f.vy > 0 && f.y >= 0) { f.y = 0; f.change(1510); } } }
+    if (f.cbAir) { if (f.time >= 26) { f.vy += 0.5; if (f.anim.done && f.anim.id !== 1520) f.setAnim(1520); if (f.vy > 0 && f.y + f.vy >= 0) { f.y = 0; f.vy = 0; f.change(1510); } } }
     else if (f.anim.done) f.toIdle();
   }
 });
@@ -8053,7 +8059,9 @@ def(3120, {
   run(f) {
     const a = f.anim;
     if (a.start(2)) f.snd(3000, 1);
-    if (f.cbAir) { if (a.done) { if (f.anim.id !== 1520) f.setAnim(1520); f.vy += 0.5; if (f.vy > 0 && f.y >= 0) { f.y = 0; f.change(1510); } } }
+    // no ar: quando a animação do disparo acaba ela passa para a queda (1520, que fica em loop) e cai até o chão.
+    // (antes a queda só acontecia com a animação 'acabada': na 1520 isso nunca acontecia e ela atravessava o chão)
+    if (f.cbAir) { if (a.done || a.id === 1520) { if (a.id !== 1520) f.setAnim(1520); f.vy += 0.5; if (f.vy > 0 && f.y + f.vy >= 0) { f.y = 0; f.vy = 0; f.change(1510); } } }
     else if (a.done) f.toIdle();
   }
 });
