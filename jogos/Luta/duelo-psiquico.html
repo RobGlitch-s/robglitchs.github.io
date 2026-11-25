@@ -10028,7 +10028,8 @@ const Game = {
     else this.roundState = this.mode === 'train' ? 'fight' : 'ready';
     this.rsT = 0;
     // Mix Athena: antes de cada round escolhe com qual Athena começa (a troca Q/E continua valendo na luta)
-    if (this.mode !== 'train' && !this.demo && this.F.some(f => f.mix)) MixPick.start(this.roundState);   // online também
+    // online também; no treino só ao começar (REPOSICIONAR mantém a Athena atual)
+    if ((this.mode !== 'train' || intro) && !this.demo && this.F.some(f => f.mix)) MixPick.start(this.roundState);
   },
 
   // ---------- passo de simulação ----------
@@ -11960,7 +11961,7 @@ const MixPick = {
     for (const f of g.F) if (f.mix) {
       const human = !!f.ctl && !f.cpu;
       const e = { f, human, idx: Math.max(0, ids.indexOf(f.ch.id)), done: false, moved: 0, armed: false };
-      if (!human) { e.idx = this.cpuChoice(f, ids); e.done = true; }
+      if (!human) { if (g.mode !== 'train') e.idx = this.cpuChoice(f, ids); e.done = true; }   // o boneco do treino fica com a Athena em que está
       this.E.push(e);
     }
     if (this.E.some(e => e.human)) { g.roundState = 'mixpick'; g.rsT = 0; g.introSeq = null; g.introCur = null; for (const f of g.F) { f.hidden = false; if (f.state === 190) f.change(0); } }
