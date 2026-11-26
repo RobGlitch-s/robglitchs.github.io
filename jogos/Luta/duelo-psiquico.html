@@ -107,7 +107,7 @@
     <p style="opacity:.8;margin:6px 0 0">Online: cada jogador usa o próprio teclado (qualquer um dos dois esquemas) ou controle; ENTER pergunta se quer sair da sala. Co-op: as duas jogadoras enfrentam juntas uma CPU mais resistente.</p>
     <p style="opacity:.8;margin:6px 0 0">Controles de Xbox, PlayStation (PS3/PS4/PS5, PS2 com adaptador) e genéricos funcionam: □/X = A, ✕/A = B, △/Y = C, ○/B = D, L1/LB = A+B, R1/RB = C+D, START = pausa. Para controles genéricos, configure os botões em OPÇÕES. Comandos considerando a lutadora virada para a direita.</p>
     <p style="margin:8px 0 0"><b>Todas as personagens — Assistentes (meia barra):</b> A+C = Kensou aparece na frente e solta o Super Psycho Ball · B+D = Kula aparece atrás e avança com o Diamond Edge (funciona até apanhando, defendendo ou caída)</p>
-    <p style="margin:4px 0 0"><b>Só a Mix Athena — Ajudantes (2 barras):</b> ↓↙←↓↙← + A+B = a Athena 2003 pula na frente e solta o Super Psycho Ball Attack · ↓↘→↓↘→ + A+B = a Athena XIV pula atrás e solta o Crystal Shoot · ←↙↓↘→ + A+B = uma Athena aleatória pula em cima da inimiga e faz o Shining Crystal Bit · →↘↓↙← + A+B = uma Athena aleatória pula por cima da inimiga e faz o Phoenix Fang Arrow · <b>(1 barra)</b> ↓↙← + A+B = uma Athena com Psycho Shoot sai de um portal atrás da Mix e solta o golpe · ↓↘→ + A+B = uma Athena com Psycho Sword sai de um portal na frente da inimiga e faz o golpe</p>
+    <p style="margin:4px 0 0"><b>Só a Mix Athena — Ajudantes — botão P (teclado: P; 2 barras):</b> ↓↙←↓↙← + P = a Athena 2003 pula na frente e solta o Super Psycho Ball Attack · ↓↘→↓↘→ + P = a Athena XIV pula atrás e solta o Crystal Shoot · ←↙↓↘→ + P = uma Athena aleatória pula em cima da inimiga e faz o Shining Crystal Bit · →↘↓↙← + P = uma Athena aleatória pula por cima da inimiga e faz o Phoenix Fang Arrow · <b>(1 barra)</b> ↓↙← + P = um clone da Mix corre para trás dela e de dentro sai uma Athena que solta o Psycho Shoot · ↓↘→ + P = o clone corre até a frente da inimiga e de dentro sai uma Athena que faz o Psycho Sword</p>
     <div id="mvList">
     <div class="mv" data-char="kofm">
     <h3>Movimentos</h3>
@@ -597,7 +597,7 @@
       <div class="tb" data-k="c">C</div><div class="tb" data-k="d">D</div><div class="tb" data-k="cd">CD</div>
       <div class="tb" data-k="a">A</div><div class="tb" data-k="b">B</div><div class="tb" data-k="ab">AB</div>
     </div>
-    <div id="tTop"><div class="tb s" id="tFs" style="font-size:3.4vmin"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.6" style="vertical-align:-.15em"><path d="M3 9V3h6M15 3h6v6M21 15v6h-6M9 21H3v-6"/></svg></div><div class="tb s mixb" data-k="mixP" style="display:none">◄ MIX</div><div class="tb s mixb" data-k="mixN" style="display:none">MIX ►</div><div class="tb s" data-k="start">PAUSA</div></div>
+    <div id="tTop"><div class="tb s" id="tFs" style="font-size:3.4vmin"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.6" style="vertical-align:-.15em"><path d="M3 9V3h6M15 3h6v6M21 15v6h-6M9 21H3v-6"/></svg></div><div class="tb s mixb" data-k="mixP" style="display:none">◄ MIX</div><div class="tb s mixb" data-k="mixN" style="display:none">MIX ►</div><div class="tb s mixb" data-k="help" style="display:none">P AJUDA</div><div class="tb s" data-k="start">PAUSA</div></div>
   </div>
 </div>
 <div id="rot"><div style="font-size:40px">↻</div>GIRE O CELULAR<br>PARA JOGAR NA HORIZONTAL</div>
@@ -861,10 +861,10 @@ document.addEventListener('visibilitychange', () => appHide(document.hidden));
 
 // ---------------- entrada (teclado / controle / toque) ----------------
 const KEYMAP = {
-  1: { up: ['KeyW'], down: ['KeyS'], left: ['KeyA'], right: ['KeyD'], a: ['KeyJ'], b: ['KeyK'], c: ['KeyU'], d: ['KeyI'], ab: ['KeyL'], cd: ['KeyO'], taunt: ['KeyY'], start: ['Enter', 'Escape'], mixP: ['KeyQ'], mixN: ['KeyE'] },
-  3: { up: [], down: [], left: [], right: [], a: [], b: [], c: [], d: [], ab: [], cd: [], taunt: [], start: [], mixP: [], mixN: [] },
-  4: { up: [], down: [], left: [], right: [], a: [], b: [], c: [], d: [], ab: [], cd: [], taunt: [], start: [], mixP: [], mixN: [] },
-  2: { up: ['ArrowUp'], down: ['ArrowDown'], left: ['ArrowLeft'], right: ['ArrowRight'], a: ['Numpad4', 'Comma'], b: ['Numpad5', 'Period'], c: ['Numpad7', 'KeyM'], d: ['Numpad8', 'KeyN'], ab: ['Numpad6', 'Slash'], cd: ['Numpad9', 'KeyB'], taunt: ['Numpad0'], start: ['NumpadEnter', 'Backspace'], mixP: ['Numpad1'], mixN: ['Numpad3'] }
+  1: { up: ['KeyW'], down: ['KeyS'], left: ['KeyA'], right: ['KeyD'], a: ['KeyJ'], b: ['KeyK'], c: ['KeyU'], d: ['KeyI'], ab: ['KeyL'], cd: ['KeyO'], taunt: ['KeyY'], start: ['Enter', 'Escape'], mixP: ['KeyQ'], mixN: ['KeyE'], help: ['KeyP'] },
+  3: { up: [], down: [], left: [], right: [], a: [], b: [], c: [], d: [], ab: [], cd: [], taunt: [], start: [], mixP: [], mixN: [], help: [] },
+  4: { up: [], down: [], left: [], right: [], a: [], b: [], c: [], d: [], ab: [], cd: [], taunt: [], start: [], mixP: [], mixN: [], help: [] },
+  2: { up: ['ArrowUp'], down: ['ArrowDown'], left: ['ArrowLeft'], right: ['ArrowRight'], a: ['Numpad4', 'Comma'], b: ['Numpad5', 'Period'], c: ['Numpad7', 'KeyM'], d: ['Numpad8', 'KeyN'], ab: ['Numpad6', 'Slash'], cd: ['Numpad9', 'KeyB'], taunt: ['Numpad0'], start: ['NumpadEnter', 'Backspace'], mixP: ['Numpad1'], mixN: ['Numpad3'], help: ['Numpad2', 'KeyV'] }
 };
 // teclas configuráveis por jogador (OPÇÕES): ficam salvas no navegador; ENTER/ESC continuam valendo como START para o jogador 1
 const KEYDEF = JSON.parse(JSON.stringify(KEYMAP));
@@ -876,7 +876,7 @@ const KeyCfgStore = {
 };
 KeyCfgStore.load();
 const keys = {};
-const touch = { taunt: 0, up: 0, down: 0, left: 0, right: 0, a: 0, b: 0, c: 0, d: 0, ab: 0, cd: 0, ac: 0, bd: 0, bc: 0, abc: 0, start: 0, mixP: 0, mixN: 0 };
+const touch = { taunt: 0, up: 0, down: 0, left: 0, right: 0, a: 0, b: 0, c: 0, d: 0, ab: 0, cd: 0, ac: 0, bd: 0, bc: 0, abc: 0, start: 0, mixP: 0, mixN: 0, help: 0 };
 addEventListener('keydown', e => {
   if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;   // digitando no lobby
   if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'Backspace', 'Slash'].includes(e.code)) e.preventDefault();
@@ -1012,7 +1012,7 @@ function padState(i) {
   }
   // direcional configurado pelo jogador (botão ou eixo), para controles genéricos
   if (m.dirs) for (const k of ['up', 'down', 'left', 'right']) { const d = m.dirs[k]; if (!d) continue; if (d.t === 'k' ? B(d) : d.t === 'b' ? B(d.n) : d.th != null ? B(d) : (p.axes[d.n] || 0) * d.s > 0.5) r[k] = true; }
-  r.a = any(m.a); r.b = any(m.b); r.c = any(m.c); r.d = any(m.d); r.ab = any(m.ab); r.cd = any(m.cd); r.taunt = any(m.taunt); r.start = any(m.start); r.mixP = any(m.mixP != null ? m.mixP : 10); r.mixN = any(m.mixN != null ? m.mixN : 11);
+  r.a = any(m.a); r.b = any(m.b); r.c = any(m.c); r.d = any(m.d); r.ab = any(m.ab); r.cd = any(m.cd); r.taunt = any(m.taunt); r.start = any(m.start); r.mixP = any(m.mixP != null ? m.mixP : 10); r.mixN = any(m.mixN != null ? m.mixN : 11); r.help = any(m.help);
   return r;
 }
 // sente o golpe: vibra o controle (e o celular, no toque) de quem controla a lutadora
@@ -3917,20 +3917,26 @@ def(4520, {
 // No CNS são helpers 1701 / 1710 que aparecem na frente / atrás da Athena; aqui viram "projéteis" com a animação deles.
 // Golpe GLOBAL: vale para todas as personagens (as animações, sons e cores vêm sempre da Athena XIV).
 // ---- Mix Athena: ajudantes (2 barras: uma para chamar, outra para o golpe) ----
-//   ↓↙←↓↙← + A+B   Athena 2003 pula na frente e solta o Super Psycho Ball Attack
-//   ↓↘→↓↘→ + A+B   Athena XIV pula atrás e solta o Crystal Shoot
-//   ←↙↓↘→ + A+B    uma Athena aleatória pula em cima da inimiga e faz o Shining Crystal Bit
-//   →↘↓↙← + A+B    uma Athena aleatória (das que têm) pula por cima da inimiga e, no ar, faz o Phoenix Fang Arrow
-//   ↓↙← + A+B      (1 barra) uma Athena com Psycho Shoot sai de um portal (espelho quebrado) atrás da Mix e solta o golpe
-//   ↓↘→ + A+B      (1 barra) uma Athena com Psycho Sword sai do portal na frente da inimiga e faz o golpe
+//   (botão P = ajudante; no teclado do J1 é a tecla P)
+//   ↓↙←↓↙← + P     Athena 2003 pula na frente e solta o Super Psycho Ball Attack
+//   ↓↘→↓↘→ + P     Athena XIV pula atrás e solta o Crystal Shoot
+//   ←↙↓↘→ + P      uma Athena aleatória pula em cima da inimiga e faz o Shining Crystal Bit
+//   →↘↓↙← + P      uma Athena aleatória (das que têm) pula por cima da inimiga e, no ar, faz o Phoenix Fang Arrow
+//   ↓↙← + P        (1 barra) um clone da Mix corre para trás dela, uma Athena com Psycho Shoot sai de dentro e solta o golpe
+//   ↓↘→ + P        (1 barra) o clone corre até a frente da inimiga e de dentro sai uma Athena com Psycho Sword
 // A ajudante é uma lutadora de verdade (usa o golpe original dela), mas fica fora da luta: não apanha, não empurra,
 // não conta para a vitória; entra pulando, faz o golpe e sai pulando.
 const HELP_ST = { pd03: 3800, xiv: 2050 };
 const HELP_COST = { pd03: 2, xiv: 2, bit: 2, fang: 2, shoot: 1, sword: 1 };
 const SHOOT_ST = { neo: 1800, pd03: 1750, a94: 1051, a2k: 1110 };   // Psycho Shoot (versão C)
 const HSWORD_ST = { kofm: 1310, a98: 1030, neo: 1550, xiv: 11500, pd03: 1350, a95: 1310, a11: 1101, a99: 1210, a2k: 1350, a01: 1550, a96: 1110, a97: 1310 };   // Psycho Sword (versão C)
-const PORTAL = { open: 14, life: 54 };   // portal "espelho quebrado": racha, abre, fica aberto e fecha
-function portalAdd(x) { (Game.portals || (Game.portals = [])).push({ x, y: -62, t: 0 }); Audio_.play(199, 0, null, 0.6, 'xiv'); }
+// clone: uma cópia roxa da lutadora se separa, corre até o lugar e a ajudante sai de dentro dela (na volta, o contrário)
+const CLONE = { run: 16, fade: 12 };
+function cloneAdd(src, x1, back) {
+  const fr = src.anim.f || [0, 0, 0, 0, 0, 0, 0];
+  (Game.clones || (Game.clones = [])).push({ atl: src.atl, sid: fr[0], ox: fr[1], oy: fr[2], fl: fr[6] ? 1 : 0, x0: src.x, y0: src.y, x1, facing: src.facing, t: 0, back: !!back });
+  Audio_.play(199, 0, null, 0.6, 'xiv');
+}
 const FANG_ST = { a94: 3020, a96: 3100, a97: 2400, a98: 2000, a99: 3100, a2k: 3700, a01: 2000, neo: 2000, pd03: 3200, a11: 2100, xiv: 2100 };   // Phoenix Fang Arrow (no ar)
 // de onde cada uma começa o mergulho para acertar (distância antes da inimiga, altura) — medido no jogo
 const FANG_POS = { a97: [45, -110], a01: [100, -80], neo: [125, -80], a2k: [100, -110], a96: [100, -110], pd03: [100, -110] };
@@ -3943,7 +3949,7 @@ function scbState(ch) {   // Shining Crystal Bit no chão (1 barra) de cada pers
   return (ch._scb = r == null ? 0 : r);
 }
 function mixHelpTry(f) {
-  if (!f.mix || !f.ctrl || f.type === 'A' || Game.roundState !== 'fight' || f.life <= 0 || !f.both('a', 'b')) return false;
+  if (!f.mix || !f.ctrl || f.type === 'A' || Game.roundState !== 'fight' || f.life <= 0 || !f.pr('help')) return false;   // botão P (+ movimento)
   const h = f.hist;
   // as sequências longas primeiro (↓↙←↓↙← contém ↓↙←, ←↙↓↘→ contém ↓↘→ ...)
   const kind = hasMotion(h, MOT.QCB2, 40) ? 'pd03' : hasMotion(h, MOT.QCF2, 40) ? 'xiv' : hasMotion(h, MOT.HCF, 24) ? 'bit' : hasMotion(h, MOT.HCB, 24) ? 'fang'
@@ -3964,12 +3970,12 @@ function mixHelpSpawn(f, kind) {
   const h = new Fighter(f.side, ch, (f.mixPal || 0) % ch.palNames.length, null, f.team, 9);
   Object.assign(h, { helper: true, hOwner: f, hKind: kind, hMove: kind === 'bit' ? scbState(ch) : kind === 'fang' ? FANG_ST[id] : TB ? TB[id] : HELP_ST[kind], hPh: 0, hT: 0, tgt: en, power: h.pmax, push: false, noBound: true, invul: 9999, ai: { think: () => ({}) } });
   const d = en.x >= f.x ? 1 : -1;
-  if (TB) {   // sai do portal: atrás da Mix (Psycho Shoot) ou na frente da inimiga (Psycho Sword)
-    const cl = (x) => Math.max(Game.camX + 34, Math.min(Game.camX + W - 34, x));   // portal sempre dentro da tela
+  if (TB) {   // sai de um clone da Mix: atrás dela (Psycho Shoot) ou na frente da inimiga (Psycho Sword)
+    const cl = (x) => Math.max(Game.camX + 34, Math.min(Game.camX + W - 34, x));   // sempre dentro da tela
     const px = cl(kind === 'shoot' ? f.x - 75 * d : en.x - 105 * d);
     h.change(0);   // (change() mostra a lutadora de novo: esconde depois)
-    h.x = px; h.y = 0; h.facing = d; h.hidden = true; h.hPh = -1; h.hWait = PORTAL.open + 7; h.hLand = kind === 'shoot' ? cl(f.x - 48 * d) : en.x - 62 * d;
-    portalAdd(px); Game.helpers.push(h); return;
+    h.x = px; h.y = 0; h.facing = d; h.hidden = true; h.hPh = -1; h.hWait = CLONE.run; h.hLand = kind === 'shoot' ? cl(f.x - 48 * d) : en.x - 62 * d;
+    cloneAdd(f, px); Game.helpers.push(h); return;
   }
   const tx = kind === 'pd03' ? f.x + 55 * d : kind === 'xiv' ? f.x - 50 * d : en.x - 6 * d;   // bit: em cima da inimiga
   h.x = f.x - 20 * d; h.y = 0; h.facing = d;
@@ -3990,11 +3996,11 @@ function mixHelpStep() {
     h.hT++;
     const en = h.hOwner.opp; h.tgt = en; h.invul = 9999; h.inp = { raw: {}, edge: {} }; h.buf = {};
     if (h.pause > 0) { h.pause--; continue; }
-    if (h.hPh === -1) {   // esperando o portal abrir; depois salta para fora dele
+    if (h.hPh === -1) {   // esperando o clone chegar; depois ela salta de dentro dele
       if (--h.hWait <= 0) { h.hidden = false; h.hPh = 0; h.hT = 0; h.facing = en.x >= h.x ? 1 : -1; h.change(50); const T = 2 * 5.5 / (h.ch.K.grav || 0.5); h.vy = -5.5; h.vx = (h.hLand - h.x) / T * h.facing; }
       continue;
     }
-    if (h.hPh === 3) { if (--h.hWait <= 0) h.gone = true; else if (h.hWait === 6) h.hidden = true; continue; }   // entrando de volta no portal
+    if (h.hPh === 3) { if (--h.hWait <= 0) h.gone = true; continue; }   // virou clone e voltou para a Mix
     if (h.hPh === 0 && h.hKind === 'fang' && h.state === 50 && h.vy >= -0.5 && h.y < -40) {   // no alto do pulo: Phoenix Fang Arrow
       h.facing = en.x >= h.x ? 1 : -1; h.power = h.pmax; h.airAttack = false;
       if (h.hMove && h.ST[h.hMove]) h.change(h.hMove);
@@ -4006,7 +4012,7 @@ function mixHelpStep() {
     } else if (h.hPh === 1) {
       h.hMoveT++;
       if (((h.ctrl && h.hMoveT > 6) || h.hMoveT > 600) && h.y >= 0) {
-        if (h.hKind === 'shoot' || h.hKind === 'sword') { h.hPh = 3; h.hWait = 16; portalAdd(h.x); }   // volta pelo portal
+        if (h.hKind === 'shoot' || h.hKind === 'sword') { h.hPh = 3; h.hWait = 2; cloneAdd(h, h.hOwner.x, true); h.hidden = true; }   // vira clone e volta para dentro da Mix
         else { h.hPh = 2; h.hT = 0; h.facing = en.x >= h.x ? 1 : -1; h.change(50); h.vx = -4; h.vy = -9; }   // terminou: sai pulando
       }
     }
@@ -9883,7 +9889,7 @@ class Fighter {
     const r = ctlRaw; this.inp.raw = r; this.inp.edge = edge;
     const d = relDir(r, this.facing); this.dir = d;
     this.hist.push(d); if (this.hist.length > 40) this.hist.shift();
-    for (const b of ['a', 'b', 'c', 'd', 'start', 'taunt']) {
+    for (const b of ['a', 'b', 'c', 'd', 'start', 'taunt', 'help']) {
       if (edge[b]) { this.buf[b] = 4; this.lastPress[b] = Game.frame; } else if (this.buf[b] > 0 && this.pause === 0) this.buf[b]--;
     }
     // toque duplo para correr / recuar
@@ -10157,7 +10163,7 @@ const Game = {
   },
   startRound(intro) {
     for (const f of this.F) { const pw = f.power || 0; f.reset(); f.power = this.mode === 'train' ? f.pmax : pw; }
-    this.projs = []; this.explods = []; this.helpers = []; this.portals = []; this.cine = false; this.cineBlack = false; this.grayT = 0; this.camLock = false; this.timer = this.tlim || 99; this.timerT = 0; this.slow = 0; this.superT = 0;
+    this.projs = []; this.explods = []; this.helpers = []; this.clones = []; this.cine = false; this.cineBlack = false; this.grayT = 0; this.camLock = false; this.timer = this.tlim || 99; this.timerT = 0; this.slow = 0; this.superT = 0;
     this.camX = (STAGE_W - W) / 2;
     this.koVictim = null;
     this.introSeq = null; this.introCur = null;
@@ -10218,7 +10224,7 @@ const Game = {
     }
     for (const f of F) if (f.pause === 0) f.physics();
     if (this.helpers && this.helpers.length) mixHelpStep();
-    if (this.portals && this.portals.length) { for (const q of this.portals) q.t++; this.portals = this.portals.filter(q => q.t < PORTAL.life); }
+    if (this.clones && this.clones.length) { for (const q of this.clones) q.t++; this.clones = this.clones.filter(q => q.t < CLONE.run + CLONE.fade); }
     // teleportes no chão: distância igualada à da Athena XIV (fator por estado em ch.teleFix)
     for (const f of F) { let k = f.ch.teleFix && f.ch.teleFix[f.state]; if (typeof k === 'function') k = k(f); if (k) f.x = f.tx0 + (f.x - f.tx0) * k; }
     this.pushApart();
@@ -11475,39 +11481,31 @@ function txt(s, x, y, col, size, align, outline) {
 }
 
 // ---------------- desenho da luta ----------------
-// portal "espelho quebrado" (só desenho; a posição e o tempo vêm da simulação)
-function drawPortal(q, cam, sy) {
-  const t = q.t, cx = q.x - cam, cy = GY + q.y + sy, L = PORTAL.life, op = PORTAL.open;
-  const o = t < op ? 0 : t < L - 12 ? Math.min(1, (t - op) / 5) : Math.max(0, (L - t) / 12);
-  const rnd = (i) => { const v = Math.sin(i * 12.9898 + q.x * 0.123) * 43758.5453; return v - Math.floor(v); };
+// clone roxo (só desenho; posição e tempo vêm da simulação)
+function drawClone(q, cam, sy) {
+  const R = CLONE.run, t = q.t, k = Math.min(1, t / R), e = 1 - (1 - k) * (1 - k) * (1 - k);   // corre desacelerando
+  const x = q.x0 + (q.x1 - q.x0) * e, y = q.y0 * (1 - e);
+  const a = t < R ? 0.75 : Math.max(0, 0.75 * (1 - (t - R) / CLONE.fade));
+  if (a <= 0) return;
   ctx.save();
-  if (t < op) {   // rachaduras se espalhando
-    const k = t / op; ctx.strokeStyle = 'rgba(235,215,255,' + (0.5 + 0.5 * k) + ')'; ctx.lineWidth = 1;
-    for (let i = 0; i < 9; i++) { const a = i * 0.7 + rnd(i), r1 = (26 + rnd(i + 9) * 30) * k; ctx.beginPath(); ctx.moveTo(cx, cy); const mx = cx + Math.cos(a) * r1 * 0.5 + (rnd(i + 3) - 0.5) * 8, my = cy + Math.sin(a) * r1 * 0.75; ctx.lineTo(mx, my); ctx.lineTo(cx + Math.cos(a) * r1 * 0.8, cy + Math.sin(a) * r1 * 1.15); ctx.stroke(); }
-    ctx.fillStyle = 'rgba(255,255,255,' + k * 0.6 + ')'; ctx.fillRect(cx - 1, cy - 1, 3, 3);
+  // rastro do clone correndo
+  if (t < R) for (let i = 3; i >= 1; i--) {
+    const k2 = Math.max(0, (t - i * 2) / R), e2 = 1 - (1 - k2) * (1 - k2) * (1 - k2), x2 = q.x0 + (q.x1 - q.x0) * e2;
+    ctx.filter = 'brightness(0.7) sepia(1) hue-rotate(225deg) saturate(5)';
+    drawSpr(q.atl, q.sid, x2 - cam, GY + q.y0 * (1 - e2) + sy, q.facing, q.ox, q.oy, q.fl, a * 0.18 * (4 - i), false);
   }
-  if (o > 0) {
+  ctx.filter = 'brightness(0.85) sepia(1) hue-rotate(225deg) saturate(5)';
+  drawSpr(q.atl, q.sid, x - cam, GY + y + sy, q.facing, q.ox, q.oy, q.fl, a, false);
+  ctx.filter = 'none';
+  drawSpr(q.atl, q.sid, x - cam, GY + y + sy, q.facing, q.ox, q.oy, q.fl, a * 0.45, true, true);   // brilho branco por cima
+  // chegada: anel e faíscas (é de dentro dele que ela sai / onde ele some)
+  if (t >= R - 2) {
+    const f = (t - R + 2) / (CLONE.fade + 2), cx = (q.back ? q.x1 : x) - cam, cy = GY - 50 + sy;
     ctx.globalCompositeOperation = 'lighter';
-    for (let i = 4; i > 0; i--) { ctx.fillStyle = 'rgba(150,60,255,' + 0.09 * o + ')'; ctx.beginPath(); ctx.ellipse(cx, cy, 26 * i * o, 34 * i * o, 0, 0, 7); ctx.fill(); }
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.beginPath();
-    for (let i = 0; i < 14; i++) { const a = i / 14 * Math.PI * 2, r = (i % 2 ? 30 : 42) * (0.8 + rnd(i) * 0.3) * o; ctx.lineTo(cx + Math.cos(a) * r * 0.72, cy + Math.sin(a) * r * 1.05); }
-    ctx.closePath(); ctx.fillStyle = 'rgba(14,0,30,' + 0.92 * o + ')'; ctx.fill();
-    ctx.strokeStyle = 'rgba(215,150,255,' + o + ')'; ctx.lineWidth = 2; ctx.stroke();
-    ctx.strokeStyle = 'rgba(255,240,255,' + 0.6 * o + ')'; ctx.lineWidth = 1; ctx.stroke();
-    // brilho girando lá dentro
-    ctx.strokeStyle = 'rgba(190,110,255,' + 0.5 * o + ')';
-    for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.ellipse(cx, cy, 16 * o, 24 * o, t * 0.08 + i * 1.05, 0, 4); ctx.stroke(); }
-  }
-  // cacos voando
-  if (t >= op - 2 && t < op + 28) {
-    const k = (t - op + 2) / 30;
-    for (let i = 0; i < 14; i++) {
-      const a = i / 14 * Math.PI * 2 + rnd(i + 30), d = 30 + k * (60 + rnd(i + 40) * 60);
-      ctx.save(); ctx.translate(cx + Math.cos(a) * d * 0.8, cy + Math.sin(a) * d + k * k * 40); ctx.rotate(t * 0.25 + i);
-      ctx.globalAlpha = 1 - k; ctx.fillStyle = i % 3 ? '#d9c2ff' : '#ffffff';
-      ctx.beginPath(); ctx.moveTo(0, -6 - rnd(i) * 4); ctx.lineTo(4 + rnd(i + 1) * 3, 4); ctx.lineTo(-4, 3); ctx.closePath(); ctx.fill(); ctx.restore();
-    }
+    ctx.strokeStyle = 'rgba(200,120,255,' + (1 - f) + ')'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.ellipse(cx, cy, 14 + f * 40, 30 + f * 50, 0, 0, 7); ctx.stroke();
+    ctx.fillStyle = 'rgba(235,200,255,' + (1 - f) + ')';
+    for (let i = 0; i < 10; i++) { const an = i * 0.63, d = 10 + f * 55; ctx.fillRect(cx + Math.cos(an) * d * 0.7, cy + Math.sin(an) * d, 2, 2); }
   }
   ctx.restore();
 }
@@ -12174,35 +12172,35 @@ const MixPick = {
   draw() {
     const g = Game; if (g.roundState !== 'mixpick') return;
     const ids = mixList(), t = g.rsT;
-    ctx.fillStyle = 'rgba(8,0,18,0.62)'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(8,0,18,0.35)'; ctx.fillRect(0, 0, W, H);   // fundo só escurecido (a luta aparece atrás)
     txt('MIX ATHENA', W / 2, 44, '#ff7ad9', 14, 'center', '#5a0a3a');
     txt('ESCOLHA COM QUAL ATHENA COMEÇA O ' + (g.round === 3 ? 'ROUND FINAL' : 'ROUND ' + g.round), W / 2, 62, '#fff', 8, 'center', '');
     txt(Math.max(0, Math.ceil((this.LIMIT - t) / 60)) + '', W / 2, 78, '#ffd23f', 10, 'center', '');
-    const sides = { 1: 0, 2: 0 };
+    // cada time fica na sua metade da tela; várias Mix no mesmo time ficam lado a lado (sem sobrepor).
+    // painel transparente: só a Athena escolhida aparece (trocar só troca a personagem, sem as outras desenhadas)
+    const cnt = { 1: 0, 2: 0 }, pos = { 1: 0, 2: 0 };
+    for (const e of this.E) cnt[e.f.team]++;
     for (const e of this.E) {
-      const k = sides[e.f.team]++, cx = (e.f.team === 1 ? 108 : W - 108) + (e.f.team === 1 ? 1 : -1) * k * 12, cy = 86 + k * 6;
+      const tm = e.f.team, n = cnt[tm], k = pos[tm]++;
+      const half = W / 2 - 14, gap = 8, pw = Math.min(184, (half - gap * (n - 1)) / n), sc = Math.min(1, Math.max(0.8, pw / 150));
+      const x0 = tm === 1 ? 10 : W / 2 + 4, cx = x0 + pw / 2 + k * (pw + gap) + (half - (pw * n + gap * (n - 1))) / 2, cy = 86;
       const id = ids[e.idx], ch = CHARS[id];
-      ctx.fillStyle = 'rgba(20,4,34,0.88)'; ctx.fillRect(cx - 92, cy, 184, 120);
-      ctx.save(); ctx.beginPath(); ctx.rect(cx - 92, cy, 184, 120); ctx.clip();
-      ctx.strokeStyle = e.done ? '#ffd23f' : (e.f.team === 1 ? '#7fd4ff' : '#ff8fb8'); ctx.lineWidth = 1; ctx.strokeRect(cx - 91.5, cy + 0.5, 183, 119);
-      // vizinhas (pequenas, apagadas)
-      for (const d of [-1, 1]) {
-        const nid = ids[(e.idx + d + ids.length) % ids.length], nc = CHARS[nid], nf = nc.pack.anims[0][1][0];
-        this.drawThumb(this.thumbs(nid, e.f.mixPal || 0), nf, cx + d * 62, cy + 98, e.f.team === 1 ? 1 : -1, 0.35, 0.5);
-      }
-      // a escolhida, animada
-      // animação só de tela: fica fora do estado da luta (o rollback do online não a faz pular)
+      const col = e.done ? '#ffd23f' : (tm === 1 ? '#7fd4ff' : '#ff8fb8');
+      ctx.strokeStyle = col; ctx.globalAlpha = 0.55; ctx.lineWidth = 1; ctx.strokeRect(Math.round(cx - pw / 2) + 0.5, cy + 0.5, Math.round(pw) - 1, 119); ctx.globalAlpha = 1;
+      // a escolhida, animada (animação só de tela: fica fora do estado da luta, o rollback do online não a faz pular)
       const R = this.RA.get(e) || {}; this.RA.set(e, R);
       if (R.id !== id) { R.anim = new Anim(0, ch.pack.anims); R.id = id; }
       if (g.frame !== R.lastF) { R.anim.step(); R.lastF = g.frame; }
       const fr = R.anim.f, pop = e.moved && t - e.moved < 6 ? 1 + (6 - (t - e.moved)) * 0.03 : 1;
-      this.drawThumb(this.thumbs(id, e.f.mixPal || 0), fr, cx, cy + 101, e.f.team === 1 ? 1 : -1, 1, 0.72 * pop);
-      if (!e.done) { txt('◄', cx - 84, cy + 54, '#fff', 12, 'left', ''); txt('►', cx + 84, cy + 54, '#fff', 12, 'right', ''); }
+      ctx.save(); ctx.beginPath(); ctx.rect(cx - pw / 2, cy, pw, 120); ctx.clip();
+      this.drawThumb(this.thumbs(id, e.f.mixPal || 0), fr, cx, cy + 101, tm === 1 ? 1 : -1, 1, 0.72 * pop * sc);
       ctx.restore();
-      ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(cx - 92, cy + 102, 184, 18);
-      txt(ch.short, cx, cy + 106, '#fff', 10, 'center', '#5a0a3a');
+      if (!e.done) { txt('◄', cx - pw / 2 + 4, cy + 54, '#fff', 12, 'left', '#000'); txt('►', cx + pw / 2 - 4, cy + 54, '#fff', 12, 'right', '#000'); }
+      ctx.fillStyle = 'rgba(0,0,0,0.45)'; ctx.fillRect(cx - pw / 2, cy + 102, pw, 18);
+      txt(ch.short, cx, cy + 106, '#fff', pw < 120 ? 8 : 10, 'center', '#5a0a3a');
       const who = e.human ? (e.f.ctl instanceof NetCtl ? (e.f.ctl.i === Net.me ? 'VOCÊ' : 'J' + (e.f.ctl.i + 1)) : e.f.ctl && e.f.ctl.pl ? 'P' + e.f.ctl.pl : 'JOGADOR') : 'CPU';
-      txt(who + (e.done ? ' · PRONTA!' : e.human ? ' · ◄ ► ESCOLHE · J CONFIRMA' : ''), cx, cy + 4, e.done ? '#ffd23f' : '#c9b6e6', 8, 'center', '');
+      txt(who + (e.done ? ' · PRONTA!' : ''), cx, cy + 4, e.done ? '#ffd23f' : '#c9b6e6', 8, 'center', '#000');
+      if (e.human && !e.done) txt(pw < 150 ? '◄ ► · J' : '◄ ► ESCOLHE · J CONFIRMA', cx, cy + 14, '#c9b6e6', 8, 'center', '#000');
     }
   },
 };
@@ -12220,16 +12218,17 @@ function drawFight() {
     ctx.fillStyle = el < 2 ? '#f8f8f8' : '#000'; ctx.fillRect(0, 0, W, H);
     if (el >= 2 && g.superStyle === 'mugen') drawSuperRays(g.superBy, cam, sy, el, g.superMax);
   } else if ((g.superT > 0 && g.superStyle !== 'xiv') || g.cine || g.cineBlack) { ctx.fillStyle = g.cineBlack ? '#000' : g.cine ? 'rgba(6,0,18,0.78)' : 'rgba(0,0,10,0.62)'; ctx.fillRect(0, 0, W, H); }
-  for (const f of g.F) drawShadow(f, cam, sy);
+  const hideF = g.roundState === 'mixpick';   // escolhendo a Athena da Mix: as lutadoras ficam fora da tela (o painel é transparente)
+  if (!hideF) for (const f of g.F) drawShadow(f, cam, sy);
   VFX.tick(); VFX.draw(true, cam, sy);
   drawExplods(false, cam, sy);
   // quem ataca fica na frente
   let order = (g.p1.mt === 'A' && g.p2.mt !== 'A') ? [g.p2, g.p1] : (g.p2.mt === 'A' && g.p1.mt !== 'A') ? [g.p1, g.p2] : (g.lastFront === 1 ? [g.p2, g.p1] : [g.p1, g.p2]);
   if (g.p1.mt === 'A' && g.p2.mt !== 'A') g.lastFront = 1; else if (g.p2.mt === 'A' && g.p1.mt !== 'A') g.lastFront = 2;
   for (const x of g.F) if (x !== g.p1 && x !== g.p2) order = x.mt === 'A' ? [...order, x] : [x, ...order];
-  for (const q of g.portals || []) drawPortal(q, cam, sy);
+  for (const q of g.clones || []) drawClone(q, cam, sy);
   for (const hh of g.helpers || []) if (hh.mt !== 'A') { if (!hh.hidden) drawShadow(hh, cam, sy); drawFighter(hh, cam, sy); }   // ajudantes da Mix (atrás quando não atacam)
-  for (const f of order) { VFX.drawCharge(f, cam, sy, false); VFX.drawGhosts(f, cam, sy); drawFighter(f, cam, sy); VFX.drawCharge(f, cam, sy, true); drawOrbs(f, cam, sy); }
+  if (!hideF) for (const f of order) { VFX.drawCharge(f, cam, sy, false); VFX.drawGhosts(f, cam, sy); drawFighter(f, cam, sy); VFX.drawCharge(f, cam, sy, true); drawOrbs(f, cam, sy); }
   for (const hh of g.helpers || []) if (hh.mt === 'A') { if (!hh.hidden) drawShadow(hh, cam, sy); drawFighter(hh, cam, sy); }
   for (const p of g.projs) {
     for (let i = p.trail.length - 1; i >= 0; i--) { const t = p.trail[i]; drawSpr(p.pal, t[0][0], t[1] - cam, GY + t[2] + sy, p.facing, t[0][1], t[0][2], t[0][6], 0.4 - i * 0.08, true, false, p.scale); }
@@ -12337,7 +12336,7 @@ function drawInputLog() {
 // Usa a capacidade "room" do artefato: cada sala é uma sala nomeada ("dp-" + código).
 // Tudo trafega pela presença (estado absoluto, reenviado sozinho): lobby, escolhas e as entradas da luta.
 // Netcode lockstep: as duas telas simulam a mesma luta com as mesmas entradas, atrasadas alguns quadros.
-const BTN = ['up', 'down', 'left', 'right', 'a', 'b', 'c', 'd', 'taunt', 'start', 'mixP', 'mixN'];
+const BTN = ['up', 'down', 'left', 'right', 'a', 'b', 'c', 'd', 'taunt', 'start', 'mixP', 'mixN', 'help'];
 const B32 = '0123456789abcdefghijklmnopqrstuv';
 const encBtn = r => { let v = 0; BTN.forEach((k, i) => { if (r[k]) v |= 1 << i; }); return v; };
 const decBtn = v => { const r = {}; BTN.forEach((k, i) => { r[k] = !!((v >> i) & 1); }); return r; };
@@ -12536,7 +12535,8 @@ const WSNet = {
 };
 
 const MAXPRED = 10;
-const NETV = 3;   // versão do protocolo online (3: entradas com 3 letras por quadro, cabem Q/E da Mix); versões diferentes não jogam juntas   // no máximo 10 quadros de previsão (~0,17 s); passou disso, espera a rede
+const NETV = 4;   // 4: botão P (ajudantes da Mix)
+const NETV_OLD = 3;   // versão do protocolo online (3: entradas com 3 letras por quadro, cabem Q/E da Mix); versões diferentes não jogam juntas   // no máximo 10 quadros de previsão (~0,17 s); passou disso, espera a rede
 // gerador aleatório da luta: o estado fica em Game.rs, então volta junto no rollback
 function seededRandom() { let a = Game.rs = (Game.rs + 0x6D2B79F5) | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
 
@@ -13532,13 +13532,13 @@ const CfgPick = {
 // configuração dos botões de um controle (para os genéricos e adaptadores de PS2)
 const PadCfg = {
   steps: [['up', 'CIMA (direcional)'], ['down', 'BAIXO (direcional)'], ['left', 'ESQUERDA (direcional)'], ['right', 'DIREITA (direcional)'],
-    ['a', 'A — SOCO FRACO'], ['b', 'B — CHUTE FRACO'], ['c', 'C — SOCO FORTE'], ['d', 'D — CHUTE FORTE'], ['ab', 'A+B (atalho)'], ['cd', 'C+D (atalho)'], ['start', 'START / PAUSA'], ['taunt', 'PROVOCAÇÃO'], ['mixP', 'MIX ATHENA: ANTERIOR'], ['mixN', 'MIX ATHENA: PRÓXIMA']],
+    ['a', 'A — SOCO FRACO'], ['b', 'B — CHUTE FRACO'], ['c', 'C — SOCO FORTE'], ['d', 'D — CHUTE FORTE'], ['ab', 'A+B (atalho)'], ['cd', 'C+D (atalho)'], ['start', 'START / PAUSA'], ['taunt', 'PROVOCAÇÃO'], ['mixP', 'MIX ATHENA: ANTERIOR'], ['mixN', 'MIX ATHENA: PRÓXIMA'], ['help', 'P — AJUDANTES DA MIX']],
   start(pl) { this.pl = pl || 1; this.pad = null; this.i = 0; this.map = null; this.prev = null; this.wait = 20; Game.scene = 'padcfg'; },
   snapshot(p) { return { b: p.buttons.map(b => b.pressed || b.value > 0.5), a: p.axes.map(v => v) }; },
   choose(p) {
     this.pad = p.id; this.padIdx = p.index;
     if (Pads.assign[this.pl] !== p.index) { Pads.assign[this.pl] = p.index; for (const o of [1, 2, 3, 4]) if (o !== this.pl && Pads.assign[o] === p.index) Pads.assign[o] = null; Pads.save(); }
-    this.map = { a: null, b: null, c: null, d: null, ab: null, cd: null, start: null, taunt: null, mixP: null, mixN: null, dirs: {} }; this.wait = 25; this.prev = null; this.base = null;
+    this.map = { a: null, b: null, c: null, d: null, ab: null, cd: null, start: null, taunt: null, mixP: null, mixN: null, help: null, dirs: {} }; this.wait = 25; this.prev = null; this.base = null;
   },
   draw() {
     Stage.draw(Game.camX, 0); ctx.fillStyle = 'rgba(10,0,25,0.8)'; ctx.fillRect(0, 0, W, H);
@@ -13581,7 +13581,7 @@ const PadCfg = {
     this.i++; this.wait = 12; this.prev = null; Audio_.play(6, 6, null, 0.5);
     if (this.i >= this.steps.length) {
       const p = Pads.list().find(q => q.id === this.pad), def = p ? Pads.defMap(p) : {};
-      for (const kk of ['a', 'b', 'c', 'd', 'ab', 'cd', 'start', 'taunt', 'mixP', 'mixN']) if (this.map[kk] == null) this.map[kk] = def[kk];
+      for (const kk of ['a', 'b', 'c', 'd', 'ab', 'cd', 'start', 'taunt', 'mixP', 'mixN', 'help']) if (this.map[kk] == null) this.map[kk] = def[kk];
       Pads.maps['J' + this.pl + ':' + this.pad] = this.map; Pads.save(); Game.scene = 'options'; fsToast('Controle do jogador ' + this.pl + ' configurado!');
     }
   },
