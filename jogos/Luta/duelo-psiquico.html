@@ -12172,35 +12172,35 @@ const MixPick = {
   draw() {
     const g = Game; if (g.roundState !== 'mixpick') return;
     const ids = mixList(), t = g.rsT;
-    ctx.fillStyle = 'rgba(8,0,18,0.62)'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(8,0,18,0.35)'; ctx.fillRect(0, 0, W, H);   // fundo só escurecido (a luta aparece atrás)
     txt('MIX ATHENA', W / 2, 44, '#ff7ad9', 14, 'center', '#5a0a3a');
     txt('ESCOLHA COM QUAL ATHENA COMEÇA O ' + (g.round === 3 ? 'ROUND FINAL' : 'ROUND ' + g.round), W / 2, 62, '#fff', 8, 'center', '');
     txt(Math.max(0, Math.ceil((this.LIMIT - t) / 60)) + '', W / 2, 78, '#ffd23f', 10, 'center', '');
-    const sides = { 1: 0, 2: 0 };
+    // cada time fica na sua metade da tela; várias Mix no mesmo time ficam lado a lado (sem sobrepor).
+    // painel transparente: só a Athena escolhida aparece (trocar só troca a personagem, sem as outras desenhadas)
+    const cnt = { 1: 0, 2: 0 }, pos = { 1: 0, 2: 0 };
+    for (const e of this.E) cnt[e.f.team]++;
     for (const e of this.E) {
-      const k = sides[e.f.team]++, cx = (e.f.team === 1 ? 108 : W - 108) + (e.f.team === 1 ? 1 : -1) * k * 12, cy = 86 + k * 6;
+      const tm = e.f.team, n = cnt[tm], k = pos[tm]++;
+      const half = W / 2 - 14, gap = 8, pw = Math.min(184, (half - gap * (n - 1)) / n), sc = Math.min(1, Math.max(0.8, pw / 150));
+      const x0 = tm === 1 ? 10 : W / 2 + 4, cx = x0 + pw / 2 + k * (pw + gap) + (half - (pw * n + gap * (n - 1))) / 2, cy = 86;
       const id = ids[e.idx], ch = CHARS[id];
-      ctx.fillStyle = 'rgba(20,4,34,0.88)'; ctx.fillRect(cx - 92, cy, 184, 120);
-      ctx.save(); ctx.beginPath(); ctx.rect(cx - 92, cy, 184, 120); ctx.clip();
-      ctx.strokeStyle = e.done ? '#ffd23f' : (e.f.team === 1 ? '#7fd4ff' : '#ff8fb8'); ctx.lineWidth = 1; ctx.strokeRect(cx - 91.5, cy + 0.5, 183, 119);
-      // vizinhas (pequenas, apagadas)
-      for (const d of [-1, 1]) {
-        const nid = ids[(e.idx + d + ids.length) % ids.length], nc = CHARS[nid], nf = nc.pack.anims[0][1][0];
-        this.drawThumb(this.thumbs(nid, e.f.mixPal || 0), nf, cx + d * 62, cy + 98, e.f.team === 1 ? 1 : -1, 0.35, 0.5);
-      }
-      // a escolhida, animada
-      // animação só de tela: fica fora do estado da luta (o rollback do online não a faz pular)
+      const col = e.done ? '#ffd23f' : (tm === 1 ? '#7fd4ff' : '#ff8fb8');
+      ctx.strokeStyle = col; ctx.globalAlpha = 0.55; ctx.lineWidth = 1; ctx.strokeRect(Math.round(cx - pw / 2) + 0.5, cy + 0.5, Math.round(pw) - 1, 119); ctx.globalAlpha = 1;
+      // a escolhida, animada (animação só de tela: fica fora do estado da luta, o rollback do online não a faz pular)
       const R = this.RA.get(e) || {}; this.RA.set(e, R);
       if (R.id !== id) { R.anim = new Anim(0, ch.pack.anims); R.id = id; }
       if (g.frame !== R.lastF) { R.anim.step(); R.lastF = g.frame; }
       const fr = R.anim.f, pop = e.moved && t - e.moved < 6 ? 1 + (6 - (t - e.moved)) * 0.03 : 1;
-      this.drawThumb(this.thumbs(id, e.f.mixPal || 0), fr, cx, cy + 101, e.f.team === 1 ? 1 : -1, 1, 0.72 * pop);
-      if (!e.done) { txt('◄', cx - 84, cy + 54, '#fff', 12, 'left', ''); txt('►', cx + 84, cy + 54, '#fff', 12, 'right', ''); }
+      ctx.save(); ctx.beginPath(); ctx.rect(cx - pw / 2, cy, pw, 120); ctx.clip();
+      this.drawThumb(this.thumbs(id, e.f.mixPal || 0), fr, cx, cy + 101, tm === 1 ? 1 : -1, 1, 0.72 * pop * sc);
       ctx.restore();
-      ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(cx - 92, cy + 102, 184, 18);
-      txt(ch.short, cx, cy + 106, '#fff', 10, 'center', '#5a0a3a');
+      if (!e.done) { txt('◄', cx - pw / 2 + 4, cy + 54, '#fff', 12, 'left', '#000'); txt('►', cx + pw / 2 - 4, cy + 54, '#fff', 12, 'right', '#000'); }
+      ctx.fillStyle = 'rgba(0,0,0,0.45)'; ctx.fillRect(cx - pw / 2, cy + 102, pw, 18);
+      txt(ch.short, cx, cy + 106, '#fff', pw < 120 ? 8 : 10, 'center', '#5a0a3a');
       const who = e.human ? (e.f.ctl instanceof NetCtl ? (e.f.ctl.i === Net.me ? 'VOCÊ' : 'J' + (e.f.ctl.i + 1)) : e.f.ctl && e.f.ctl.pl ? 'P' + e.f.ctl.pl : 'JOGADOR') : 'CPU';
-      txt(who + (e.done ? ' · PRONTA!' : e.human ? ' · ◄ ► ESCOLHE · J CONFIRMA' : ''), cx, cy + 4, e.done ? '#ffd23f' : '#c9b6e6', 8, 'center', '');
+      txt(who + (e.done ? ' · PRONTA!' : ''), cx, cy + 4, e.done ? '#ffd23f' : '#c9b6e6', 8, 'center', '#000');
+      if (e.human && !e.done) txt(pw < 150 ? '◄ ► · J' : '◄ ► ESCOLHE · J CONFIRMA', cx, cy + 14, '#c9b6e6', 8, 'center', '#000');
     }
   },
 };
@@ -12218,7 +12218,8 @@ function drawFight() {
     ctx.fillStyle = el < 2 ? '#f8f8f8' : '#000'; ctx.fillRect(0, 0, W, H);
     if (el >= 2 && g.superStyle === 'mugen') drawSuperRays(g.superBy, cam, sy, el, g.superMax);
   } else if ((g.superT > 0 && g.superStyle !== 'xiv') || g.cine || g.cineBlack) { ctx.fillStyle = g.cineBlack ? '#000' : g.cine ? 'rgba(6,0,18,0.78)' : 'rgba(0,0,10,0.62)'; ctx.fillRect(0, 0, W, H); }
-  for (const f of g.F) drawShadow(f, cam, sy);
+  const hideF = g.roundState === 'mixpick';   // escolhendo a Athena da Mix: as lutadoras ficam fora da tela (o painel é transparente)
+  if (!hideF) for (const f of g.F) drawShadow(f, cam, sy);
   VFX.tick(); VFX.draw(true, cam, sy);
   drawExplods(false, cam, sy);
   // quem ataca fica na frente
@@ -12227,7 +12228,7 @@ function drawFight() {
   for (const x of g.F) if (x !== g.p1 && x !== g.p2) order = x.mt === 'A' ? [...order, x] : [x, ...order];
   for (const q of g.clones || []) drawClone(q, cam, sy);
   for (const hh of g.helpers || []) if (hh.mt !== 'A') { if (!hh.hidden) drawShadow(hh, cam, sy); drawFighter(hh, cam, sy); }   // ajudantes da Mix (atrás quando não atacam)
-  for (const f of order) { VFX.drawCharge(f, cam, sy, false); VFX.drawGhosts(f, cam, sy); drawFighter(f, cam, sy); VFX.drawCharge(f, cam, sy, true); drawOrbs(f, cam, sy); }
+  if (!hideF) for (const f of order) { VFX.drawCharge(f, cam, sy, false); VFX.drawGhosts(f, cam, sy); drawFighter(f, cam, sy); VFX.drawCharge(f, cam, sy, true); drawOrbs(f, cam, sy); }
   for (const hh of g.helpers || []) if (hh.mt === 'A') { if (!hh.hidden) drawShadow(hh, cam, sy); drawFighter(hh, cam, sy); }
   for (const p of g.projs) {
     for (let i = p.trail.length - 1; i >= 0; i--) { const t = p.trail[i]; drawSpr(p.pal, t[0][0], t[1] - cam, GY + t[2] + sy, p.facing, t[0][1], t[0][2], t[0][6], 0.4 - i * 0.08, true, false, p.scale); }
